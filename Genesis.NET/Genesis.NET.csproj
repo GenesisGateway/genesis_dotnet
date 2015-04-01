@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CE60DDB9-6174-4D5C-A659-94AA29FE53A2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Genesis.Net</RootNamespace>
+    <AssemblyName>Genesis.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;GenerateXmlSerializers</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\Genesis.Net.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;GenerateXmlSerializers</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\Genesis.Net.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CopaceticSoftware.pMixins">
+      <HintPath>..\packages\pMixins.0.6.0.455-prerelease\lib\net35\CopaceticSoftware.pMixins.dll</HintPath>
+    </Reference>
+    <Reference Include="DataAnnotationsExtensions">
+      <HintPath>..\packages\DataAnnotationsExtensions.1.1.0.0\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Genesis.Net.XmlSerializers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Genesis.Net.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\WpfLocales.cs" />
+    <Compile Include="Entities\Responses\AcquirerModel.cs" />
+    <Compile Include="Entities\Responses\AsyncTransactionModel.cs" />
+    <Compile Include="Entities\Responses\AuthorizationModel.cs" />
+    <Compile Include="Entities\Responses\AvsResponseModel.cs" />
+    <Compile Include="Entities\Responses\BlacklistModel.cs" />
+    <Compile Include="Entities\Responses\ChargebackModel.cs" />
+    <Compile Include="Entities\Responses\ChargebackResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChargebackResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\DynamicDescriptorModel.cs" />
+    <Compile Include="Entities\Responses\CustomerModel.cs" />
+    <Compile Include="Entities\Responses\ErrorModel.cs" />
+    <Compile Include="Entities\Responses\Error\AccountVerificationErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountVerificationErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\Authorize3dErrorResponse1.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Authorize3dErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\AuthorizeErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthorizeErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\AvsErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AvsErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\BlacklistErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlacklistErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\CaptureErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CaptureErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\CreditErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\InitRecurringSale3dErrorResponse1.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InitRecurringSale3dErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\InitRecurringSaleErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InitRecurringSaleErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\MultiChargebackErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MultiChargebackErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\MultiReconcileErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MultiReconcileErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\MultiRetrievalRequestErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MultiRetrievalRequestErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\PayoutErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PayoutErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\RecurringSaleErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecurringSaleErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\RefundErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RefundErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\Sale3dErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sale3dErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\SaleErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaleErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\SingleChargebackErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SingleChargebackErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\SingleReconcileErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SingleReconcileErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\SingleRetrievalRequestErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SingleRetrievalRequestErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\VoidErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoidErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\WpfCreateErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WpfCreateErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\WpfReconcileErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WpfReconcileErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\GamingModel.cs" />
+    <Compile Include="Entities\Responses\IssuerModel.cs" />
+    <Compile Include="Entities\Responses\MoneyModel.cs" />
+    <Compile Include="Entities\Responses\MotoModel.cs" />
+    <Compile Include="Entities\Responses\PaymentAddressModel.cs" />
+    <Compile Include="Entities\Responses\PaymentResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\PaymentResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PaymentResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\PaymentResponseModel.cs" />
+    <Compile Include="Entities\Responses\ItemsRangeModel.cs" />
+    <Compile Include="Entities\Responses\PaymentTransactionsModel.cs" />
+    <Compile Include="Entities\Responses\RecurringAdviceModel.cs" />
+    <Compile Include="Entities\Responses\RetrievalRequestsResponseModel.cs" />
+    <Compile Include="Entities\Responses\RetrievalResponse1.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetrievalResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\RetrievalResponseModel.cs" />
+    <Compile Include="Entities\Responses\Successful\AccountVerificationSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountVerificationSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\Authorize3dSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Authorize3dSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\AuthorizeSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthorizeSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\AvsSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AvsSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\BlacklistSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlacklistSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\CaptureSuccessResponse1.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CaptureSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\CreditSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\InitRecurringSale3dSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InitRecurringSale3dSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\InitRecurringSaleSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InitRecurringSaleSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\MultiChargebackSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MultiChargebackSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\MultiReconcileSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MultiReconcileSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\MultiRetrievalRequestSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MultiRetrievalRequestSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\PayoutSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PayoutSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\RecurringSaleSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecurringSaleSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\RefundSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RefundSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\Sale3dSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sale3dSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\SaleSuccessResponse1.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SaleSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\SingleChargebackSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SingleChargebackSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\SingleReconcileSuccessResponse2.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SingleReconcileSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\SingleRetrievalRequestSuccessResponse1.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SingleRetrievalRequestSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\VoidSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoidSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\WpfCreateSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WpfCreateSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\WpfReconcileSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WpfReconcileSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\TransactionModel.cs" />
+    <Compile Include="Entities\Responses\TransactionStatusModel.cs" />
+    <Compile Include="Entities\Responses\TransactionTypeModel.cs" />
+    <Compile Include="Environments.cs" />
+    <Compile Include="GenesisClientFactory.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Money.cs" />
+    <Compile Include="Entities\Requests\Initial\WpfCreate.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>WpfCreate.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Query\Blacklist.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Blacklist.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Referential\QuantitativeReferentialRequest.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>QuantitativeReferentialRequest.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Referential\WpfReconcile.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>WpfReconcile.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Wpf.cs" />
+    <Compile Include="Entities\Responses\ChargebackResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>ChargebackResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\AccountVerificationErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>AccountVerificationErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\Authorize3dErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Authorize3dErrorResponse1.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\AuthorizeErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>AuthorizeErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\AvsErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>AvsErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\BlacklistErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>BlacklistErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\CaptureErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>CaptureErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\CreditErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>CreditErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\IErrorResponse.cs" />
+    <Compile Include="Entities\Responses\Error\InitRecurringSale3dErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>InitRecurringSale3dErrorResponse1.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\InitRecurringSaleErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>InitRecurringSaleErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\MultiChargebackErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>MultiChargebackErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\MultiReconcileErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>MultiReconcileErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\MultiRetrievalRequestErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>MultiRetrievalRequestErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\PayoutErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>PayoutErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\RecurringSaleErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>RecurringSaleErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\RefundErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>RefundErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\Sale3dErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Sale3dErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\SaleErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SaleErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\SingleChargebackErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SingleChargebackErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\SingleReconcileErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SingleReconcileErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\SingleRetrievalRequestErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SingleRetrievalRequestErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\VoidErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>VoidErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\WpfCreateErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>WpfCreateErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\WpfReconcileErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>WpfReconcileErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\ResultFactory.cs" />
+    <Compile Include="Entities\Responses\RetrievalResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>RetrievalResponse1.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\AccountVerificationSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>AccountVerificationSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\Authorize3dSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Authorize3dSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\AuthorizeSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>AuthorizeSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\AvsSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>AvsSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\BlacklistSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>BlacklistSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\CaptureSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>CaptureSuccessResponse1.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\CreditSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>CreditSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\InitRecurringSale3dSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>InitRecurringSale3dSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\InitRecurringSaleSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>InitRecurringSaleSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\MultiChargebackSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>MultiChargebackSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\MultiReconcileSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>MultiReconcileSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\MultiRetrievalRequestSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>MultiRetrievalRequestSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\PayoutSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>PayoutSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\RecurringSaleSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>RecurringSaleSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\RefundSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>RefundSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\Sale3dSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Sale3dSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\SaleSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SaleSuccessResponse1.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\SingleChargebackSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SingleChargebackSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\SingleReconcileSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SingleReconcileSuccessResponse2.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\SingleRetrievalRequestSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SingleRetrievalRequestSuccessResponse1.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\VoidSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>VoidSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\WpfCreateSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>WpfCreateSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\WpfReconcileSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>WpfReconcileSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Formatter.cs" />
+    <Compile Include="Common\Iso4217Currencies.cs" />
+    <Compile Include="Common\Currency.cs" />
+    <Compile Include="Common\Iso3166CountryCodes.cs" />
+    <Compile Include="Common\Iso4217CurrencyCodes.cs" />
+    <Compile Include="Entities\Requests\Initial\AccountVerification.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>AccountVerification.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\ThreeD\Authorize3dAsync.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Authorize3dAsync.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\ThreeD\Authorize3dSync.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Authorize3dSync.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\ThreeD\InitRecurringSale3d.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>InitRecurringSale3d.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\ThreeD\Authorize3d.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Authorize3d.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\Avs.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Avs.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\InitRecurringSale.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>InitRecurringSale.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\ThreeD\InitRecurringSale3dAsync.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>InitRecurringSale3dAsync.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\ThreeD\InitRecurringSale3dSync.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>InitRecurringSale3dSync.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\ThreeD\Sale3d.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Sale3d.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\ThreeD\Sale3dAsync.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Sale3dAsync.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\ThreeD\Sale3dSync.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Sale3dSync.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\MpiParams.cs" />
+    <Compile Include="Entities\Notification.cs" />
+    <Compile Include="Entities\Requests\Query\MultiChargeback.cs" />
+    <Compile Include="Entities\Requests\Query\MultiReconcile.cs" />
+    <Compile Include="Entities\Requests\Query\MultiRetrievalRequest.cs" />
+    <Compile Include="Entities\Requests\Query\QueryByDate.cs" />
+    <Compile Include="Entities\Requests\Query\SingleChargeback.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SingleChargeback.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Query\SingleReconcile.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SingleReconcile.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Query\SingleRetrievalRequest.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>SingleRetrievalRequest.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Referential\Capture.cs" />
+    <Compile Include="Entities\Requests\Referential\Credit.cs" />
+    <Compile Include="Entities\Requests\Initial\InitialRequest.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>InitialRequest.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\Payout.cs" />
+    <Compile Include="Entities\Requests\Referential\RecurringSale.cs" />
+    <Compile Include="Entities\Requests\Referential\ReferentialRequest.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>ReferentialRequest.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Referential\Refund.cs" />
+    <Compile Include="Entities\Requests\Initial\Sale.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Sale1.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Referential\VoidRequest.cs" />
+    <Compile Include="Entities\ThreeDNotification.cs" />
+    <Compile Include="Entities\WpfNotification.cs" />
+    <Compile Include="Errors\ErrorsService.cs" />
+    <Compile Include="Errors\ErrorCodes.cs" />
+    <Compile Include="IGenesisClient.cs" />
+    <Compile Include="Validations\IPv4AddressAttribute.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\DynamicDescriptor.cs" />
+    <Compile Include="Entities\Requests\Request.cs" />
+    <Compile Include="Entities\RiskParams.cs" />
+    <Compile Include="Entities\Requests\Initial\Authorize.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Authorize.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="GenesisClient.cs" />
+    <Compile Include="Result.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\StringWriterUtf8.cs" />
+    <Compile Include="TransactionTypes.cs" />
+    <Compile Include="Common\XmlSerializationHelpers.cs" />
+    <Compile Include="Common\EntitiesValidator.cs" />
+    <Compile Include="Validations\MoneyRangeAttribute.cs" />
+    <Compile Include="Validations\StateCodeAttribute.cs" />
+    <Compile Include="Validations\ValidationMessages.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!--<Target Name="BeforeBuild">
+  </Target>-->
+  <Target Name="AfterBuild">
+    <CallTarget Targets="GenerateXmlSerializers" />
+  </Target>
+  <Target Name="GenerateXmlSerializers" Condition="$(DefineConstants.Contains('GenerateXmlSerializers'))">
+    <Delete Files="$(TargetDir)$(TargetName).XmlSerializers.dll" ContinueOnError="true" />
+    <SGen BuildAssemblyName="$(TargetFileName)" BuildAssemblyPath="$(OutputPath)" ShouldGenerateSerializer="true" UseProxyTypes="false" ToolPath="$(TargetFrameworkSDKToolsDirectory)" Platform="$(Platform)" />
+    <MSBuild Projects="$(MSBuildProjectFile)" Properties="DefineConstants=$(DefineConstants.Replace('GenerateXmlSerializers', ''))" />
+  </Target>
+</Project>
