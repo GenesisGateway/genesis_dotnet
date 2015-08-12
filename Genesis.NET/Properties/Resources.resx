@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountError" xml:space="preserve">
+    <value>Issuer account data invalid, please contact support.</value>
+  </data>
+  <data name="AuthenticationError" xml:space="preserve">
+    <value>Login failed. Check your API credentials.</value>
+  </data>
+  <data name="AvsError" xml:space="preserve">
+    <value>Address Verification failed.</value>
+  </data>
+  <data name="BinBlacklistError" xml:space="preserve">
+    <value>BIN blacklisted.</value>
+  </data>
+  <data name="BinCountryCheckError" xml:space="preserve">
+    <value>Card bin does not match billing country</value>
+  </data>
+  <data name="BlacklistError" xml:space="preserve">
+    <value>Value from payment transaction or risk params is blacklisted.</value>
+  </data>
+  <data name="CardBlacklistError" xml:space="preserve">
+    <value>Card is blacklisted</value>
+  </data>
+  <data name="CardLimitExceededError" xml:space="preserve">
+    <value>Card limit exceeded configured limits.</value>
+  </data>
+  <data name="CardTicketSizeExceededError" xml:space="preserve">
+    <value>Ticketsize by unknown card exceeded!</value>
+  </data>
+  <data name="CardVelocityExceededError" xml:space="preserve">
+    <value>Velocity by unknown card exceeded!</value>
+  </data>
+  <data name="CardWhitelistError" xml:space="preserve">
+    <value>PAN Whitelist Filter blocked the transaction. This filter - like the above one - uses the PAN blacklist (BL) to perform CC number checks against the BL in the DB. This filter however will reject transactions from a CC with a number which is not whitelisted.</value>
+  </data>
+  <data name="ChargebackNotFoundError" xml:space="preserve">
+    <value>DOCUMENTATION MISSING</value>
+  </data>
+  <data name="CommunicationError" xml:space="preserve">
+    <value>Communication with issuer failed, please contact sup- port.</value>
+  </data>
+  <data name="ConfigurationError" xml:space="preserve">
+    <value>Configuration error occured, e.g. terminal not config- ured properly. Check terminal settings.</value>
+  </data>
+  <data name="ConnectionError" xml:space="preserve">
+    <value>Connection to issuer could not be established, please contact support.</value>
+  </data>
+  <data name="ContractLimitExceededError" xml:space="preserve">
+    <value>MID limits exceeded.</value>
+  </data>
+  <data name="CountryBlacklistError" xml:space="preserve">
+    <value>Country blacklisted.</value>
+  </data>
+  <data name="CreditExceededError" xml:space="preserve">
+    <value>Amount excceds credit card limit.</value>
+  </data>
+  <data name="CSDetectionError" xml:space="preserve">
+    <value>The CrossSellingFilter blocks duplicated transactions when an approved transaction has been found on an- other mid. That is, if the transaction has already been processed successfully on a di↵erent mid and within the specified time frame, context entity / scope and possibly within the issuer scope (or not), it will be rejected in order to prevent duplicates.</value>
+  </data>
+  <data name="DoubletTransactionError" xml:space="preserve">
+    <value>Transaction doublet was detected, transaction was blocked. This happens if several transactions with same amount, card holder, cc number, cvv and expiry date are sent within 5 minutes.</value>
+  </data>
+  <data name="ExpiredCardError" xml:space="preserve">
+    <value>Transaction declined, expiration date not in the future or date invalid.</value>
+  </data>
+  <data name="InputDataError" xml:space="preserve">
+    <value>Invalid were data sent to the API.</value>
+  </data>
+  <data name="InputDataFormatError" xml:space="preserve">
+    <value>Argument passed in invalid format. Check parame- ters.</value>
+  </data>
+  <data name="InputDataInvalidError" xml:space="preserve">
+    <value>Argument passed in valid format but makes no sense (e.g. incorrect country code or currency). Check pa- rameters.</value>
+  </data>
+  <data name="InputDataMissingError" xml:space="preserve">
+    <value>Required argument is missing. Check parameters.</value>
+  </data>
+  <data name="InvalidCardError" xml:space="preserve">
+    <value>Transaction declined, Credit card number is invalid.</value>
+  </data>
+  <data name="InvalidContentTypeError" xml:space="preserve">
+    <value>DOCUMENTATION MISSING</value>
+  </data>
+  <data name="InvalidTransactionTypeError" xml:space="preserve">
+    <value>Invalid transaction type was passed to API.</value>
+  </data>
+  <data name="InvalidXmlError" xml:space="preserve">
+    <value>The input XML could not be parsed due to invalid code. Please check XML data.</value>
+  </data>
+  <data name="IpBlacklistError" xml:space="preserve">
+    <value>IP address blacklisted.</value>
+  </data>
+  <data name="MaintenanceError" xml:space="preserve">
+    <value>System is undergoing maintenance, request could not be handled.</value>
+  </data>
+  <data name="MaxMindRiskError" xml:space="preserve">
+    <value>If a transaction is considered high risk by MaxMind minFraud service, a MaxMindRiskError is raised.</value>
+  </data>
+  <data name="MultipleFailureDetectionError" xml:space="preserve">
+    <value>Found user transaction declined by issuer. Try again later!</value>
+  </data>
+  <data name="ParsingError" xml:space="preserve">
+    <value>Issuer response could not be parsed - please reconcile and contact support.</value>
+  </data>
+  <data name="ProcessingError" xml:space="preserve">
+    <value>Transaction declined by issuer</value>
+  </data>
+  <data name="RecurringLimitExceededError" xml:space="preserve">
+    <value>Amount/count by recurring subscription exceeded.</value>
+  </data>
+  <data name="ReferenceInvalidatedError" xml:space="preserve">
+    <value>Reference transaction already invalidated!</value>
+  </data>
+  <data name="ReferenceMismatchError" xml:space="preserve">
+    <value>Data mismatch with reference, e.g. amount exceeds reference</value>
+  </data>
+  <data name="ReferenceNotFoundError" xml:space="preserve">
+    <value>Reference transaction was not found.</value>
+  </data>
+  <data name="ReferenceWorkflowError" xml:space="preserve">
+    <value>Wrong Workflow specified.</value>
+  </data>
+  <data name="RemoteConfigurationError" xml:space="preserve">
+    <value>Issuer configuration error</value>
+  </data>
+  <data name="RemoteConnectionError" xml:space="preserve">
+    <value>Issuer could not reach clearing network</value>
+  </data>
+  <data name="RemoteDataError" xml:space="preserve">
+    <value>Some passed data caused an error on the issuer</value>
+  </data>
+  <data name="RemoteError" xml:space="preserve">
+    <value>Some error occured on the issuer. Contact support.</value>
+  </data>
+  <data name="RemoteSystemError" xml:space="preserve">
+    <value>Some error occured on the issuer</value>
+  </data>
+  <data name="RemoteTimeoutError" xml:space="preserve">
+    <value>Issuer has timeouted with clearing network</value>
+  </data>
+  <data name="RemoteWorkflowError" xml:space="preserve">
+    <value>Remote workflow error</value>
+  </data>
+  <data name="ResponseError" xml:space="preserve">
+    <value>Issuer returned invalid response - please reconcile and contact support</value>
+  </data>
+  <data name="RetrievalRequestNotFoundError" xml:space="preserve">
+    <value>DOCUMENTATION MISSING</value>
+  </data>
+  <data name="RiskError" xml:space="preserve">
+    <value>Transaction declined by risk management</value>
+  </data>
+  <data name="SystemError" xml:space="preserve">
+    <value>A general system error occured</value>
+  </data>
+  <data name="TerminalLimitExceededError" xml:space="preserve">
+    <value>Terminal limits exceeded.</value>
+  </data>
+  <data name="ThreatMetrixRiskError" xml:space="preserve">
+    <value>Transaction declined by ThreatMetrix risk module.</value>
+  </data>
+  <data name="TimeoutError" xml:space="preserve">
+    <value>Issuer does not respond within given timeframe - please reconcile</value>
+  </data>
+  <data name="TransactionNotFoundError" xml:space="preserve">
+    <value>The referenced transaction could not be found.</value>
+  </data>
+  <data name="TransactionPendingError" xml:space="preserve">
+    <value>Transaction pending.</value>
+  </data>
+  <data name="UserLimitExceededError" xml:space="preserve">
+    <value>User limit exceeded configured limits.</value>
+  </data>
+  <data name="WorkflowError" xml:space="preserve">
+    <value>A transaction was triggered that is not possible at this time in the workflow, e.g. a refund on a declined transaction.</value>
+  </data>
+  <data name="UndefinedError" xml:space="preserve">
+    <value>Undefined error.</value>
+  </data>
+</root>
