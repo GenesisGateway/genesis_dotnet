@@ -7,6 +7,8 @@ namespace Genesis.Net.Entities
 {
     public class Money : Entity
     {
+        private readonly IFormatProvider conversionCultureInfo = CultureInfo.GetCultureInfo("en-US");
+
         private string nativeAmount;
         private bool? isNativeAmountMinor;
 
@@ -59,7 +61,7 @@ namespace Genesis.Net.Entities
             }
             set
             {
-                SetNativeAmount(value.ToString(), isMinor: false);
+                SetNativeAmount(value.ToString(conversionCultureInfo), isMinor: false);
             }
         }
 
@@ -103,7 +105,7 @@ namespace Genesis.Net.Entities
 
         private void UpdateAmountsFromMajor()
         {
-            majorAmount = decimal.Parse(nativeAmount, NumberStyles.Currency, CultureInfo.InvariantCulture);
+            majorAmount = decimal.Parse(nativeAmount, NumberStyles.Currency, conversionCultureInfo);
             Iso4217Currencies.TryConvertMajorToMinor(CurrencyCode, majorAmount, out minorAmount);
         }
     }

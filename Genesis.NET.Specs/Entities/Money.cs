@@ -15,6 +15,13 @@ namespace Genesis.Net.Specs.Entities
             money = new Money() { };
         }
 
+        void it_should_properly_convert_major_to_minor_units()
+        {
+            money.CurrencyCode = Iso4217CurrencyCodes.USD;
+            money.MajorAmount  = 3.14M;
+            money.MinorAmount.ToString().should_be("314");
+        }
+
         void it_should_recognise_minor_amount_from_string()
         {
             money.NativeAmount = "10";

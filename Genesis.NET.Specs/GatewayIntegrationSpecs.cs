@@ -92,5 +92,5 @@ namespace Genesis.Net.Specs
             };
         }
     }
-}
 #endif
+}
