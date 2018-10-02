@@ -21,7 +21,7 @@ namespace Genesis.Net.Common
                     NewLineChars = string.Empty
                 };
 
-                using (var xmlWriter = XmlWriter.Create(textWriter, settings))
+                using (var xmlWriter = new SortedNamespaceXmlWriter(XmlWriter.Create(textWriter, settings)))
                 {
                     XmlSerializer serializer;
                     var entityType = entity.GetType();

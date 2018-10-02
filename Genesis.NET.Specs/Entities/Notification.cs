@@ -9,7 +9,7 @@ namespace Genesis.Net.Specs.EntitiesSpecs
 {
     class describe_notification : nspec
     {
-        X509Certificate certificate = X509Certificate.CreateFromCertFile(@"Certificates/genesis_sandbox_comodo_ca.pem");
+        X509Certificate certificate = SpecHelper.GetSandboxCertificate();
 
         void it_should_parse_3d_notification()
         {

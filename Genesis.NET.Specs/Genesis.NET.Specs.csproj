@@ -59,6 +59,7 @@
     <Compile Include="Entities\Responses\Initial\PaySafeCard.cs" />
     <Compile Include="Entities\Responses\Initial\EzeeWallet.cs" />
     <Compile Include="Entities\Responses\Initial\PayByVoucher.cs" />
+    <Compile Include="GatewayPingSpecs.cs" />
     <Compile Include="TransactionExecutionSpecs.cs" />
     <Compile Include="Entities\Money.cs" />
     <Compile Include="GatewayIntegrationSpecs.cs" />
@@ -148,8 +149,8 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Genesis.NET\Genesis.Net.csproj">
-      <Project>{ce60ddb9-6174-4d5c-a659-94aa29fe53a2}</Project>
+    <ProjectReference Include="..\Genesis.NET\Genesis.NET.csproj">
+      <Project>{CE60DDB9-6174-4D5C-A659-94AA29FE53A2}</Project>
       <Name>Genesis.Net</Name>
     </ProjectReference>
   </ItemGroup>

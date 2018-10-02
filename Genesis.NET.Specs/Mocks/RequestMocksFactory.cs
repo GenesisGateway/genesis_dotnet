@@ -25,7 +25,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 BillingAddress = new Address()
@@ -54,7 +54,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -81,7 +81,7 @@ namespace Genesis.Net.Specs.Mocks
                       "<expiration_month>01</expiration_month>" +
                       "<expiration_year>2025</expiration_year>" +
                       "<customer_email>hello@world.com</customer_email>" +
-                      "<customer_phone>phone number</customer_phone>" +
+                      "<customer_phone>3598888888888</customer_phone>" +
                       "<card_number>4711100000000000</card_number>" +
                       "<cvv>123</cvv>" +
                       "<billing_address>" +
@@ -111,7 +111,7 @@ namespace Genesis.Net.Specs.Mocks
                       "<user_id>user id</user_id>" +
                       "<user_level>user level</user_level>" +
                       "<email>hello@world.com</email>" +
-                      "<phone>phone</phone>" +
+                      "<phone>3598888888888</phone>" +
                       "<remote_ip>255.10.100.10</remote_ip>" +
                       "<serial_number>serial number</serial_number>" +
                       "</risk_params>" +
@@ -137,7 +137,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 NotificationUrl = "https://example.com/notify",
@@ -169,7 +169,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -197,7 +197,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<expiration_month>01</expiration_month>" +
                      "<expiration_year>2025</expiration_year>" +
                      "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>phone number</customer_phone>" +
+                     "<customer_phone>3598888888888</customer_phone>" +
                      "<card_number>4711100000000000</card_number>" +
                      "<cvv>123</cvv>" +
                      "<billing_address>" +
@@ -227,7 +227,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<user_id>user id</user_id>" +
                      "<user_level>user level</user_level>" +
                      "<email>hello@world.com</email>" +
-                     "<phone>phone</phone>" +
+                     "<phone>3598888888888</phone>" +
                      "<remote_ip>255.10.100.10</remote_ip>" +
                      "<serial_number>serial number</serial_number>" +
                      "</risk_params>" +
@@ -256,7 +256,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 BillingAddress = new Address()
@@ -285,7 +285,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -319,7 +319,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<expiration_month>01</expiration_month>" +
                      "<expiration_year>2025</expiration_year>" +
                      "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>phone number</customer_phone>" +
+                     "<customer_phone>3598888888888</customer_phone>" +
                      "<card_number>4711100000000000</card_number>" +
                      "<cvv>123</cvv>" +
                      "<billing_address>" +
@@ -349,7 +349,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<user_id>user id</user_id>" +
                      "<user_level>user level</user_level>" +
                      "<email>hello@world.com</email>" +
-                     "<phone>phone</phone>" +
+                     "<phone>3598888888888</phone>" +
                      "<remote_ip>255.10.100.10</remote_ip>" +
                      "<serial_number>serial number</serial_number>" +
                      "</risk_params>" +
@@ -380,7 +380,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 NotificationUrl = "https://example.com/notify",
@@ -412,7 +412,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -440,7 +440,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<expiration_month>01</expiration_month>" +
                      "<expiration_year>2025</expiration_year>" +
                      "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>phone number</customer_phone>" +
+                     "<customer_phone>3598888888888</customer_phone>" +
                      "<card_number>4711100000000000</card_number>" +
                      "<cvv>123</cvv>" +
                      "<billing_address>" +
@@ -470,7 +470,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<user_id>user id</user_id>" +
                      "<user_level>user level</user_level>" +
                      "<email>hello@world.com</email>" +
-                     "<phone>phone</phone>" +
+                     "<phone>3598888888888</phone>" +
                      "<remote_ip>255.10.100.10</remote_ip>" +
                      "<serial_number>serial number</serial_number>" +
                      "</risk_params>" +
@@ -499,7 +499,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 BillingAddress = new Address()
@@ -528,7 +528,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -562,7 +562,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<expiration_month>01</expiration_month>" +
                      "<expiration_year>2025</expiration_year>" +
                      "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>phone number</customer_phone>" +
+                     "<customer_phone>3598888888888</customer_phone>" +
                      "<card_number>4711100000000000</card_number>" +
                      "<cvv>123</cvv>" +
                      "<billing_address>" +
@@ -592,7 +592,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<user_id>user id</user_id>" +
                      "<user_level>user level</user_level>" +
                      "<email>hello@world.com</email>" +
-                     "<phone>phone</phone>" +
+                     "<phone>3598888888888</phone>" +
                      "<remote_ip>255.10.100.10</remote_ip>" +
                      "<serial_number>serial number</serial_number>" +
                      "</risk_params>" +
@@ -623,7 +623,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 NotificationUrl = "https://example.com/notify",
@@ -655,7 +655,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -683,7 +683,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<expiration_month>01</expiration_month>" +
                      "<expiration_year>2025</expiration_year>" +
                      "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>phone number</customer_phone>" +
+                     "<customer_phone>3598888888888</customer_phone>" +
                      "<card_number>4711100000000000</card_number>" +
                      "<cvv>123</cvv>" +
                      "<billing_address>" +
@@ -713,7 +713,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<user_id>user id</user_id>" +
                      "<user_level>user level</user_level>" +
                      "<email>hello@world.com</email>" +
-                     "<phone>phone</phone>" +
+                     "<phone>3598888888888</phone>" +
                      "<remote_ip>255.10.100.10</remote_ip>" +
                      "<serial_number>serial number</serial_number>" +
                      "</risk_params>" +
@@ -742,7 +742,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 BillingAddress = new Address()
@@ -771,7 +771,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -805,7 +805,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<expiration_month>01</expiration_month>" +
                      "<expiration_year>2025</expiration_year>" +
                      "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>phone number</customer_phone>" +
+                     "<customer_phone>3598888888888</customer_phone>" +
                      "<card_number>4711100000000000</card_number>" +
                      "<cvv>123</cvv>" +
                      "<billing_address>" +
@@ -835,7 +835,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<user_id>user id</user_id>" +
                      "<user_level>user level</user_level>" +
                      "<email>hello@world.com</email>" +
-                     "<phone>phone</phone>" +
+                     "<phone>3598888888888</phone>" +
                      "<remote_ip>255.10.100.10</remote_ip>" +
                      "<serial_number>serial number</serial_number>" +
                      "</risk_params>" +
@@ -866,7 +866,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 BillingAddress = new Address()
@@ -895,7 +895,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -918,7 +918,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<expiration_month>01</expiration_month>" +
                      "<expiration_year>2025</expiration_year>" +
                      "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>phone number</customer_phone>" +
+                     "<customer_phone>3598888888888</customer_phone>" +
                      "<card_number>4711100000000000</card_number>" +
                      "<cvv>123</cvv>" +
                      "<billing_address>" +
@@ -948,7 +948,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<user_id>user id</user_id>" +
                      "<user_level>user level</user_level>" +
                      "<email>hello@world.com</email>" +
-                     "<phone>phone</phone>" +
+                     "<phone>3598888888888</phone>" +
                      "<remote_ip>255.10.100.10</remote_ip>" +
                      "<serial_number>serial number</serial_number>" +
                      "</risk_params>" +
@@ -970,7 +970,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 BillingAddress = new Address()
@@ -999,7 +999,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -1021,7 +1021,7 @@ namespace Genesis.Net.Specs.Mocks
                       "<expiration_month>01</expiration_month>" +
                       "<expiration_year>2025</expiration_year>" +
                       "<customer_email>hello@world.com</customer_email>" +
-                      "<customer_phone>phone number</customer_phone>" +
+                      "<customer_phone>3598888888888</customer_phone>" +
                       "<card_number>4711100000000000</card_number>" +
                       "<cvv>123</cvv>" +
                       "<billing_address>" +
@@ -1051,7 +1051,7 @@ namespace Genesis.Net.Specs.Mocks
                       "<user_id>user id</user_id>" +
                       "<user_level>user level</user_level>" +
                       "<email>hello@world.com</email>" +
-                      "<phone>phone</phone>" +
+                      "<phone>3598888888888</phone>" +
                       "<remote_ip>255.10.100.10</remote_ip>" +
                       "<serial_number>serial number</serial_number>" +
                       "</risk_params>" +
@@ -1073,7 +1073,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 BillingAddress = new Address()
@@ -1102,7 +1102,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -1130,7 +1130,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<expiration_month>01</expiration_month>" +
                      "<expiration_year>2025</expiration_year>" +
                      "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>phone number</customer_phone>" +
+                     "<customer_phone>3598888888888</customer_phone>" +
                      "<card_number>4711100000000000</card_number>" +
                      "<cvv>123</cvv>" +
                      "<billing_address>" +
@@ -1160,7 +1160,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<user_id>user id</user_id>" +
                      "<user_level>user level</user_level>" +
                      "<email>hello@world.com</email>" +
-                     "<phone>phone</phone>" +
+                     "<phone>3598888888888</phone>" +
                      "<remote_ip>255.10.100.10</remote_ip>" +
                      "<serial_number>serial number</serial_number>" +
                      "</risk_params>" +
@@ -1186,7 +1186,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 BillingAddress = new Address()
@@ -1226,7 +1226,7 @@ namespace Genesis.Net.Specs.Mocks
                      "<expiration_month>01</expiration_month>" +
                      "<expiration_year>2025</expiration_year>" +
                      "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>phone number</customer_phone>" +
+                     "<customer_phone>3598888888888</customer_phone>" +
                      "<card_number>4711100000000000</card_number>" +
                      "<cvv>123</cvv>" +
                      "<billing_address>" +
@@ -1267,7 +1267,7 @@ namespace Genesis.Net.Specs.Mocks
                 ExpirationMonth = 1,
                 ExpirationYear = 2025,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
                 BillingAddress = new Address()
@@ -1296,7 +1296,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -1323,7 +1323,7 @@ namespace Genesis.Net.Specs.Mocks
                       "<expiration_month>01</expiration_month>" +
                       "<expiration_year>2025</expiration_year>" +
                       "<customer_email>hello@world.com</customer_email>" +
-                      "<customer_phone>phone number</customer_phone>" +
+                      "<customer_phone>3598888888888</customer_phone>" +
                       "<card_number>4711100000000000</card_number>" +
                       "<cvv>123</cvv>" +
                       "<billing_address>" +
@@ -1353,7 +1353,7 @@ namespace Genesis.Net.Specs.Mocks
                       "<user_id>user id</user_id>" +
                       "<user_level>user level</user_level>" +
                       "<email>hello@world.com</email>" +
-                      "<phone>phone</phone>" +
+                      "<phone>3598888888888</phone>" +
                       "<remote_ip>255.10.100.10</remote_ip>" +
                       "<serial_number>serial number</serial_number>" +
                       "</risk_params>" +
@@ -1375,7 +1375,7 @@ namespace Genesis.Net.Specs.Mocks
                 Amount = 1,
                 Currency = Iso4217CurrencyCodes.USD,
                 CustomerEmail = "hello@world.com",
-                CustomerPhone = "phone number",
+                CustomerPhone = "3598888888888",
                 Description = "description",
                 TransactionTypes = new Composite[] {
                     new Composite() { { "name", "sale" } }, new Composite() { { "name", "sale3d" } },
@@ -1411,7 +1411,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     Email = "hello@world.com",
                     MacAddress = "mac address",
-                    Phone = "phone",
+                    Phone = "3598888888888",
                     RemoteIp = "255.10.100.10",
                     SerialNumber = "serial number",
                     SessionId = "session id",
@@ -1430,7 +1430,7 @@ namespace Genesis.Net.Specs.Mocks
                     "<usage>usage</usage>" +
                     "<description>description</description>" +
                     "<customer_email>hello@world.com</customer_email>" +
-                    "<customer_phone>phone number</customer_phone>" +
+                    "<customer_phone>3598888888888</customer_phone>" +
                     "<notification_url>https://example.com/notify</notification_url>" +
                     "<return_success_url>http://test.com/success</return_success_url>" +
                     "<return_failure_url>http://test.com/fail</return_failure_url>" +
@@ -1470,7 +1470,7 @@ namespace Genesis.Net.Specs.Mocks
                         "<user_id>user id</user_id>" +
                         "<user_level>user level</user_level>" +
                         "<email>hello@world.com</email>" +
-                        "<phone>phone</phone>" +
+                        "<phone>3598888888888</phone>" +
                         "<remote_ip>255.10.100.10</remote_ip>" +
                         "<serial_number>serial number</serial_number>" +
                     "</risk_params>" +

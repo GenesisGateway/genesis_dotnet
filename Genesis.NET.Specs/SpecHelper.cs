@@ -7,6 +7,8 @@ using System.Security.Cryptography.X509Certificates;
 using Genesis.Net.Common;
 using Genesis.Net.Entities;
 using Genesis.Net.Specs.Mocks;
+using System.IO;
+using System.Reflection;
 
 namespace Genesis.Net.Specs
 {
@@ -29,6 +31,15 @@ namespace Genesis.Net.Specs
         public static string[] GetErrorMessagesInAscendingOrder(IEnumerable<ValidationResult> validationErrors)
         {
             return validationErrors.Select(e => e.ErrorMessage).OrderBy(m => m).ToArray();
+        }
+
+        public static X509Certificate GetSandboxCertificate()
+        {
+            return X509Certificate.CreateFromCertFile(Path.Combine(
+                Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath),
+                @"Certificates",
+                @"genesis_sandbox_comodo_ca.pem"
+            ));
         }
 
         public static IGenesisClient CreateGenesisClient(bool mockHttpWebRequests = true)
@@ -74,11 +85,11 @@ namespace Genesis.Net.Specs
         public static Configuration CreateCompleteStagingConfiguration()
         {
             var configuration = new Configuration(environment: Environments.Staging,
-                terminalToken: "a100f8ee52bb5e2605d4bfe0454cfc945125e8cf",
-                apiLogin: "64d9863c9cc192685bc152923af5450aae8124ad",
-                apiPassword: "fac7ee4dafcfbd3f677220bacca7a4d7ba578d7c",
-                certificate: X509Certificate.CreateFromCertFile(@"Certificates/genesis_sandbox_comodo_ca.pem"),
-                endpoint: Endpoints.EComProcessing);
+                terminalToken: "terminal_token",
+                apiLogin:      "merchant_username",
+                apiPassword:   "merchant_password",
+                certificate:   GetSandboxCertificate(),
+                endpoint:      Endpoints.EComProcessing);
             return configuration;
         }
 
@@ -95,6 +106,24 @@ namespace Genesis.Net.Specs
                 {
                     throw ex.InnerException;
                 }
+            }
+        }
+
+        public static bool CheckForInternetConnection(string url)
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (var stream = client.OpenRead(url))
+                {
+                    stream.Close();
+
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
     }

@@ -22,6 +22,8 @@ namespace Genesis.Net
 
         public GenesisClient(Configuration configuration)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             this.configuration = configuration;
         }
 
