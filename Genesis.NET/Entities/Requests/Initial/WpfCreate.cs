@@ -68,6 +68,9 @@ namespace Genesis.Net.Entities.Requests.Initial
         [XmlElement(ElementName = "description")]
         public string Description { get; set; }
 
+        [XmlElement(ElementName = "card_holder")]
+        public string CardHolder { get; set; }
+
         [EmailAddress]
         [XmlElement(ElementName = "customer_email")]
         public string CustomerEmail { get; set; }
@@ -107,7 +110,21 @@ namespace Genesis.Net.Entities.Requests.Initial
         [XmlArrayItem(ElementName = "transaction_type")]
         public Composite[] TransactionTypes { get; set; }
 
+        private int? _Lifetime;
+        [XmlElement(ElementName = "lifetime")]
+        public int? Lifetime
+        {
+            get { return _Lifetime; }
+            set
+            {
+                _Lifetime = value > 0 ? value : null;
+            }
+        }
+
         [XmlElement(ElementName = "risk_params")]
         public RiskParams RiskParams { get; set; }
+
+        [XmlElement(ElementName="dynamic_descriptor_params")]
+        public DynamicDescriptor DynamicDescriptorParams { get; set; }
     }
 }

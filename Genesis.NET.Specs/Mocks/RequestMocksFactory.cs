@@ -1377,6 +1377,7 @@ namespace Genesis.Net.Specs.Mocks
                 CustomerEmail = "hello@world.com",
                 CustomerPhone = "3598888888888",
                 Description = "description",
+                CardHolder = "Hodler Name",
                 TransactionTypes = new Composite[] {
                     new Composite() { { "name", "sale" } }, new Composite() { { "name", "sale3d" } },
                     new Composite() { { "name", "ezeewallet" }, { "source_wallet_id", "emil@example.com" } }
@@ -1418,6 +1419,11 @@ namespace Genesis.Net.Specs.Mocks
                     Ssn = "ssn",
                     UserId = "user id",
                     UserLevel = "user level"
+                },
+                DynamicDescriptorParams = new DynamicDescriptor
+                {
+                    MerchantName = "Test",
+                    MerchantCity = "12345"
                 }
             };
 
@@ -1429,6 +1435,7 @@ namespace Genesis.Net.Specs.Mocks
                     "<currency>USD</currency>" +
                     "<usage>usage</usage>" +
                     "<description>description</description>" +
+                    "<card_holder>Hodler Name</card_holder>" +
                     "<customer_email>hello@world.com</customer_email>" +
                     "<customer_phone>3598888888888</customer_phone>" +
                     "<notification_url>https://example.com/notify</notification_url>" +
@@ -1462,7 +1469,8 @@ namespace Genesis.Net.Specs.Mocks
                             "<name>ezeewallet</name>" +
                             "<source_wallet_id>emil@example.com</source_wallet_id>" +
                         "</transaction_type>" +
-                    "</transaction_types>"+
+                    "</transaction_types>" +
+                    "<lifetime xsi:nil=\"true\"/>" +
                     "<risk_params>" +
                         "<ssn>ssn</ssn>" +
                         "<mac_address>mac address</mac_address>" +
@@ -1474,6 +1482,10 @@ namespace Genesis.Net.Specs.Mocks
                         "<remote_ip>255.10.100.10</remote_ip>" +
                         "<serial_number>serial number</serial_number>" +
                     "</risk_params>" +
+                    "<dynamic_descriptor_params>" +
+                        "<merchant_name>Test</merchant_name>" +
+                        "<merchant_city>12345</merchant_city>" +
+                    "</dynamic_descriptor_params>" +
                 "</wpf_payment>";
 
             return new EntityMock<WpfCreate>(wpfCreate, xml);
