@@ -22,7 +22,7 @@ namespace Genesis.Net.Specs.Entities.Requests.Referential
 
         void it_should_validate_required_properties()
         {
-            refundMock.Instance.on_validation_should_behave_like_required("Id", "RemoteIp", "ReferenceId");
+            refundMock.Instance.on_validation_should_behave_like_required("Id", "ReferenceId");
         }
 
         void it_should_validate_amount()

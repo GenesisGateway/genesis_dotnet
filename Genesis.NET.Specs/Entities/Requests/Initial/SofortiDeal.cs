@@ -22,7 +22,7 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial
 
         void it_should_validate_required_properties()
         {
-            sofortiDealMock.Instance.on_validation_should_behave_like_required("Id", "RemoteIp",
+            sofortiDealMock.Instance.on_validation_should_behave_like_required("Id",
                 "ReturnSuccessUrl", "ReturnFailureUrl", "CustomerBankId", "BankAccountNumber");
         }
 

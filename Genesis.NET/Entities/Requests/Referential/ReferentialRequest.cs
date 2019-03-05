@@ -46,7 +46,6 @@ namespace Genesis.Net.Entities.Requests.Referential
         public string Usage { get; set; }
 
         [IPv4Address]
-        [Required]
         [XmlElement(ElementName="remote_ip")]
         public string RemoteIp { get; set; }
 

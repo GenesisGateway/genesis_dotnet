@@ -30,7 +30,7 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial
 
         void it_should_validate_required_properties()
         {
-            ezeeWalletMock.Instance.on_validation_should_behave_like_required("Id", "RemoteIp", "SourceWalletId", "SourceWalletPassword",
+            ezeeWalletMock.Instance.on_validation_should_behave_like_required("Id", "SourceWalletId", "SourceWalletPassword",
                 "ReturnSuccessUrl", "ReturnFailureUrl");
         }
 

@@ -60,7 +60,6 @@ namespace Genesis.Net.Entities.Requests.Initial
         }
 
         [StringLength(255)]
-        [Required]
         [XmlElement(ElementName = "usage")]
         public string Usage { get; set; }
 
@@ -99,7 +98,6 @@ namespace Genesis.Net.Entities.Requests.Initial
         [XmlElement(ElementName = "return_cancel_url")]
         public string ReturnCancelUrl { get; set; }
 
-        [Required]
         [XmlElement(ElementName = "billing_address")]
         public Address BillingAddress { get; set; }
 

@@ -22,7 +22,7 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial
 
         void it_should_validate_required_properties()
         {
-            wpfCreateMock.Instance.on_validation_should_behave_like_required("TransactionId", "Usage", "Description", "NotificationUrl", "ReturnSuccessUrl", "ReturnFailureUrl", "ReturnCancelUrl");
+            wpfCreateMock.Instance.on_validation_should_behave_like_required("TransactionId", "Description", "NotificationUrl", "ReturnSuccessUrl", "ReturnFailureUrl", "ReturnCancelUrl");
         }
 
         void it_should_validate_amount()

@@ -23,7 +23,7 @@ namespace Genesis.Net.Specs.Entities.Requests.Referential
 
         void it_should_validate_required_properties()
         {
-            recurringSaleMock.Instance.on_validation_should_behave_like_required("Id", "RemoteIp", "ReferenceId");
+            recurringSaleMock.Instance.on_validation_should_behave_like_required("Id", "ReferenceId");
         }
 
         void it_should_validate_amount()

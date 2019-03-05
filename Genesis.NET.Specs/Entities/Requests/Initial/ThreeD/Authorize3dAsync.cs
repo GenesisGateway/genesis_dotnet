@@ -22,7 +22,7 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial.ThreeD
 
         void it_should_validate_required_properties()
         {
-            authorize3dAsyncMock.Instance.on_validation_should_behave_like_required("Id", "RemoteIp", "CardHolder", "CardNumber",
+            authorize3dAsyncMock.Instance.on_validation_should_behave_like_required("Id", "CardHolder", "CardNumber",
                 "NotificationUrl", "ReturnSuccessUrl", "ReturnFailureUrl");
         }
 

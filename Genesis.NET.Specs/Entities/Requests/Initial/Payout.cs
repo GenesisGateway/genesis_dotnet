@@ -22,7 +22,7 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial
 
         void it_should_validate_required_properties()
         {
-            payoutMock.Instance.on_validation_should_behave_like_required("Id", "RemoteIp", "CardHolder", "CardNumber");
+            payoutMock.Instance.on_validation_should_behave_like_required("Id", "CardHolder", "CardNumber");
         }
 
         void it_should_validate_amount()
