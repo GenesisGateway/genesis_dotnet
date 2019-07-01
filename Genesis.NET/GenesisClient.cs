@@ -322,7 +322,8 @@ namespace Genesis.Net
 
         private string ComposeUrl(string subDomain, string apiPath, bool appendTerminalToken)
         {
-            var url = String.Format("https://{0}.{1}.{2}/{3}/", configuration.Environment.ToUrlName(), subDomain, configuration.getEndpointURL(), apiPath);
+            var url = this.IsUrlWithEnvironment() ?
+                this.GetUrlWithEnvironment(subDomain, apiPath) : this.GetUrlWithoutEnvironment(subDomain, apiPath);
 
             if (appendTerminalToken)
             {
@@ -330,6 +331,21 @@ namespace Genesis.Net
             }
 
             return url;
+        }
+
+        private bool IsUrlWithEnvironment()
+        {
+            return !String.IsNullOrEmpty(configuration.Environment.ToUrlName());
+        }
+
+        private string GetUrlWithEnvironment(string subDomain, string apiPath)
+        {
+            return String.Format("https://{0}.{1}.{2}/{3}/", configuration.Environment.ToUrlName(), subDomain, configuration.getEndpointURL(), apiPath);
+        }
+
+        private string GetUrlWithoutEnvironment(string subDomain, string apiPath)
+        {
+            return String.Format("https://{0}.{1}/{2}/", subDomain, configuration.getEndpointURL(), apiPath);
         }
 
         private MemoryStream GetResponseStream(WebRequest webRequest)
