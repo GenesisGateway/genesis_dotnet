@@ -309,7 +309,6 @@ namespace Genesis.Net
             {
                 httpWebRequest.UserAgent = String.Format("Genesis.Net {0}", typeof(GenesisClient).Assembly.GetName().Version.ToString());
                 httpWebRequest.KeepAlive = false;
-                httpWebRequest.ClientCertificates.Add(configuration.Certificate);
             }
 
             using (var requestStream = webRequest.GetRequestStream())

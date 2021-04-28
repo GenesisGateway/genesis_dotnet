@@ -27,7 +27,6 @@ namespace Genesis.Net.Specs
                     terminalToken: string.Empty,
                     apiLogin:      string.Empty,
                     apiPassword:   string.Empty,
-                    certificate:   null,
                     endpoint:      Endpoints.eMerchantPay
                 );
 
@@ -53,7 +52,6 @@ namespace Genesis.Net.Specs
                     terminalToken: string.Empty,
                     apiLogin:      string.Empty,
                     apiPassword:   string.Empty,
-                    certificate:   null,
                     endpoint:      Endpoints.eMerchantPay
                 );
 
@@ -79,7 +77,6 @@ namespace Genesis.Net.Specs
                     terminalToken: string.Empty,
                     apiLogin:      string.Empty,
                     apiPassword:   string.Empty,
-                    certificate:   null,
                     endpoint:      Endpoints.EComProcessing
                 );
 
@@ -105,7 +102,6 @@ namespace Genesis.Net.Specs
                     terminalToken: string.Empty,
                     apiLogin:      string.Empty,
                     apiPassword:   string.Empty,
-                    certificate:   null,
                     endpoint:      Endpoints.EComProcessing
                 );
 

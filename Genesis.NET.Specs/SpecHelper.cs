@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using Genesis.Net.Common;
 using Genesis.Net.Entities;
 using Genesis.Net.Specs.Mocks;
@@ -31,15 +30,6 @@ namespace Genesis.Net.Specs
         public static string[] GetErrorMessagesInAscendingOrder(IEnumerable<ValidationResult> validationErrors)
         {
             return validationErrors.Select(e => e.ErrorMessage).OrderBy(m => m).ToArray();
-        }
-
-        public static X509Certificate GetSandboxCertificate()
-        {
-            return X509Certificate.CreateFromCertFile(Path.Combine(
-                Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath),
-                @"Certificates",
-                @"genesis_sandbox_comodo_ca.pem"
-            ));
         }
 
         public static IGenesisClient CreateGenesisClient(bool mockHttpWebRequests = true)
@@ -77,7 +67,6 @@ namespace Genesis.Net.Specs
                 terminalToken: string.Empty,
                 apiLogin: string.Empty,
                 apiPassword: string.Empty,
-                certificate: null,
                 endpoint: Endpoints.EComProcessing);
             return configuration;
         }
@@ -88,7 +77,6 @@ namespace Genesis.Net.Specs
                 terminalToken: "terminal_token",
                 apiLogin:      "merchant_username",
                 apiPassword:   "merchant_password",
-                certificate:   GetSandboxCertificate(),
                 endpoint:      Endpoints.EComProcessing);
             return configuration;
         }

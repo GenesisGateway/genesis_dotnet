@@ -139,9 +139,6 @@
     <Compile Include="Validation\Month.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Certificates\genesis_sandbox_comodo_ca.pem">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Compile Include="Entities\Responses\Initial\CashU.cs" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -151,7 +148,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Genesis.NET\Genesis.NET.csproj">
       <Project>{CE60DDB9-6174-4D5C-A659-94AA29FE53A2}</Project>
-      <Name>Genesis.Net</Name>
+      <Name>Genesis.NET</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

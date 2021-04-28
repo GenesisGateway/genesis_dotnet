@@ -75,7 +75,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Genesis.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
@@ -96,19 +95,12 @@ namespace ExampleConsoleApplication
             // Set connection settings
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.CheckCertificateRevocationList = true;
 
             // Set merchant credentials
             string username = "YOUR_USERNAME";
             string password = "YOUR_PASSWORD";
             string token    = "YOUR_TOKEN";
-
-            // Setup certificate
-            // (copy from ./Genesis.NET.Specs/Certificates/genesis_sandbox_comodo_ca.pem)
-            X509Certificate cert = X509Certificate.CreateFromCertFile(Path.Combine(
-                Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath),
-                "Certificates",
-                "genesis_sandbox_comodo_ca.pem"
-            ));
 
             // Initialize configuration - endpoint and env
             Configuration conf = new Configuration(
@@ -116,7 +108,6 @@ namespace ExampleConsoleApplication
                 token,
                 username,
                 password,
-                cert,
                 Endpoints.eMerchantPay
             );
 

@@ -3,14 +3,11 @@ using System.Linq;
 using NSpec;
 using Genesis.Net.Entities;
 using System.Text;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Genesis.Net.Specs.EntitiesSpecs
 {
     class describe_notification : nspec
     {
-        X509Certificate certificate = SpecHelper.GetSandboxCertificate();
-
         void it_should_parse_3d_notification()
         {
             var expected3DNotification = new ThreeDNotification()
@@ -63,7 +60,13 @@ namespace Genesis.Net.Specs.EntitiesSpecs
         {
             it["should recognize an authentic 3d notification"] = () =>
             {
-                var configuration = new Configuration(Environments.Staging, string.Empty, string.Empty, "bogus", certificate, Endpoints.EComProcessing);
+                var configuration = new Configuration(
+                    Environments.Staging,
+                    string.Empty,
+                    string.Empty,
+                    "bogus",
+                    Endpoints.EComProcessing
+                    );
                 var threeDNotification = new ThreeDNotification()
                 {
                     Signature = "08d01ae1ebdc22b6a1a764257819bb26e9e94e8d",
@@ -75,7 +78,12 @@ namespace Genesis.Net.Specs.EntitiesSpecs
 
             it["should recognize a fake 3d notification"] = () =>
             {
-                var configuration = new Configuration(Environments.Staging, string.Empty, string.Empty, "boguS", certificate, Endpoints.EComProcessing);
+                var configuration = new Configuration(
+                    Environments.Staging,
+                    string.Empty,
+                    string.Empty,
+                    "boguS",
+                    Endpoints.EComProcessing);
                 var threeDNotification = new ThreeDNotification()
                 {
                     Signature = "08d01ae1ebdc22b6a1a764257819bb26e9e94e8d",
@@ -87,7 +95,12 @@ namespace Genesis.Net.Specs.EntitiesSpecs
 
             it["should recognize an authentic wpf notification"] = () =>
             {
-                var configuration = new Configuration(Environments.Staging, string.Empty, string.Empty, "50fd87e65eb415f42fb5af4c9cf497662e00b785", certificate, Endpoints.EComProcessing);
+                var configuration = new Configuration(
+                    Environments.Staging,
+                    string.Empty,
+                    string.Empty,
+                    "50fd87e65eb415f42fb5af4c9cf497662e00b785",
+                    Endpoints.EComProcessing);
                 var wpfNotification = new WpfNotification()
                 {
                     Signature = "c5219b3d385e74496b2b48a5497b347e102849f10eacd25b062f823bbd11249ce4e233f031C0ecebc9b691e69d23eb0c1cd65a79621152467b56aC2bf103b512",
@@ -99,7 +112,12 @@ namespace Genesis.Net.Specs.EntitiesSpecs
 
             it["should recognize a fake wpf notification"] = () =>
             {
-                var configuration = new Configuration(Environments.Staging, string.Empty, string.Empty, "50Fd87e65eb415f42fb5af4c9cf497662e00b785", certificate, Endpoints.EComProcessing);
+                var configuration = new Configuration(
+                    Environments.Staging,
+                    string.Empty,
+                    string.Empty,
+                    "50Fd87e65eb415f42fb5af4c9cf497662e00b785",
+                    Endpoints.EComProcessing);
                 var wpfNotification = new WpfNotification()
                 {
                     Signature = "c5219b3d385e74496b2b48a5497b347e102849f10eacd25b062f823bbd11249ce4e233f031C0ecebc9b691e69d23eb0c1cd65a79621152467b56aC2bf103b512",

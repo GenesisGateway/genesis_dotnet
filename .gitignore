@@ -1,5 +1,7 @@
 # User-specific files
 **/*.suo
+**/.DS_Store
+**/.vs
 
 # Build results
 **/obj/

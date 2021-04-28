@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Genesis.Net
@@ -11,7 +10,6 @@ namespace Genesis.Net
         public readonly string TerminalToken;
         public readonly string ApiLogin;
         public readonly string ApiPassword;
-        public readonly X509Certificate Certificate;
         public readonly Endpoints Endpoint;
 
         private string authorization;
@@ -29,13 +27,12 @@ namespace Genesis.Net
             }
         }
 
-        public Configuration(Environments environment, string terminalToken, string apiLogin, string apiPassword, X509Certificate certificate, Endpoints endpoint)
+        public Configuration(Environments environment, string terminalToken, string apiLogin, string apiPassword, Endpoints endpoint)
         {
             Environment = environment;
             TerminalToken = terminalToken;
             ApiLogin = apiLogin;
             ApiPassword = apiPassword;
-            Certificate = certificate;
             Endpoint = endpoint;
         }
 
