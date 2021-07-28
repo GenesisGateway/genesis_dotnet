@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Xml.Serialization;
 using Genesis.Net.Common;
+using Genesis.Net.Entities.Attributes.Request.Financial.Business;
 using Genesis.Net.Validations;
 using DataAnnotations = DataAnnotationsExtensions;
 
@@ -124,5 +125,8 @@ namespace Genesis.Net.Entities.Requests.Initial
 
         [XmlElement(ElementName="dynamic_descriptor_params")]
         public DynamicDescriptor DynamicDescriptorParams { get; set; }
+
+        [XmlElement(ElementName = "business_attributes")]
+        public BusinessAttributes BusinessAttributes { get; set; }
     }
 }

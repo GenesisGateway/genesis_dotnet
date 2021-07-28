@@ -1,9 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 using Genesis.Net.Common;
-using Genesis.Net.Validations;
 
 namespace Genesis.Net.Entities.Requests.Initial
 {

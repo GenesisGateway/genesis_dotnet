@@ -1,3 +1,4 @@
+using Genesis.Net.Entities.Attributes.Request.Financial.Business;
 using System.Xml.Serialization;
 
 namespace Genesis.Net.Entities.Requests.Initial.ThreeD
@@ -17,6 +18,9 @@ namespace Genesis.Net.Entities.Requests.Initial.ThreeD
 
         [XmlElement(ElementName="dynamic_descriptor_params")]
         public DynamicDescriptor DynamicDescriptorParams { get; set; }
+
+        [XmlElement(ElementName = "business_attributes")]
+        public BusinessAttributes BusinessAttributes { get; set; }
 
         public Sale3d()
         {

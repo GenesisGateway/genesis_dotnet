@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\BusinessAttributes.cs" />
     <Compile Include="Entities\Requests\Initial\Ppro.cs" />
     <Compile Include="Entities\Requests\Initial\SofortiDeal.cs" />
     <Compile Include="Entities\Requests\Initial\Sofort.cs" />

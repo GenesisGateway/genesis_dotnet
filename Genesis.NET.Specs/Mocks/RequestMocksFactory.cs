@@ -7,13 +7,21 @@ using Genesis.Net.Entities.Requests.Initial.ThreeD;
 using Genesis.Net.Entities.Requests.Query;
 using Genesis.Net.Entities.Requests.Referential;
 using System.Collections.Generic;
+using Genesis.Net.Entities.Attributes.Request.Financial.Business;
 
 namespace Genesis.Net.Specs.Mocks
 {
     static class RequestMocksFactory
     {
+        const string _digitNumber = "123456789";
+        const string _contractorName = "Martin Fowler";
+        const string _paymentType = "deposit";
+
         public static EntityMock<Authorize> CreateValidAuthorize()
         {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+
             var authorize = new Authorize()
             {
                 Id = "id",
@@ -66,6 +74,43 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     MerchantName = "Test Merchant",
                     MerchantCity = "Testing Town"
+                },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
                 }
             };
 
@@ -119,6 +164,34 @@ namespace Genesis.Net.Specs.Mocks
                       "<merchant_name>Test Merchant</merchant_name>" +
                       "<merchant_city>Testing Town</merchant_city>" +
                       "</dynamic_descriptor_params>" +
+                      "<business_attributes>" +
+                      "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                      "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                      "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                      "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                      "<event_id>" + _digitNumber + "</event_id>" +
+                      "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                      "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                      "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                      "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                      "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                      "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                      "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                      "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                      "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                      "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                      "<supplier_name>" + _contractorName + "</supplier_name>" +
+                      "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                      "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                      "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                      "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                      "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                      "<origin_city>Sofia</origin_city>" +
+                      "<contractor_name>" + _contractorName + "</contractor_name>" +
+                      "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                      "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                      "<payment_type>" + _paymentType + "</payment_type>" +
+                      "</business_attributes>" +
                       "</payment_transaction>";
 
             return new EntityMock<Authorize>(authorize, xml);
@@ -126,6 +199,9 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<Authorize3dAsync> CreateValidAuthorize3dAsync()
         {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+
             var authorize3dAsync = new Authorize3dAsync()
             {
                 Id = "id",
@@ -182,63 +258,129 @@ namespace Genesis.Net.Specs.Mocks
                     MerchantName = "Test Merchant",
                     MerchantCity = "Testing Town"
                 },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
+                }
+
             };
 
             var xml =
-                     "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Authorize3DAsync\">" +
-                     "<transaction_type>authorize3d</transaction_type>" +
-                     "<transaction_id>id</transaction_id>" +
-                     "<usage>usage</usage>" +
-                     "<amount>100</amount>" +
-                     "<currency>USD</currency>" +
-                     "<remote_ip>255.10.100.10</remote_ip>" +
-                     "<card_holder>card holder</card_holder>" +
-                     "<expiration_month>01</expiration_month>" +
-                     "<expiration_year>2025</expiration_year>" +
-                     "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>3598888888888</customer_phone>" +
-                     "<card_number>4711100000000000</card_number>" +
-                     "<cvv>123</cvv>" +
-                     "<billing_address>" +
-                     "<first_name>billing first name</first_name>" +
-                     "<last_name>billing last name</last_name>" +
-                     "<address1>billing address1</address1>" +
-                     "<address2>billing address2</address2>" +
-                     "<zip_code>1000</zip_code>" +
-                     "<city>billing city</city>" +
-                     "<state>BS</state>" +
-                     "<country>BG</country>" +
-                     "</billing_address>" +
-                     "<shipping_address>" +
-                     "<first_name>shipping first name</first_name>" +
-                     "<last_name>shipping last name</last_name>" +
-                     "<address1>shipping address1</address1>" +
-                     "<address2>shipping address2</address2>" +
-                     "<zip_code>1000</zip_code>" +
-                     "<city>shipping city</city>" +
-                     "<state>BS</state>" +
-                     "<country>BG</country>" +
-                     "</shipping_address>" +
-                     "<risk_params>" +
-                     "<ssn>ssn</ssn>" +
-                     "<mac_address>mac address</mac_address>" +
-                     "<session_id>session id</session_id>" +
-                     "<user_id>user id</user_id>" +
-                     "<user_level>user level</user_level>" +
-                     "<email>hello@world.com</email>" +
-                     "<phone>3598888888888</phone>" +
-                     "<remote_ip>255.10.100.10</remote_ip>" +
-                     "<serial_number>serial number</serial_number>" +
-                     "</risk_params>" +
-                     "<dynamic_descriptor_params>" +
-                     "<merchant_name>Test Merchant</merchant_name>" +
-                     "<merchant_city>Testing Town</merchant_city>" +
-                     "</dynamic_descriptor_params>" +
-                     "<notification_url>https://example.com/notify</notification_url>" +
-                     "<return_success_url>http://test.com/success</return_success_url>" +
-                     "<return_failure_url>http://test.com/fail</return_failure_url>" +
-                     "</payment_transaction>";
+                    "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                    "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Authorize3DAsync\">" +
+                    "<transaction_type>authorize3d</transaction_type>" +
+                    "<transaction_id>id</transaction_id>" +
+                    "<usage>usage</usage>" +
+                    "<amount>100</amount>" +
+                    "<currency>USD</currency>" +
+                    "<remote_ip>255.10.100.10</remote_ip>" +
+                    "<card_holder>card holder</card_holder>" +
+                    "<expiration_month>01</expiration_month>" +
+                    "<expiration_year>2025</expiration_year>" +
+                    "<customer_email>hello@world.com</customer_email>" +
+                    "<customer_phone>3598888888888</customer_phone>" +
+                    "<card_number>4711100000000000</card_number>" +
+                    "<cvv>123</cvv>" +
+                    "<billing_address>" +
+                    "<first_name>billing first name</first_name>" +
+                    "<last_name>billing last name</last_name>" +
+                    "<address1>billing address1</address1>" +
+                    "<address2>billing address2</address2>" +
+                    "<zip_code>1000</zip_code>" +
+                    "<city>billing city</city>" +
+                    "<state>BS</state>" +
+                    "<country>BG</country>" +
+                    "</billing_address>" +
+                    "<shipping_address>" +
+                    "<first_name>shipping first name</first_name>" +
+                    "<last_name>shipping last name</last_name>" +
+                    "<address1>shipping address1</address1>" +
+                    "<address2>shipping address2</address2>" +
+                    "<zip_code>1000</zip_code>" +
+                    "<city>shipping city</city>" +
+                    "<state>BS</state>" +
+                    "<country>BG</country>" +
+                    "</shipping_address>" +
+                    "<risk_params>" +
+                    "<ssn>ssn</ssn>" +
+                    "<mac_address>mac address</mac_address>" +
+                    "<session_id>session id</session_id>" +
+                    "<user_id>user id</user_id>" +
+                    "<user_level>user level</user_level>" +
+                    "<email>hello@world.com</email>" +
+                    "<phone>3598888888888</phone>" +
+                    "<remote_ip>255.10.100.10</remote_ip>" +
+                    "<serial_number>serial number</serial_number>" +
+                    "</risk_params>" +
+                    "<dynamic_descriptor_params>" +
+                    "<merchant_name>Test Merchant</merchant_name>" +
+                    "<merchant_city>Testing Town</merchant_city>" +
+                    "</dynamic_descriptor_params>" +
+                    "<business_attributes>" +
+                    "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                    "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                    "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                    "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                    "<event_id>" + _digitNumber + "</event_id>" +
+                    "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                    "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                    "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                    "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                    "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                    "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                    "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                    "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                    "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                    "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                    "<supplier_name>" + _contractorName + "</supplier_name>" +
+                    "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                    "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                    "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                    "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                    "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                    "<origin_city>Sofia</origin_city>" +
+                    "<contractor_name>" + _contractorName + "</contractor_name>" +
+                    "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                    "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                    "<payment_type>" + _paymentType + "</payment_type>" +
+                    "</business_attributes>" +
+                    "<notification_url>https://example.com/notify</notification_url>" +
+                    "<return_success_url>http://test.com/success</return_success_url>" +
+                    "<return_failure_url>http://test.com/fail</return_failure_url>" +
+                    "</payment_transaction>";
 
             return new EntityMock<Authorize3dAsync>(authorize3dAsync, xml);
         }
@@ -303,72 +445,75 @@ namespace Genesis.Net.Specs.Mocks
                     Cavv = "Testing Cavv",
                     Eci = "Testing Eci",
                     Xid = "Testing Xid"
-                }
+                }         
             };
 
             var xml =
-                     "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Authorize3DSync\">" +
-                     "<transaction_type>authorize3d</transaction_type>" +
-                     "<transaction_id>id</transaction_id>" +
-                     "<usage>usage</usage>" +
-                     "<amount>100</amount>" +
-                     "<currency>USD</currency>" +
-                     "<remote_ip>255.10.100.10</remote_ip>" +
-                     "<card_holder>card holder</card_holder>" +
-                     "<expiration_month>01</expiration_month>" +
-                     "<expiration_year>2025</expiration_year>" +
-                     "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>3598888888888</customer_phone>" +
-                     "<card_number>4711100000000000</card_number>" +
-                     "<cvv>123</cvv>" +
-                     "<billing_address>" +
-                     "<first_name>billing first name</first_name>" +
-                     "<last_name>billing last name</last_name>" +
-                     "<address1>billing address1</address1>" +
-                     "<address2>billing address2</address2>" +
-                     "<zip_code>1000</zip_code>" +
-                     "<city>billing city</city>" +
-                     "<state>BS</state>" +
-                     "<country>BG</country>" +
-                     "</billing_address>" +
-                     "<shipping_address>" +
-                     "<first_name>shipping first name</first_name>" +
-                     "<last_name>shipping last name</last_name>" +
-                     "<address1>shipping address1</address1>" +
-                     "<address2>shipping address2</address2>" +
-                     "<zip_code>1000</zip_code>" +
-                     "<city>shipping city</city>" +
-                     "<state>BS</state>" +
-                     "<country>BG</country>" +
-                     "</shipping_address>" +
-                     "<risk_params>" +
-                     "<ssn>ssn</ssn>" +
-                     "<mac_address>mac address</mac_address>" +
-                     "<session_id>session id</session_id>" +
-                     "<user_id>user id</user_id>" +
-                     "<user_level>user level</user_level>" +
-                     "<email>hello@world.com</email>" +
-                     "<phone>3598888888888</phone>" +
-                     "<remote_ip>255.10.100.10</remote_ip>" +
-                     "<serial_number>serial number</serial_number>" +
-                     "</risk_params>" +
-                     "<dynamic_descriptor_params>" +
-                     "<merchant_name>Test Merchant</merchant_name>" +
-                     "<merchant_city>Testing Town</merchant_city>" +
-                     "</dynamic_descriptor_params>" +
-                     "<mpi_params>" +
-                     "<cavv>Testing Cavv</cavv>" +
-                     "<eci>Testing Eci</eci>" +
-                     "<xid>Testing Xid</xid>" +
-                     "</mpi_params>" +
-                     "</payment_transaction>";
+                    "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                    "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Authorize3DSync\">" +
+                    "<transaction_type>authorize3d</transaction_type>" +
+                    "<transaction_id>id</transaction_id>" +
+                    "<usage>usage</usage>" +
+                    "<amount>100</amount>" +
+                    "<currency>USD</currency>" +
+                    "<remote_ip>255.10.100.10</remote_ip>" +
+                    "<card_holder>card holder</card_holder>" +
+                    "<expiration_month>01</expiration_month>" +
+                    "<expiration_year>2025</expiration_year>" +
+                    "<customer_email>hello@world.com</customer_email>" +
+                    "<customer_phone>3598888888888</customer_phone>" +
+                    "<card_number>4711100000000000</card_number>" +
+                    "<cvv>123</cvv>" +
+                    "<billing_address>" +
+                    "<first_name>billing first name</first_name>" +
+                    "<last_name>billing last name</last_name>" +
+                    "<address1>billing address1</address1>" +
+                    "<address2>billing address2</address2>" +
+                    "<zip_code>1000</zip_code>" +
+                    "<city>billing city</city>" +
+                    "<state>BS</state>" +
+                    "<country>BG</country>" +
+                    "</billing_address>" +
+                    "<shipping_address>" +
+                    "<first_name>shipping first name</first_name>" +
+                    "<last_name>shipping last name</last_name>" +
+                    "<address1>shipping address1</address1>" +
+                    "<address2>shipping address2</address2>" +
+                    "<zip_code>1000</zip_code>" +
+                    "<city>shipping city</city>" +
+                    "<state>BS</state>" +
+                    "<country>BG</country>" +
+                    "</shipping_address>" +
+                    "<risk_params>" +
+                    "<ssn>ssn</ssn>" +
+                    "<mac_address>mac address</mac_address>" +
+                    "<session_id>session id</session_id>" +
+                    "<user_id>user id</user_id>" +
+                    "<user_level>user level</user_level>" +
+                    "<email>hello@world.com</email>" +
+                    "<phone>3598888888888</phone>" +
+                    "<remote_ip>255.10.100.10</remote_ip>" +
+                    "<serial_number>serial number</serial_number>" +
+                    "</risk_params>" +
+                    "<dynamic_descriptor_params>" +
+                    "<merchant_name>Test Merchant</merchant_name>" +
+                    "<merchant_city>Testing Town</merchant_city>" +
+                    "</dynamic_descriptor_params>" +
+                    "<mpi_params>" +
+                    "<cavv>Testing Cavv</cavv>" +
+                    "<eci>Testing Eci</eci>" +
+                    "<xid>Testing Xid</xid>" +
+                    "</mpi_params>" +
+                    "</payment_transaction>";
 
             return new EntityMock<Authorize3dSync>(authorize3dSync, xml);
         }
 
         public static EntityMock<InitRecurringSale3dAsync> CreateValidInitRecurringSale3dAsync()
         {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+
             var initRecurringSale3dAsync = new InitRecurringSale3dAsync()
             {
                 Id = "id",
@@ -425,6 +570,43 @@ namespace Genesis.Net.Specs.Mocks
                     MerchantName = "Test Merchant",
                     MerchantCity = "Testing Town"
                 },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
+                }
             };
 
             var xml =
@@ -478,6 +660,34 @@ namespace Genesis.Net.Specs.Mocks
                      "<merchant_name>Test Merchant</merchant_name>" +
                      "<merchant_city>Testing Town</merchant_city>" +
                      "</dynamic_descriptor_params>" +
+                     "<business_attributes>" +
+                     "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                     "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                     "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                     "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                     "<event_id>" + _digitNumber + "</event_id>" +
+                     "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                     "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                     "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                     "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                     "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                     "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                     "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                     "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                     "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                     "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                     "<supplier_name>" + _contractorName + "</supplier_name>" +
+                     "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                     "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                     "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                     "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                     "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                     "<origin_city>Sofia</origin_city>" +
+                     "<contractor_name>" + _contractorName + "</contractor_name>" +
+                     "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                     "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                     "<payment_type>" + _paymentType + "</payment_type>" +
+                     "</business_attributes>" +
                      "<notification_url>https://example.com/notify</notification_url>" +
                      "<return_success_url>http://test.com/success</return_success_url>" +
                      "<return_failure_url>http://test.com/fail</return_failure_url>" +
@@ -612,6 +822,9 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<Sale3dAsync> CreateValidSale3dAsync()
         {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+
             var sale3dAsync = new Sale3dAsync()
             {
                 Id = "id",
@@ -668,6 +881,43 @@ namespace Genesis.Net.Specs.Mocks
                     MerchantName = "Test Merchant",
                     MerchantCity = "Testing Town"
                 },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
+                }
             };
 
             var xml =
@@ -721,6 +971,34 @@ namespace Genesis.Net.Specs.Mocks
                      "<merchant_name>Test Merchant</merchant_name>" +
                      "<merchant_city>Testing Town</merchant_city>" +
                      "</dynamic_descriptor_params>" +
+                     "<business_attributes>" +
+                     "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                     "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                     "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                     "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                     "<event_id>" + _digitNumber + "</event_id>" +
+                     "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                     "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                     "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                     "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                     "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                     "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                     "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                     "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                     "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                     "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                     "<supplier_name>" + _contractorName + "</supplier_name>" +
+                     "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                     "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                     "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                     "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                     "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                     "<origin_city>Sofia</origin_city>" +
+                     "<contractor_name>" + _contractorName + "</contractor_name>" +
+                     "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                     "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                     "<payment_type>" + _paymentType + "</payment_type>" +
+                     "</business_attributes>" +
                      "<notification_url>https://example.com/notify</notification_url>" +
                      "<return_success_url>http://test.com/success</return_success_url>" +
                      "<return_failure_url>http://test.com/fail</return_failure_url>" +
@@ -731,6 +1009,9 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<Sale3dSync> CreateValidSale3dSync()
         {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+
             var sale3dSync = new Sale3dSync()
             {
                 Id = "id",
@@ -789,7 +1070,7 @@ namespace Genesis.Net.Specs.Mocks
                     Cavv = "Testing Cavv",
                     Eci = "Testing Eci",
                     Xid = "Testing Xid"
-                }
+                },
             };
 
             var xml =
@@ -1062,6 +1343,9 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<InitRecurringSale> CreateValidInitRecurringSale()
         {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+
             var initRecurringSale = new InitRecurringSale()
             {
                 Id = "id",
@@ -1114,61 +1398,126 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     MerchantName = "Test Merchant",
                     MerchantCity = "Testing Town"
+                },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
                 }
             };
 
             var xml =
-                     "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"InitRecurringSale\">" +
-                     "<transaction_type>init_recurring_sale</transaction_type>" +
-                     "<transaction_id>id</transaction_id>" +
-                     "<usage>usage</usage>" +
-                     "<amount>100</amount>" +
-                     "<currency>USD</currency>" +
-                     "<remote_ip>255.10.100.10</remote_ip>" +
-                     "<card_holder>card holder</card_holder>" +
-                     "<expiration_month>01</expiration_month>" +
-                     "<expiration_year>2025</expiration_year>" +
-                     "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>3598888888888</customer_phone>" +
-                     "<card_number>4711100000000000</card_number>" +
-                     "<cvv>123</cvv>" +
-                     "<billing_address>" +
-                     "<first_name>billing first name</first_name>" +
-                     "<last_name>billing last name</last_name>" +
-                     "<address1>billing address1</address1>" +
-                     "<address2>billing address2</address2>" +
-                     "<zip_code>1000</zip_code>" +
-                     "<city>billing city</city>" +
-                     "<state>BS</state>" +
-                     "<country>BG</country>" +
-                     "</billing_address>" +
-                     "<shipping_address>" +
-                     "<first_name>shipping first name</first_name>" +
-                     "<last_name>shipping last name</last_name>" +
-                     "<address1>shipping address1</address1>" +
-                     "<address2>shipping address2</address2>" +
-                     "<zip_code>1000</zip_code>" +
-                     "<city>shipping city</city>" +
-                     "<state>BS</state>" +
-                     "<country>BG</country>" +
-                     "</shipping_address>" +
-                     "<risk_params>" +
-                     "<ssn>ssn</ssn>" +
-                     "<mac_address>mac address</mac_address>" +
-                     "<session_id>session id</session_id>" +
-                     "<user_id>user id</user_id>" +
-                     "<user_level>user level</user_level>" +
-                     "<email>hello@world.com</email>" +
-                     "<phone>3598888888888</phone>" +
-                     "<remote_ip>255.10.100.10</remote_ip>" +
-                     "<serial_number>serial number</serial_number>" +
-                     "</risk_params>" +
-                     "<dynamic_descriptor_params>" +
-                     "<merchant_name>Test Merchant</merchant_name>" +
-                     "<merchant_city>Testing Town</merchant_city>" +
-                     "</dynamic_descriptor_params>" +
-                     "</payment_transaction>";
+                    "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                    "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"InitRecurringSale\">" +
+                    "<transaction_type>init_recurring_sale</transaction_type>" +
+                    "<transaction_id>id</transaction_id>" +
+                    "<usage>usage</usage>" +
+                    "<amount>100</amount>" +
+                    "<currency>USD</currency>" +
+                    "<remote_ip>255.10.100.10</remote_ip>" +
+                    "<card_holder>card holder</card_holder>" +
+                    "<expiration_month>01</expiration_month>" +
+                    "<expiration_year>2025</expiration_year>" +
+                    "<customer_email>hello@world.com</customer_email>" +
+                    "<customer_phone>3598888888888</customer_phone>" +
+                    "<card_number>4711100000000000</card_number>" +
+                    "<cvv>123</cvv>" +
+                    "<billing_address>" +
+                    "<first_name>billing first name</first_name>" +
+                    "<last_name>billing last name</last_name>" +
+                    "<address1>billing address1</address1>" +
+                    "<address2>billing address2</address2>" +
+                    "<zip_code>1000</zip_code>" +
+                    "<city>billing city</city>" +
+                    "<state>BS</state>" +
+                    "<country>BG</country>" +
+                    "</billing_address>" +
+                    "<shipping_address>" +
+                    "<first_name>shipping first name</first_name>" +
+                    "<last_name>shipping last name</last_name>" +
+                    "<address1>shipping address1</address1>" +
+                    "<address2>shipping address2</address2>" +
+                    "<zip_code>1000</zip_code>" +
+                    "<city>shipping city</city>" +
+                    "<state>BS</state>" +
+                    "<country>BG</country>" +
+                    "</shipping_address>" +
+                    "<risk_params>" +
+                    "<ssn>ssn</ssn>" +
+                    "<mac_address>mac address</mac_address>" +
+                    "<session_id>session id</session_id>" +
+                    "<user_id>user id</user_id>" +
+                    "<user_level>user level</user_level>" +
+                    "<email>hello@world.com</email>" +
+                    "<phone>3598888888888</phone>" +
+                    "<remote_ip>255.10.100.10</remote_ip>" +
+                    "<serial_number>serial number</serial_number>" +
+                    "</risk_params>" +
+                    "<dynamic_descriptor_params>" +
+                    "<merchant_name>Test Merchant</merchant_name>" +
+                    "<merchant_city>Testing Town</merchant_city>" +
+                    "</dynamic_descriptor_params>" +
+                    "<business_attributes>" +
+                    "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                    "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                    "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                    "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                    "<event_id>" + _digitNumber + "</event_id>" +
+                    "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                    "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                    "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                    "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                    "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                    "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                    "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                    "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                    "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                    "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                    "<supplier_name>" + _contractorName + "</supplier_name>" +
+                    "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                    "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                    "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                    "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                    "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                    "<origin_city>Sofia</origin_city>" +
+                    "<contractor_name>" + _contractorName + "</contractor_name>" +
+                    "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                    "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                    "<payment_type>" + _paymentType + "</payment_type>" +
+                    "</business_attributes>" +
+                    "</payment_transaction>";
 
             return new EntityMock<InitRecurringSale>(initRecurringSale, xml);
         }
@@ -1256,6 +1605,9 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<Sale> CreateValidSale()
         {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+
             var sale = new Sale()
             {
                 Id = "id",
@@ -1308,6 +1660,43 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     MerchantName = "Test Merchant",
                     MerchantCity = "Testing Town"
+                },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
                 }
             };
 
@@ -1361,6 +1750,34 @@ namespace Genesis.Net.Specs.Mocks
                       "<merchant_name>Test Merchant</merchant_name>" +
                       "<merchant_city>Testing Town</merchant_city>" +
                       "</dynamic_descriptor_params>" +
+                      "<business_attributes>" +
+                      "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                      "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                      "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                      "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                      "<event_id>" + _digitNumber + "</event_id>" +
+                      "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                      "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                      "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                      "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                      "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                      "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                      "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                      "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                      "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                      "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                      "<supplier_name>" + _contractorName + "</supplier_name>" +
+                      "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                      "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                      "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                      "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                      "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                      "<origin_city>Sofia</origin_city>" +
+                      "<contractor_name>" + _contractorName + "</contractor_name>" +
+                      "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                      "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                      "<payment_type>" + _paymentType + "</payment_type>" +
+                      "</business_attributes>" +
                       "</payment_transaction>";
 
             return new EntityMock<Sale>(sale, xml);
@@ -1368,6 +1785,9 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<WpfCreate> CreateValidWpfCreate()
         {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+
             var wpfCreate = new WpfCreate()
             {
                 TransactionId = "id",
@@ -1424,6 +1844,43 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     MerchantName = "Test",
                     MerchantCity = "12345"
+                },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
                 }
             };
 
@@ -1486,6 +1943,34 @@ namespace Genesis.Net.Specs.Mocks
                         "<merchant_name>Test</merchant_name>" +
                         "<merchant_city>12345</merchant_city>" +
                     "</dynamic_descriptor_params>" +
+                    "<business_attributes>" +
+                        "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                        "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                        "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                        "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                        "<event_id>" + _digitNumber + "</event_id>" +
+                        "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                        "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                        "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                        "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                        "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                        "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                        "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                        "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                        "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                        "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                        "<supplier_name>" + _contractorName + "</supplier_name>" +
+                        "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                        "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                        "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                        "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                        "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                        "<origin_city>Sofia</origin_city>" +
+                        "<contractor_name>" + _contractorName + "</contractor_name>" +
+                        "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                        "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                        "<payment_type>" + _paymentType + "</payment_type>" +
+                    "</business_attributes>" +
                 "</wpf_payment>";
 
             return new EntityMock<WpfCreate>(wpfCreate, xml);
@@ -1627,6 +2112,9 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<Capture> CreateValidCapture()
         {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+
             var capture = new Capture()
             {
                 Amount = 50,
@@ -1634,20 +2122,85 @@ namespace Genesis.Net.Specs.Mocks
                 Id = "43671",
                 ReferenceId = "2ee4287e67971380ef7f97d5743bb523",
                 RemoteIp = "127.0.0.1",
-                Usage = "40208 concert tickets"
+                Usage = "40208 concert tickets",
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
+                }
             };
 
             var xml =
-                     "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Capture\">" +
-                     "<transaction_type>capture</transaction_type>" +
-                     "<transaction_id>43671</transaction_id>" +
-                     "<usage>40208 concert tickets</usage>" +
-                     "<remote_ip>127.0.0.1</remote_ip>" +
-                     "<reference_id>2ee4287e67971380ef7f97d5743bb523</reference_id>" +
-                     "<amount>5000</amount>" +
-                     "<currency>USD</currency>" +
-                     "</payment_transaction>";
+                    "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                    "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Capture\">" +
+                    "<transaction_type>capture</transaction_type>" +
+                    "<transaction_id>43671</transaction_id>" +
+                    "<usage>40208 concert tickets</usage>" +
+                    "<remote_ip>127.0.0.1</remote_ip>" +
+                    "<reference_id>2ee4287e67971380ef7f97d5743bb523</reference_id>" +
+                    "<amount>5000</amount>" +
+                    "<currency>USD</currency>" +
+                    "<business_attributes>" +
+                    "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                    "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                    "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                    "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                    "<event_id>" + _digitNumber + "</event_id>" +
+                    "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                    "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                    "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                    "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                    "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                    "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                    "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                    "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                    "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                    "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                    "<supplier_name>" + _contractorName + "</supplier_name>" +
+                    "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                    "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                    "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                    "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                    "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                    "<origin_city>Sofia</origin_city>" +
+                    "<contractor_name>" + _contractorName + "</contractor_name>" +
+                    "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                    "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                    "<payment_type>" + _paymentType + "</payment_type>" +
+                    "</business_attributes>" +
+                    "</payment_transaction>";
 
             return new EntityMock<Capture>(capture, xml);
         }

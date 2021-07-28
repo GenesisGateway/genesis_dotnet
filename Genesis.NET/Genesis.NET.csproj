@@ -66,6 +66,7 @@
     <Compile Include="Common\WpfLocales.cs" />
     <Compile Include="DebuggerShim.cs" />
     <Compile Include="Endpoints.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Business\BusinessAttributes.cs" />
     <Compile Include="Entities\Requests\Initial\AlternativePaymentMethod.cs" />
     <Compile Include="Entities\Requests\Initial\Ppro.cs" />
     <Compile Include="Entities\Requests\Initial\SofortiDeal.cs" />

@@ -159,6 +159,61 @@ namespace ExampleConsoleApplication
             req.ShippingAddress.FirstName = "John";
             req.ShippingAddress.LastName = "Smith";
 
+            // Business Attributes
+            req.BusinessAttributes = new Genesis.Net.Entities.Attributes.Request.Financial.Business.BusinessAttributes();
+
+            // Business Airlines Air Carriers
+            req.BusinessAttributes.FlightArrivalDate = "23-12-2030";
+            req.BusinessAttributes.FlightDepartureDate = "23-12-2030";
+            req.BusinessAttributes.AirlineCode = "C0D3";
+            req.BusinessAttributes.AirlineFlightNumber = "FLIGHT_NUMBER";
+            req.BusinessAttributes.FlightTicketNumber = "TICKET_NUMBER";
+            req.BusinessAttributes.FlightOriginCity = "ORIGIN_CITY";
+            req.BusinessAttributes.FlightDestinationCity = "DESTINATION_CITY";
+            req.BusinessAttributes.AirlineTourOperatorName = "TOUR_OPERATOR";
+
+            // Event Management
+            req.BusinessAttributes.EventStartDate = "23-12-2030";
+            req.BusinessAttributes.EventEndDate = "24-12-2030";
+            req.BusinessAttributes.EventOrganizerId = "ORGANIZER_ID";
+            req.BusinessAttributes.EventId = "EVENT_ID";
+
+            // Furniture
+            req.BusinessAttributes.DateOfOrder = "23-12-2030";
+            req.BusinessAttributes.DeliveryDate = "24-12-2030";
+            req.BusinessAttributes.NameOfTheSupplier = "SUPPLIER_NAME";
+
+            // Hotels and Real estate rentals
+            req.BusinessAttributes.CheckInDate = "23-12-2030";
+            req.BusinessAttributes.CheckOutDate = "24-12-2030";
+            req.BusinessAttributes.TravelAgencyName = "TRAVEL_AGENCY";
+
+            // Car, Plane and Boat Rentals
+            req.BusinessAttributes.VehiclePickUpDate = "23-12-2030";
+            req.BusinessAttributes.VehicleReturnDate = "24-12-2030";
+            req.BusinessAttributes.SupplierName = "SUPPLIER_NAME";
+
+            // Cruise Lines
+            req.BusinessAttributes.CruiseStartDate = "23-12-2030";
+            req.BusinessAttributes.CruiseEndDate = "23-12-2030";
+
+            // Travel Agencies
+            req.BusinessAttributes.ArrivalDate = "23-12-2030";
+            req.BusinessAttributes.DepartureDate = "24-12-2030";
+            req.BusinessAttributes.CarrierCode = "CARRIER_CODE";
+            req.BusinessAttributes.FlightNumber = "FLIGHT_NUMBER";
+            req.BusinessAttributes.TicketNumber = "TICKET_NUMBER";
+            req.BusinessAttributes.OriginCity = "ORIGIN_CITY";
+            req.BusinessAttributes.DestinationCity = "DESTINATION_CITY";
+            req.BusinessAttributes.TravelAgency = "TRAVEL_AGENCY";
+            req.BusinessAttributes.ContractorName = "CONTRACTOR_NAME";
+            req.BusinessAttributes.AtolCertificate = "ATOL_CERTIFICATE";
+            req.BusinessAttributes.PickUpDate = "22-12-2030";
+            req.BusinessAttributes.ReturnDate = "25-12-2030";
+
+            // Payment Type
+            req.BusinessAttributes.PaymentType = "deposit";
+
             Genesis.Net.Result<
                 Genesis.Net.Entities.Responses.Successful.AuthorizeSuccessResponse,
                 Genesis.Net.Entities.Responses.Error.AuthorizeErrorResponse
@@ -210,6 +265,60 @@ Genesis.Net.Entities.Requests.Initial.WpfCreate req = new Genesis.Net.Entities.R
         LastName = "shipping last name",
         State = "BS",
         ZipCode = "1000"
+    },
+    BusinessAttributes = new Genesis.Net.Entities.Attributes.Request.Financial.Business.BusinessAttributes()
+    {
+        // Business Airlines Air Carriers
+        FlightArrivalDate = "23-12-2030",
+        FlightDepartureDate = "23-12-2030",
+        AirlineCode = "C0D3",
+        AirlineFlightNumber = "FLIGHT_NUMBER",
+        FlightTicketNumber = "TICKET_NUMBER",
+        FlightOriginCity = "ORIGIN_CITY",
+        FlightDestinationCity = "DESTINATION_CITY",
+        AirlineTourOperatorName = "TOUR_OPERATOR",
+
+        // Event Management
+        EventStartDate = "23-12-2030",
+        EventEndDate = "24-12-2030",
+        EventOrganizerId = "ORGANIZER_ID",
+        EventId = "EVENT_ID",
+
+        // Furniture
+        DateOfOrder = "23-12-2030",
+        DeliveryDate = "24-12-2030",
+        NameOfTheSupplier = "SUPPLIER_NAME",
+
+        // Hotels and Real estate rentals
+        CheckInDate = "23-12-2030",
+        CheckOutDate = "24-12-2030",
+        TravelAgencyName = "TRAVEL_AGENCY",
+
+        // Car, Plane and Boat Rentals
+        VehiclePickUpDate = "23-12-2030",
+        VehicleReturnDate = "24-12-2030",
+        SupplierName = "SUPPLIER_NAME",
+
+        // Cruise Lines
+        CruiseStartDate = "23-12-2030",
+        CruiseEndDate = "23-12-2030",
+
+        // Travel Agencies
+        ArrivalDate = "23-12-2030",
+        DepartureDate = "24-12-2030",
+        CarrierCode = "CARRIER_CODE",
+        FlightNumber = "FLIGHT_NUMBER",
+        TicketNumber = "TICKET_NUMBER",
+        OriginCity = "ORIGIN_CITY",
+        DestinationCity = "DESTINATION_CITY",
+        TravelAgency = "TRAVEL_AGENCY",
+        ContractorName = "CONTRACTOR_NAME",
+        AtolCertificate = "ATOL_CERTIFICATE",
+        PickUpDate = "22-12-2030",
+        ReturnDate = "25-12-2030",
+
+        // Payment Type
+        PaymentType = "deposit"
     }
 };
 
