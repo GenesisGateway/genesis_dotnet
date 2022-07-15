@@ -614,6 +614,176 @@ namespace Genesis.Net.Specs.Mocks
 
             return new EntityMock<AvsErrorResponse>(errorResponse, errorResponseXml);
         }
+        
+        public static EntityMock<GooglePaySuccessResponse> CreateGooglePaySuccessResponse()
+        {
+            var successResponse = new GooglePaySuccessResponse()
+            {
+                TransactionType = TransactionTypes.GooglePay,
+                AvsResponseCode = "5I",
+                AvsResponseText = "Response provided by issuer processor; Address information not verified.",
+                AuthorizationCode = "345678",
+                Descriptor = "descriptor one",
+                Status = "approved",
+                ResponseCode = "83",
+                UniqueId = "5e2cbbad71d2b13432323153c208223a",
+                TransactionId = "119643250547501c79d8295",
+                Mode = "live",
+                ProxyTime = "2007-11-30T14:21:48Z",
+                SentToAcquirer = true,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                ConsumerId = "123456",
+            };
+
+            var successResponseXml =
+                                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                                    "<payment_response>" +
+                                    "<transaction_type>google_pay</transaction_type>" +
+                                    "<status>approved</status>" +
+                                    "<avs_response_code>5I</avs_response_code>" +
+                                    "<avs_response_text>Response provided by issuer processor; Address information not verified.</avs_response_text>" +
+                                    "<authorization_code>345678</authorization_code>" +
+                                    "<response_code>83</response_code>" +
+                                    "<unique_id>5e2cbbad71d2b13432323153c208223a</unique_id>" +
+                                    "<transaction_id>119643250547501c79d8295</transaction_id>" +
+                                    "<mode>live</mode>" +
+                                    "<timestamp>2007-11-30T14:21:48Z</timestamp>" +
+                                    "<descriptor>descriptor one</descriptor>" +
+                                    "<sent_to_acquirer>true</sent_to_acquirer>" +
+                                    "<consumer_id>123456</consumer_id>" +
+                                    "<amount>100</amount>" +
+                                    "<currency>USD</currency>" +
+                                    "</payment_response>";
+
+            return new EntityMock<GooglePaySuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<GooglePayErrorResponse> CreateGooglePayErrorResponse()
+        {
+            var errorResponse = new GooglePayErrorResponse()
+            {
+                TransactionType = TransactionTypes.GooglePay,
+                Status = "error",
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "1196439228475036bc3a791",
+                Code = ErrorCodes.InputDataInvalidError,
+                TechnicalMessage = "expiration_year is invalid",
+                Message = "expiration_year is invalid",
+                Mode = "live",
+                ProxyTime = "2007-11-30T16:13:50Z",
+                Descriptor = "descriptor one",
+                SentToAcquirer = false,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+            };
+
+            var errorResponseXml =
+                                  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                                  "<payment_response>" +
+                                  "<transaction_type>google_pay</transaction_type>" +
+                                  "<status>error</status>" +
+                                  "<response_code>57</response_code>" +
+                                  "<unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>" +
+                                  "<transaction_id>1196439228475036bc3a791</transaction_id>" +
+                                  "<code>340</code>" +
+                                  "<technical_message>expiration_year is invalid</technical_message>" +
+                                  "<message>expiration_year is invalid</message>" +
+                                  "<mode>live</mode>" +
+                                  "<timestamp>2007-11-30T16:13:50Z</timestamp>" +
+                                  "<descriptor>descriptor one</descriptor>" +
+                                  "<sent_to_acquirer>false</sent_to_acquirer>" +
+                                  "<amount>100</amount>" +
+                                  "<currency>USD</currency>" +
+                                  "</payment_response>";
+
+            return new EntityMock<GooglePayErrorResponse>(errorResponse, errorResponseXml);
+        }
+
+        public static EntityMock<ApplePaySuccessResponse> CreateApplePaySuccessResponse()
+        {
+            var successResponse = new ApplePaySuccessResponse()
+            {
+                TransactionType = TransactionTypes.ApplePay,
+                AvsResponseCode = "5I",
+                AvsResponseText = "Response provided by issuer processor; Address information not verified.",
+                AuthorizationCode = "345678",
+                Descriptor = "descriptor one",
+                Status = "approved",
+                ResponseCode = "83",
+                UniqueId = "5e2cbbad71d2b13432323153c208223a",
+                TransactionId = "119643250547501c79d8295",
+                Mode = "live",
+                ProxyTime = "2007-11-30T14:21:48Z",
+                SentToAcquirer = true,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                ConsumerId = "123456",
+            };
+
+            var successResponseXml =
+                                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                                    "<payment_response>" +
+                                    "<transaction_type>apple_pay</transaction_type>" +
+                                    "<status>approved</status>" +
+                                    "<avs_response_code>5I</avs_response_code>" +
+                                    "<avs_response_text>Response provided by issuer processor; Address information not verified.</avs_response_text>" +
+                                    "<authorization_code>345678</authorization_code>" +
+                                    "<response_code>83</response_code>" +
+                                    "<unique_id>5e2cbbad71d2b13432323153c208223a</unique_id>" +
+                                    "<transaction_id>119643250547501c79d8295</transaction_id>" +
+                                    "<mode>live</mode>" +
+                                    "<timestamp>2007-11-30T14:21:48Z</timestamp>" +
+                                    "<descriptor>descriptor one</descriptor>" +
+                                    "<sent_to_acquirer>true</sent_to_acquirer>" +
+                                    "<consumer_id>123456</consumer_id>" +
+                                    "<amount>100</amount>" +
+                                    "<currency>USD</currency>" +
+                                    "</payment_response>";
+
+            return new EntityMock<ApplePaySuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<ApplePayErrorResponse> CreateApplePayErrorResponse()
+        {
+            var errorResponse = new ApplePayErrorResponse()
+            {
+                TransactionType = TransactionTypes.ApplePay,
+                Status = "error",
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "1196439228475036bc3a791",
+                Code = ErrorCodes.InputDataInvalidError,
+                TechnicalMessage = "expiration_year is invalid",
+                Message = "expiration_year is invalid",
+                Mode = "live",
+                ProxyTime = "2007-11-30T16:13:50Z",
+                Descriptor = "descriptor one",
+                SentToAcquirer = false,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+            };
+
+            var errorResponseXml =
+                                  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                                  "<payment_response>" +
+                                  "<transaction_type>apple_pay</transaction_type>" +
+                                  "<status>error</status>" +
+                                  "<response_code>57</response_code>" +
+                                  "<unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>" +
+                                  "<transaction_id>1196439228475036bc3a791</transaction_id>" +
+                                  "<code>340</code>" +
+                                  "<technical_message>expiration_year is invalid</technical_message>" +
+                                  "<message>expiration_year is invalid</message>" +
+                                  "<mode>live</mode>" +
+                                  "<timestamp>2007-11-30T16:13:50Z</timestamp>" +
+                                  "<descriptor>descriptor one</descriptor>" +
+                                  "<sent_to_acquirer>false</sent_to_acquirer>" +
+                                  "<amount>100</amount>" +
+                                  "<currency>USD</currency>" +
+                                  "</payment_response>";
+
+            return new EntityMock<ApplePayErrorResponse>(errorResponse, errorResponseXml);
+        }
 
         public static EntityMock<InitRecurringSaleSuccessResponse> CreateInitRecurringSaleSuccessResponse()
         {
@@ -1391,6 +1561,64 @@ namespace Genesis.Net.Specs.Mocks
                                      "<amount>9000</amount>" +
                                      "<currency>USD</currency>" +
                                      "<sent_to_acquirer>true</sent_to_acquirer>" +
+                                     "</payment_response>";
+
+            return new EntityMock<SingleReconcileSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<SingleReconcileSuccessResponse> CreateSingleReconcileSuccessResponseWithUndefinedCountry()
+        {
+            var successResponse = new SingleReconcileSuccessResponse()
+            {
+                TransactionType = TransactionTypes.Sale,
+                Status = "approved",
+                AuthorizationCode = "005645",
+                ResponseCode = "00",
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                Mode = "live",
+                ProxyTime = "2014-01-30T14:21:48Z",
+                Descriptor = "descriptor one",
+                Amount = 90,
+                Currency = Iso4217CurrencyCodes.USD,
+                SentToAcquirer = true,
+                BillingAddress = new Address()
+                {
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Address1 = "32, Doestreet",
+                    Address2 = "",
+                    ZipCode = "12345",
+                    City = "New York",
+                    State = "NY",
+                    Country = Iso3166CountryCodes.Undefined
+                }
+            };
+
+            var successResponseXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                                     "<payment_response>" +
+                                     "<transaction_type>sale</transaction_type>" +
+                                     "<status>approved</status>" +
+                                     "<authorization_code>005645</authorization_code>" +
+                                     "<response_code>00</response_code>" +
+                                     "<unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>" +
+                                     "<transaction_id>119643250547501c79d8295</transaction_id>" +
+                                     "<mode>live</mode>" +
+                                     "<timestamp>2014-01-30T14:21:48Z</timestamp>" +
+                                     "<descriptor>descriptor one</descriptor>" +
+                                     "<amount>9000</amount>" +
+                                     "<currency>USD</currency>" +
+                                     "<sent_to_acquirer>true</sent_to_acquirer>" +
+                                     "<billing_address>" +
+                                     "<first_name>John</first_name>" +
+                                     "<last_name>Doe</last_name>" +
+                                     "<address1>32, Doestreet</address1>" +
+                                     "<address2></address2>" +
+                                     "<zip_code>12345</zip_code>" +
+                                     "<city>New York</city>" +
+                                     "<state>NY</state>" +
+                                     "<country></country>" +
+                                     "</billing_address>" +
                                      "</payment_response>";
 
             return new EntityMock<SingleReconcileSuccessResponse>(successResponse, successResponseXml);

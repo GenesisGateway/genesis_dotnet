@@ -3,6 +3,7 @@ using System.Reflection;
 using NSpec;
 using NSpec.Domain;
 using NSpec.Domain.Formatters;
+using NUnit.Framework;
 
 /*
  * Howdy,
@@ -20,10 +21,10 @@ using NSpec.Domain.Formatters;
  * Visual Studio will detect this and will give you a window which you can use to attach a debugger.
  */
 
-//[TestFixture]
+[TestFixture]
 public class DebuggerShim
 {
-    //[Test]
+    [Test]
     public void debug()
     {
         var tagOrClassName = "class_or_tag_you_want_to_debug";

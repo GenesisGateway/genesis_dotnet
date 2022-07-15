@@ -239,5 +239,25 @@ namespace Genesis.Net
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
         Task<Result<WpfReconcileSuccessResponse, WpfReconcileErrorResponse>> ExecuteAsync(WpfReconcile wpfReconcile);
+                
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Result<GooglePaySuccessResponse, GooglePayErrorResponse> Execute(GooglePay googlePay);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Task<Result<GooglePaySuccessResponse, GooglePayErrorResponse>> ExecuteAsync(GooglePay googlePay);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Result<ApplePaySuccessResponse, ApplePayErrorResponse> Execute(ApplePay applePay);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Task<Result<ApplePaySuccessResponse, ApplePayErrorResponse>> ExecuteAsync(ApplePay applePay);
     }
 }

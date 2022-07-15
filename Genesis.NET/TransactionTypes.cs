@@ -56,6 +56,11 @@ namespace Genesis.Net
 
         public static readonly TransactionTypes Ppro = new TransactionTypes(21, "ppro");
 
+        public static readonly TransactionTypes GooglePay = new TransactionTypes(22, "google_pay");
+
+        public static readonly TransactionTypes ApplePay = new TransactionTypes(23, "apple_pay");
+
+
         public readonly short Value;
         public readonly string Name;
 

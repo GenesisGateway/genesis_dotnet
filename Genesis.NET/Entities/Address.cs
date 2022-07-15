@@ -36,7 +36,7 @@ namespace Genesis.Net.Entities
         public string State { get; set; }
 
         [XmlElement(ElementName="country")]
-        public Iso3166CountryCodes Country { get; set; }
+        public Iso3166CountryCodes? Country { get; set; }
 
         public Address()
         {

@@ -257,6 +257,26 @@ namespace Genesis.Net
             return await ExecuteAsync<WpfReconcileSuccessResponse, WpfReconcileErrorResponse>(wpfReconcile);
         }
 
+        public Result<ApplePaySuccessResponse, ApplePayErrorResponse> Execute(ApplePay applePay)
+        {
+            return Execute<ApplePaySuccessResponse, ApplePayErrorResponse>(applePay);
+        }
+
+        public async Task<Result<ApplePaySuccessResponse, ApplePayErrorResponse>> ExecuteAsync(ApplePay applePay)
+        {
+            return await ExecuteAsync<ApplePaySuccessResponse, ApplePayErrorResponse>(applePay);
+        }
+
+        public Result<GooglePaySuccessResponse, GooglePayErrorResponse> Execute(GooglePay googlePay)
+        {
+            return Execute<GooglePaySuccessResponse, GooglePayErrorResponse>(googlePay);
+        }
+
+        public async Task<Result<GooglePaySuccessResponse, GooglePayErrorResponse>> ExecuteAsync(GooglePay googlePay)
+        {
+            return await ExecuteAsync<GooglePaySuccessResponse, GooglePayErrorResponse>(googlePay);
+        }
+
         private Result<S, E> Execute<S, E>(Request request)
             where S : Entity
             where E : Entity, IErrorResponse

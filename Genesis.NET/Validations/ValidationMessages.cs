@@ -23,7 +23,7 @@ namespace Genesis.Net.Validations
             return String.Format(RequiredFieldTemplate, name);
         }
 
-        public static string InvalidStateCode(string state, Iso3166CountryCodes countryCode)
+        public static string InvalidStateCode(string state, Iso3166CountryCodes? countryCode)
         {
             return String.Format(InvalidUSStateCodeTemplate, state, countryCode.ToString());
         }

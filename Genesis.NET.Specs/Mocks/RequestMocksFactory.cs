@@ -445,7 +445,7 @@ namespace Genesis.Net.Specs.Mocks
                     Cavv = "Testing Cavv",
                     Eci = "Testing Eci",
                     Xid = "Testing Xid"
-                }         
+                }
             };
 
             var xml =
@@ -1800,7 +1800,9 @@ namespace Genesis.Net.Specs.Mocks
                 CardHolder = "Hodler Name",
                 TransactionTypes = new Composite[] {
                     new Composite() { { "name", "sale" } }, new Composite() { { "name", "sale3d" } },
-                    new Composite() { { "name", "ezeewallet" }, { "source_wallet_id", "emil@example.com" } }
+                    new Composite() { { "name", "ezeewallet" }, { "source_wallet_id", "emil@example.com" } },
+                    new Composite() { { "name", "apple_pay" }, { "payment_subtype", "authorize" } },
+                    new Composite() { { "name", "google_pay" }, { "payment_subtype", "authorize" } }
                 },
                 ReturnCancelUrl = "http://test.com/cancel",
                 ReturnFailureUrl = "http://test.com/fail",
@@ -1925,6 +1927,14 @@ namespace Genesis.Net.Specs.Mocks
                         "<transaction_type>" +
                             "<name>ezeewallet</name>" +
                             "<source_wallet_id>emil@example.com</source_wallet_id>" +
+                        "</transaction_type>" +
+                        "<transaction_type>" +
+                            "<name>apple_pay</name>" +
+                            "<payment_subtype>authorize</payment_subtype>" +
+                        "</transaction_type>" +
+                        "<transaction_type>" +
+                            "<name>google_pay</name>" +
+                            "<payment_subtype>authorize</payment_subtype>" +
                         "</transaction_type>" +
                     "</transaction_types>" +
                     "<lifetime xsi:nil=\"true\"/>" +
@@ -2392,6 +2402,192 @@ namespace Genesis.Net.Specs.Mocks
                 "</payment_transaction>";
 
             return new EntityMock<PayByVoucher>(payByVoucher, xml);
+        }
+
+        public static EntityMock<ApplePay> CreateValidApplePay()
+               {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+            DateTime _birthDate = new DateTime(1980, 10, 10);
+
+            var applePay = new ApplePay()
+            {
+                Id = "43671",
+                Type = TransactionTypes.ApplePay,
+                Subtype = TransactionSubTypes.Authorize,
+                PaymentToken = "...",
+                Usage = "40208 concert tickets",
+                RemoteIp = "245.253.2.12",
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                CustomerEmail = "travis@example.com",
+                CustomerPhone = "15002268663",
+                BirthDate = _birthDate.ToShortDateString(),
+                DocumentId = "123456789",
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    EventId = "1912",
+                    EventOrganizerId = "20192375",
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+                },
+                BillingAddress = new Address()
+                {
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    Address1 = "Muster Str. 12",
+                    ZipCode = "10178",
+                    City = "Los Angeles",
+                    State = "CA",
+                    Country = Iso3166CountryCodes.US
+                },
+                ShippingAddress = new Address()
+                {
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    Address1 = "Muster Str. 12",
+                    ZipCode = "10178",
+                    City = "Los Angeles",
+                    State = "CA",
+                    Country = Iso3166CountryCodes.US
+                }
+            };
+
+            var xml =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"ApplePay\">" +
+                "<transaction_type>apple_pay</transaction_type>" +
+                "<transaction_id>43671</transaction_id>" +
+                "<usage>40208 concert tickets</usage>" +
+                "<amount>100</amount>" +
+                "<currency>USD</currency>" +
+                "<remote_ip>245.253.2.12</remote_ip>" +
+                "<payment_token>...</payment_token>" +
+                "<payment_subtype>authorize</payment_subtype>" +
+                "<birth_date>" + _birthDate.ToShortDateString() + "</birth_date>" +
+                "<document_id>123456789</document_id>" +
+                "<billing_address>" +
+                "<first_name>Travis</first_name>" +
+                "<last_name>Pastrana</last_name>" +
+                "<address1>Muster Str. 12</address1>" +
+                "<zip_code>10178</zip_code>" +
+                "<city>Los Angeles</city>" +
+                "<state>CA</state>" +
+                "<country>US</country>" +
+                "</billing_address>" +
+                "<shipping_address>" +
+                "<first_name>Travis</first_name>" +
+                "<last_name>Pastrana</last_name>" +
+                "<address1>Muster Str. 12</address1>" +
+                "<zip_code>10178</zip_code>" +
+                "<city>Los Angeles</city>" +
+                "<state>CA</state>" +
+                "<country>US</country>" +
+                "</shipping_address>" +
+                "<business_attributes>" +
+                "<event_id>1912</event_id>" +
+                "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                "<event_organizer_id>20192375</event_organizer_id>" +
+                "</business_attributes>" +
+                "<customer_email>travis@example.com</customer_email>" +
+                "<customer_phone>15002268663</customer_phone>" +
+                "</payment_transaction>";
+
+            return new EntityMock<ApplePay>(applePay, xml);
+        }
+
+        public static EntityMock<GooglePay> CreateValidGooglePay()
+        {
+            DateTime _startDate = DateTime.Now.AddMonths(-1);
+            DateTime _endDate = DateTime.Now.AddMonths(1);
+            DateTime _birthDate = new DateTime(1980, 10, 10);
+
+            var googlePay = new GooglePay()
+            {
+                Id = "43671",
+                Type = TransactionTypes.GooglePay,
+                Subtype = TransactionSubTypes.Authorize,
+                PaymentToken = "...",
+                Usage = "40208 concert tickets",
+                RemoteIp = "245.253.2.12",
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                CustomerEmail = "travis@example.com",
+                CustomerPhone = "15002268663",
+                BirthDate = _birthDate.ToShortDateString(),
+                DocumentId = "123456789",
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    EventId = "1912",
+                    EventOrganizerId = "20192375",
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+                },
+                BillingAddress = new Address()
+                {
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    Address1 = "Muster Str. 12",
+                    ZipCode = "10178",
+                    City = "Los Angeles",
+                    State = "CA",
+                    Country = Iso3166CountryCodes.US
+                },
+                ShippingAddress = new Address()
+                {
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    Address1 = "Muster Str. 12",
+                    ZipCode = "10178",
+                    City = "Los Angeles",
+                    State = "CA",
+                    Country = Iso3166CountryCodes.US
+                }
+            };
+
+            var xml =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"GooglePay\">" +
+                "<transaction_type>google_pay</transaction_type>" +
+                "<transaction_id>43671</transaction_id>" +
+                "<usage>40208 concert tickets</usage>" +
+                "<amount>100</amount>" +
+                "<currency>USD</currency>" +
+                "<remote_ip>245.253.2.12</remote_ip>" +
+                "<payment_token>...</payment_token>" +
+                "<payment_subtype>authorize</payment_subtype>" +                
+                "<document_id>123456789</document_id>" +
+                "<birth_date>" + _birthDate.ToShortDateString() + "</birth_date>" +
+                "<billing_address>" +
+                "<first_name>Travis</first_name>" +
+                "<last_name>Pastrana</last_name>" +
+                "<address1>Muster Str. 12</address1>" +
+                "<zip_code>10178</zip_code>" +
+                "<city>Los Angeles</city>" +
+                "<state>CA</state>" +
+                "<country>US</country>" +
+                "</billing_address>" +
+                "<shipping_address>" +
+                "<first_name>Travis</first_name>" +
+                "<last_name>Pastrana</last_name>" +
+                "<address1>Muster Str. 12</address1>" +
+                "<zip_code>10178</zip_code>" +
+                "<city>Los Angeles</city>" +
+                "<state>CA</state>" +
+                "<country>US</country>" +
+                "</shipping_address>" +
+                "<business_attributes>" +
+                "<event_id>1912</event_id>" +
+                "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                "<event_organizer_id>20192375</event_organizer_id>" +
+                "</business_attributes>" +
+                "<customer_email>travis@example.com</customer_email>" +
+                "<customer_phone>15002268663</customer_phone>" +
+                "</payment_transaction>";
+
+            return new EntityMock<GooglePay>(googlePay, xml);
         }
 
         public static EntityMock<CashU> CreateValidCashU()

@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace Genesis.Net.Common
 {
     public enum Iso3166CountryCodes
     {
+        /// <summary>
+        /// Represents empty string inside a response
+        /// </summary>
+        [XmlEnum("")]
+        Undefined,
+
         /// <summary>
         /// Afghanistan
         /// </summary>

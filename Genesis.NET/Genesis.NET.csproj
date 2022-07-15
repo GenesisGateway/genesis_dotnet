@@ -64,10 +64,11 @@
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\SortedNamespaceXmlWriter.cs" />
     <Compile Include="Common\WpfLocales.cs" />
-    <Compile Include="DebuggerShim.cs" />
     <Compile Include="Endpoints.cs" />
     <Compile Include="Entities\Attributes\Request\Financial\Business\BusinessAttributes.cs" />
     <Compile Include="Entities\Requests\Initial\AlternativePaymentMethod.cs" />
+    <Compile Include="Entities\Requests\Initial\ApplePay.cs" />
+    <Compile Include="Entities\Requests\Initial\GooglePay.cs" />
     <Compile Include="Entities\Requests\Initial\Ppro.cs" />
     <Compile Include="Entities\Requests\Initial\SofortiDeal.cs" />
     <Compile Include="Entities\Requests\Initial\Sofort.cs" />
@@ -87,6 +88,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChargebackResponse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ConsumerModel.cs" />
     <Compile Include="Entities\Responses\DynamicDescriptorModel.cs" />
     <Compile Include="Entities\Responses\CustomerModel.cs" />
     <Compile Include="Entities\Responses\ErrorModel.cs" />
@@ -99,6 +101,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AlternativePaymentMethodErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\GooglePayErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>GooglePayErrorResponse.mixin.cs</LastGenOutput>
     </Compile>
     <Compile Include="Entities\Responses\Error\Authorize3dErrorResponse.mixin.cs">
       <AutoGen>True</AutoGen>
@@ -128,6 +134,10 @@
     <Compile Include="Entities\Responses\Error\AlternativePaymentMethodErrorResponse.cs">
       <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
       <LastGenOutput>AlternativePaymentMethodErrorResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\ApplePayErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>ApplePayErrorResponse.mixin.cs</LastGenOutput>
     </Compile>
     <Compile Include="Entities\Responses\Error\PproErrorResponse .cs">
       <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
@@ -296,6 +306,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AlternativePaymentMethodSuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\ApplePaySuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>ApplePaySuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\ApplePaySuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApplePaySuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\GooglePaySuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>GooglePaySuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\GooglePaySuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GooglePaySuccessResponse.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Responses\Successful\Authorize3dSuccessResponse.mixin.cs">
       <AutoGen>True</AutoGen>
@@ -758,6 +786,7 @@
     <Compile Include="Errors\ErrorsService.cs" />
     <Compile Include="Errors\ErrorCodes.cs" />
     <Compile Include="IGenesisClient.cs" />
+    <Compile Include="TransactionSubTypes.cs" />
     <Compile Include="Validations\IPv4AddressAttribute.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

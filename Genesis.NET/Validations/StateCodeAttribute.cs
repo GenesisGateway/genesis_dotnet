@@ -46,8 +46,8 @@ namespace Genesis.Net.Validations
             return ValidationResult.Success;
         }
 
-        private static readonly Dictionary<Iso3166CountryCodes, HashSet<string>> iso3166_2_StateCodes =
-            new Dictionary<Iso3166CountryCodes, HashSet<string>>()
+        private static readonly Dictionary<Iso3166CountryCodes?, HashSet<string>> iso3166_2_StateCodes =
+            new Dictionary<Iso3166CountryCodes?, HashSet<string>>()
             {
                 {
                         Iso3166CountryCodes.US, new HashSet<string>()

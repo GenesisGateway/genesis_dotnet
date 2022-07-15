@@ -20,5 +20,11 @@ namespace Genesis.Net.Specs.Entities.Responses.Query
             var errorResponseMock = ResponseMocksFactory.CreateSingleReconcileErrorResponse();
             errorResponseMock.Instance.should_be_parsable_from<SingleReconcileErrorResponse>(errorResponseMock.Xml);
         }
+
+        void it_should_parse_response_with_empty_country()
+        {
+            var successResponseMock = ResponseMocksFactory.CreateSingleReconcileSuccessResponseWithUndefinedCountry();
+            successResponseMock.Instance.should_be_parsable_from<SingleReconcileSuccessResponse>(successResponseMock.Xml);
+        }
     }
 }

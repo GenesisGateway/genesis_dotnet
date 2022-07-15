@@ -37,6 +37,8 @@ Genesis.Net.Entities.Requests.Initial:
 * Payout
 * Sale
 * WpfCreate
+* GooglePay
+* ApplePay
 
 Genesis.Net.Entities.Requests.Initial.ThreeD:
 * Authorize3dSync
