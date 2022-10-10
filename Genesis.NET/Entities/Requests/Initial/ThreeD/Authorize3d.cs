@@ -4,9 +4,18 @@ using System.Xml.Serialization;
 
 namespace Genesis.Net.Entities.Requests.Initial.ThreeD
 {
+    /// <summary>
+    /// This class is deprecated. Please use: <see cref="Genesis.Net.Entities.Requests.Initial.Authorize3d"/>
+    /// </summary>
     [XmlRoot("payment_transaction")]
+    [Obsolete("This class is deprecated. Please use Genesis.Net.Entities.Requests.Initial.Authorize3d")]
     public abstract class Authorize3d : InitialRequest
     {
+        public Authorize3d()
+        {
+            Type = TransactionTypes.Authorize3d;
+        }
+
         [XmlElement(ElementName="gaming")]
         public bool? Gaming { get; set; }
 
@@ -23,10 +32,5 @@ namespace Genesis.Net.Entities.Requests.Initial.ThreeD
 
         [XmlElement(ElementName = "business_attributes")]
         public BusinessAttributes BusinessAttributes { get; set; }
-
-        public Authorize3d()
-        {
-            Type = TransactionTypes.Authorize3d;
-        }
     }
 }

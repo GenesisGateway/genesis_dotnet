@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
-using Genesis.Net.Common;
+﻿using Genesis.Net.Common;
 using Genesis.Net.Entities;
+using Genesis.Net.Entities.Enums;
+using Genesis.Net.Entities.Enums.ThreeDS;
 using Genesis.Net.Entities.Responses;
 using Genesis.Net.Entities.Responses.Error;
 using Genesis.Net.Entities.Responses.Successful;
@@ -11,12 +11,12 @@ namespace Genesis.Net.Specs.Mocks
 {
     static class ResponseMocksFactory
     {
-        public static EntityMock<Authorize3dSuccessResponse> CreateAuthorize3dSyncSuccessResponse()
+        public static EntityMock<CardTransactionSuccessResponse> CreateAuthorize3dSyncSuccessResponse()
         {
-            var successResponse = new Authorize3dSuccessResponse()
+            var successResponse = new CardTransactionSuccessResponse()
             {
                 TransactionType = TransactionTypes.Authorize3d,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "345678",
                 ResponseCode = "00",
                 UniqueId = "011e8d5cc1a56058cc50440c264f5063",
@@ -46,19 +46,21 @@ namespace Genesis.Net.Specs.Mocks
                                     "<sent_to_acquirer>true</sent_to_acquirer>" +
                                     "</payment_response>";
 
-            return new EntityMock<Authorize3dSuccessResponse>(successResponse, successResponseXml);
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
         }
 
-        public static EntityMock<Authorize3dSuccessResponse> CreateAuthorize3dAsyncSuccessResponse()
+        public static EntityMock<CardTransactionSuccessResponse> CreateAuthorize3dAsyncSuccessResponse()
         {
-            var successResponse = new Authorize3dSuccessResponse()
+            var successResponse = new CardTransactionSuccessResponse()
             {
                 TransactionType = TransactionTypes.Authorize3d,
-                Status = "pending_async",
+                Status = TransactionStates.PendingAsync,
                 AuthorizationCode = "345678",
                 ResponseCode = "00",
                 UniqueId = "011e8d5cc1a56058cc50440c264f5063",
                 TransactionId = "43671",
+                TechnicalMessage = "Transaction successful!",
+                Message = "Transaction successful!",
                 Descriptor = "Descriptor One",
                 Mode = "live",
                 RedirectUrl = "https://gateway/8245201941/30ec0f2387",
@@ -90,15 +92,15 @@ namespace Genesis.Net.Specs.Mocks
                                     "<partial_approval>true</partial_approval>" +
                                     "</payment_response>";
 
-            return new EntityMock<Authorize3dSuccessResponse>(successResponse, successResponseXml);
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
         }
 
-        public static EntityMock<Authorize3dErrorResponse> CreateAuthorize3dErrorResponse()
+        public static EntityMock<CardTransactionErrorResponse> CreateAuthorize3dErrorResponse()
         {
-            var errorResponse = new Authorize3dErrorResponse()
+            var errorResponse = new CardTransactionErrorResponse()
             {
                 TransactionType = TransactionTypes.Authorize3d,
-                Status = "error",
+                Status = TransactionStates.Error,
                 ResponseCode = "57",
                 UniqueId = "011e8d5cc1a56058cc50440c264f5063",
                 TransactionId = "43671",
@@ -132,15 +134,15 @@ namespace Genesis.Net.Specs.Mocks
                                   "<sent_to_acquirer>false</sent_to_acquirer>" +
                                   "</payment_response>";
 
-            return new EntityMock<Authorize3dErrorResponse>(errorResponse, errorResponseXml);
+            return new EntityMock<CardTransactionErrorResponse>(errorResponse, errorResponseXml);
         }
 
-        public static EntityMock<InitRecurringSale3dSuccessResponse> CreateInitRecurringSale3dSyncSuccessResponse()
+        public static EntityMock<CardTransactionSuccessResponse> CreateInitRecurringSale3dSyncSuccessResponse()
         {
-            var successResponse = new InitRecurringSale3dSuccessResponse()
+            var successResponse = new CardTransactionSuccessResponse()
             {
                 TransactionType = TransactionTypes.InitRecurringSale3d,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "345678",
                 ResponseCode = "00",
                 UniqueId = "5e2cbbad71d2b13432323153c208223a",
@@ -170,15 +172,15 @@ namespace Genesis.Net.Specs.Mocks
                                     "<sent_to_acquirer>true</sent_to_acquirer>" +
                                     "</payment_response>";
 
-            return new EntityMock<InitRecurringSale3dSuccessResponse>(successResponse, successResponseXml);
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
         }
 
-        public static EntityMock<InitRecurringSale3dSuccessResponse> CreateInitRecurringSale3dAsyncSuccessResponse()
+        public static EntityMock<CardTransactionSuccessResponse> CreateInitRecurringSale3dAsyncSuccessResponse()
         {
-            var successResponse = new InitRecurringSale3dSuccessResponse()
+            var successResponse = new CardTransactionSuccessResponse()
             {
                 TransactionType = TransactionTypes.InitRecurringSale3d,
-                Status = "pending_async",
+                Status = TransactionStates.PendingAsync,
                 UniqueId = "5e2cbbad71d2b13432323153c208223a",
                 TransactionId = "119643250547501c79d8295",
                 RedirectUrl = "https://gateway/8245201941/30ec0f2387",
@@ -206,15 +208,15 @@ namespace Genesis.Net.Specs.Mocks
                                     "<partial_approval>true</partial_approval>" +
                                     "</payment_response>";
 
-            return new EntityMock<InitRecurringSale3dSuccessResponse>(successResponse, successResponseXml);
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
         }
 
-        public static EntityMock<InitRecurringSale3dErrorResponse> CreateInitRecurringSale3dErrorResponse()
+        public static EntityMock<CardTransactionErrorResponse> CreateInitRecurringSale3dErrorResponse()
         {
-            var errorResponse = new InitRecurringSale3dErrorResponse()
+            var errorResponse = new CardTransactionErrorResponse()
             {
                 TransactionType = TransactionTypes.InitRecurringSale3d,
-                Status = "error",
+                Status = TransactionStates.Error,
                 ResponseCode = "57",
                 UniqueId = "d0231d21e0e50afbba1909eadc2f2d6b",
                 TransactionId = "345345",
@@ -248,19 +250,19 @@ namespace Genesis.Net.Specs.Mocks
                                   "<sent_to_acquirer>false</sent_to_acquirer>" +
                                   "</payment_response>";
 
-            return new EntityMock<InitRecurringSale3dErrorResponse>(errorResponse, errorResponseXml);
+            return new EntityMock<CardTransactionErrorResponse>(errorResponse, errorResponseXml);
         }
 
-        public static EntityMock<Sale3dSuccessResponse> CreateSale3dSyncSuccessResponse()
+        public static EntityMock<CardTransactionSuccessResponse> CreateSale3dSyncSuccessResponse()
         {
-            var successResponse = new Sale3dSuccessResponse()
+            var successResponse = new CardTransactionSuccessResponse()
             {
                 TransactionType = TransactionTypes.Sale3d,
                 Amount = 90,
                 Currency = Iso4217CurrencyCodes.USD,
                 AuthorizationCode = "345678",
                 Descriptor = "descriptor one",
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 ResponseCode = "00",
                 UniqueId = "5e2cbbad71d2b13432323153c208223a",
                 TransactionId = "119643250547501c79d8295",
@@ -286,19 +288,19 @@ namespace Genesis.Net.Specs.Mocks
                                     "<sent_to_acquirer>true</sent_to_acquirer>" +
                                     "</payment_response>";
 
-            return new EntityMock<Sale3dSuccessResponse>(successResponse, successResponseXml);
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
         }
 
-        public static EntityMock<Sale3dSuccessResponse> CreateSale3dAsyncSuccessResponse()
+        public static EntityMock<CardTransactionSuccessResponse> CreateSale3dAsyncSuccessResponse()
         {
-            var successResponse = new Sale3dSuccessResponse()
+            var successResponse = new CardTransactionSuccessResponse()
             {
                 TransactionType = TransactionTypes.Sale3d,
                 Amount = 90,
                 Currency = Iso4217CurrencyCodes.USD,
                 AuthorizationCode = "345678",
                 Descriptor = "descriptor one",
-                Status = "pending_async",
+                Status = TransactionStates.PendingAsync,
                 ResponseCode = "00",
                 UniqueId = "5e2cbbad71d2b13432323153c208223a",
                 TransactionId = "119643250547501c79d8295",
@@ -324,15 +326,677 @@ namespace Genesis.Net.Specs.Mocks
                                     "<partial_approval>true</partial_approval>" +
                                     "</payment_response>";
 
-            return new EntityMock<Sale3dSuccessResponse>(successResponse, successResponseXml);
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
         }
 
-        public static EntityMock<Sale3dErrorResponse> CreateSale3dErrorResponse()
+        public static EntityMock<CardTransactionSuccessResponse> Create3dV2FrictionlessSuccessResponse()
         {
-            var errorResponse = new Sale3dErrorResponse()
+            var successResponse = new CardTransactionSuccessResponse()
+            {
+                TransactionType = TransactionTypes.InitRecurringSale3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "345678",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.Approved,
+                ResponseCode = "00",
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:08Z",
+                SentToAcquirer = true,
+                ThreeDS = new ThreeDSElementModel()
+                {
+                    Eci = "05"
+                }
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>init_recurring_sale3d</transaction_type>
+                  <status>approved</status>
+                  <mode>test</mode>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <timestamp>2022-05-24T17:25:08Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <sent_to_acquirer>true</sent_to_acquirer>
+                  <threeds>
+                    <eci>05</eci>
+                  </threeds>
+                </payment_response>";
+
+
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<CardTransactionSuccessResponse> Create3dV2FrictionlessWith3dSecureSuccessResponse()
+        {
+            var successResponse = new CardTransactionSuccessResponse()
+            {
+                TransactionType = TransactionTypes.InitRecurringSale3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "345678",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.PendingAsync,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                ThreedsMethodUrl = "https://staging.gate.emerchantpay.net/threeds/threeds_method",
+                ThreedsMethodContinueUrl = "https://staging.gate.emerchantpay.net/threeds/threeds_method/44177a21403427eb96664a6d7e5d5d48",
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:08Z",
+                SentToAcquirer = false,
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>init_recurring_sale3d</transaction_type>
+                  <status>pending_async</status>
+                  <mode>test</mode>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <threeds_method_url>https://staging.gate.emerchantpay.net/threeds/threeds_method</threeds_method_url>
+                  <threeds_method_continue_url>https://staging.gate.emerchantpay.net/threeds/threeds_method/44177a21403427eb96664a6d7e5d5d48</threeds_method_continue_url>
+                  <timestamp>2022-05-24T17:25:08Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <sent_to_acquirer>false</sent_to_acquirer>
+                </payment_response>";
+
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<CardTransactionSuccessResponse> Create3dV2ChallangeSuccessResponse()
+        {
+            var successResponse = new CardTransactionSuccessResponse()
+            {
+                TransactionType = TransactionTypes.Authorize3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "345678",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.PendingAsync,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                RedirectUrl = "https://staging.gate.emerchantpay.net/threeds/authentication/44177a21403427eb96664a6d7e5d5d48",
+                RedirectUrlType = RedirectUrlTypes.ThreeDSv2Challage,
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:08Z",
+                SentToAcquirer = false,
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>authorize3d</transaction_type>
+                  <status>pending_async</status>
+                  <mode>test</mode>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <redirect_url>https://staging.gate.emerchantpay.net/threeds/authentication/44177a21403427eb96664a6d7e5d5d48</redirect_url>
+                  <redirect_url_type>3ds_v2_challenge</redirect_url_type>
+                  <timestamp>2022-05-24T17:25:08Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <sent_to_acquirer>false</sent_to_acquirer>
+                </payment_response>";
+
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<CardTransactionSuccessResponse> Create3dV2ChallangeWith3dSecureSuccessResponse()
+        {
+            var successResponse = new CardTransactionSuccessResponse()
             {
                 TransactionType = TransactionTypes.Sale3d,
-                Status = "error",
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "345678",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.PendingAsync,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                ThreedsMethodUrl = "https://staging.gate.emerchantpay.net/threeds/threeds_method",
+                ThreedsMethodContinueUrl = "https://staging.gate.emerchantpay.net/threeds/threeds_method/44177a21403427eb96664a6d7e5d5d48",
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:09Z",
+                SentToAcquirer = false,
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>sale3d</transaction_type>
+                  <status>pending_async</status>
+                  <mode>test</mode>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <threeds_method_url>https://staging.gate.emerchantpay.net/threeds/threeds_method</threeds_method_url>
+                  <threeds_method_continue_url>https://staging.gate.emerchantpay.net/threeds/threeds_method/44177a21403427eb96664a6d7e5d5d48</threeds_method_continue_url>
+                  <timestamp>2022-05-24T17:25:09Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <sent_to_acquirer>false</sent_to_acquirer>
+                </payment_response>";
+
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<CardTransactionSuccessResponse> Create3dV2FallbackSuccessResponse()
+        {
+            var successResponse = new CardTransactionSuccessResponse()
+            {
+                TransactionType = TransactionTypes.InitRecurringSale3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "345678",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.PendingAsync,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                RedirectUrl = "https://staging.gate.emerchantpay.net/threeds/authentication/44177a21403427eb96664a6d7e5d5d48",
+                RedirectUrlType = RedirectUrlTypes.ThreeDSv1PayerAuthentication,
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:09Z",
+                SentToAcquirer = false,
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>init_recurring_sale3d</transaction_type>
+                  <status>pending_async</status>
+                  <mode>test</mode>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <redirect_url>https://staging.gate.emerchantpay.net/threeds/authentication/44177a21403427eb96664a6d7e5d5d48</redirect_url>
+                  <redirect_url_type>3ds_v1_payer_authentication</redirect_url_type>
+                  <timestamp>2022-05-24T17:25:09Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <sent_to_acquirer>false</sent_to_acquirer>
+                </payment_response>";
+
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<CardTransactionSuccessResponse> Create3dV2FallbackWith3dSecureSuccessResponse()
+        {
+            var successResponse = new CardTransactionSuccessResponse()
+            {
+                TransactionType = TransactionTypes.InitRecurringSale3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "345678",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.PendingAsync,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                ThreedsMethodUrl = "https://staging.gate.emerchantpay.net/threeds/threeds_method",
+                ThreedsMethodContinueUrl = "https://staging.gate.emerchantpay.net/threeds/threeds_method/44177a21403427eb96664a6d7e5d5d48",
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:09Z",
+                SentToAcquirer = false,
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>init_recurring_sale3d</transaction_type>
+                  <status>pending_async</status>
+                  <mode>test</mode>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <threeds_method_url>https://staging.gate.emerchantpay.net/threeds/threeds_method</threeds_method_url>
+                  <threeds_method_continue_url>https://staging.gate.emerchantpay.net/threeds/threeds_method/44177a21403427eb96664a6d7e5d5d48</threeds_method_continue_url>
+                  <timestamp>2022-05-24T17:25:09Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <sent_to_acquirer>false</sent_to_acquirer>
+                </payment_response>";
+
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<SingleReconcileSuccessResponse> Create3dV2FrictionlessReconcileSuccessResponse()
+        {
+            var successResponse = new SingleReconcileSuccessResponse()
+            {
+                TransactionType = TransactionTypes.InitRecurringSale3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "005645",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.Approved,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:08Z",
+                SentToAcquirer = true,
+                ResponseCode = "00",
+                // missing field to be added later in other task
+                // retrieval_reference_number = "016813015184"
+                // card_brand = "visa"                                 ,
+                // card_number = "401200...0085"                       ,
+                // card_type = "CREDIT"                                ,
+                // card_subtype = "CARD SUBTYPE"                       ,
+                // card_issuing_bank = "Issuing Bank"                  ,
+                // card_issuing_country = "Exact Issuing country"      ,
+                // bank_account_number = "Bank Account Number"         ,
+                // bank_identifier_code = "Bank Identifier Code"       ,
+                // arn = "74537605259536043849425"                     ,
+                // scheme_response_code = "00"                         ,
+                ThreeDS = new ThreeDSElementModel()
+                {
+                    AuthenticationFlow = AuthenticationFlows.Frictionless,
+                    Protocol = new ProtocolModel()
+                    {
+                        TargetVersion = 2,
+                        ConcreteVersion = 2
+                    },
+                    Eci = "05"
+                }
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>init_recurring_sale3d</transaction_type>
+                  <status>approved</status>
+                  <authorization_code>005645</authorization_code>
+                  <retrieval_reference_number>016813015184</retrieval_reference_number>
+                  <response_code>00</response_code>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <mode>test</mode>
+                  <timestamp>2022-05-24T17:25:08Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <card_brand>visa</card_brand>
+                  <card_number>401200...0085</card_number>
+                  <card_type>CREDIT</card_type>
+                  <card_subtype>CARD SUBTYPE</card_subtype>
+                  <card_issuing_bank>Issuing Bank</card_issuing_bank>
+                  <card_issuing_country>Exact Issuing country</card_issuing_country>
+                  <bank_account_number>Bank Account Number</bank_account_number>
+                  <bank_identifier_code>Bank Identifier Code</bank_identifier_code>
+                  <sent_to_acquirer>true</sent_to_acquirer>
+                  <arn>74537605259536043849425</arn>
+                  <scheme_response_code>00</scheme_response_code>
+                  <threeds>
+                    <authentication_flow>frictionless</authentication_flow>
+                    <protocol>
+                      <target_version>2</target_version>
+                      <concrete_version>2</concrete_version>
+                    </protocol>
+                    <eci>05</eci>
+                  </threeds>
+                </payment_response>";
+
+            return new EntityMock<SingleReconcileSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<SingleReconcileSuccessResponse> Create3dV2FrictionlessWith3dSecureReconcileSuccessResponse()
+        {
+            var successResponse = new SingleReconcileSuccessResponse()
+            {
+                TransactionType = TransactionTypes.InitRecurringSale3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "005645",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.Approved,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:08Z",
+                SentToAcquirer = true,
+                ResponseCode = "00",
+                ThreeDS = new ThreeDSElementModel()
+                {
+                    AuthenticationFlow = AuthenticationFlows.Frictionless,
+                    ThreedsMethod = new ThreedsMethodModel()
+                    {
+                        Status = MethodStatus.Completed
+                    },
+                    Protocol = new ProtocolModel()
+                    {
+                        TargetVersion = 2,
+                        ConcreteVersion = 2
+                    },
+                    Eci = "05"
+                }
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>init_recurring_sale3d</transaction_type>
+                  <status>approved</status>
+                  <authorization_code>005645</authorization_code>
+                  <retrieval_reference_number>016813015184</retrieval_reference_number>
+                  <response_code>00</response_code>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <mode>test</mode>
+                  <timestamp>2022-05-24T17:25:08Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <card_brand>visa</card_brand>
+                  <card_number>406633...0004</card_number>
+                  <card_type>CREDIT</card_type>
+                  <card_subtype>CARD SUBTYPE</card_subtype>
+                  <card_issuing_bank>Issuing Bank</card_issuing_bank>
+                  <card_issuing_country>Exact Issuing country</card_issuing_country>
+                  <bank_account_number>Bank Account Number</bank_account_number>
+                  <bank_identifier_code>Bank Identifier Code</bank_identifier_code>
+                  <sent_to_acquirer>true</sent_to_acquirer>
+                  <arn>74537605259536043849425</arn>
+                  <scheme_response_code>00</scheme_response_code>
+                  <threeds>
+                    <authentication_flow>frictionless</authentication_flow>
+                    <threeds_method>
+                      <status>completed</status>
+                    </threeds_method>
+                    <protocol>
+                      <target_version>2</target_version>
+                      <concrete_version>2</concrete_version>
+                    </protocol>
+                    <eci>05</eci>
+                  </threeds>
+                </payment_response>";
+
+            return new EntityMock<SingleReconcileSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<SingleReconcileSuccessResponse> Create3dV2ChallangeReconcileSuccessResponse()
+        {
+            var successResponse = new SingleReconcileSuccessResponse()
+            {
+                TransactionType = TransactionTypes.Authorize3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "005645",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.Approved,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:08Z",
+                SentToAcquirer = true,
+                ResponseCode = "00",
+                ThreeDS = new ThreeDSElementModel()
+                {
+                    AuthenticationFlow = AuthenticationFlows.Challenge,
+                    Protocol = new ProtocolModel()
+                    {
+                        TargetVersion = 2,
+                        ConcreteVersion = 2
+                    },
+                    Eci = "05"
+                }
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>authorize3d</transaction_type>
+                  <status>approved</status>
+                  <authorization_code>005645</authorization_code>
+                  <retrieval_reference_number>016813015184</retrieval_reference_number>
+                  <response_code>00</response_code>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <mode>test</mode>
+                  <timestamp>2022-05-24T17:25:08Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <card_brand>visa</card_brand>
+                  <card_number>491819...0002</card_number>
+                  <card_type>CREDIT</card_type>
+                  <card_subtype>CARD SUBTYPE</card_subtype>
+                  <card_issuing_bank>Issuing Bank</card_issuing_bank>
+                  <card_issuing_country>Exact Issuing country</card_issuing_country>
+                  <bank_account_number>Bank Account Number</bank_account_number>
+                  <bank_identifier_code>Bank Identifier Code</bank_identifier_code>
+                  <sent_to_acquirer>true</sent_to_acquirer>
+                  <arn>74537605259536043849425</arn>
+                  <scheme_response_code>00</scheme_response_code>
+                  <threeds>
+                    <authentication_flow>challenge</authentication_flow>
+                    <protocol>
+                      <target_version>2</target_version>
+                      <concrete_version>2</concrete_version>
+                    </protocol>
+                    <eci>05</eci>
+                  </threeds>
+                </payment_response>";
+
+            return new EntityMock<SingleReconcileSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<SingleReconcileSuccessResponse> Create3dV2ChallangeWith3dSecureReconcileSuccessResponse()
+        {
+            var successResponse = new SingleReconcileSuccessResponse()
+            {
+                TransactionType = TransactionTypes.Sale3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "005645",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.Approved,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:09Z",
+                SentToAcquirer = true,
+                ResponseCode = "00",
+                ThreeDS = new ThreeDSElementModel()
+                {
+                    AuthenticationFlow = AuthenticationFlows.Challenge,
+                    ThreedsMethod = new ThreedsMethodModel()
+                    {
+                        Status = MethodStatus.Completed
+                    },
+                    Protocol = new ProtocolModel()
+                    {
+                        TargetVersion = 2,
+                        ConcreteVersion = 2
+                    },
+                    Eci = "05"
+                }
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>sale3d</transaction_type>
+                  <status>approved</status>
+                  <authorization_code>005645</authorization_code>
+                  <retrieval_reference_number>016813015184</retrieval_reference_number>
+                  <response_code>00</response_code>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <mode>test</mode>
+                  <timestamp>2022-05-24T17:25:09Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <card_brand>visa</card_brand>
+                  <card_number>493873...0001</card_number>
+                  <card_type>CREDIT</card_type>
+                  <card_subtype>CARD SUBTYPE</card_subtype>
+                  <card_issuing_bank>Issuing Bank</card_issuing_bank>
+                  <card_issuing_country>Exact Issuing country</card_issuing_country>
+                  <bank_account_number>Bank Account Number</bank_account_number>
+                  <bank_identifier_code>Bank Identifier Code</bank_identifier_code>
+                  <sent_to_acquirer>true</sent_to_acquirer>
+                  <arn>74537605259536043849425</arn>
+                  <scheme_response_code>00</scheme_response_code>
+                  <threeds>
+                    <authentication_flow>challenge</authentication_flow>
+                    <threeds_method>
+                      <status>completed</status>
+                    </threeds_method>
+                    <protocol>
+                      <target_version>2</target_version>
+                      <concrete_version>2</concrete_version>
+                    </protocol>
+                    <eci>05</eci>
+                  </threeds>
+                </payment_response>";
+
+            return new EntityMock<SingleReconcileSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<SingleReconcileSuccessResponse> Create3dV2FallbackReconcileSuccessResponse()
+        {
+            var successResponse = new SingleReconcileSuccessResponse()
+            {
+                TransactionType = TransactionTypes.InitRecurringSale3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "005645",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.Approved,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:09Z",
+                SentToAcquirer = true,
+                ResponseCode = "00",
+                ThreeDS = new ThreeDSElementModel()
+                {
+                    AuthenticationFlow = AuthenticationFlows.Fallback,
+                    Protocol = new ProtocolModel()
+                    {
+                        TargetVersion = 2,
+                        ConcreteVersion = 1
+                    },
+                    Eci = "05"
+                }
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>init_recurring_sale3d</transaction_type>
+                  <status>approved</status>
+                  <authorization_code>005645</authorization_code>
+                  <retrieval_reference_number>016813015184</retrieval_reference_number>
+                  <response_code>00</response_code>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <mode>test</mode>
+                  <timestamp>2022-05-24T17:25:09Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <card_brand>visa</card_brand>
+                  <card_number>490117...0003</card_number>
+                  <card_type>CREDIT</card_type>
+                  <card_subtype>CARD SUBTYPE</card_subtype>
+                  <card_issuing_bank>Issuing Bank</card_issuing_bank>
+                  <card_issuing_country>Exact Issuing country</card_issuing_country>
+                  <bank_account_number>Bank Account Number</bank_account_number>
+                  <bank_identifier_code>Bank Identifier Code</bank_identifier_code>
+                  <sent_to_acquirer>true</sent_to_acquirer>
+                  <arn>74537605259536043849425</arn>
+                  <scheme_response_code>00</scheme_response_code>
+                  <threeds>
+                    <authentication_flow>fallback</authentication_flow>
+                    <protocol>
+                      <target_version>2</target_version>
+                      <concrete_version>1</concrete_version>
+                    </protocol>
+                    <eci>05</eci>
+                  </threeds>
+                </payment_response>";
+
+            return new EntityMock<SingleReconcileSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<SingleReconcileSuccessResponse> Create3dV2FallbackWith3dSecureReconcileSuccessResponse()
+        {
+            var successResponse = new SingleReconcileSuccessResponse()
+            {
+                TransactionType = TransactionTypes.InitRecurringSale3d,
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                AuthorizationCode = "005645",
+                Descriptor = "Descriptor one",
+                Status = TransactionStates.Approved,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                Mode = "test",
+                ProxyTime = "2022-05-24T17:25:09Z",
+                SentToAcquirer = true,
+                ResponseCode = "00",
+                ThreeDS = new ThreeDSElementModel()
+                {
+                    AuthenticationFlow = AuthenticationFlows.Fallback,
+                    ThreedsMethod = new ThreedsMethodModel()
+                    {
+                        Status = MethodStatus.Completed
+                    },
+                    Protocol = new ProtocolModel()
+                    {
+                        TargetVersion = 2,
+                        ConcreteVersion = 1
+                    },
+                    Eci = "05"
+                }
+            };
+
+            var successResponseXml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_response>
+                  <transaction_type>init_recurring_sale3d</transaction_type>
+                  <status>approved</status>
+                  <authorization_code>005645</authorization_code>
+                  <retrieval_reference_number>016813015184</retrieval_reference_number>
+                  <response_code>00</response_code>
+                  <unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <mode>test</mode>
+                  <timestamp>2022-05-24T17:25:09Z</timestamp>
+                  <descriptor>Descriptor one</descriptor>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <card_brand>visa</card_brand>
+                  <card_number>490116...4345</card_number>
+                  <card_type>CREDIT</card_type>
+                  <card_subtype>CARD SUBTYPE</card_subtype>
+                  <card_issuing_bank>Issuing Bank</card_issuing_bank>
+                  <card_issuing_country>Exact Issuing country</card_issuing_country>
+                  <bank_account_number>Bank Account Number</bank_account_number>
+                  <bank_identifier_code>Bank Identifier Code</bank_identifier_code>
+                  <sent_to_acquirer>true</sent_to_acquirer>
+                  <arn>74537605259536043849425</arn>
+                  <scheme_response_code>00</scheme_response_code>
+                  <threeds>
+                    <authentication_flow>fallback</authentication_flow>
+                    <threeds_method>
+                      <status>completed</status>
+                    </threeds_method>
+                    <protocol>
+                      <target_version>2</target_version>
+                      <concrete_version>1</concrete_version>
+                    </protocol>
+                    <eci>05</eci>
+                  </threeds>
+                </payment_response>";
+
+            return new EntityMock<SingleReconcileSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<CardTransactionErrorResponse> CreateSale3dErrorResponse()
+        {
+            var errorResponse = new CardTransactionErrorResponse()
+            {
+                TransactionType = TransactionTypes.Sale3d,
+                Status = TransactionStates.Error,
                 ResponseCode = "57",
                 UniqueId = "44177a21403427eb96664a6d7e5d5d48",
                 TransactionId = "1196439228475036bc3a791",
@@ -366,7 +1030,7 @@ namespace Genesis.Net.Specs.Mocks
                                   "<sent_to_acquirer>false</sent_to_acquirer>" +
                                   "</payment_response>";
 
-            return new EntityMock<Sale3dErrorResponse>(errorResponse, errorResponseXml);
+            return new EntityMock<CardTransactionErrorResponse>(errorResponse, errorResponseXml);
         }
 
         public static EntityMock<AccountVerificationSuccessResponse> CreateAccountVerificationSuccessResponse()
@@ -378,7 +1042,7 @@ namespace Genesis.Net.Specs.Mocks
                 AvsResponseText = "Response provided by issuer processor; Address information not verified.",
                 AuthorizationCode = "345678",
                 Descriptor = "descriptor one",
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 ResponseCode = "83",
                 UniqueId = "5e2cbbad71d2b13432323153c208223a",
                 TransactionId = "119643250547501c79d8295",
@@ -412,7 +1076,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new AccountVerificationErrorResponse()
             {
                 TransactionType = TransactionTypes.AccountVerification,
-                Status = "error",
+                Status = TransactionStates.Error,
                 ResponseCode = "57",
                 UniqueId = "44177a21403427eb96664a6d7e5d5d48",
                 TransactionId = "1196439228475036bc3a791",
@@ -445,12 +1109,12 @@ namespace Genesis.Net.Specs.Mocks
             return new EntityMock<AccountVerificationErrorResponse>(errorResponse, errorResponseXml);
         }
 
-        public static EntityMock<AuthorizeSuccessResponse> CreateAuthorizeSuccessResponse(bool setCode = false)
+        public static EntityMock<CardTransactionSuccessResponse> CreateAuthorizeSuccessResponse(bool setCode = false)
         {
-            var successResponse = new AuthorizeSuccessResponse()
+            var successResponse = new CardTransactionSuccessResponse()
             {
                 TransactionType = TransactionTypes.Authorize,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "345678",
                 ResponseCode = "00",
                 UniqueId = "011e8d5cc1a56058cc50440c264f5063",
@@ -495,15 +1159,15 @@ namespace Genesis.Net.Specs.Mocks
                                  "<partial_approval>true</partial_approval>" +
                                  "</payment_response>";
 
-            return new EntityMock<AuthorizeSuccessResponse>(successResponse, successResponseXml);
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
         }
 
-        public static EntityMock<AuthorizeErrorResponse> CreateAuthorizeErrorResponse()
+        public static EntityMock<CardTransactionErrorResponse> CreateAuthorizeErrorResponse()
         {
-            var errorResponse = new AuthorizeErrorResponse()
+            var errorResponse = new CardTransactionErrorResponse()
             {
                 TransactionType = TransactionTypes.Authorize,
-                Status = "error",
+                Status = TransactionStates.Error,
                 ResponseCode = "57",
                 UniqueId = "011e8d5cc1a56058cc50440c264f5063",
                 TransactionId = "43671",
@@ -536,7 +1200,7 @@ namespace Genesis.Net.Specs.Mocks
                                   "<currency>USD</currency>" +
                                   "</payment_response>";
 
-            return new EntityMock<AuthorizeErrorResponse>(errorResponse, errorResponseXml);
+            return new EntityMock<CardTransactionErrorResponse>(errorResponse, errorResponseXml);
         }
 
         public static EntityMock<AvsSuccessResponse> CreateAvsSuccessResponse()
@@ -548,7 +1212,7 @@ namespace Genesis.Net.Specs.Mocks
                 AvsResponseText = "Response provided by issuer processor; Address information not verified.",
                 AuthorizationCode = "345678",
                 Descriptor = "descriptor one",
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 ResponseCode = "83",
                 UniqueId = "5e2cbbad71d2b13432323153c208223a",
                 TransactionId = "119643250547501c79d8295",
@@ -582,7 +1246,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new AvsErrorResponse()
             {
                 TransactionType = TransactionTypes.Avs,
-                Status = "error",
+                Status = TransactionStates.Error,
                 ResponseCode = "57",
                 UniqueId = "44177a21403427eb96664a6d7e5d5d48",
                 TransactionId = "1196439228475036bc3a791",
@@ -614,7 +1278,7 @@ namespace Genesis.Net.Specs.Mocks
 
             return new EntityMock<AvsErrorResponse>(errorResponse, errorResponseXml);
         }
-        
+
         public static EntityMock<GooglePaySuccessResponse> CreateGooglePaySuccessResponse()
         {
             var successResponse = new GooglePaySuccessResponse()
@@ -624,7 +1288,7 @@ namespace Genesis.Net.Specs.Mocks
                 AvsResponseText = "Response provided by issuer processor; Address information not verified.",
                 AuthorizationCode = "345678",
                 Descriptor = "descriptor one",
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 ResponseCode = "83",
                 UniqueId = "5e2cbbad71d2b13432323153c208223a",
                 TransactionId = "119643250547501c79d8295",
@@ -664,7 +1328,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new GooglePayErrorResponse()
             {
                 TransactionType = TransactionTypes.GooglePay,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "44177a21403427eb96664a6d7e5d5d48",
                 TransactionId = "1196439228475036bc3a791",
                 Code = ErrorCodes.InputDataInvalidError,
@@ -709,7 +1373,7 @@ namespace Genesis.Net.Specs.Mocks
                 AvsResponseText = "Response provided by issuer processor; Address information not verified.",
                 AuthorizationCode = "345678",
                 Descriptor = "descriptor one",
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 ResponseCode = "83",
                 UniqueId = "5e2cbbad71d2b13432323153c208223a",
                 TransactionId = "119643250547501c79d8295",
@@ -749,7 +1413,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new ApplePayErrorResponse()
             {
                 TransactionType = TransactionTypes.ApplePay,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "44177a21403427eb96664a6d7e5d5d48",
                 TransactionId = "1196439228475036bc3a791",
                 Code = ErrorCodes.InputDataInvalidError,
@@ -785,12 +1449,12 @@ namespace Genesis.Net.Specs.Mocks
             return new EntityMock<ApplePayErrorResponse>(errorResponse, errorResponseXml);
         }
 
-        public static EntityMock<InitRecurringSaleSuccessResponse> CreateInitRecurringSaleSuccessResponse()
+        public static EntityMock<CardTransactionSuccessResponse> CreateInitRecurringSaleSuccessResponse()
         {
-            var successResponse = new InitRecurringSaleSuccessResponse()
+            var successResponse = new CardTransactionSuccessResponse()
             {
                 TransactionType = TransactionTypes.InitRecurringSale,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "345678",
                 ResponseCode = "00",
                 RecurringAdviceCode = "WW",
@@ -826,15 +1490,15 @@ namespace Genesis.Net.Specs.Mocks
                                     "<partial_approval>true</partial_approval>" +
                                     "</payment_response>";
 
-            return new EntityMock<InitRecurringSaleSuccessResponse>(successResponse, successResponseXml);
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
         }
 
-        public static EntityMock<InitRecurringSaleErrorResponse> CreateInitRecurringSaleErrorResponse()
+        public static EntityMock<CardTransactionErrorResponse> CreateInitRecurringSaleErrorResponse()
         {
-            var errorResponse = new InitRecurringSaleErrorResponse()
+            var errorResponse = new CardTransactionErrorResponse()
             {
                 TransactionType = TransactionTypes.InitRecurringSale,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "d0231d21e0e50afbba1909eadc2f2d6b",
                 TransactionId = "345345",
                 Code = ErrorCodes.InputDataInvalidError,
@@ -866,7 +1530,7 @@ namespace Genesis.Net.Specs.Mocks
                                   "<sent_to_acquirer>false</sent_to_acquirer>" +
                                   "</payment_response>";
 
-            return new EntityMock<InitRecurringSaleErrorResponse>(errorResponse, errorResponseXml);
+            return new EntityMock<CardTransactionErrorResponse>(errorResponse, errorResponseXml);
         }
 
         public static EntityMock<PayoutSuccessResponse> CreatePayoutSuccessResponse()
@@ -874,7 +1538,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new PayoutSuccessResponse()
             {
                 TransactionType = TransactionTypes.Credit,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "345678",
                 ResponseCode = "00",
                 UniqueId = "5e2cbbad71d2b13432323153c208223a",
@@ -912,7 +1576,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new PayoutErrorResponse()
             {
                 TransactionType = TransactionTypes.Credit,
-                Status = "error",
+                Status = TransactionStates.Error,
                 ResponseCode = "57",
                 UniqueId = "44177a21403427eb96664a6d7e5d5d48",
                 TransactionId = "1196439228475036bc3a791",
@@ -949,16 +1613,16 @@ namespace Genesis.Net.Specs.Mocks
             return new EntityMock<PayoutErrorResponse>(errorResponse, errorResponseXml);
         }
 
-        public static EntityMock<SaleSuccessResponse> CreateSaleSuccessResponse()
+        public static EntityMock<CardTransactionSuccessResponse> CreateSaleSuccessResponse()
         {
-            var successResponse = new SaleSuccessResponse()
+            var successResponse = new CardTransactionSuccessResponse()
             {
                 TransactionType = TransactionTypes.Sale,
                 Amount = 90,
                 Currency = Common.Iso4217CurrencyCodes.USD,
                 AuthorizationCode = "345678",
                 Descriptor = "descriptor one",
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 ResponseCode = "00",
                 UniqueId = "5e2cbbad71d2b13432323153c208223a",
                 TransactionId = "119643250547501c79d8295",
@@ -986,15 +1650,15 @@ namespace Genesis.Net.Specs.Mocks
                                     "<partial_approval>true</partial_approval>" +
                                     "</payment_response>";
 
-            return new EntityMock<SaleSuccessResponse>(successResponse, successResponseXml);
+            return new EntityMock<CardTransactionSuccessResponse>(successResponse, successResponseXml);
         }
 
-        public static EntityMock<SaleErrorResponse> CreateSaleErrorResponse()
+        public static EntityMock<CardTransactionErrorResponse> CreateSaleErrorResponse()
         {
-            var errorResponse = new SaleErrorResponse()
+            var errorResponse = new CardTransactionErrorResponse()
             {
                 TransactionType = TransactionTypes.Sale,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "84b6f1c7b89b847ad0ce9035475868da",
                 TransactionId = "10",
                 Code = ErrorCodes.InputDataFormatError,
@@ -1026,14 +1690,14 @@ namespace Genesis.Net.Specs.Mocks
                                   "<sent_to_acquirer>false</sent_to_acquirer>" +
                                   "</payment_response>";
 
-            return new EntityMock<SaleErrorResponse>(errorResponse, errorResponseXml);
+            return new EntityMock<CardTransactionErrorResponse>(errorResponse, errorResponseXml);
         }
 
         public static EntityMock<WpfCreateSuccessResponse> CreateWpfCreateSuccessResponse()
         {
             var successResponse = new WpfCreateSuccessResponse()
             {
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 UniqueId = "eabcb7a41044e764746b0c7e32c1e9d1",
                 TransactionId = "wev238f328nc",
                 TechnicalMessage = "TESTMODE: No real money will be transferred!",
@@ -1067,7 +1731,7 @@ namespace Genesis.Net.Specs.Mocks
         {
             var errorResponse = new WpfCreateErrorResponse()
             {
-                Status = "error",
+                Status = TransactionStates.Error,
                 Code = ErrorCodes.SystemError,
                 TechnicalMessage = "Unknown system error. Please contact support.",
                 Message = "Transaction failed, please contact support!"
@@ -1210,7 +1874,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new MultiChargebackErrorResponse()
             {
                 TechnicalMessage = "start_date has an invalid format",
-                Status = "error",
+                Status = TransactionStates.Error,
                 Message = "Please check input data for errors!",
                 Code = ErrorCodes.InputDataInvalidError
             };
@@ -1239,7 +1903,7 @@ namespace Genesis.Net.Specs.Mocks
                     new PaymentResponse()
                     {
                         TransactionType = TransactionTypes.Sale,
-                        Status = "approved",
+                        Status = TransactionStates.Approved,
                         AuthorizationCode = "005645",
                         ResponseCode = "00",
                         UniqueId = "130319cfb3bf65ff3c4a4045487b174f",
@@ -1256,7 +1920,7 @@ namespace Genesis.Net.Specs.Mocks
                     new PaymentResponse()
                     {
                         TransactionType = TransactionTypes.Sale,
-                        Status = "approved",
+                        Status = TransactionStates.Approved,
                         AuthorizationCode = "638745",
                         ResponseCode = "00",
                         UniqueId = "130319cfb3bf65ff3c4a4045487b173f",
@@ -1273,7 +1937,7 @@ namespace Genesis.Net.Specs.Mocks
                     new PaymentResponse()
                     {
                         TransactionType = TransactionTypes.Sale,
-                        Status = "approved",
+                        Status = TransactionStates.Approved,
                         AuthorizationCode = "226534",
                         ResponseCode = "00",
                         UniqueId = "1e8a6f09253eb8b4f8c84c0d8803713e",
@@ -1350,7 +2014,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new MultiReconcileErrorResponse()
             {
                 TechnicalMessage = "start_date has an invalid format",
-                Status = "error",
+                Status = TransactionStates.Error,
                 Message = "Please check input data for errors!",
                 Code = ErrorCodes.InputDataInvalidError
             };
@@ -1449,7 +2113,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new MultiRetrievalRequestErrorResponse()
             {
                 TechnicalMessage = "start_date has an invalid format",
-                Status = "error",
+                Status = TransactionStates.Error,
                 Message = "Please check input data for errors!",
                 Code = ErrorCodes.InputDataInvalidError
             };
@@ -1512,7 +2176,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new SingleChargebackErrorResponse()
             {
                 TechnicalMessage = "Chargeback by the given criteria cannot be found!",
-                Status = "error",
+                Status = TransactionStates.Error,
                 Message = "Chargeback not found!",
                 Code = ErrorCodes.ChargebackNotFoundError
             };
@@ -1534,7 +2198,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new SingleReconcileSuccessResponse()
             {
                 TransactionType = TransactionTypes.Sale,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "005645",
                 ResponseCode = "00",
                 UniqueId = "44177a21403427eb96664a6d7e5d5d48",
@@ -1571,7 +2235,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new SingleReconcileSuccessResponse()
             {
                 TransactionType = TransactionTypes.Sale,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "005645",
                 ResponseCode = "00",
                 UniqueId = "44177a21403427eb96664a6d7e5d5d48",
@@ -1629,7 +2293,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new SingleReconcileErrorResponse()
             {
                 TechnicalMessage = "Transaction with the given unique ID cannot be found!",
-                Status = "error",
+                Status = TransactionStates.Error,
                 Message = "Something went wrong, please contact support!",
                 Code = ErrorCodes.TransactionNotFoundError
             };
@@ -1687,7 +2351,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new SingleRetrievalRequestErrorResponse()
             {
                 TechnicalMessage = "Retrieval request by the given criteria cannot be found!",
-                Status = "error",
+                Status = TransactionStates.Error,
                 Message = "Retrieval request not found!",
                 Code = ErrorCodes.RetrievalRequestNotFoundError
             };
@@ -1708,7 +2372,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new CaptureSuccessResponse()
             {
                 TransactionType = TransactionTypes.Capture,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 UniqueId = "91449b0b7eb34dca6b0666cbfa8d5d03",
                 TransactionId = "119643223347501b69b921b",
                 TechnicalMessage = "Transaction successful!",
@@ -1746,7 +2410,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new CaptureErrorResponse()
             {
                 TransactionType = TransactionTypes.Capture,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "91a9adf1cc5095e483006df34b64023f",
                 TransactionId = "119643234047501bd47e6b4",
                 Code = ErrorCodes.ReferenceInvalidatedError,
@@ -1786,7 +2450,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new CreditSuccessResponse()
             {
                 TransactionType = TransactionTypes.Credit,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "345678",
                 ResponseCode = "00",
                 UniqueId = "776cc3b95eaf9025113dc18d128e99a0",
@@ -1822,7 +2486,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new CreditErrorResponse()
             {
                 TransactionType = TransactionTypes.Credit,
-                Status = "error",
+                Status = TransactionStates.Error,
                 ResponseCode = "57",
                 UniqueId = "2515db3cf16d04fa35afb140b84b99d4",
                 TransactionId = "B62D6848-78EA-4910-BFD8-920A3BF10CC5",
@@ -1862,7 +2526,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new RecurringSaleSuccessResponse()
             {
                 TransactionType = TransactionTypes.RecurringSale,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "345678",
                 ResponseCode = "00",
                 UniqueId = "91449b0b7eb34dca6b0666cbfa8d5d03",
@@ -1900,7 +2564,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new RecurringSaleErrorResponse()
             {
                 TransactionType = TransactionTypes.RecurringSale,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "ce165509205f3a70dfdd190546280b8f",
                 TransactionId = "235245",
                 Code = ErrorCodes.ReferenceWorkflowError,
@@ -1940,7 +2604,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new RefundSuccessResponse()
             {
                 TransactionType = TransactionTypes.Refund,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "345678",
                 ResponseCode = "00",
                 UniqueId = "776cc3b95eaf9025113dc18d128e99a0",
@@ -1976,7 +2640,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new RefundErrorResponse()
             {
                 TransactionType = TransactionTypes.Refund,
-                Status = "error",
+                Status = TransactionStates.Error,
                 ResponseCode = "57",
                 UniqueId = "2515db3cf16d04fa35afb140b84b99d4",
                 TransactionId = "119643941047503772d9caa",
@@ -2016,7 +2680,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new VoidSuccessResponse()
             {
                 TransactionType = TransactionTypes.Void,
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 AuthorizationCode = "345678",
                 ResponseCode = "00",
                 UniqueId = "4b9e30b641d256d9283be7ef37ea4a0e",
@@ -2050,7 +2714,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new VoidErrorResponse()
             {
                 TransactionType = TransactionTypes.Void,
-                Status = "error",
+                Status = TransactionStates.Error,
                 ResponseCode = "57",
                 UniqueId = "5b85106ae3b3789f7242edd5f92c218b",
                 TransactionId = "1196439500475037ccabd94",
@@ -2087,7 +2751,7 @@ namespace Genesis.Net.Specs.Mocks
         {
             var successResponse = new WpfReconcileSuccessResponse()
             {
-                Status = "approved",
+                Status = TransactionStates.Approved,
                 UniqueId = "26aa150ee68b1b2d6758a0e6c44fce4c",
                 TransactionId = "mtid201104081447161135536962",
                 TechnicalMessage = "TESTMODE: No real money will be transferred!",
@@ -2100,7 +2764,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     new PaymentResponse()
                     {
-                        Status = "approved",
+                        Status = TransactionStates.Approved,
                         AuthorizationCode = "345678",
                         ResponseCode = "00",
                         TransactionType = TransactionTypes.Sale,
@@ -2180,7 +2844,7 @@ namespace Genesis.Net.Specs.Mocks
         {
             var successResponse = new WpfReconcileSuccessResponse()
             {
-                Status = "voided",
+                Status = TransactionStates.Voided,
                 UniqueId = "26aa150ee68b1b2d6758a0e6c44fce4c",
                 TransactionId = "mtid201104081447161135536962",
                 TechnicalMessage = "TESTMODE: No real money will be transferred!",
@@ -2193,7 +2857,7 @@ namespace Genesis.Net.Specs.Mocks
                 {
                     new PaymentResponse()
                     {
-                        Status = "voided",
+                        Status = TransactionStates.Voided,
                         AuthorizationCode = "345678",
                         ResponseCode = "00",
                         TransactionType = TransactionTypes.Sale,
@@ -2223,7 +2887,7 @@ namespace Genesis.Net.Specs.Mocks
                     },
                     new PaymentResponse()
                     {
-                        Status = "approved",
+                        Status = TransactionStates.Approved,
                         AuthorizationCode = "345678",
                         ResponseCode = "00",
                         TransactionType = TransactionTypes.Void,
@@ -2299,7 +2963,7 @@ namespace Genesis.Net.Specs.Mocks
         {
             var errorResponse = new WpfReconcileErrorResponse()
             {
-                Status = "error",
+                Status = TransactionStates.Error,
                 Code = ErrorCodes.SystemError,
                 TechnicalMessage = "Unknown system error. Please contact support.",
                 Message = "Transaction failed, please contact support!"
@@ -2322,7 +2986,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new EzeeWalletSuccessResponse()
             {
                 TransactionType = TransactionTypes.EzeeWallet,
-                Status = "pending_async",
+                Status = TransactionStates.PendingAsync,
                 UniqueId = "12345",
                 TransactionId = "asqf12e81eb23d0e00ffb85b1db7db915",
                 TechnicalMessage = "Transaction successful!",
@@ -2362,7 +3026,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new EzeeWalletErrorResponse()
             {
                 TransactionType = TransactionTypes.EzeeWallet,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "1a0e27d34a6c3c6012f53f4b54bf92a4",
                 TransactionId = "asqf12e81eb23d0e00ffb85b1db7db9f8",
                 Code = ErrorCodes.RemoteDataError,
@@ -2402,7 +3066,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new PayByVoucherSuccessResponse()
             {
                 TransactionType = TransactionTypes.PayByVoucher,
-                Status = "pending_async",
+                Status = TransactionStates.PendingAsync,
                 UniqueId = "abcdef",
                 TransactionId = "43671",
                 TechnicalMessage = "TESTMODE: No real money will be transferred!",
@@ -2442,7 +3106,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new PayByVoucherErrorResponse()
             {
                 TransactionType = TransactionTypes.PayByVoucher,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "dfba78a08350d3702d9a33e8bc53a5e1",
                 TransactionId = "43671",
                 ProxyCode = 320,
@@ -2482,7 +3146,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new CashUSuccessResponse()
             {
                 TransactionType = TransactionTypes.CashU,
-                Status = "pending_async",
+                Status = TransactionStates.PendingAsync,
                 UniqueId = "bf85ad9ed27dee80b0649e1ff35c61d0",
                 TransactionId = "asqf12e81eb23d0e00ffb85b1db7db915",
                 TechnicalMessage = "Transaction successful!",
@@ -2522,7 +3186,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new CashUErrorResponse()
             {
                 TransactionType = TransactionTypes.CashU,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "bf85ad9ed27dee80b0649e1ff35c61d0",
                 TransactionId = "asqf12e81eb23d0e00ffb85b1db7db915",
                 ProxyCode = 110,
@@ -2560,7 +3224,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new PaySafeCardSuccessResponse()
             {
                 TransactionType = TransactionTypes.PaySafeCard,
-                Status = "pending_async",
+                Status = TransactionStates.PendingAsync,
                 UniqueId = "bf85ad9ed27dee80b0649e1ff35c61d0",
                 TransactionId = "asqf12e81eb23d0e00ffb85b1db7db915",
                 TechnicalMessage = "Transaction successful!",
@@ -2600,7 +3264,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new PaySafeCardErrorResponse()
             {
                 TransactionType = TransactionTypes.PaySafeCard,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "bf85ad9ed27dee80b0649e1ff35c61d0",
                 TransactionId = "asqf12e81eb23d0e00ffb85b1db7db915",
                 ProxyCode = 110,
@@ -2638,7 +3302,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new SofortSuccessResponse()
             {
                 ProxyTransactionType = "sofort",
-                Status = "pending_async",
+                Status = TransactionStates.PendingAsync,
                 UniqueId = "9876543210",
                 TransactionId = "1234567890",
                 TechnicalMessage = "Transaction successful!",
@@ -2678,7 +3342,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new SofortErrorResponse()
             {
                 TransactionType = TransactionTypes.Sofort,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "9876543210",
                 TransactionId = "1234567890",
                 ProxyCode = 110,
@@ -2716,7 +3380,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new SofortiDealSuccessResponse()
             {
                 ProxyTransactionType = "sofort_ideal",
-                Status = "pending_async",
+                Status = TransactionStates.PendingAsync,
                 UniqueId = "9876543210",
                 TransactionId = "1234567890",
                 TechnicalMessage = "Transaction successful!",
@@ -2756,7 +3420,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new SofortiDealErrorResponse()
             {
                 TransactionType = TransactionTypes.SofortiDeal,
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "9876543210",
                 TransactionId = "1234567890",
                 ProxyCode = 110,
@@ -2794,7 +3458,7 @@ namespace Genesis.Net.Specs.Mocks
             var successResponse = new PproSuccessResponse()
             {
                 ProxyTransactionType = "ppro",
-                Status = "pending_async",
+                Status = TransactionStates.PendingAsync,
                 UniqueId = "bf85ad9ed27dee80b0649e1ff35c61d0",
                 TransactionId = "asqf12e81eb23d0e00ffb85b1db7db915",
                 TechnicalMessage = "Transaction successful!",
@@ -2811,19 +3475,19 @@ namespace Genesis.Net.Specs.Mocks
             var successResponseXml =
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                 "<payment_response>" +
-                "<transaction_type>ppro</transaction_type>"+
-                "<status>pending_async</status>"+
-                "<unique_id>bf85ad9ed27dee80b0649e1ff35c61d0</unique_id>"+
-                "<transaction_id>asqf12e81eb23d0e00ffb85b1db7db915</transaction_id>"+
-                "<technical_message>Transaction successful!</technical_message>"+
-                "<message>Transaction successful!</message>"+
-                "<redirect_url>https://gateway/redirect/to_acquirer/bf85ad9ed27dee80b0649e1ff35c61d0</redirect_url>"+
-                "<mode>live</mode>"+
-                "<timestamp>2015-02-16T17:56:53Z</timestamp>"+
-                "<descriptor>descriptor one</descriptor>"+
-                "<amount>50000</amount>"+
-                "<currency>EUR</currency>"+
-                "<sent_to_acquirer>true</sent_to_acquirer>"+
+                "<transaction_type>ppro</transaction_type>" +
+                "<status>pending_async</status>" +
+                "<unique_id>bf85ad9ed27dee80b0649e1ff35c61d0</unique_id>" +
+                "<transaction_id>asqf12e81eb23d0e00ffb85b1db7db915</transaction_id>" +
+                "<technical_message>Transaction successful!</technical_message>" +
+                "<message>Transaction successful!</message>" +
+                "<redirect_url>https://gateway/redirect/to_acquirer/bf85ad9ed27dee80b0649e1ff35c61d0</redirect_url>" +
+                "<mode>live</mode>" +
+                "<timestamp>2015-02-16T17:56:53Z</timestamp>" +
+                "<descriptor>descriptor one</descriptor>" +
+                "<amount>50000</amount>" +
+                "<currency>EUR</currency>" +
+                "<sent_to_acquirer>true</sent_to_acquirer>" +
                 "</payment_response>";
 
             return new EntityMock<PproSuccessResponse>(successResponse, successResponseXml);
@@ -2834,7 +3498,7 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponse = new PproErrorResponse()
             {
                 ProxyTransactionType = "ppro",
-                Status = "error",
+                Status = TransactionStates.Error,
                 UniqueId = "bf85ad9ed27dee80b0649e1ff35c61d0",
                 TransactionId = "asqf12e81eb23d0e00ffb85b1db7db915",
                 ProxyCode = 110,
@@ -2850,18 +3514,18 @@ namespace Genesis.Net.Specs.Mocks
             var errorResponseXml =
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                 "<payment_response>" +
-                "<transaction_type>ppro</transaction_type>"+
-                "<status>error</status>"+
-                "<unique_id>bf85ad9ed27dee80b0649e1ff35c61d0</unique_id>"+
-                "<transaction_id>asqf12e81eb23d0e00ffb85b1db7db915</transaction_id>"+
-                "<code>110</code>"+
-                "<message>Something went wrong, please contact support!</message>"+
-                "<mode>live</mode>"+
-                "<timestamp>2015-02-16T17:56:53Z</timestamp>"+
-                "<descriptor>descriptor one</descriptor>"+
-                "<amount>50000</amount>"+
-                "<currency>EUR</currency>"+
-                "<sent_to_acquirer>true</sent_to_acquirer>"+
+                "<transaction_type>ppro</transaction_type>" +
+                "<status>error</status>" +
+                "<unique_id>bf85ad9ed27dee80b0649e1ff35c61d0</unique_id>" +
+                "<transaction_id>asqf12e81eb23d0e00ffb85b1db7db915</transaction_id>" +
+                "<code>110</code>" +
+                "<message>Something went wrong, please contact support!</message>" +
+                "<mode>live</mode>" +
+                "<timestamp>2015-02-16T17:56:53Z</timestamp>" +
+                "<descriptor>descriptor one</descriptor>" +
+                "<amount>50000</amount>" +
+                "<currency>EUR</currency>" +
+                "<sent_to_acquirer>true</sent_to_acquirer>" +
                 "</payment_response>";
 
             return new EntityMock<PproErrorResponse>(errorResponse, errorResponseXml);

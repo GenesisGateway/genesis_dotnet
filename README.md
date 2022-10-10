@@ -32,21 +32,24 @@ You can use the following request types to initialize various transactions suppo
 Genesis.Net.Entities.Requests.Initial:
 * AccountVerification
 * Authorize
+* Authorize3d
 * Avs
 * InitRecurringSale
+* InitRecurringSale3d
 * Payout
 * Sale
+* Sale3d
 * WpfCreate
 * GooglePay
 * ApplePay
 
 Genesis.Net.Entities.Requests.Initial.ThreeD:
-* Authorize3dSync
-* Authorize3dAsync
-* InitRecurringSale3dSync
-* InitRecurringSale3dAsync
-* Sale3dSync
-* Sale3dAsync
+* [deprecated: use Authorize3d] Authorize3dSync
+* [deprecated: use Authorize3d] Authorize3dAsync
+* [deprecated: use InitRecurringSale3d] InitRecurringSale3dSync
+* [deprecated: use InitRecurringSale3d] InitRecurringSale3dAsync
+* [deprecated: use Sale3d] Sale3dSync
+* [deprecated: use Sale3d] Sale3dAsync
 
 Genesis.Net.Entities.Requests.Query:
 * Blacklist
@@ -105,7 +108,7 @@ namespace ExampleConsoleApplication
             string token    = "YOUR_TOKEN";
 
             // Initialize configuration - endpoint and env
-            Configuration conf = new Configuration(
+            Configuration configuration = new Configuration(
                 Environments.Staging,
                 token,
                 username,
@@ -114,112 +117,132 @@ namespace ExampleConsoleApplication
             );
 
             // Initialize Genesis Client
-            IGenesisClient gen = Genesis.Net.GenesisClientFactory.Create(conf);
+            var genesis = Genesis.Net.GenesisClientFactory.Create(configuration);
 
             // Create Authorize request
-            Genesis.Net.Entities.Requests.Initial.Authorize req = new Genesis.Net.Entities.Requests.Initial.Authorize();
+            var request = new Genesis.Net.Entities.Requests.Initial.Authorize();
 
             // Set request info
-            Random r = new Random();
-            req.Id = r.Next(1000000, 9000000).ToString();
-            req.Usage = "Test Genesis.NET SDK";
-            req.RemoteIp = "192.168.0.11";
+            var random = new Random();
+            request.Id = random.Next(1000000, 9000000).ToString();
+            request.Usage = "Test Genesis.NET SDK";
+            request.RemoteIp = "192.168.0.11";
 
             // Set amount & currency
-            req.Amount = 3.14M;
-            req.Currency = Genesis.Net.Common.Iso4217CurrencyCodes.EUR;
+            request.Amount = 3.14M;
+            request.Currency = Genesis.Net.Common.Iso4217CurrencyCodes.EUR;
 
             // Set card info
-            req.CardHolder = "John Smith";
-            req.CardNumber = "4200000000000000";
-            req.ExpirationMonth = 6;
-            req.ExpirationYear = 2020;
-            req.Cvv = "888";
-            req.Moto = false;
+            request.CardHolder = "John Smith";
+            request.CardNumber = "4200000000000000";
+            request.ExpirationMonth = 6;
+            request.ExpirationYear = 2020;
+            request.Cvv = "888";
+            request.Moto = false;
 
             // Set customer info
-            req.CustomerEmail = "john.smith@example.com";
-            req.CustomerPhone = "888888888";
+            request.CustomerEmail = "john.smith@example.com";
+            request.CustomerPhone = "888888888";
 
             // Set Billing Address
-            req.BillingAddress = new Genesis.Net.Entities.Address();
-            req.BillingAddress.Country = Genesis.Net.Common.Iso3166CountryCodes.BG;
-            req.BillingAddress.City = "Sofia";
-            req.BillingAddress.State = "Sofia";
-            req.BillingAddress.Address1 = "Street 1";
-            req.BillingAddress.ZipCode = "1407";
-            req.BillingAddress.FirstName = "John";
-            req.BillingAddress.LastName = "Smith";
+            request.BillingAddress = new Genesis.Net.Entities.Address
+            {
+                Country = Genesis.Net.Common.Iso3166CountryCodes.BG,
+                City = "Sofia",
+                State = "Sofia",
+                Address1 = "Street 1",
+                ZipCode = "1407",
+                FirstName = "John",
+                LastName = "Smith"
+            };
 
             // Set Shipping Address
-            req.ShippingAddress = new Genesis.Net.Entities.Address();
-            req.ShippingAddress.Country = Genesis.Net.Common.Iso3166CountryCodes.BG;
-            req.ShippingAddress.City = "Sofia";
-            req.ShippingAddress.State = "Sofia";
-            req.ShippingAddress.Address1 = "Street 1";
-            req.ShippingAddress.ZipCode = "1407";
-            req.ShippingAddress.FirstName = "John";
-            req.ShippingAddress.LastName = "Smith";
+            request.ShippingAddress = new Genesis.Net.Entities.Address
+            {
+                Country = Genesis.Net.Common.Iso3166CountryCodes.BG,
+                City = "Sofia",
+                State = "Sofia",
+                Address1 = "Street 1",
+                ZipCode = "1407",
+                FirstName = "John",
+                LastName = "Smith"
+            };
 
             // Business Attributes
-            req.BusinessAttributes = new Genesis.Net.Entities.Attributes.Request.Financial.Business.BusinessAttributes();
+            request.BusinessAttributes = new Genesis.Net.Entities.Attributes.Request.Financial.Business.BusinessAttributes
+            {
+                // Business Airlines Air Carriers
+                FlightArrivalDate = "23-12-2030",
+                FlightDepartureDate = "23-12-2030",
+                AirlineCode = "C0D3",
+                AirlineFlightNumber = "FLIGHT_NUMBER",
+                FlightTicketNumber = "TICKET_NUMBER",
+                FlightOriginCity = "ORIGIN_CITY",
+                FlightDestinationCity = "DESTINATION_CITY",
+                AirlineTourOperatorName = "TOUR_OPERATOR",
 
-            // Business Airlines Air Carriers
-            req.BusinessAttributes.FlightArrivalDate = "23-12-2030";
-            req.BusinessAttributes.FlightDepartureDate = "23-12-2030";
-            req.BusinessAttributes.AirlineCode = "C0D3";
-            req.BusinessAttributes.AirlineFlightNumber = "FLIGHT_NUMBER";
-            req.BusinessAttributes.FlightTicketNumber = "TICKET_NUMBER";
-            req.BusinessAttributes.FlightOriginCity = "ORIGIN_CITY";
-            req.BusinessAttributes.FlightDestinationCity = "DESTINATION_CITY";
-            req.BusinessAttributes.AirlineTourOperatorName = "TOUR_OPERATOR";
+                // Event Management
+                EventStartDate = "23-12-2030",
+                EventEndDate = "24-12-2030",
+                EventOrganizerId = "ORGANIZER_ID",
+                EventId = "EVENT_ID",
 
-            // Event Management
-            req.BusinessAttributes.EventStartDate = "23-12-2030";
-            req.BusinessAttributes.EventEndDate = "24-12-2030";
-            req.BusinessAttributes.EventOrganizerId = "ORGANIZER_ID";
-            req.BusinessAttributes.EventId = "EVENT_ID";
+                // Furniture
+                DateOfOrder = "23-12-2030",
+                DeliveryDate = "24-12-2030",
+                NameOfTheSupplier = "SUPPLIER_NAME",
 
-            // Furniture
-            req.BusinessAttributes.DateOfOrder = "23-12-2030";
-            req.BusinessAttributes.DeliveryDate = "24-12-2030";
-            req.BusinessAttributes.NameOfTheSupplier = "SUPPLIER_NAME";
+                // Hotels and Real estate rentals
+                CheckInDate = "23-12-2030",
+                CheckOutDate = "24-12-2030",
+                TravelAgencyName = "TRAVEL_AGENCY",
 
-            // Hotels and Real estate rentals
-            req.BusinessAttributes.CheckInDate = "23-12-2030";
-            req.BusinessAttributes.CheckOutDate = "24-12-2030";
-            req.BusinessAttributes.TravelAgencyName = "TRAVEL_AGENCY";
+                // Car, Plane and Boat Rentals
+                VehiclePickUpDate = "23-12-2030",
+                VehicleReturnDate = "24-12-2030",
+                SupplierName = "SUPPLIER_NAME",
 
-            // Car, Plane and Boat Rentals
-            req.BusinessAttributes.VehiclePickUpDate = "23-12-2030";
-            req.BusinessAttributes.VehicleReturnDate = "24-12-2030";
-            req.BusinessAttributes.SupplierName = "SUPPLIER_NAME";
+                // Cruise Lines
+                CruiseStartDate = "23-12-2030",
+                CruiseEndDate = "23-12-2030",
 
-            // Cruise Lines
-            req.BusinessAttributes.CruiseStartDate = "23-12-2030";
-            req.BusinessAttributes.CruiseEndDate = "23-12-2030";
+                // Travel Agencies
+                ArrivalDate = "23-12-2030",
+                DepartureDate = "24-12-2030",
+                CarrierCode = "CARRIER_CODE",
+                FlightNumber = "FLIGHT_NUMBER",
+                TicketNumber = "TICKET_NUMBER",
+                OriginCity = "ORIGIN_CITY",
+                DestinationCity = "DESTINATION_CITY",
+                TravelAgency = "TRAVEL_AGENCY",
+                ContractorName = "CONTRACTOR_NAME",
+                AtolCertificate = "ATOL_CERTIFICATE",
+                PickUpDate = "22-12-2030",
+                ReturnDate = "25-12-2030",
 
-            // Travel Agencies
-            req.BusinessAttributes.ArrivalDate = "23-12-2030";
-            req.BusinessAttributes.DepartureDate = "24-12-2030";
-            req.BusinessAttributes.CarrierCode = "CARRIER_CODE";
-            req.BusinessAttributes.FlightNumber = "FLIGHT_NUMBER";
-            req.BusinessAttributes.TicketNumber = "TICKET_NUMBER";
-            req.BusinessAttributes.OriginCity = "ORIGIN_CITY";
-            req.BusinessAttributes.DestinationCity = "DESTINATION_CITY";
-            req.BusinessAttributes.TravelAgency = "TRAVEL_AGENCY";
-            req.BusinessAttributes.ContractorName = "CONTRACTOR_NAME";
-            req.BusinessAttributes.AtolCertificate = "ATOL_CERTIFICATE";
-            req.BusinessAttributes.PickUpDate = "22-12-2030";
-            req.BusinessAttributes.ReturnDate = "25-12-2030";
+                // Payment Type
+                PaymentType = "deposit"
+            };
 
-            // Payment Type
-            req.BusinessAttributes.PaymentType = "deposit";
-
-            Genesis.Net.Result<
-                Genesis.Net.Entities.Responses.Successful.AuthorizeSuccessResponse,
-                Genesis.Net.Entities.Responses.Error.AuthorizeErrorResponse
-            > res = gen.Execute(req);
+            Result<
+                Genesis.Net.Entities.Responses.Successful.CardTransactionSuccessResponse,
+                Genesis.Net.Entities.Responses.Error.CardTransactionErrorResponse> result = genesis.Execute(request);
+           
+            Console.WriteLine($"{nameof(result.IsSuccessful)}: {result.IsSuccessful}");
+            if (result.IsSuccessful)
+            {
+                Console.WriteLine($"{nameof(result.SuccessResponse.Status)}: {result.SuccessResponse.Status}");
+                Console.WriteLine($"{nameof(result.SuccessResponse.TransactionId)}: {result.SuccessResponse.TransactionId}");
+                Console.WriteLine($"{nameof(result.SuccessResponse.UniqueId)}: {result.SuccessResponse.UniqueId}");
+            }
+            else
+            {
+                Console.WriteLine($"{nameof(result.ErrorResponse.Status)}: {result.ErrorResponse.Status}");
+                Console.WriteLine($"{nameof(result.ErrorResponse.TransactionId)}: {result.ErrorResponse.TransactionId}");
+                Console.WriteLine($"{nameof(result.ErrorResponse.UniqueId)}: {result.ErrorResponse.UniqueId}");
+                Console.WriteLine($"{nameof(result.ErrorResponse.Message)}: {result.ErrorResponse.Message}");
+                Console.WriteLine($"{nameof(result.ErrorResponse.TechnicalMessage)}: {result.ErrorResponse.TechnicalMessage}");
+            }
         }
     }
 }
@@ -228,10 +251,10 @@ namespace ExampleConsoleApplication
 Example WPF request
 
 ```c#
-Random r = new Random();
-Genesis.Net.Entities.Requests.Initial.WpfCreate req = new Genesis.Net.Entities.Requests.Initial.WpfCreate()
+Random random = new Random();
+Genesis.Net.Entities.Requests.Initial.WpfCreate request = new Genesis.Net.Entities.Requests.Initial.WpfCreate()
 {
-    TransactionId = r.Next(1000000, 9000000).ToString(),
+    TransactionId = random.Next(1000000, 9000000).ToString(),
     Usage = "Genesis.NET test",
     Amount = 1,
     Currency = Iso4217CurrencyCodes.EUR,
@@ -327,7 +350,284 @@ Genesis.Net.Entities.Requests.Initial.WpfCreate req = new Genesis.Net.Entities.R
 Genesis.Net.Result<
     Genesis.Net.Entities.Responses.Successful.WpfCreateSuccessResponse,
     Genesis.Net.Entities.Responses.Error.WpfCreateErrorResponse
-> res = gen.Execute(req);
+> res = genesis.Execute(request);
+```
+
+
+Example Sale3D v2 request with "Continue" request
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Net;
+using Genesis.Net;
+using Genesis.Net.Common;
+using Genesis.Net.Entities;
+using Genesis.Net.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
+using Genesis.Net.Entities.Attributes.Request.Financial.Cards.ThreedsV2.Enums;
+using Genesis.Net.Entities.Enums;
+using Genesis.Net.Entities.Requests.Initial;
+using Genesis.Net.Entities.Requests.Initial.Threedsv2;
+
+namespace ConsoleTest3dv2Requests
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            TestSale3d();
+            Console.WriteLine("End. Press any key...");
+            Console.ReadKey();
+        }
+
+		static void TestSale3d()
+        {
+            // Set connection settings
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.CheckCertificateRevocationList = true;
+
+            // Set merchant credentials
+            string username = "YOUR_USERNAME";
+            string password = "YOUR_PASSWORD";
+            string token    = "YOUR_TOKEN";
+
+            // Initialize configuration - endpoint and env
+            var configuration = new Configuration(
+                Environments.Staging,
+                token,
+                username,
+                password,
+                Endpoints.EComProcessing
+            );
+
+            // Initialize Genesis Client
+            var client = GenesisClientFactory.Create(configuration);
+
+            Random random = new Random();
+            var request = new Sale3d()
+            {
+                Id = random.Next(1000000, 9000000).ToString(),
+                Usage = "40208 concert tickets",
+                RemoteIp = "192.168.2.12",
+                Amount = 50,
+                Currency = Genesis.Net.Common.Iso4217CurrencyCodes.USD,
+                CardHolder = "FirstName LastName",
+                CustomerEmail = "jhonny@example.com",
+                CustomerPhone = "+1678678678678",
+                CardNumber = TestCardsNumbers.Visa3dv2ChallengeWith3dSecure, //"4938730000000001"
+                ExpirationMonth = 1,
+                ExpirationYear = 2024,
+                Cvv = "123",
+                BillingAddress = new Address()
+                {
+                    Address1 = "Muster Str. 18",
+                    City = "Los Angeles",
+                    Country = Iso3166CountryCodes.US,
+                    FirstName = "John",
+                    LastName = "Smith",
+                    State = "CA",
+                    ZipCode = "10178"
+                },
+                ShippingAddress = new Address()
+                {
+                    Address1 = "Muster Str. 18",
+                    City = "Los Angeles",
+                    Country = Iso3166CountryCodes.US,
+                    FirstName = "John",
+                    LastName = "Smith",
+                    State = "CA",
+                    ZipCode = "10178"
+                },
+                NotificationUrl = "https://www.example.com/notification",
+                ReturnSuccessUrl = "http://www.example.com/success",
+                ReturnFailureUrl = "http://www.example.com/failure",
+                ThreeDSv2 = new ThreeDSv2
+                {
+                    ThreedsMethod = new ThreedsMethod()
+                    {
+                        CallbackUrl = "https://www.example.com/threeds/threeds_method/callback",
+                    },
+                    Control = new Control()
+                    {
+                        DeviceType = DeviceTypes.Browser,
+                        ChallengeWindowSize = ChallengeWindowSizes.FullScreen,
+                        ChallengeIndicator = ChallengeIndicators.Preference
+                    },
+                    Purchase = new Purchase()
+                    {
+                        Category = PurchaseCategories.Service
+                    },
+                    MerchantRisk = new MerchantRisk()
+                    {
+                        ShippingIndicator = ShippingIndicators.VerifiedAddress,
+                        DeliveryTimeframe = DeliveryTimeframes.Electronic,
+                        ReorderItemsIndicator = ReorderItemsIndicators.Reordered,
+                        PreOrderPurchaseIndicator = PreOrderPurchaseIndicators.MerchandiseAvailable,
+                        PreOrderDate = new DateTime(2030, 12, 31).Date,
+                        GiftCard = true,
+                        GiftCardCount = 99
+                    },
+                    CardHolderAccount = new CardHolderAccount()
+                    {
+                        CreationDate = new DateTime(2020, 05, 25).Date,
+                        UpdateIndicator = UpdateIndicators.MoreThan60Days,
+                        LastChangeDate = new DateTime(2021, 02, 25).Date,
+                        PasswordChangeIndicator = PasswordChangeIndicators.NoChange,
+                        PasswordChangeDate = new DateTime(2021, 05, 10).Date,
+                        ShippingAddressUsageIndicator = ShippingAddressUsageIndicators.CurrentTransaction,
+                        ShippingAddressDateFirstUsed = new DateTime(2021, 05, 20).Date,
+                        TransactionsActivityLast24Hours = 2,
+                        TransactionsActivityPreviousYear = 10,
+                        ProvisionAttemptsLast24Hours = 1,
+                        PurchasesCountLast6Months = 5,
+                        SuspiciousActivityIndicator = SuspiciousActivityIndicators.NoSuspiciousObserved,
+                        RegistrationIndicator = RegistrationIndicators.From30To60Days,
+                        RegistrationDate = new DateTime(2020, 05, 25).Date,
+                    },
+                    Browser = new Browser()
+                    {
+                        AcceptHeader = "*/*",
+                        JavaEnabled = false,
+                        Language = "en-GB",
+                        ColorDepth = 24,
+                        ScreenHeight = 900,
+                        ScreenWidth = 1440,
+                        TimeZoneOffset = -120,
+                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36",
+                    },
+                    Sdk = new Sdk()
+                    {
+                        Interface = Interfaces.Native,
+                        UiTypes = new List<UiTypes>
+                        {
+                            UiTypes.SingleSelect,
+                            UiTypes.MultiSelect,
+                            UiTypes.Text
+                        },
+                        ApplicationId = Guid.Parse("fc1650c0-5778-0138-8205-2cbc32a32d65"),
+                        EncryptedData = "encrypted-data-here",
+                        EphemeralPublicKeyPair = "public-key-pair",
+                        MaxTimeout = 10,
+                        ReferenceNumber = "sdk-reference-number-here"
+                    },
+                    //Recurring = new Recurring()
+                    //{
+                    //    ExpirationDate = new DateTime(2022, 11, 25).Date,
+                    //    Frequency = 30,
+                    //}
+                },
+                //Sca = new Sca()
+                //{
+                //    Exemption = ScaExemptions.LowRisk
+                //}
+            };
+
+            try
+            {
+                var response = client.Execute(request);
+
+                if (response.IsSuccessful)
+                {
+                    Console.WriteLine("--- Response is successful.");
+                    Console.WriteLine($"Unique id:\t\t{ response.SuccessResponse.UniqueId}");
+                    if (response.SuccessResponse.Status.HasValue)
+                    {
+                        Console.WriteLine($"Status: \t\t{response.SuccessResponse.Status}");
+                        switch (response.SuccessResponse.Status.Value)
+                        {
+                            case Genesis.Net.Entities.Enums.TransactionStates.Approved:
+                                Console.WriteLine("--- --- Transaction is Approved.");
+                                break;
+                            case Genesis.Net.Entities.Enums.TransactionStates.PendingAsync:
+                                Console.WriteLine("--- --- Transaction is pending - interaction between consumer and issuer is required.");
+                                if (!string.IsNullOrEmpty(response.SuccessResponse.RedirectUrl))
+                                {
+                                    Console.WriteLine($"Redirect type:\t{response.SuccessResponse.RedirectUrlType}");
+                                    Console.WriteLine($"Redirect url:\t{response.SuccessResponse.RedirectUrl}");
+                                    Console.WriteLine();
+                                }
+
+                                if (!string.IsNullOrEmpty(response.SuccessResponse.ThreedsMethodUrl))
+                                {
+                                    Console.WriteLine($"ThreedsMethodContinueUrl:\t{response.SuccessResponse.ThreedsMethodContinueUrl}");
+                                    Console.WriteLine($"ThreedsMethodUrl:\t{response.SuccessResponse.ThreedsMethodUrl}");
+                                    Console.WriteLine();
+                                }
+
+                                if (!string.IsNullOrEmpty(response.SuccessResponse.ThreedsMethodUrl))
+                                {
+                                    Console.WriteLine($"Time: \t{response.SuccessResponse.Time.ToString("o", CultureInfo.InvariantCulture)}");
+                                    Console.WriteLine($"ProxyAmount: \t{response.SuccessResponse.ProxyAmount}");
+                                    var signature = response.SuccessResponse.GenerateSignature(configuration);
+                                    Console.WriteLine($"Signature: \t{signature}");
+                                    var continueRequest = new ThreeDSv2ContinueRequest(response.SuccessResponse, configuration);
+                                    var continueResponse = client.Execute(continueRequest);
+                                    if (continueResponse.IsSuccessful)
+                                    {
+                                        Console.WriteLine("--- Continue request successful.");
+                                        Console.WriteLine($"UniqueId: \t\t{continueResponse.SuccessResponse.UniqueId}");
+                                        Console.WriteLine($"TransactionId: \t\t{continueResponse.SuccessResponse.TransactionId}");
+                                        Console.WriteLine($"Amount: \t\t{continueResponse.SuccessResponse.Amount}");
+                                        Console.WriteLine($"Status: \t\t{continueResponse.SuccessResponse.Status}");
+                                        if (continueResponse.SuccessResponse.Status == TransactionStates.PendingAsync)
+                                        {
+                                            Console.WriteLine("--- Status is pending async!");
+                                            Console.WriteLine($"RedirectUrlType: \t{continueResponse.SuccessResponse.RedirectUrlType}");
+                                            Console.WriteLine($"RedirectUrl: \t\t{continueResponse.SuccessResponse.RedirectUrl}");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("--- Continue request error.");
+                                        Console.WriteLine($"Status: \t\t{continueResponse.ErrorResponse.Status}");
+                                        Console.WriteLine($"UniqueId: \t\t{continueResponse.ErrorResponse.UniqueId}");
+                                        Console.WriteLine($"Message: \t\t{continueResponse.ErrorResponse.Message}");
+                                        Console.WriteLine($"TechnicalMessage: \t{continueResponse.ErrorResponse.TechnicalMessage}");
+                                    }
+
+                                    Console.WriteLine();
+                                }
+
+                                break;
+                            case TransactionStates.Declined:
+                                Console.WriteLine("--- --- Transaction is Declined.");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("--- Response not successful (error).");
+                    Console.WriteLine($"Unique id:\t\t{ response.ErrorResponse.UniqueId}");
+                    Console.WriteLine($"Status:   \t\t{ response.ErrorResponse.Status}");
+                    Console.WriteLine($"Message:   \t\t{ response.ErrorResponse.Message}");
+                    Console.WriteLine($"TechnicalMessage:\t{ response.ErrorResponse.TechnicalMessage}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("--- Exception!");
+                var x = ex;
+                Console.WriteLine(x.Message);
+                while (x.InnerException != null)
+                {
+                    x = x.InnerException;
+                    Console.WriteLine(x.Message);
+                }
+
+                if (!string.IsNullOrEmpty(ex.StackTrace))
+                {
+                    Console.WriteLine("--- Stack trace:");
+                    Console.WriteLine(ex.StackTrace);
+                }
+            }
+        }
+    }
+}
 ```
 
 More example requests can be found in the library's specs class [`Genesis.Net.Specs.Mocks.RequestMocksFactory`](Genesis.NET.Specs/Mocks/RequestMocksFactory.cs).

@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Genesis.Net.Common;
+using Genesis.Net.Entities;
+using Genesis.Net.Specs.Mocks;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
-using Genesis.Net.Common;
-using Genesis.Net.Entities;
-using Genesis.Net.Specs.Mocks;
-using System.IO;
-using System.Reflection;
 
 namespace Genesis.Net.Specs
 {
@@ -77,7 +75,7 @@ namespace Genesis.Net.Specs
                 terminalToken: "terminal_token",
                 apiLogin:      "merchant_username",
                 apiPassword:   "merchant_password",
-                endpoint:      Endpoints.EComProcessing);
+                endpoint: Endpoints.EComProcessing);
             return configuration;
         }
 
@@ -90,7 +88,7 @@ namespace Genesis.Net.Specs
                 {
                     spec.Invoke(specsContainerInstance, new object[] { });
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw ex.InnerException;
                 }

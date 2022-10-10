@@ -27,7 +27,7 @@ namespace Genesis.Net.Specs
                                     "<sent_to_acquirer>true</sent_to_acquirer>" +
                                     "</payment_response>";
 
-            successResponseXml.should_parse_to_success_response<SaleSuccessResponse, SaleErrorResponse>();
+            successResponseXml.should_parse_to_success_response<CardTransactionSuccessResponse, CardTransactionErrorResponse>();
         }
 
         void it_should_parse_sale_error_response()
@@ -50,7 +50,7 @@ namespace Genesis.Net.Specs
                                   "<sent_to_acquirer>false</sent_to_acquirer>" +
                                   "</payment_response>";
 
-            errorResponseXml.should_parse_to_error_response<SaleSuccessResponse, SaleErrorResponse>();
+            errorResponseXml.should_parse_to_error_response<CardTransactionSuccessResponse, CardTransactionErrorResponse>();
         }
 
         void it_should_parse_reconcile_success_response()
@@ -477,7 +477,7 @@ namespace Genesis.Net.Specs
                                    "<sent_to_acquirer>false</sent_to_acquirer>" +
                                    "</payment_response>";
 
-            errorResponseXml.should_parse_to_error_response<InitRecurringSaleSuccessResponse, InitRecurringSaleErrorResponse>();
+            errorResponseXml.should_parse_to_error_response<CardTransactionSuccessResponse, CardTransactionErrorResponse>();
         }
 
         void it_should_parse_recurring_sale_error_response()
@@ -505,7 +505,7 @@ namespace Genesis.Net.Specs
         void it_should_parse_authorize_success_response_with_code_element()
         {
             var errorResponseXml = Mocks.ResponseMocksFactory.CreateAuthorizeSuccessResponse(setCode: true).Xml;
-            errorResponseXml.should_parse_to_success_response<AuthorizeSuccessResponse, AuthorizeErrorResponse>();
+            errorResponseXml.should_parse_to_success_response<CardTransactionSuccessResponse, CardTransactionErrorResponse>();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Genesis.Net.Entities.Requests.Initial.ThreeD;
+using Genesis.Net.Entities.Requests.Initial;
 using Genesis.Net.Specs.Mocks;
 using NSpec;
 
@@ -8,7 +8,7 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial.ThreeD
 {
     class describe_init_recurring_sale_3d_sync : nspec
     {
-        EntityMock<InitRecurringSale3dSync> initRecurringSale3dSyncMock;
+        EntityMock<InitRecurringSale3d> initRecurringSale3dSyncMock;
 
         void before_each()
         {
@@ -17,12 +17,12 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial.ThreeD
 
         void it_should_serialize_and_deserialize_correctly()
         {
-            initRecurringSale3dSyncMock.Instance.should_serialize_and_deserialize<InitRecurringSale3dSync>();
+            initRecurringSale3dSyncMock.Instance.should_serialize_and_deserialize<InitRecurringSale3d>();
         }
 
         void it_should_validate_required_properties()
         {
-            initRecurringSale3dSyncMock.Instance.on_validation_should_behave_like_required("Id", "CardHolder", "CardNumber", "MpiParams");
+            initRecurringSale3dSyncMock.Instance.on_validation_should_behave_like_required("Id", "CardHolder", "CardNumber");
         }
 
         void it_should_validate_amount()

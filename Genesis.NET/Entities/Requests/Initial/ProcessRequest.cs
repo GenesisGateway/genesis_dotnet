@@ -100,6 +100,7 @@ namespace Genesis.Net.Entities.Requests.Initial
         }
 
         [IPv4Address]
+        [Required]
         [XmlElement(ElementName = "remote_ip")]
         public string RemoteIp { get; set; }
     }

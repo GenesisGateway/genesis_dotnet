@@ -1,24 +1,26 @@
 using System.Threading.Tasks;
 using Genesis.Net.Entities.Requests.Initial;
-using Genesis.Net.Entities.Requests.Initial.ThreeD;
 using Genesis.Net.Entities.Requests.Referential;
 using Genesis.Net.Entities.Responses.Error;
 using Genesis.Net.Entities.Responses.Successful;
 using Genesis.Net.Entities.Requests.Query;
+using Genesis.Net.Entities.Requests.Initial.Threedsv2;
 
 namespace Genesis.Net
 {
     public interface IGenesisClient
     {
+        #region deprecated
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Result<AuthorizeSuccessResponse, AuthorizeErrorResponse> Execute(Authorize authorize);
+        Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(Authorize authorize);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Task<Result<AuthorizeSuccessResponse, AuthorizeErrorResponse>> ExecuteAsync(Authorize authorize);
+        Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(Authorize authorize);
+        #endregion
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
@@ -33,12 +35,12 @@ namespace Genesis.Net
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Result<SaleSuccessResponse, SaleErrorResponse> Execute(Sale sale);
+        Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(Sale sale);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Task<Result<SaleSuccessResponse, SaleErrorResponse>> ExecuteAsync(Sale sale);
+        Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(Sale sale);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
@@ -100,45 +102,77 @@ namespace Genesis.Net
         /// <exception cref="T:System.IO.InvalidDataException"/>
         Task<Result<AvsSuccessResponse, AvsErrorResponse>> ExecuteAsync(Avs avs);
 
+        #region deprecated
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Result<Authorize3dSuccessResponse, Authorize3dErrorResponse> Execute(Authorize3d authorize3d);
+        Result<Authorize3dSuccessResponse, Authorize3dErrorResponse> Execute(Entities.Requests.Initial.ThreeD.Authorize3d authorize3d);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Task<Result<Authorize3dSuccessResponse, Authorize3dErrorResponse>> ExecuteAsync(Authorize3d authorize3d);
+        Task<Result<Authorize3dSuccessResponse, Authorize3dErrorResponse>> ExecuteAsync(Entities.Requests.Initial.ThreeD.Authorize3d authorize3d);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Result<Sale3dSuccessResponse, Sale3dErrorResponse> Execute(Sale3d sale3d);
+        Result<Sale3dSuccessResponse, Sale3dErrorResponse> Execute(Entities.Requests.Initial.ThreeD.Sale3d sale3d);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Task<Result<Sale3dSuccessResponse, Sale3dErrorResponse>> ExecuteAsync(Sale3d sale3d);
+        Task<Result<Sale3dSuccessResponse, Sale3dErrorResponse>> ExecuteAsync(Entities.Requests.Initial.ThreeD.Sale3d sale3d);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Result<InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse> Execute(InitRecurringSale3d initRecurringSale3d);
+        Result<InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse> Execute(Entities.Requests.Initial.ThreeD.InitRecurringSale3d initRecurringSale3d);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Task<Result<InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse>> ExecuteAsync(InitRecurringSale3d initRecurringSale3d);
+        Task<Result<InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse>> ExecuteAsync(Entities.Requests.Initial.ThreeD.InitRecurringSale3d initRecurringSale3d);
+        #endregion
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Result<InitRecurringSaleSuccessResponse, InitRecurringSaleErrorResponse> Execute(InitRecurringSale initRecurringSale);
+        Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(Authorize3d authorize3d);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Task<Result<InitRecurringSaleSuccessResponse, InitRecurringSaleErrorResponse>> ExecuteAsync(InitRecurringSale initRecurringSale);
+        Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(Authorize3d authorize3d);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(Sale3d sale3d);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(Sale3d sale3d);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(InitRecurringSale3d initRecurringSale3d);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(InitRecurringSale3d initRecurringSale3d);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(InitRecurringSale initRecurringSale);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(InitRecurringSale initRecurringSale);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
@@ -259,5 +293,15 @@ namespace Genesis.Net
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
         Task<Result<ApplePaySuccessResponse, ApplePayErrorResponse>> ExecuteAsync(ApplePay applePay);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(ContinueRequest initThreeDSv2ContinueRequest);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(ContinueRequest initThreeDSv2ContinueRequest);
     }
 }

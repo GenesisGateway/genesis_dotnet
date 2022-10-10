@@ -1,13 +1,10 @@
-﻿using System;
-using System.Linq;
-using Genesis.Net.Entities.Requests.Initial;
-using Genesis.Net.Entities.Requests.Initial.ThreeD;
+﻿using Genesis.Net.Entities.Requests.Initial;
 using Genesis.Net.Entities.Requests.Query;
+using Genesis.Net.Entities.Requests.Referential;
 using Genesis.Net.Entities.Responses.Error;
 using Genesis.Net.Entities.Responses.Successful;
 using Genesis.Net.Specs.Mocks;
 using NSpec;
-using Genesis.Net.Entities.Requests.Referential;
 
 namespace Genesis.Net.Specs
 {
@@ -26,7 +23,7 @@ namespace Genesis.Net.Specs
             var invallidAuthorize = RequestMocksFactory.CreateValidAuthorize().Instance;
             invallidAuthorize.Amount = -1;
 
-            var specsContainer = new describe_transaction_execution<Authorize, AuthorizeSuccessResponse, AuthorizeErrorResponse>(genesis, validAuthorize,
+            var specsContainer = new describe_transaction_execution<Authorize, CardTransactionSuccessResponse, CardTransactionErrorResponse>(genesis, validAuthorize,
                 ResponseMocksFactory.CreateAuthorizeSuccessResponse().Xml, ResponseMocksFactory.CreateAuthorizeErrorResponse().Xml, invallidAuthorize);
 
             SpecHelper.RunSpecs(specsContainer);
@@ -62,7 +59,7 @@ namespace Genesis.Net.Specs
             var invalidInitRecurringSale = RequestMocksFactory.CreateValidInitRecurringSale().Instance;
             invalidInitRecurringSale.Amount = -1;
 
-            var specsContainer = new describe_transaction_execution<InitRecurringSale, InitRecurringSaleSuccessResponse, InitRecurringSaleErrorResponse>(genesis, validInitRecurringSale,
+            var specsContainer = new describe_transaction_execution<InitRecurringSale, CardTransactionSuccessResponse, CardTransactionErrorResponse>(genesis, validInitRecurringSale,
                 ResponseMocksFactory.CreateInitRecurringSaleSuccessResponse().Xml, ResponseMocksFactory.CreateInitRecurringSaleErrorResponse().Xml, invalidInitRecurringSale);
 
             SpecHelper.RunSpecs(specsContainer);
@@ -86,7 +83,7 @@ namespace Genesis.Net.Specs
             var invalidPayout = RequestMocksFactory.CreateValidSale().Instance;
             invalidPayout.Amount = -1;
 
-            var specsContainer = new describe_transaction_execution<Sale, SaleSuccessResponse, SaleErrorResponse>(genesis, validPayout,
+            var specsContainer = new describe_transaction_execution<Sale, CardTransactionSuccessResponse, CardTransactionErrorResponse>(genesis, validPayout,
                 ResponseMocksFactory.CreateSaleSuccessResponse().Xml, ResponseMocksFactory.CreateSaleErrorResponse().Xml, invalidPayout);
 
             SpecHelper.RunSpecs(specsContainer);
@@ -110,7 +107,7 @@ namespace Genesis.Net.Specs
             var invalidAuthorize3dSync = RequestMocksFactory.CreateValidAuthorize3dSync().Instance;
             invalidAuthorize3dSync.Amount = -1;
 
-            var specsContainer = new describe_transaction_execution<Authorize3d, Authorize3dSuccessResponse, Authorize3dErrorResponse>(genesis, validAuthorize3dSync,
+            var specsContainer = new describe_transaction_execution<Authorize3d, CardTransactionSuccessResponse, CardTransactionErrorResponse>(genesis, validAuthorize3dSync,
                 ResponseMocksFactory.CreateAuthorize3dSyncSuccessResponse().Xml, ResponseMocksFactory.CreateAuthorize3dErrorResponse().Xml, invalidAuthorize3dSync);
 
             SpecHelper.RunSpecs(specsContainer);
@@ -122,7 +119,7 @@ namespace Genesis.Net.Specs
             var invalidAuthorize3dAsync = RequestMocksFactory.CreateValidAuthorize3dAsync().Instance;
             invalidAuthorize3dAsync.Amount = -1;
 
-            var specsContainer = new describe_transaction_execution<Authorize3d, Authorize3dSuccessResponse, Authorize3dErrorResponse>(genesis, validAuthorize3dAsync,
+            var specsContainer = new describe_transaction_execution<Authorize3d, CardTransactionSuccessResponse, CardTransactionErrorResponse>(genesis, validAuthorize3dAsync,
                 ResponseMocksFactory.CreateAuthorize3dAsyncSuccessResponse().Xml, ResponseMocksFactory.CreateAuthorize3dErrorResponse().Xml, invalidAuthorize3dAsync);
 
             SpecHelper.RunSpecs(specsContainer);
@@ -134,7 +131,7 @@ namespace Genesis.Net.Specs
             var invalidInitRecurringSale3dSync = RequestMocksFactory.CreateValidInitRecurringSale3dSync().Instance;
             invalidInitRecurringSale3dSync.Amount = -1;
 
-            var specsContainer = new describe_transaction_execution<InitRecurringSale3d, InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse>(genesis, validInitRecurringSale3dSync,
+            var specsContainer = new describe_transaction_execution<InitRecurringSale3d, CardTransactionSuccessResponse, CardTransactionErrorResponse>(genesis, validInitRecurringSale3dSync,
                 ResponseMocksFactory.CreateInitRecurringSale3dSyncSuccessResponse().Xml, ResponseMocksFactory.CreateInitRecurringSale3dErrorResponse().Xml, invalidInitRecurringSale3dSync);
 
             SpecHelper.RunSpecs(specsContainer);
@@ -146,7 +143,7 @@ namespace Genesis.Net.Specs
             var invalidInitRecurringSale3dAsync = RequestMocksFactory.CreateValidInitRecurringSale3dAsync().Instance;
             invalidInitRecurringSale3dAsync.Amount = -1;
 
-            var specsContainer = new describe_transaction_execution<InitRecurringSale3d, InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse>(genesis, validInitRecurringSale3dAsync,
+            var specsContainer = new describe_transaction_execution<InitRecurringSale3d, CardTransactionSuccessResponse, CardTransactionErrorResponse>(genesis, validInitRecurringSale3dAsync,
                 ResponseMocksFactory.CreateInitRecurringSale3dAsyncSuccessResponse().Xml, ResponseMocksFactory.CreateInitRecurringSale3dErrorResponse().Xml, invalidInitRecurringSale3dAsync);
 
             SpecHelper.RunSpecs(specsContainer);
@@ -158,7 +155,7 @@ namespace Genesis.Net.Specs
             var invalidSale3dSync = RequestMocksFactory.CreateValidSale3dSync().Instance;
             invalidSale3dSync.Amount = -1;
 
-            var specsContainer = new describe_transaction_execution<Sale3d, Sale3dSuccessResponse, Sale3dErrorResponse>(genesis, validSale3dSync,
+            var specsContainer = new describe_transaction_execution<Sale3d, CardTransactionSuccessResponse, CardTransactionErrorResponse>(genesis, validSale3dSync,
                 ResponseMocksFactory.CreateSale3dSyncSuccessResponse().Xml, ResponseMocksFactory.CreateSale3dErrorResponse().Xml, invalidSale3dSync);
 
             SpecHelper.RunSpecs(specsContainer);
@@ -170,7 +167,7 @@ namespace Genesis.Net.Specs
             var invalidSale3dAsync = RequestMocksFactory.CreateValidSale3dAsync().Instance;
             invalidSale3dAsync.Amount = -1;
 
-            var specsContainer = new describe_transaction_execution<Sale3d, Sale3dSuccessResponse, Sale3dErrorResponse>(genesis, validSale3dAsync,
+            var specsContainer = new describe_transaction_execution<Sale3d, CardTransactionSuccessResponse, CardTransactionErrorResponse>(genesis, validSale3dAsync,
                 ResponseMocksFactory.CreateSale3dAsyncSuccessResponse().Xml, ResponseMocksFactory.CreateSale3dErrorResponse().Xml, invalidSale3dAsync);
 
             SpecHelper.RunSpecs(specsContainer);

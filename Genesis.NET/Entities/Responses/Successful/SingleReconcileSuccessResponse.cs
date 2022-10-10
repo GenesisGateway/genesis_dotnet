@@ -13,6 +13,7 @@ namespace Genesis.Net.Entities.Responses.Successful
     [pMixin(Mixin = typeof(ErrorModel))]
     [pMixin(Mixin = typeof(CustomerModel))]
     [pMixin(Mixin = typeof(PaymentAddressModel))]
+    [pMixin(Mixin = typeof(ThreeDSModel))]
     [XmlRoot("payment_response", Namespace = "SingleReconcileSuccessResponse")]
     public partial class SingleReconcileSuccessResponse : Entity
     {

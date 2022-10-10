@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Genesis.Net.Entities.Requests.Initial.ThreeD;
+using Genesis.Net.Entities.Requests.Initial;
 using Genesis.Net.Specs.Mocks;
 using NSpec;
 
@@ -8,7 +8,7 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial.ThreeD
 {
     class describe_authorize_3d_async : nspec
     {
-        EntityMock<Authorize3dAsync> authorize3dAsyncMock;
+        EntityMock<Authorize3d> authorize3dAsyncMock;
 
         void before_each()
         {
@@ -17,13 +17,12 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial.ThreeD
 
         void it_should_serialize_and_deserialize_correctly()
         {
-            authorize3dAsyncMock.Instance.should_serialize_and_deserialize<Authorize3dAsync>();
+            authorize3dAsyncMock.Instance.should_serialize_and_deserialize<Authorize3d>();
         }
 
         void it_should_validate_required_properties()
         {
-            authorize3dAsyncMock.Instance.on_validation_should_behave_like_required("Id", "CardHolder", "CardNumber",
-                "NotificationUrl", "ReturnSuccessUrl", "ReturnFailureUrl");
+            authorize3dAsyncMock.Instance.on_validation_should_behave_like_required("Id", "CardHolder", "CardNumber");
         }
 
         void it_should_validate_amount()

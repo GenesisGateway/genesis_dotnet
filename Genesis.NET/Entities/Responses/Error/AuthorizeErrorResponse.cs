@@ -1,10 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Xml.Serialization;
 using CopaceticSoftware.pMixins.Attributes;
 
 namespace Genesis.Net.Entities.Responses.Error
 {
+    /// <summary>
+    /// This class is deprecated. Please use: <see cref="CardTransactionErrorResponse">CardTransactionSuccessResponse</see>
+    /// </summary>
+    [Obsolete("This class is deprecated. Please use: Entities.Responses.Successful.CardTransactionErrorResponse")]
     [pMixin(Mixin = typeof(AcquirerModel))]
     [pMixin(Mixin = typeof(MotoModel))]
     [pMixin(Mixin = typeof(IssuerModel))]

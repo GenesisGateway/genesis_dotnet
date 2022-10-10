@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,9 +20,20 @@ namespace Genesis.Net.Entities
                 var currentEntityPropertyValue = property.GetValue(this);
                 var otherEntityPropertyValue = property.GetValue(otherEntity);
 
-                if (typeof(Array).IsAssignableFrom(property.PropertyType) || typeof(IEnumerable<>).IsAssignableFrom(property.PropertyType))
+                if (typeof(Array).IsAssignableFrom(property.PropertyType) ||
+                    typeof(IEnumerable<>).IsAssignableFrom(property.PropertyType))
                 {
                     if (!SequenceEqual((IEnumerable<object>)currentEntityPropertyValue, (IEnumerable<object>)otherEntityPropertyValue))
+                    {
+                        return false;
+                    }
+                }
+                else if (property.PropertyType.IsGenericType &&
+                    typeof(IEnumerable<>).MakeGenericType(property.PropertyType.GetGenericArguments()).IsAssignableFrom(property.PropertyType))
+                {
+                    var currentEntityPropertyValueEnumerable = ((IEnumerable)currentEntityPropertyValue).Cast<object>();
+                    var otherEntityPropertyValueEnumerable = ((IEnumerable)otherEntityPropertyValue).Cast<object>();
+                    if (!Enumerable.SequenceEqual(currentEntityPropertyValueEnumerable, otherEntityPropertyValueEnumerable))
                     {
                         return false;
                     }
@@ -38,7 +50,9 @@ namespace Genesis.Net.Entities
         private bool SequenceEqual(IEnumerable<object> sequence, IEnumerable<object> otherSequence)
         {
             if (sequence != null && otherSequence != null)
+            {
                 return Enumerable.SequenceEqual(sequence, otherSequence);
+            }
 
             return sequence == null && otherSequence == null;
         }
@@ -47,8 +61,8 @@ namespace Genesis.Net.Entities
         {
             unchecked
             {
-                int prime = 17;
-                int hashCode = 0;
+                var prime = 17;
+                var hashCode = 0;
                 foreach (var propertyInfo in GetType().GetProperties())
                 {
                     var propertyValue = propertyInfo.GetValue(this);

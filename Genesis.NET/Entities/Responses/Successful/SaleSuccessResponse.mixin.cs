@@ -231,7 +231,7 @@ namespace Genesis.Net.Entities.Responses.Successful
 					{
 					}
 					[global::CopaceticSoftware.pMixins.Attributes.MixedInMemberAttribute]
-					public global::System.String Status {
+					public global::System.Nullable<global::Genesis.Net.Entities.Enums.TransactionStates> Status {
 						get {
 							return base.ExecutePropertyGet ("Status", () => _mixinInstance.Status);
 						}
@@ -502,6 +502,16 @@ namespace Genesis.Net.Entities.Responses.Successful
 			}
 		}
 		[global::CopaceticSoftware.pMixins.Attributes.MixedInMemberAttribute]
+		[System.Xml.Serialization.XmlElementAttribute (ElementName = "authorization_code")]
+		public global::System.String AuthorizationCode {
+			get {
+				return __mixins.Genesis_Net_Entities_Responses_AuthorizationModel.AuthorizationCode;
+			}
+			set {
+				__mixins.Genesis_Net_Entities_Responses_AuthorizationModel.AuthorizationCode = value;
+			}
+		}
+		[global::CopaceticSoftware.pMixins.Attributes.MixedInMemberAttribute]
 		[System.Xml.Serialization.XmlElementAttribute (ElementName = "sent_to_acquirer")]
 		public global::System.Boolean SentToAcquirer {
 			get {
@@ -559,7 +569,7 @@ namespace Genesis.Net.Entities.Responses.Successful
 		}
 		[global::CopaceticSoftware.pMixins.Attributes.MixedInMemberAttribute]
 		[System.Xml.Serialization.XmlElementAttribute (ElementName = "status")]
-		public global::System.String Status {
+		public global::System.Nullable<global::Genesis.Net.Entities.Enums.TransactionStates> Status {
 			get {
 				return __mixins.Genesis_Net_Entities_Responses_TransactionStatusModel.Status;
 			}

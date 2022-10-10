@@ -82,6 +82,12 @@
     <Compile Include="Entities\Requests\Initial\CashU.cs" />
     <Compile Include="Entities\Requests\Initial\EzeeWallet.cs" />
     <Compile Include="Entities\Requests\Initial\PayByVoucher.cs" />
+    <Compile Include="Entities\Requests\Initial\ThreeDv2\Fallback3dv2With3dSecure.cs" />
+    <Compile Include="Entities\Requests\Initial\ThreeDv2\Fallback3dv2.cs" />
+    <Compile Include="Entities\Requests\Initial\ThreeDv2\Challenge3dv2With3dSecure.cs" />
+    <Compile Include="Entities\Requests\Initial\ThreeDv2\Challenge3dv2.cs" />
+    <Compile Include="Entities\Requests\Initial\ThreeDv2\Frictionless3dv2.cs" />
+    <Compile Include="Entities\Requests\Initial\ThreeDv2\Frictionless3dv2With3dSecure.cs" />
     <Compile Include="Entities\Responses\Initial\ApplePay.cs" />
     <Compile Include="Entities\Responses\Initial\GooglePay.cs" />
     <Compile Include="Entities\Responses\Initial\Ppro.cs" />
@@ -90,6 +96,12 @@
     <Compile Include="Entities\Responses\Initial\PaySafeCard.cs" />
     <Compile Include="Entities\Responses\Initial\EzeeWallet.cs" />
     <Compile Include="Entities\Responses\Initial\PayByVoucher.cs" />
+    <Compile Include="Entities\Responses\Initial\ThreeDv2\Challenge.cs" />
+    <Compile Include="Entities\Responses\Initial\ThreeDv2\ChallengeWith3dSecure.cs" />
+    <Compile Include="Entities\Responses\Initial\ThreeDv2\Fallback.cs" />
+    <Compile Include="Entities\Responses\Initial\ThreeDv2\FallbackWith3dSecure.cs" />
+    <Compile Include="Entities\Responses\Initial\ThreeDv2\Frictionless.cs" />
+    <Compile Include="Entities\Responses\Initial\ThreeDv2\FrictionlessWith3dSecure.cs" />
     <Compile Include="GatewayPingSpecs.cs" />
     <Compile Include="TransactionExecutionSpecs.cs" />
     <Compile Include="Entities\Money.cs" />
@@ -182,6 +194,7 @@
       <Name>Genesis.NET</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

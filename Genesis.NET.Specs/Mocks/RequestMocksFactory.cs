@@ -1,13 +1,13 @@
-﻿using System;
-using System.Linq;
-using Genesis.Net.Common;
+﻿using Genesis.Net.Common;
 using Genesis.Net.Entities;
+using Genesis.Net.Entities.Attributes.Request.Financial.Business;
+using Genesis.Net.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
+using Genesis.Net.Entities.Attributes.Request.Financial.Cards.ThreedsV2.Enums;
 using Genesis.Net.Entities.Requests.Initial;
-using Genesis.Net.Entities.Requests.Initial.ThreeD;
 using Genesis.Net.Entities.Requests.Query;
 using Genesis.Net.Entities.Requests.Referential;
+using System;
 using System.Collections.Generic;
-using Genesis.Net.Entities.Attributes.Request.Financial.Business;
 
 namespace Genesis.Net.Specs.Mocks
 {
@@ -19,8 +19,8 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<Authorize> CreateValidAuthorize()
         {
-            DateTime _startDate = DateTime.Now.AddMonths(-1);
-            DateTime _endDate = DateTime.Now.AddMonths(1);
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
 
             var authorize = new Authorize()
             {
@@ -197,12 +197,12 @@ namespace Genesis.Net.Specs.Mocks
             return new EntityMock<Authorize>(authorize, xml);
         }
 
-        public static EntityMock<Authorize3dAsync> CreateValidAuthorize3dAsync()
+        public static EntityMock<Authorize3d> CreateValidAuthorize3dAsync()
         {
-            DateTime _startDate = DateTime.Now.AddMonths(-1);
-            DateTime _endDate = DateTime.Now.AddMonths(1);
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
 
-            var authorize3dAsync = new Authorize3dAsync()
+            var authorize3dAsync = new Authorize3d()
             {
                 Id = "id",
                 Usage = "usage",
@@ -300,7 +300,7 @@ namespace Genesis.Net.Specs.Mocks
 
             var xml =
                     "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                    "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Authorize3DAsync\">" +
+                    "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Authorize3d\">" +
                     "<transaction_type>authorize3d</transaction_type>" +
                     "<transaction_id>id</transaction_id>" +
                     "<usage>usage</usage>" +
@@ -382,12 +382,12 @@ namespace Genesis.Net.Specs.Mocks
                     "<return_failure_url>http://test.com/fail</return_failure_url>" +
                     "</payment_transaction>";
 
-            return new EntityMock<Authorize3dAsync>(authorize3dAsync, xml);
+            return new EntityMock<Authorize3d>(authorize3dAsync, xml);
         }
 
-        public static EntityMock<Authorize3dSync> CreateValidAuthorize3dSync()
+        public static EntityMock<Authorize3d> CreateValidAuthorize3dSync()
         {
-            var authorize3dSync = new Authorize3dSync()
+            var authorize3dSync = new Authorize3d()
             {
                 Id = "id",
                 Usage = "usage",
@@ -450,7 +450,7 @@ namespace Genesis.Net.Specs.Mocks
 
             var xml =
                     "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                    "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Authorize3DSync\">" +
+                    "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Authorize3d\">" +
                     "<transaction_type>authorize3d</transaction_type>" +
                     "<transaction_id>id</transaction_id>" +
                     "<usage>usage</usage>" +
@@ -506,15 +506,15 @@ namespace Genesis.Net.Specs.Mocks
                     "</mpi_params>" +
                     "</payment_transaction>";
 
-            return new EntityMock<Authorize3dSync>(authorize3dSync, xml);
+            return new EntityMock<Authorize3d>(authorize3dSync, xml);
         }
 
-        public static EntityMock<InitRecurringSale3dAsync> CreateValidInitRecurringSale3dAsync()
+        public static EntityMock<InitRecurringSale3d> CreateValidInitRecurringSale3dAsync()
         {
-            DateTime _startDate = DateTime.Now.AddMonths(-1);
-            DateTime _endDate = DateTime.Now.AddMonths(1);
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
 
-            var initRecurringSale3dAsync = new InitRecurringSale3dAsync()
+            var initRecurringSale3dAsync = new InitRecurringSale3d()
             {
                 Id = "id",
                 Usage = "usage",
@@ -611,7 +611,7 @@ namespace Genesis.Net.Specs.Mocks
 
             var xml =
                      "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"InitRecurringSale3DAsync\">" +
+                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"InitRecurringSale3d\">" +
                      "<transaction_type>init_recurring_sale3d</transaction_type>" +
                      "<transaction_id>id</transaction_id>" +
                      "<usage>usage</usage>" +
@@ -693,12 +693,12 @@ namespace Genesis.Net.Specs.Mocks
                      "<return_failure_url>http://test.com/fail</return_failure_url>" +
                      "</payment_transaction>";
 
-            return new EntityMock<InitRecurringSale3dAsync>(initRecurringSale3dAsync, xml);
+            return new EntityMock<InitRecurringSale3d>(initRecurringSale3dAsync, xml);
         }
 
-        public static EntityMock<InitRecurringSale3dSync> CreateValidInitRecurringSale3dSync()
+        public static EntityMock<InitRecurringSale3d> CreateValidInitRecurringSale3dSync()
         {
-            var initRecurringSale3dSync = new InitRecurringSale3dSync()
+            var initRecurringSale3dSync = new InitRecurringSale3d()
             {
                 Id = "id",
                 Usage = "usage",
@@ -761,7 +761,7 @@ namespace Genesis.Net.Specs.Mocks
 
             var xml =
                      "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"InitRecurringSale3DSync\">" +
+                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"InitRecurringSale3d\">" +
                      "<transaction_type>init_recurring_sale3d</transaction_type>" +
                      "<transaction_id>id</transaction_id>" +
                      "<usage>usage</usage>" +
@@ -817,15 +817,15 @@ namespace Genesis.Net.Specs.Mocks
                      "</mpi_params>" +
                      "</payment_transaction>";
 
-            return new EntityMock<InitRecurringSale3dSync>(initRecurringSale3dSync, xml);
+            return new EntityMock<InitRecurringSale3d>(initRecurringSale3dSync, xml);
         }
 
-        public static EntityMock<Sale3dAsync> CreateValidSale3dAsync()
+        public static EntityMock<Sale3d> CreateValidSale3dAsync()
         {
-            DateTime _startDate = DateTime.Now.AddMonths(-1);
-            DateTime _endDate = DateTime.Now.AddMonths(1);
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
 
-            var sale3dAsync = new Sale3dAsync()
+            var sale3dAsync = new Sale3d()
             {
                 Id = "id",
                 Usage = "usage",
@@ -922,7 +922,7 @@ namespace Genesis.Net.Specs.Mocks
 
             var xml =
                      "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Sale3DAsync\">" +
+                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Sale3d\">" +
                      "<transaction_type>sale3d</transaction_type>" +
                      "<transaction_id>id</transaction_id>" +
                      "<usage>usage</usage>" +
@@ -1004,15 +1004,12 @@ namespace Genesis.Net.Specs.Mocks
                      "<return_failure_url>http://test.com/fail</return_failure_url>" +
                      "</payment_transaction>";
 
-            return new EntityMock<Sale3dAsync>(sale3dAsync, xml);
+            return new EntityMock<Sale3d>(sale3dAsync, xml);
         }
 
-        public static EntityMock<Sale3dSync> CreateValidSale3dSync()
+        public static EntityMock<Sale3d> CreateValidSale3dSync()
         {
-            DateTime _startDate = DateTime.Now.AddMonths(-1);
-            DateTime _endDate = DateTime.Now.AddMonths(1);
-
-            var sale3dSync = new Sale3dSync()
+            var sale3dSync = new Sale3d()
             {
                 Id = "id",
                 Usage = "usage",
@@ -1075,7 +1072,7 @@ namespace Genesis.Net.Specs.Mocks
 
             var xml =
                      "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Sale3DSync\">" +
+                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Sale3d\">" +
                      "<transaction_type>sale3d</transaction_type>" +
                      "<transaction_id>id</transaction_id>" +
                      "<usage>usage</usage>" +
@@ -1131,7 +1128,1212 @@ namespace Genesis.Net.Specs.Mocks
                      "</mpi_params>" +
                      "</payment_transaction>";
 
-            return new EntityMock<Sale3dSync>(sale3dSync, xml);
+            return new EntityMock<Sale3d>(sale3dSync, xml);
+        }
+
+        public static EntityMock<InitRecurringSale3d> CreateValidFrictionless3dv2()
+        {
+            var sale3dv2 = new InitRecurringSale3d()
+            {
+                Id = "119643250547501c79d8295",
+                Usage = "40208 concert tickets",
+                RemoteIp = "245.253.2.12",
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                CardHolder = "Travis Pastrana",
+                CardNumber = CardsNumbers.Visa3dsv2FrictionlessAuthenticated,
+                ExpirationMonth = 12,
+                ExpirationYear = 2023,
+                CustomerEmail = "travis@example.com",
+                CustomerPhone = "+1987987987987",
+                Cvv = "834",
+                BillingAddress = new Address()
+                {
+                    Address1 = "Muster Str. 12",
+                    City = "Los Angeles",
+                    Country = Iso3166CountryCodes.US,
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    State = "CA",
+                    ZipCode = "10178"
+                },
+                NotificationUrl = "https://www.example.com/notification",
+                ReturnSuccessUrl = "http://www.example.com/success",
+                ReturnFailureUrl = "http://www.example.com/failure",
+                ThreeDSv2 = new ThreeDSv2
+                {
+                    ThreedsMethod = new ThreedsMethod()
+                    {
+                        CallbackUrl = "https://www.example.com/threeds/threeds_method/callback",
+                    },
+                    Control = new Control()
+                    {
+                        DeviceType = DeviceTypes.Browser,
+                        ChallengeWindowSize = ChallengeWindowSizes.FullScreen,
+                        ChallengeIndicator = ChallengeIndicators.Preference
+                    },
+                    Purchase = new Purchase()
+                    {
+                        Category = PurchaseCategories.Service
+                    },
+                    MerchantRisk = new MerchantRisk()
+                    {
+                        ShippingIndicator = ShippingIndicators.VerifiedAddress,
+                        DeliveryTimeframe = DeliveryTimeframes.Electronic,
+                        ReorderItemsIndicator = ReorderItemsIndicators.Reordered,
+                        PreOrderPurchaseIndicator = PreOrderPurchaseIndicators.MerchandiseAvailable,
+                        PreOrderDate = new DateTime(2022, 06, 25).Date,
+                        GiftCard = true,
+                        GiftCardCount = 2
+                    },
+                    CardHolderAccount = new CardHolderAccount()
+                    {
+                        CreationDate = new DateTime(2021, 05, 25).Date,
+                        UpdateIndicator = UpdateIndicators.MoreThan60Days,
+                        LastChangeDate = new DateTime(2022, 02, 25).Date,
+                        PasswordChangeIndicator = PasswordChangeIndicators.NoChange,
+                        PasswordChangeDate = new DateTime(2022, 05, 10).Date,
+                        ShippingAddressUsageIndicator = ShippingAddressUsageIndicators.CurrentTransaction,
+                        ShippingAddressDateFirstUsed = new DateTime(2022, 05, 20).Date,
+                        TransactionsActivityLast24Hours = 2,
+                        TransactionsActivityPreviousYear = 10,
+                        ProvisionAttemptsLast24Hours = 1,
+                        PurchasesCountLast6Months = 5,
+                        SuspiciousActivityIndicator = SuspiciousActivityIndicators.NoSuspiciousObserved,
+                        RegistrationIndicator = RegistrationIndicators.From30To60Days,
+                        RegistrationDate = new DateTime(2020, 05, 25).Date,
+                    },
+                    Browser = new Browser()
+                    {
+                        AcceptHeader = "*/*",
+                        JavaEnabled = false,
+                        Language = "en-GB",
+                        ColorDepth = 24,
+                        ScreenHeight = 900,
+                        ScreenWidth = 1440,
+                        TimeZoneOffset = -120,
+                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36",
+                    },
+                    Sdk = new Sdk()
+                    {
+                        Interface = Interfaces.Native,
+                        UiTypes = new List<UiTypes>
+                        {
+                            UiTypes.MultiSelect
+                        },
+                        ApplicationId = Guid.Parse("fc1650c0-5778-0138-8205-2cbc32a32d65"),
+                        EncryptedData = "encrypted-data-here",
+                        EphemeralPublicKeyPair = "public-key-pair",
+                        MaxTimeout = 10,
+                        ReferenceNumber = "sdk-reference-number-here"
+                    },
+                    Recurring = new Recurring()
+                    {
+                        ExpirationDate = new DateTime(2022, 11, 25).Date,
+                        Frequency = 30,
+                    }
+                },
+                Sca = new Sca()
+                {
+                    Exemption = ScaExemptions.LowRisk
+                }
+            };
+
+            var xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+                <payment_transaction xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns=""InitRecurringSale3d"">
+                  <transaction_type>init_recurring_sale3d</transaction_type>
+                  <transaction_id>119643250547501c79d8295</transaction_id>
+                  <usage>40208 concert tickets</usage>
+                  <amount>100</amount>
+                  <currency>USD</currency>
+                  <remote_ip>245.253.2.12</remote_ip>
+                  <card_holder>Travis Pastrana</card_holder>
+                  <expiration_month>12</expiration_month>
+                  <expiration_year>2023</expiration_year>
+                  <customer_email>travis@example.com</customer_email>
+                  <customer_phone>+1987987987987</customer_phone>
+                  <card_number>4012000000060085</card_number>
+                  <cvv>834</cvv>
+                  <billing_address>
+                    <first_name>Travis</first_name>
+                    <last_name>Pastrana</last_name>
+                    <address1>Muster Str. 12</address1>
+                    <zip_code>10178</zip_code>
+                    <city>Los Angeles</city>
+                    <state>CA</state>
+                    <country>US</country>
+                  </billing_address>
+                  <notification_url>https://www.example.com/notification</notification_url>
+                  <return_success_url>http://www.example.com/success</return_success_url>
+                  <return_failure_url>http://www.example.com/failure</return_failure_url>
+                  <threeds_v2_params>
+                    <threeds_method>
+                      <callback_url>https://www.example.com/threeds/threeds_method/callback</callback_url>
+                    </threeds_method>
+                    <control>
+                      <device_type>browser</device_type>
+                      <challenge_window_size>full_screen</challenge_window_size>
+                      <challenge_indicator>preference</challenge_indicator>
+                    </control>
+                    <purchase>
+                      <category>service</category>
+                    </purchase>
+                    <merchant_risk>
+                      <shipping_indicator>verified_address</shipping_indicator>
+                      <delivery_timeframe>electronic</delivery_timeframe>
+                      <reorder_items_indicator>reordered</reorder_items_indicator>
+                      <pre_order_purchase_indicator>merchandise_available</pre_order_purchase_indicator>
+                      <pre_order_date>25-06-2022</pre_order_date>
+                      <gift_card>true</gift_card>
+                      <gift_card_count>2</gift_card_count>
+                    </merchant_risk>
+                    <card_holder_account>
+                      <creation_date>25-05-2021</creation_date>
+                      <update_indicator>more_than_60days</update_indicator>
+                      <last_change_date>25-02-2022</last_change_date>
+                      <password_change_indicator>no_change</password_change_indicator>
+                      <password_change_date>10-05-2022</password_change_date>
+                      <shipping_address_usage_indicator>current_transaction</shipping_address_usage_indicator>
+                      <shipping_address_date_first_used>20-05-2022</shipping_address_date_first_used>
+                      <transactions_activity_last_24_hours>2</transactions_activity_last_24_hours>
+                      <transactions_activity_previous_year>10</transactions_activity_previous_year>
+                      <provision_attempts_last_24_hours>1</provision_attempts_last_24_hours>
+                      <purchases_count_last_6_months>5</purchases_count_last_6_months>
+                      <suspicious_activity_indicator>no_suspicious_observed</suspicious_activity_indicator>
+                      <registration_indicator>30_to_60_days</registration_indicator>
+                      <registration_date>25-05-2020</registration_date>
+                    </card_holder_account>
+                    <browser>
+                      <accept_header>*/*</accept_header>
+                      <java_enabled>false</java_enabled>
+                      <language>en-GB</language>
+                      <color_depth>24</color_depth>
+                      <screen_height>900</screen_height>
+                      <screen_width>1440</screen_width>
+                      <time_zone_offset>-120</time_zone_offset>
+                      <user_agent>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36</user_agent>
+                    </browser>
+                    <sdk>
+                      <interface>native</interface>
+                      <ui_types>
+                        <ui_type>multi_select</ui_type>
+                      </ui_types>
+                      <application_id>fc1650c0-5778-0138-8205-2cbc32a32d65</application_id>
+                      <encrypted_data>encrypted-data-here</encrypted_data>
+                      <ephemeral_public_key_pair>public-key-pair</ephemeral_public_key_pair>
+                      <max_timeout>10</max_timeout>
+                      <reference_number>sdk-reference-number-here</reference_number>
+                    </sdk>
+                    <recurring>
+                      <expiration_date>25-11-2022</expiration_date>
+                      <frequency>30</frequency>
+                    </recurring>
+                  </threeds_v2_params>
+                  <sca_params>
+                    <exemption>low_risk</exemption>
+                  </sca_params>
+                </payment_transaction>";
+
+            return new EntityMock<InitRecurringSale3d>(sale3dv2, xml);
+        }
+
+        public static EntityMock<InitRecurringSale3d> CreateValidFrictionless3dv2With3dSecure()
+        {
+            var sale3dv2With3dSecure = new InitRecurringSale3d()
+            {
+                Id = "119643250547501c79d8295",
+                Usage = "40208 concert tickets",
+                RemoteIp = "245.253.2.12",
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                CardHolder = "Travis Pastrana",
+                CardNumber = CardsNumbers.Visa3dsv2FrictionlessWith3dsMethodAuthenticated,
+                ExpirationMonth = 12,
+                ExpirationYear = 2023,
+                CustomerEmail = "travis@example.com",
+                CustomerPhone = "+1987987987987",
+                Cvv = "834",
+                BillingAddress = new Address()
+                {
+                    Address1 = "Muster Str. 12",
+                    City = "Los Angeles",
+                    Country = Iso3166CountryCodes.US,
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    State = "CA",
+                    ZipCode = "10178"
+                },
+                NotificationUrl = "https://www.example.com/notification",
+                ReturnSuccessUrl = "http://www.example.com/success",
+                ReturnFailureUrl = "http://www.example.com/failure",
+                ThreeDSv2 = new ThreeDSv2
+                {
+                    ThreedsMethod = new ThreedsMethod()
+                    {
+                        CallbackUrl = "https://www.example.com/threeds/threeds_method/callback",
+                    },
+                    Control = new Control()
+                    {
+                        DeviceType = DeviceTypes.Browser,
+                        ChallengeWindowSize = ChallengeWindowSizes.FullScreen,
+                        ChallengeIndicator = ChallengeIndicators.Preference
+                    },
+                    Purchase = new Purchase()
+                    {
+                        Category = PurchaseCategories.Service
+                    },
+                    MerchantRisk = new MerchantRisk()
+                    {
+                        ShippingIndicator = ShippingIndicators.VerifiedAddress,
+                        DeliveryTimeframe = DeliveryTimeframes.Electronic,
+                        ReorderItemsIndicator = ReorderItemsIndicators.Reordered,
+                        PreOrderPurchaseIndicator = PreOrderPurchaseIndicators.MerchandiseAvailable,
+                        PreOrderDate = new DateTime(2022, 06, 25).Date,
+                        GiftCard = true,
+                        GiftCardCount = 2
+                    },
+                    CardHolderAccount = new CardHolderAccount()
+                    {
+                        CreationDate = new DateTime(2021, 05, 25).Date,
+                        UpdateIndicator = UpdateIndicators.MoreThan60Days,
+                        LastChangeDate = new DateTime(2022, 02, 25).Date,
+                        PasswordChangeIndicator = PasswordChangeIndicators.NoChange,
+                        PasswordChangeDate = new DateTime(2022, 05, 10).Date,
+                        ShippingAddressUsageIndicator = ShippingAddressUsageIndicators.CurrentTransaction,
+                        ShippingAddressDateFirstUsed = new DateTime(2022, 05, 20).Date,
+                        TransactionsActivityLast24Hours = 2,
+                        TransactionsActivityPreviousYear = 10,
+                        ProvisionAttemptsLast24Hours = 1,
+                        PurchasesCountLast6Months = 5,
+                        SuspiciousActivityIndicator = SuspiciousActivityIndicators.NoSuspiciousObserved,
+                        RegistrationIndicator = RegistrationIndicators.From30To60Days,
+                        RegistrationDate = new DateTime(2020, 05, 25).Date,
+                    },
+                    Browser = new Browser()
+                    {
+                        AcceptHeader = "*/*",
+                        JavaEnabled = false,
+                        Language = "en-GB",
+                        ColorDepth = 24,
+                        ScreenHeight = 900,
+                        ScreenWidth = 1440,
+                        TimeZoneOffset = -120,
+                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36",
+                    },
+                    Sdk = new Sdk()
+                    {
+                        Interface = Interfaces.Native,
+                        UiTypes = new List<UiTypes>
+                        {
+                            UiTypes.MultiSelect
+                        },
+                        ApplicationId = Guid.Parse("fc1650c0-5778-0138-8205-2cbc32a32d65"),
+                        EncryptedData = "encrypted-data-here",
+                        EphemeralPublicKeyPair = "public-key-pair",
+                        MaxTimeout = 10,
+                        ReferenceNumber = "sdk-reference-number-here"
+                    },
+                    Recurring = new Recurring()
+                    {
+                        ExpirationDate = new DateTime(2022, 11, 25).Date,
+                        Frequency = 30,
+                    }
+                },
+                Sca = new Sca()
+                {
+                    Exemption = ScaExemptions.LowRisk
+                }
+            };
+
+            var xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+  <payment_transaction xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns=""InitRecurringSale3d"">
+    <transaction_type>init_recurring_sale3d</transaction_type>
+    <transaction_id>119643250547501c79d8295</transaction_id>
+    <usage>40208 concert tickets</usage>
+    <amount>100</amount>
+    <currency>USD</currency>
+    <remote_ip>245.253.2.12</remote_ip>
+    <card_holder>Travis Pastrana</card_holder>
+    <expiration_month>12</expiration_month>
+    <expiration_year>2023</expiration_year>
+    <customer_email>travis@example.com</customer_email>
+    <customer_phone>+1987987987987</customer_phone>
+    <card_number>4066330000000004</card_number>
+    <cvv>834</cvv>
+    <billing_address>
+      <first_name>Travis</first_name>
+      <last_name>Pastrana</last_name>
+      <address1>Muster Str. 12</address1>
+      <zip_code>10178</zip_code>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <country>US</country>
+    </billing_address>
+    <notification_url>https://www.example.com/notification</notification_url>
+    <return_success_url>http://www.example.com/success</return_success_url>
+    <return_failure_url>http://www.example.com/failure</return_failure_url>
+    <threeds_v2_params>
+      <threeds_method>
+        <callback_url>https://www.example.com/threeds/threeds_method/callback</callback_url>
+      </threeds_method>
+      <control>
+        <device_type>browser</device_type>
+        <challenge_window_size>full_screen</challenge_window_size>
+        <challenge_indicator>preference</challenge_indicator>
+      </control>
+      <purchase>
+        <category>service</category>
+      </purchase>
+      <merchant_risk>
+        <shipping_indicator>verified_address</shipping_indicator>
+        <delivery_timeframe>electronic</delivery_timeframe>
+        <reorder_items_indicator>reordered</reorder_items_indicator>
+        <pre_order_purchase_indicator>merchandise_available</pre_order_purchase_indicator>
+        <pre_order_date>25-06-2022</pre_order_date>
+        <gift_card>true</gift_card>
+        <gift_card_count>2</gift_card_count>
+      </merchant_risk>
+      <card_holder_account>
+        <creation_date>25-05-2021</creation_date>
+        <update_indicator>more_than_60days</update_indicator>
+        <last_change_date>25-02-2022</last_change_date>
+        <password_change_indicator>no_change</password_change_indicator>
+        <password_change_date>10-05-2022</password_change_date>
+        <shipping_address_usage_indicator>current_transaction</shipping_address_usage_indicator>
+        <shipping_address_date_first_used>20-05-2022</shipping_address_date_first_used>
+        <transactions_activity_last_24_hours>2</transactions_activity_last_24_hours>
+        <transactions_activity_previous_year>10</transactions_activity_previous_year>
+        <provision_attempts_last_24_hours>1</provision_attempts_last_24_hours>
+        <purchases_count_last_6_months>5</purchases_count_last_6_months>
+        <suspicious_activity_indicator>no_suspicious_observed</suspicious_activity_indicator>
+        <registration_indicator>30_to_60_days</registration_indicator>
+        <registration_date>25-05-2020</registration_date>
+      </card_holder_account>
+      <browser>
+        <accept_header>*/*</accept_header>
+        <java_enabled>false</java_enabled>
+        <language>en-GB</language>
+        <color_depth>24</color_depth>
+        <screen_height>900</screen_height>
+        <screen_width>1440</screen_width>
+        <time_zone_offset>-120</time_zone_offset>
+        <user_agent>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36</user_agent>
+      </browser>
+      <sdk>
+        <interface>native</interface>
+        <ui_types>
+          <ui_type>multi_select</ui_type>
+        </ui_types>
+        <application_id>fc1650c0-5778-0138-8205-2cbc32a32d65</application_id>
+        <encrypted_data>encrypted-data-here</encrypted_data>
+        <ephemeral_public_key_pair>public-key-pair</ephemeral_public_key_pair>
+        <max_timeout>10</max_timeout>
+        <reference_number>sdk-reference-number-here</reference_number>
+      </sdk>
+      <recurring>
+        <expiration_date>25-11-2022</expiration_date>
+        <frequency>30</frequency>
+      </recurring>
+    </threeds_v2_params>
+    <sca_params>
+      <exemption>low_risk</exemption>
+    </sca_params>
+  </payment_transaction>";
+            return new EntityMock<InitRecurringSale3d>(sale3dv2With3dSecure, xml);
+        }
+
+        public static EntityMock<Authorize3d> CreateValidChallenge3dv2()
+        {
+            var challenge3dv2With3dSecure = new Authorize3d()
+            {
+                Type = TransactionTypes.Authorize3d,
+                Id = "119643250547501c79d8295",
+                Usage = "40208 concert tickets",
+                RemoteIp = "245.253.2.12",
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                CardHolder = "Travis Pastrana",
+                CardNumber = CardsNumbers.Visa3dsv2Challenge,
+                ExpirationMonth = 12,
+                ExpirationYear = 2023,
+                CustomerEmail = "travis@example.com",
+                CustomerPhone = "+1987987987987",
+                Cvv = "834",
+                BillingAddress = new Address()
+                {
+                    Address1 = "Muster Str. 12",
+                    City = "Los Angeles",
+                    Country = Iso3166CountryCodes.US,
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    State = "CA",
+                    ZipCode = "10178"
+                },
+                NotificationUrl = "https://www.example.com/notification",
+                ReturnSuccessUrl = "http://www.example.com/success",
+                ReturnFailureUrl = "http://www.example.com/failure",
+                ThreeDSv2 = new ThreeDSv2
+                {
+                    ThreedsMethod = new ThreedsMethod()
+                    {
+                        CallbackUrl = "https://www.example.com/threeds/threeds_method/callback",
+                    },
+                    Control = new Control()
+                    {
+                        DeviceType = DeviceTypes.Browser,
+                        ChallengeWindowSize = ChallengeWindowSizes.FullScreen,
+                        ChallengeIndicator = ChallengeIndicators.Preference
+                    },
+                    Purchase = new Purchase()
+                    {
+                        Category = PurchaseCategories.Service
+                    },
+                    MerchantRisk = new MerchantRisk()
+                    {
+                        ShippingIndicator = ShippingIndicators.VerifiedAddress,
+                        DeliveryTimeframe = DeliveryTimeframes.Electronic,
+                        ReorderItemsIndicator = ReorderItemsIndicators.Reordered,
+                        PreOrderPurchaseIndicator = PreOrderPurchaseIndicators.MerchandiseAvailable,
+                        PreOrderDate = new DateTime(2022, 06, 25).Date,
+                        GiftCard = true,
+                        GiftCardCount = 2
+                    },
+                    CardHolderAccount = new CardHolderAccount()
+                    {
+                        CreationDate = new DateTime(2021, 05, 25).Date,
+                        UpdateIndicator = UpdateIndicators.MoreThan60Days,
+                        LastChangeDate = new DateTime(2022, 02, 25).Date,
+                        PasswordChangeIndicator = PasswordChangeIndicators.NoChange,
+                        PasswordChangeDate = new DateTime(2022, 05, 10).Date,
+                        ShippingAddressUsageIndicator = ShippingAddressUsageIndicators.CurrentTransaction,
+                        ShippingAddressDateFirstUsed = new DateTime(2022, 05, 20).Date,
+                        TransactionsActivityLast24Hours = 2,
+                        TransactionsActivityPreviousYear = 10,
+                        ProvisionAttemptsLast24Hours = 1,
+                        PurchasesCountLast6Months = 5,
+                        SuspiciousActivityIndicator = SuspiciousActivityIndicators.NoSuspiciousObserved,
+                        RegistrationIndicator = RegistrationIndicators.From30To60Days,
+                        RegistrationDate = new DateTime(2020, 05, 25).Date,
+                    },
+                    Browser = new Browser()
+                    {
+                        AcceptHeader = "*/*",
+                        JavaEnabled = false,
+                        Language = "en-GB",
+                        ColorDepth = 24,
+                        ScreenHeight = 900,
+                        ScreenWidth = 1440,
+                        TimeZoneOffset = -120,
+                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36",
+                    },
+                    Sdk = new Sdk()
+                    {
+                        Interface = Interfaces.Native,
+                        UiTypes = new List<UiTypes>
+                        {
+                            UiTypes.MultiSelect
+                        },
+                        ApplicationId = Guid.Parse("fc1650c0-5778-0138-8205-2cbc32a32d65"),
+                        EncryptedData = "encrypted-data-here",
+                        EphemeralPublicKeyPair = "public-key-pair",
+                        MaxTimeout = 10,
+                        ReferenceNumber = "sdk-reference-number-here"
+                    }
+                },
+                Sca = new Sca()
+                {
+                    Exemption = ScaExemptions.LowRisk
+                }
+            };
+
+            var xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+  <payment_transaction xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns=""Authorize3d"">
+    <transaction_type>authorize3d</transaction_type>
+    <transaction_id>119643250547501c79d8295</transaction_id>
+    <usage>40208 concert tickets</usage>
+    <amount>100</amount>
+    <currency>USD</currency>
+    <remote_ip>245.253.2.12</remote_ip>
+    <card_holder>Travis Pastrana</card_holder>
+    <expiration_month>12</expiration_month>
+    <expiration_year>2023</expiration_year>
+    <customer_email>travis@example.com</customer_email>
+    <customer_phone>+1987987987987</customer_phone>
+    <card_number>4918190000000002</card_number>
+    <cvv>834</cvv>
+    <billing_address>
+      <first_name>Travis</first_name>
+      <last_name>Pastrana</last_name>
+      <address1>Muster Str. 12</address1>
+      <zip_code>10178</zip_code>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <country>US</country>
+    </billing_address>
+    <notification_url>https://www.example.com/notification</notification_url>
+    <return_success_url>http://www.example.com/success</return_success_url>
+    <return_failure_url>http://www.example.com/failure</return_failure_url>
+    <threeds_v2_params>
+      <threeds_method>
+        <callback_url>https://www.example.com/threeds/threeds_method/callback</callback_url>
+      </threeds_method>
+      <control>
+        <device_type>browser</device_type>
+        <challenge_window_size>full_screen</challenge_window_size>
+        <challenge_indicator>preference</challenge_indicator>
+      </control>
+      <purchase>
+        <category>service</category>
+      </purchase>
+      <merchant_risk>
+        <shipping_indicator>verified_address</shipping_indicator>
+        <delivery_timeframe>electronic</delivery_timeframe>
+        <reorder_items_indicator>reordered</reorder_items_indicator>
+        <pre_order_purchase_indicator>merchandise_available</pre_order_purchase_indicator>
+        <pre_order_date>25-06-2022</pre_order_date>
+        <gift_card>true</gift_card>
+        <gift_card_count>2</gift_card_count>
+      </merchant_risk>
+      <card_holder_account>
+        <creation_date>25-05-2021</creation_date>
+        <update_indicator>more_than_60days</update_indicator>
+        <last_change_date>25-02-2022</last_change_date>
+        <password_change_indicator>no_change</password_change_indicator>
+        <password_change_date>10-05-2022</password_change_date>
+        <shipping_address_usage_indicator>current_transaction</shipping_address_usage_indicator>
+        <shipping_address_date_first_used>20-05-2022</shipping_address_date_first_used>
+        <transactions_activity_last_24_hours>2</transactions_activity_last_24_hours>
+        <transactions_activity_previous_year>10</transactions_activity_previous_year>
+        <provision_attempts_last_24_hours>1</provision_attempts_last_24_hours>
+        <purchases_count_last_6_months>5</purchases_count_last_6_months>
+        <suspicious_activity_indicator>no_suspicious_observed</suspicious_activity_indicator>
+        <registration_indicator>30_to_60_days</registration_indicator>
+        <registration_date>25-05-2020</registration_date>
+      </card_holder_account>
+      <browser>
+        <accept_header>*/*</accept_header>
+        <java_enabled>false</java_enabled>
+        <language>en-GB</language>
+        <color_depth>24</color_depth>
+        <screen_height>900</screen_height>
+        <screen_width>1440</screen_width>
+        <time_zone_offset>-120</time_zone_offset>
+        <user_agent>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36</user_agent>
+      </browser>
+      <sdk>
+        <interface>native</interface>
+        <ui_types>
+          <ui_type>multi_select</ui_type>
+        </ui_types>
+        <application_id>fc1650c0-5778-0138-8205-2cbc32a32d65</application_id>
+        <encrypted_data>encrypted-data-here</encrypted_data>
+        <ephemeral_public_key_pair>public-key-pair</ephemeral_public_key_pair>
+        <max_timeout>10</max_timeout>
+        <reference_number>sdk-reference-number-here</reference_number>
+      </sdk>
+    </threeds_v2_params>
+    <sca_params>
+      <exemption>low_risk</exemption>
+    </sca_params>
+  </payment_transaction>";
+            return new EntityMock<Authorize3d>(challenge3dv2With3dSecure, xml);
+        }
+
+        public static EntityMock<Sale3d> CreateValidChallenge3dv2With3dSecure()
+        {
+            var challenge3dv2With3dSecure = new Sale3d()
+            {
+                Type = TransactionTypes.Sale3d,
+                Id = "119643250547501c79d8295",
+                Usage = "40208 concert tickets",
+                RemoteIp = "245.253.2.12",
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                CardHolder = "Travis Pastrana",
+                CardNumber = CardsNumbers.Visa3dsv2ChallengeWith3dsMethod,
+                ExpirationMonth = 12,
+                ExpirationYear = 2023,
+                CustomerEmail = "travis@example.com",
+                CustomerPhone = "+1987987987987",
+                Cvv = "834",
+                BillingAddress = new Address()
+                {
+                    Address1 = "Muster Str. 12",
+                    City = "Los Angeles",
+                    Country = Iso3166CountryCodes.US,
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    State = "CA",
+                    ZipCode = "10178"
+                },
+                NotificationUrl = "https://www.example.com/notification",
+                ReturnSuccessUrl = "http://www.example.com/success",
+                ReturnFailureUrl = "http://www.example.com/failure",
+                ThreeDSv2 = new ThreeDSv2
+                {
+                    ThreedsMethod = new ThreedsMethod()
+                    {
+                        CallbackUrl = "https://www.example.com/threeds/threeds_method/callback",
+                    },
+                    Control = new Control()
+                    {
+                        DeviceType = DeviceTypes.Browser,
+                        ChallengeWindowSize = ChallengeWindowSizes.FullScreen,
+                        ChallengeIndicator = ChallengeIndicators.Preference
+                    },
+                    Purchase = new Purchase()
+                    {
+                        Category = PurchaseCategories.Service
+                    },
+                    MerchantRisk = new MerchantRisk()
+                    {
+                        ShippingIndicator = ShippingIndicators.VerifiedAddress,
+                        DeliveryTimeframe = DeliveryTimeframes.Electronic,
+                        ReorderItemsIndicator = ReorderItemsIndicators.Reordered,
+                        PreOrderPurchaseIndicator = PreOrderPurchaseIndicators.MerchandiseAvailable,
+                        PreOrderDate = new DateTime(2022, 06, 25).Date,
+                        GiftCard = true,
+                        GiftCardCount = 2
+                    },
+                    CardHolderAccount = new CardHolderAccount()
+                    {
+                        CreationDate = new DateTime(2021, 05, 25).Date,
+                        UpdateIndicator = UpdateIndicators.MoreThan60Days,
+                        LastChangeDate = new DateTime(2022, 02, 25).Date,
+                        PasswordChangeIndicator = PasswordChangeIndicators.NoChange,
+                        PasswordChangeDate = new DateTime(2022, 05, 10).Date,
+                        ShippingAddressUsageIndicator = ShippingAddressUsageIndicators.CurrentTransaction,
+                        ShippingAddressDateFirstUsed = new DateTime(2022, 05, 20).Date,
+                        TransactionsActivityLast24Hours = 2,
+                        TransactionsActivityPreviousYear = 10,
+                        ProvisionAttemptsLast24Hours = 1,
+                        PurchasesCountLast6Months = 5,
+                        SuspiciousActivityIndicator = SuspiciousActivityIndicators.NoSuspiciousObserved,
+                        RegistrationIndicator = RegistrationIndicators.From30To60Days,
+                        RegistrationDate = new DateTime(2020, 05, 25).Date,
+                    },
+                    Browser = new Browser()
+                    {
+                        AcceptHeader = "*/*",
+                        JavaEnabled = false,
+                        Language = "en-GB",
+                        ColorDepth = 24,
+                        ScreenHeight = 900,
+                        ScreenWidth = 1440,
+                        TimeZoneOffset = -120,
+                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36",
+                    },
+                    Sdk = new Sdk()
+                    {
+                        Interface = Interfaces.Native,
+                        UiTypes = new List<UiTypes>
+                        {
+                            UiTypes.MultiSelect
+                        },
+                        ApplicationId = Guid.Parse("fc1650c0-5778-0138-8205-2cbc32a32d65"),
+                        EncryptedData = "encrypted-data-here",
+                        EphemeralPublicKeyPair = "public-key-pair",
+                        MaxTimeout = 10,
+                        ReferenceNumber = "sdk-reference-number-here"
+                    }
+                },
+                Sca = new Sca()
+                {
+                    Exemption = ScaExemptions.LowRisk
+                }
+            };
+
+            var xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+  <payment_transaction xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns=""Sale3d"">
+    <transaction_type>sale3d</transaction_type>
+    <transaction_id>119643250547501c79d8295</transaction_id>
+    <usage>40208 concert tickets</usage>
+    <amount>100</amount>
+    <currency>USD</currency>
+    <remote_ip>245.253.2.12</remote_ip>
+    <card_holder>Travis Pastrana</card_holder>
+    <expiration_month>12</expiration_month>
+    <expiration_year>2023</expiration_year>
+    <customer_email>travis@example.com</customer_email>
+    <customer_phone>+1987987987987</customer_phone>
+    <card_number>4938730000000001</card_number>
+    <cvv>834</cvv>
+    <billing_address>
+      <first_name>Travis</first_name>
+      <last_name>Pastrana</last_name>
+      <address1>Muster Str. 12</address1>
+      <zip_code>10178</zip_code>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <country>US</country>
+    </billing_address>
+    <notification_url>https://www.example.com/notification</notification_url>
+    <return_success_url>http://www.example.com/success</return_success_url>
+    <return_failure_url>http://www.example.com/failure</return_failure_url>
+    <threeds_v2_params>
+      <threeds_method>
+        <callback_url>https://www.example.com/threeds/threeds_method/callback</callback_url>
+      </threeds_method>
+      <control>
+        <device_type>browser</device_type>
+        <challenge_window_size>full_screen</challenge_window_size>
+        <challenge_indicator>preference</challenge_indicator>
+      </control>
+      <purchase>
+        <category>service</category>
+      </purchase>
+      <merchant_risk>
+        <shipping_indicator>verified_address</shipping_indicator>
+        <delivery_timeframe>electronic</delivery_timeframe>
+        <reorder_items_indicator>reordered</reorder_items_indicator>
+        <pre_order_purchase_indicator>merchandise_available</pre_order_purchase_indicator>
+        <pre_order_date>25-06-2022</pre_order_date>
+        <gift_card>true</gift_card>
+        <gift_card_count>2</gift_card_count>
+      </merchant_risk>
+      <card_holder_account>
+        <creation_date>25-05-2021</creation_date>
+        <update_indicator>more_than_60days</update_indicator>
+        <last_change_date>25-02-2022</last_change_date>
+        <password_change_indicator>no_change</password_change_indicator>
+        <password_change_date>10-05-2022</password_change_date>
+        <shipping_address_usage_indicator>current_transaction</shipping_address_usage_indicator>
+        <shipping_address_date_first_used>20-05-2022</shipping_address_date_first_used>
+        <transactions_activity_last_24_hours>2</transactions_activity_last_24_hours>
+        <transactions_activity_previous_year>10</transactions_activity_previous_year>
+        <provision_attempts_last_24_hours>1</provision_attempts_last_24_hours>
+        <purchases_count_last_6_months>5</purchases_count_last_6_months>
+        <suspicious_activity_indicator>no_suspicious_observed</suspicious_activity_indicator>
+        <registration_indicator>30_to_60_days</registration_indicator>
+        <registration_date>25-05-2020</registration_date>
+      </card_holder_account>
+      <browser>
+        <accept_header>*/*</accept_header>
+        <java_enabled>false</java_enabled>
+        <language>en-GB</language>
+        <color_depth>24</color_depth>
+        <screen_height>900</screen_height>
+        <screen_width>1440</screen_width>
+        <time_zone_offset>-120</time_zone_offset>
+        <user_agent>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36</user_agent>
+      </browser>
+      <sdk>
+        <interface>native</interface>
+        <ui_types>
+          <ui_type>multi_select</ui_type>
+        </ui_types>
+        <application_id>fc1650c0-5778-0138-8205-2cbc32a32d65</application_id>
+        <encrypted_data>encrypted-data-here</encrypted_data>
+        <ephemeral_public_key_pair>public-key-pair</ephemeral_public_key_pair>
+        <max_timeout>10</max_timeout>
+        <reference_number>sdk-reference-number-here</reference_number>
+      </sdk>
+    </threeds_v2_params>
+    <sca_params>
+      <exemption>low_risk</exemption>
+    </sca_params>
+  </payment_transaction>";
+            return new EntityMock<Sale3d>(challenge3dv2With3dSecure, xml);
+        }
+
+        public static EntityMock<InitRecurringSale3d> CreateValidFallback3dv2()
+        {
+            var fallback3dv2 = new InitRecurringSale3d()
+            {
+                Type = TransactionTypes.InitRecurringSale3d,
+                Id = "119643250547501c79d8295",
+                Usage = "40208 concert tickets",
+                RemoteIp = "245.253.2.12",
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                CardHolder = "Travis Pastrana",
+                CardNumber = CardsNumbers.Visa3dsv2FallbackTo3dv1,
+                ExpirationMonth = 12,
+                ExpirationYear = 2023,
+                CustomerEmail = "travis@example.com",
+                CustomerPhone = "+1987987987987",
+                Cvv = "834",
+                BillingAddress = new Address()
+                {
+                    Address1 = "Muster Str. 12",
+                    City = "Los Angeles",
+                    Country = Iso3166CountryCodes.US,
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    State = "CA",
+                    ZipCode = "10178"
+                },
+                NotificationUrl = "https://www.example.com/notification",
+                ReturnSuccessUrl = "http://www.example.com/success",
+                ReturnFailureUrl = "http://www.example.com/failure",
+                ThreeDSv2 = new ThreeDSv2
+                {
+                    ThreedsMethod = new ThreedsMethod()
+                    {
+                        CallbackUrl = "https://www.example.com/threeds/threeds_method/callback",
+                    },
+                    Control = new Control()
+                    {
+                        DeviceType = DeviceTypes.Browser,
+                        ChallengeWindowSize = ChallengeWindowSizes.FullScreen,
+                        ChallengeIndicator = ChallengeIndicators.Preference
+                    },
+                    Purchase = new Purchase()
+                    {
+                        Category = PurchaseCategories.Service
+                    },
+                    MerchantRisk = new MerchantRisk()
+                    {
+                        ShippingIndicator = ShippingIndicators.VerifiedAddress,
+                        DeliveryTimeframe = DeliveryTimeframes.Electronic,
+                        ReorderItemsIndicator = ReorderItemsIndicators.Reordered,
+                        PreOrderPurchaseIndicator = PreOrderPurchaseIndicators.MerchandiseAvailable,
+                        PreOrderDate = new DateTime(2022, 06, 25).Date,
+                        GiftCard = true,
+                        GiftCardCount = 2
+                    },
+                    CardHolderAccount = new CardHolderAccount()
+                    {
+                        CreationDate = new DateTime(2021, 05, 25).Date,
+                        UpdateIndicator = UpdateIndicators.MoreThan60Days,
+                        LastChangeDate = new DateTime(2022, 02, 25).Date,
+                        PasswordChangeIndicator = PasswordChangeIndicators.NoChange,
+                        PasswordChangeDate = new DateTime(2022, 05, 10).Date,
+                        ShippingAddressUsageIndicator = ShippingAddressUsageIndicators.CurrentTransaction,
+                        ShippingAddressDateFirstUsed = new DateTime(2022, 05, 20).Date,
+                        TransactionsActivityLast24Hours = 2,
+                        TransactionsActivityPreviousYear = 10,
+                        ProvisionAttemptsLast24Hours = 1,
+                        PurchasesCountLast6Months = 5,
+                        SuspiciousActivityIndicator = SuspiciousActivityIndicators.NoSuspiciousObserved,
+                        RegistrationIndicator = RegistrationIndicators.From30To60Days,
+                        RegistrationDate = new DateTime(2020, 05, 25).Date,
+                    },
+                    Browser = new Browser()
+                    {
+                        AcceptHeader = "*/*",
+                        JavaEnabled = false,
+                        Language = "en-GB",
+                        ColorDepth = 24,
+                        ScreenHeight = 900,
+                        ScreenWidth = 1440,
+                        TimeZoneOffset = -120,
+                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36",
+                    },
+                    Sdk = new Sdk()
+                    {
+                        Interface = Interfaces.Native,
+                        UiTypes = new List<UiTypes>
+                        {
+                            UiTypes.MultiSelect
+                        },
+                        ApplicationId = Guid.Parse("fc1650c0-5778-0138-8205-2cbc32a32d65"),
+                        EncryptedData = "encrypted-data-here",
+                        EphemeralPublicKeyPair = "public-key-pair",
+                        MaxTimeout = 10,
+                        ReferenceNumber = "sdk-reference-number-here"
+                    },
+                    Recurring = new Recurring()
+                    {
+                        ExpirationDate = new DateTime(2022, 11, 25).Date,
+                        Frequency = 30,
+                    }
+                }
+            };
+
+            var xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+  <payment_transaction xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns=""InitRecurringSale3d"">
+    <transaction_type>init_recurring_sale3d</transaction_type>
+    <transaction_id>119643250547501c79d8295</transaction_id>
+    <usage>40208 concert tickets</usage>
+    <amount>100</amount>
+    <currency>USD</currency>
+    <remote_ip>245.253.2.12</remote_ip>
+    <card_holder>Travis Pastrana</card_holder>
+    <expiration_month>12</expiration_month>
+    <expiration_year>2023</expiration_year>
+    <customer_email>travis@example.com</customer_email>
+    <customer_phone>+1987987987987</customer_phone>
+    <card_number>4901170000000003</card_number>
+    <cvv>834</cvv>
+    <billing_address>
+      <first_name>Travis</first_name>
+      <last_name>Pastrana</last_name>
+      <address1>Muster Str. 12</address1>
+      <zip_code>10178</zip_code>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <country>US</country>
+    </billing_address>
+    <notification_url>https://www.example.com/notification</notification_url>
+    <return_success_url>http://www.example.com/success</return_success_url>
+    <return_failure_url>http://www.example.com/failure</return_failure_url>
+    <threeds_v2_params>
+      <threeds_method>
+        <callback_url>https://www.example.com/threeds/threeds_method/callback</callback_url>
+      </threeds_method>
+      <control>
+        <device_type>browser</device_type>
+        <challenge_window_size>full_screen</challenge_window_size>
+        <challenge_indicator>preference</challenge_indicator>
+      </control>
+      <purchase>
+        <category>service</category>
+      </purchase>
+      <merchant_risk>
+        <shipping_indicator>verified_address</shipping_indicator>
+        <delivery_timeframe>electronic</delivery_timeframe>
+        <reorder_items_indicator>reordered</reorder_items_indicator>
+        <pre_order_purchase_indicator>merchandise_available</pre_order_purchase_indicator>
+        <pre_order_date>25-06-2022</pre_order_date>
+        <gift_card>true</gift_card>
+        <gift_card_count>2</gift_card_count>
+      </merchant_risk>
+      <card_holder_account>
+        <creation_date>25-05-2021</creation_date>
+        <update_indicator>more_than_60days</update_indicator>
+        <last_change_date>25-02-2022</last_change_date>
+        <password_change_indicator>no_change</password_change_indicator>
+        <password_change_date>10-05-2022</password_change_date>
+        <shipping_address_usage_indicator>current_transaction</shipping_address_usage_indicator>
+        <shipping_address_date_first_used>20-05-2022</shipping_address_date_first_used>
+        <transactions_activity_last_24_hours>2</transactions_activity_last_24_hours>
+        <transactions_activity_previous_year>10</transactions_activity_previous_year>
+        <provision_attempts_last_24_hours>1</provision_attempts_last_24_hours>
+        <purchases_count_last_6_months>5</purchases_count_last_6_months>
+        <suspicious_activity_indicator>no_suspicious_observed</suspicious_activity_indicator>
+        <registration_indicator>30_to_60_days</registration_indicator>
+        <registration_date>25-05-2020</registration_date>
+      </card_holder_account>
+      <browser>
+        <accept_header>*/*</accept_header>
+        <java_enabled>false</java_enabled>
+        <language>en-GB</language>
+        <color_depth>24</color_depth>
+        <screen_height>900</screen_height>
+        <screen_width>1440</screen_width>
+        <time_zone_offset>-120</time_zone_offset>
+        <user_agent>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36</user_agent>
+      </browser>
+      <sdk>
+        <interface>native</interface>
+        <ui_types>
+          <ui_type>multi_select</ui_type>
+        </ui_types>
+        <application_id>fc1650c0-5778-0138-8205-2cbc32a32d65</application_id>
+        <encrypted_data>encrypted-data-here</encrypted_data>
+        <ephemeral_public_key_pair>public-key-pair</ephemeral_public_key_pair>
+        <max_timeout>10</max_timeout>
+        <reference_number>sdk-reference-number-here</reference_number>
+      </sdk>
+      <recurring>
+        <expiration_date>25-11-2022</expiration_date>
+        <frequency>30</frequency>
+      </recurring>
+    </threeds_v2_params>
+  </payment_transaction>";
+
+            return new EntityMock<InitRecurringSale3d>(fallback3dv2, xml);
+        }
+
+        public static EntityMock<InitRecurringSale3d> CreateValidFallback3dv2With3dSecure()
+        {
+            var fallback3dv2 = new InitRecurringSale3d()
+            {
+                Type = TransactionTypes.InitRecurringSale3d,
+                Id = "119643250547501c79d8295",
+                Usage = "40208 concert tickets",
+                RemoteIp = "245.253.2.12",
+                Amount = 1,
+                Currency = Iso4217CurrencyCodes.USD,
+                CardHolder = "Travis Pastrana",
+                CardNumber = CardsNumbers.Visa3dsv2FallbackTo3dv1With3dsMethod,
+                ExpirationMonth = 12,
+                ExpirationYear = 2023,
+                CustomerEmail = "travis@example.com",
+                CustomerPhone = "+1987987987987",
+                Cvv = "834",
+                BillingAddress = new Address()
+                {
+                    Address1 = "Muster Str. 12",
+                    City = "Los Angeles",
+                    Country = Iso3166CountryCodes.US,
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    State = "CA",
+                    ZipCode = "10178"
+                },
+                NotificationUrl = "https://www.example.com/notification",
+                ReturnSuccessUrl = "http://www.example.com/success",
+                ReturnFailureUrl = "http://www.example.com/failure",
+                ThreeDSv2 = new ThreeDSv2
+                {
+                    ThreedsMethod = new ThreedsMethod()
+                    {
+                        CallbackUrl = "https://www.example.com/threeds/threeds_method/callback",
+                    },
+                    Control = new Control()
+                    {
+                        DeviceType = DeviceTypes.Browser,
+                        ChallengeWindowSize = ChallengeWindowSizes.FullScreen,
+                        ChallengeIndicator = ChallengeIndicators.Preference
+                    },
+                    Purchase = new Purchase()
+                    {
+                        Category = PurchaseCategories.Service
+                    },
+                    MerchantRisk = new MerchantRisk()
+                    {
+                        ShippingIndicator = ShippingIndicators.VerifiedAddress,
+                        DeliveryTimeframe = DeliveryTimeframes.Electronic,
+                        ReorderItemsIndicator = ReorderItemsIndicators.Reordered,
+                        PreOrderPurchaseIndicator = PreOrderPurchaseIndicators.MerchandiseAvailable,
+                        PreOrderDate = new DateTime(2022, 06, 25).Date,
+                        GiftCard = true,
+                        GiftCardCount = 2
+                    },
+                    CardHolderAccount = new CardHolderAccount()
+                    {
+                        CreationDate = new DateTime(2021, 05, 25).Date,
+                        UpdateIndicator = UpdateIndicators.MoreThan60Days,
+                        LastChangeDate = new DateTime(2022, 02, 25).Date,
+                        PasswordChangeIndicator = PasswordChangeIndicators.NoChange,
+                        PasswordChangeDate = new DateTime(2022, 05, 10).Date,
+                        ShippingAddressUsageIndicator = ShippingAddressUsageIndicators.CurrentTransaction,
+                        ShippingAddressDateFirstUsed = new DateTime(2022, 05, 20).Date,
+                        TransactionsActivityLast24Hours = 2,
+                        TransactionsActivityPreviousYear = 10,
+                        ProvisionAttemptsLast24Hours = 1,
+                        PurchasesCountLast6Months = 5,
+                        SuspiciousActivityIndicator = SuspiciousActivityIndicators.NoSuspiciousObserved,
+                        RegistrationIndicator = RegistrationIndicators.From30To60Days,
+                        RegistrationDate = new DateTime(2020, 05, 25).Date,
+                    },
+                    Browser = new Browser()
+                    {
+                        AcceptHeader = "*/*",
+                        JavaEnabled = false,
+                        Language = "en-GB",
+                        ColorDepth = 24,
+                        ScreenHeight = 900,
+                        ScreenWidth = 1440,
+                        TimeZoneOffset = -120,
+                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36",
+                    },
+                    Sdk = new Sdk()
+                    {
+                        Interface = Interfaces.Native,
+                        UiTypes = new List<UiTypes>
+                        {
+                            UiTypes.MultiSelect
+                        },
+                        ApplicationId = Guid.Parse("fc1650c0-5778-0138-8205-2cbc32a32d65"),
+                        EncryptedData = "encrypted-data-here",
+                        EphemeralPublicKeyPair = "public-key-pair",
+                        MaxTimeout = 10,
+                        ReferenceNumber = "sdk-reference-number-here"
+                    },
+                    Recurring = new Recurring()
+                    {
+                        ExpirationDate = new DateTime(2022, 11, 25).Date,
+                        Frequency = 30,
+                    }
+                }
+            };
+
+            var xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+  <payment_transaction xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns=""InitRecurringSale3d"">
+    <transaction_type>init_recurring_sale3d</transaction_type>
+    <transaction_id>119643250547501c79d8295</transaction_id>
+    <usage>40208 concert tickets</usage>
+    <amount>100</amount>
+    <currency>USD</currency>
+    <remote_ip>245.253.2.12</remote_ip>
+    <card_holder>Travis Pastrana</card_holder>
+    <expiration_month>12</expiration_month>
+    <expiration_year>2023</expiration_year>
+    <customer_email>travis@example.com</customer_email>
+    <customer_phone>+1987987987987</customer_phone>
+    <card_number>4901164281364345</card_number>
+    <cvv>834</cvv>
+    <billing_address>
+      <first_name>Travis</first_name>
+      <last_name>Pastrana</last_name>
+      <address1>Muster Str. 12</address1>
+      <zip_code>10178</zip_code>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <country>US</country>
+    </billing_address>
+    <notification_url>https://www.example.com/notification</notification_url>
+    <return_success_url>http://www.example.com/success</return_success_url>
+    <return_failure_url>http://www.example.com/failure</return_failure_url>
+    <threeds_v2_params>
+      <threeds_method>
+        <callback_url>https://www.example.com/threeds/threeds_method/callback</callback_url>
+      </threeds_method>
+      <control>
+        <device_type>browser</device_type>
+        <challenge_window_size>full_screen</challenge_window_size>
+        <challenge_indicator>preference</challenge_indicator>
+      </control>
+      <purchase>
+        <category>service</category>
+      </purchase>
+      <merchant_risk>
+        <shipping_indicator>verified_address</shipping_indicator>
+        <delivery_timeframe>electronic</delivery_timeframe>
+        <reorder_items_indicator>reordered</reorder_items_indicator>
+        <pre_order_purchase_indicator>merchandise_available</pre_order_purchase_indicator>
+        <pre_order_date>25-06-2022</pre_order_date>
+        <gift_card>true</gift_card>
+        <gift_card_count>2</gift_card_count>
+      </merchant_risk>
+      <card_holder_account>
+        <creation_date>25-05-2021</creation_date>
+        <update_indicator>more_than_60days</update_indicator>
+        <last_change_date>25-02-2022</last_change_date>
+        <password_change_indicator>no_change</password_change_indicator>
+        <password_change_date>10-05-2022</password_change_date>
+        <shipping_address_usage_indicator>current_transaction</shipping_address_usage_indicator>
+        <shipping_address_date_first_used>20-05-2022</shipping_address_date_first_used>
+        <transactions_activity_last_24_hours>2</transactions_activity_last_24_hours>
+        <transactions_activity_previous_year>10</transactions_activity_previous_year>
+        <provision_attempts_last_24_hours>1</provision_attempts_last_24_hours>
+        <purchases_count_last_6_months>5</purchases_count_last_6_months>
+        <suspicious_activity_indicator>no_suspicious_observed</suspicious_activity_indicator>
+        <registration_indicator>30_to_60_days</registration_indicator>
+        <registration_date>25-05-2020</registration_date>
+      </card_holder_account>
+      <browser>
+        <accept_header>*/*</accept_header>
+        <java_enabled>false</java_enabled>
+        <language>en-GB</language>
+        <color_depth>24</color_depth>
+        <screen_height>900</screen_height>
+        <screen_width>1440</screen_width>
+        <time_zone_offset>-120</time_zone_offset>
+        <user_agent>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36</user_agent>
+      </browser>
+      <sdk>
+        <interface>native</interface>
+        <ui_types>
+          <ui_type>multi_select</ui_type>
+        </ui_types>
+        <application_id>fc1650c0-5778-0138-8205-2cbc32a32d65</application_id>
+        <encrypted_data>encrypted-data-here</encrypted_data>
+        <ephemeral_public_key_pair>public-key-pair</ephemeral_public_key_pair>
+        <max_timeout>10</max_timeout>
+        <reference_number>sdk-reference-number-here</reference_number>
+      </sdk>
+      <recurring>
+        <expiration_date>25-11-2022</expiration_date>
+        <frequency>30</frequency>
+      </recurring>
+    </threeds_v2_params>
+  </payment_transaction>";
+
+            return new EntityMock<InitRecurringSale3d>(fallback3dv2, xml);
         }
 
         public static EntityMock<AccountVerification> CreateValidAccountVerification()
@@ -1343,8 +2545,8 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<InitRecurringSale> CreateValidInitRecurringSale()
         {
-            DateTime _startDate = DateTime.Now.AddMonths(-1);
-            DateTime _endDate = DateTime.Now.AddMonths(1);
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
 
             var initRecurringSale = new InitRecurringSale()
             {
@@ -1605,8 +2807,8 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<Sale> CreateValidSale()
         {
-            DateTime _startDate = DateTime.Now.AddMonths(-1);
-            DateTime _endDate = DateTime.Now.AddMonths(1);
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
 
             var sale = new Sale()
             {
@@ -1785,8 +2987,8 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<WpfCreate> CreateValidWpfCreate()
         {
-            DateTime _startDate = DateTime.Now.AddMonths(-1);
-            DateTime _endDate = DateTime.Now.AddMonths(1);
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
 
             var wpfCreate = new WpfCreate()
             {
@@ -2122,8 +3324,8 @@ namespace Genesis.Net.Specs.Mocks
 
         public static EntityMock<Capture> CreateValidCapture()
         {
-            DateTime _startDate = DateTime.Now.AddMonths(-1);
-            DateTime _endDate = DateTime.Now.AddMonths(1);
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
 
             var capture = new Capture()
             {

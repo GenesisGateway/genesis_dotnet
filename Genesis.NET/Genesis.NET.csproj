@@ -49,9 +49,19 @@
       <HintPath>..\packages\nspec.0.9.68\lib\NSpec.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.5.7.10213\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks">
+      <HintPath>..\packages\NUnit.2.5.7.10213\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework">
+      <HintPath>..\packages\NUnit.2.5.7.10213\lib\pnunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,14 +72,42 @@
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\ThreedsV2\Helpers.cs" />
     <Compile Include="Common\SortedNamespaceXmlWriter.cs" />
     <Compile Include="Common\WpfLocales.cs" />
+    <Compile Include="Contracts\IPutRequest.cs" />
+    <Compile Include="Contracts\IUrlEncodedSignature.cs" />
     <Compile Include="Endpoints.cs" />
     <Compile Include="Entities\Attributes\Request\Financial\Business\BusinessAttributes.cs" />
+    <Compile Include="Entities\Notifications\APMExternalEventNotification.cs" />
+    <Compile Include="Entities\Notifications\KYCNotification.cs" />
+    <Compile Include="Entities\NotificationEcho.cs" />
+    <Compile Include="Entities\Enums\ThreeDS\AuthenticationFlows.cs" />
+    <Compile Include="Entities\Enums\TransactionStates.cs" />
     <Compile Include="Entities\Requests\Initial\AlternativePaymentMethod.cs" />
     <Compile Include="Entities\Requests\Initial\ApplePay.cs" />
+    <Compile Include="Entities\Requests\Initial\Authorize3d.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Authorize3d.mixin.cs</LastGenOutput>
+    </Compile>
     <Compile Include="Entities\Requests\Initial\GooglePay.cs" />
+    <Compile Include="Entities\Requests\Initial\InitRecurringSale3d.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>InitRecurringSale3d.mixin.cs</LastGenOutput>
+    </Compile>
     <Compile Include="Entities\Requests\Initial\Ppro.cs" />
+    <Compile Include="Entities\Requests\Initial\CardTransaction.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Sale1.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\CardTransaction3d.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Sale3d.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Requests\Initial\Sale3d.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>Sale3d.mixin.cs</LastGenOutput>
+    </Compile>
     <Compile Include="Entities\Requests\Initial\SofortiDeal.cs" />
     <Compile Include="Entities\Requests\Initial\Sofort.cs" />
     <Compile Include="Entities\Requests\Initial\CashU.cs" />
@@ -77,6 +115,33 @@
     <Compile Include="Entities\Requests\Initial\PayByVoucher.cs" />
     <Compile Include="Entities\Requests\Initial\PaySafeCard.cs" />
     <Compile Include="Entities\Requests\Initial\ProcessRequest.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\CardHolderAccount\PasswordChangeIndicators.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\CardHolderAccount\RegistrationIndicators.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\CardHolderAccount\ShippingAddressUsageIndicators.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\CardHolderAccount\SuspiciousActivityIndicators.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\CardHolderAccount\UpdateIndicators.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\Control\ChallengeWindowSizes.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\Control\ChallengeIndicators.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\Control\DeviceTypes.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\MerchantRisk\DeliveryTimeframes.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\MerchantRisk\PreOrderPurchaseIndicators.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\MerchantRisk\ReorderItemsIndicators.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\PurchaseCategories.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\MerchantRisk\ShippingIndicators.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\ScaExemptions.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\Sdk\Interfaces.cs" />
+    <Compile Include="Entities\Requests\Initial\Threedsv2\ContinueRequest.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Sca.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\ThreeDSv2.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Browser.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\CardHolderAccount.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Control.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\MerchantRisk.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Purchase.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Recurring.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Sdk.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\ThreedsMethod.cs" />
+    <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\Sdk\UiTypes.cs" />
     <Compile Include="Entities\Responses\AcquirerModel.cs" />
     <Compile Include="Entities\Responses\AsyncTransactionModel.cs" />
     <Compile Include="Entities\Responses\AuthorizationModel.cs" />
@@ -88,9 +153,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChargebackResponse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Responses\CvvResultCodeModel.cs" />
     <Compile Include="Entities\ConsumerModel.cs" />
     <Compile Include="Entities\Responses\DynamicDescriptorModel.cs" />
     <Compile Include="Entities\Responses\CustomerModel.cs" />
+    <Compile Include="Entities\Enums\ThreeDS\RedirectUrlTypes.cs" />
+    <Compile Include="Entities\Enums\ThreeDS\MethodStatus.cs" />
     <Compile Include="Entities\Responses\ErrorModel.cs" />
     <Compile Include="Entities\Responses\Error\AccountVerificationErrorResponse.mixin.cs">
       <AutoGen>True</AutoGen>
@@ -101,6 +169,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AlternativePaymentMethodErrorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\CardTransactionErrorResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CardTransactionErrorResponse.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Responses\Error\GooglePayErrorResponse.cs">
       <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
@@ -142,6 +215,10 @@
     <Compile Include="Entities\Responses\Error\PproErrorResponse .cs">
       <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
       <LastGenOutput>PproErrorResponse .mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Error\CardTransactionErrorResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>CardTransactionErrorResponse.mixin.cs</LastGenOutput>
     </Compile>
     <Compile Include="Entities\Responses\Error\SofortiDealErrorResponse.cs">
       <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
@@ -289,7 +366,9 @@
     <Compile Include="Entities\Responses\PaymentResponseModel.cs" />
     <Compile Include="Entities\Responses\ItemsRangeModel.cs" />
     <Compile Include="Entities\Responses\PaymentTransactionsModel.cs" />
+    <Compile Include="Entities\Responses\ProtocolModel.cs" />
     <Compile Include="Entities\Responses\RecurringAdviceModel.cs" />
+    <Compile Include="Entities\Responses\RetrievalReferenceNumberModel.cs" />
     <Compile Include="Entities\Responses\RetrievalRequestsResponseModel.cs" />
     <Compile Include="Entities\Responses\RetrievalResponse1.mixin.cs">
       <AutoGen>True</AutoGen>
@@ -315,6 +394,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ApplePaySuccessResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\CardTransactionSuccessResponse.cs">
+      <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
+      <LastGenOutput>CardTransactionSuccessResponse.mixin.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="Entities\Responses\Successful\CardTransactionSuccessResponse.mixin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CardTransactionSuccessResponse.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Responses\Successful\GooglePaySuccessResponse.cs">
       <Generator>pMixinsEmptySingleFileCodeGenerator</Generator>
@@ -425,6 +513,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RecurringSaleSuccessResponse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Responses\RedirectUrlsModel.cs" />
     <Compile Include="Entities\Responses\Successful\RefundSuccessResponse.mixin.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -435,6 +524,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Sale3dSuccessResponse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Responses\ThreeDSMethodUrlsModel.cs" />
     <Compile Include="Entities\Responses\Successful\SaleSuccessResponse.mixin.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -473,6 +563,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WpfReconcileSuccessResponse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Responses\ThreedsMethodModel.cs" />
+    <Compile Include="Entities\Responses\ThreeDSModel.cs" />
+    <Compile Include="Entities\Responses\ThreeDSElementModel.cs" />
     <Compile Include="Entities\Responses\TransactionModel.cs" />
     <Compile Include="Entities\Responses\TransactionStatusModel.cs" />
     <Compile Include="Entities\Responses\TransactionTypeModel.cs" />
@@ -781,8 +874,8 @@
       <LastGenOutput>Sale1.mixin.cs</LastGenOutput>
     </Compile>
     <Compile Include="Entities\Requests\Referential\VoidRequest.cs" />
-    <Compile Include="Entities\ThreeDNotification.cs" />
-    <Compile Include="Entities\WpfNotification.cs" />
+    <Compile Include="Entities\Notifications\ThreeDNotification.cs" />
+    <Compile Include="Entities\Notifications\WpfNotification.cs" />
     <Compile Include="Errors\ErrorsService.cs" />
     <Compile Include="Errors\ErrorCodes.cs" />
     <Compile Include="IGenesisClient.cs" />

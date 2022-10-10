@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Genesis.Net.Entities.Requests.Initial.ThreeD;
+using Genesis.Net.Entities.Requests.Initial;
 using Genesis.Net.Specs.Mocks;
 using NSpec;
 
@@ -8,7 +8,7 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial.ThreeD
 {
     class describe_sale_3d_sync : nspec
     {
-        EntityMock<Sale3dSync> sale3dSyncMock;
+        EntityMock<Sale3d> sale3dSyncMock;
 
         void before_each()
         {
@@ -17,12 +17,12 @@ namespace Genesis.Net.Specs.Entities.Requests.Initial.ThreeD
 
         void it_should_serialize_and_deserialize_correctly()
         {
-            sale3dSyncMock.Instance.should_serialize_and_deserialize<Sale3dSync>();
+            sale3dSyncMock.Instance.should_serialize_and_deserialize<Sale3d>();
         }
 
         void it_should_validate_required_properties()
         {
-            sale3dSyncMock.Instance.on_validation_should_behave_like_required("Id", "CardHolder", "CardNumber", "MpiParams");
+            sale3dSyncMock.Instance.on_validation_should_behave_like_required("Id", "CardHolder", "CardNumber");
         }
 
         void it_should_validate_amount()

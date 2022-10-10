@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using Genesis.Net.Common;
+using Genesis.Net.Entities.Notifications;
 
 namespace Genesis.Net.Entities
 {
@@ -25,48 +25,25 @@ namespace Genesis.Net.Entities
         {
             var parameters = HttpUtility.ParseQueryString(requestData);
             var notificationType = parameters.Get("notification_type");
-            if (string.IsNullOrEmpty(notificationType))
+
+            if (string.IsNullOrEmpty(notificationType) || !string.IsNullOrEmpty(parameters.Get("unique_id")))
             {
-                return CreateThreeDNotification(parameters);
+                return new ThreeDNotification(parameters);
             }
-            else if (notificationType == "wpf")
+            else if (notificationType == "wpf" || !string.IsNullOrEmpty(parameters.Get("wpf_unique_id")))
             {
-                return CreateWpfNotification(parameters);
+                return new WpfNotification(parameters);
+            }
+            else if (notificationType == "kyc_service_execution" || !string.IsNullOrEmpty(parameters.Get("reference_id")))
+            {
+                return new KYCNotification(parameters);
+            }
+            else if (notificationType == "apm_external_event" || !string.IsNullOrEmpty(parameters.Get("payment_transaction_unique_id")))
+            {
+                return new APMExternalEventNotification(parameters);
             }
 
             return null;
-        }
-
-        private static ThreeDNotification CreateThreeDNotification(NameValueCollection parameters)
-        {
-            var threeDNotification = new ThreeDNotification()
-            {
-                Signature = parameters.Get("signature"),
-                Status = parameters.Get("status"),
-                TerminalToken = parameters.Get("terminal_token"),
-                TransactionId = parameters.Get("transaction_id"),
-                TransactionType = parameters.Get("transaction_type"),
-                UniqueId = parameters.Get("unique_id")
-            };
-
-            return threeDNotification;
-        }
-
-        private static WpfNotification CreateWpfNotification(NameValueCollection parameters)
-        {
-            var wpfNotification = new WpfNotification()
-            {
-                NotificationType = parameters.Get("notification_type"),
-                PaymentTransactionTerminalToken = parameters.Get("payment_transaction_terminal_token"),
-                PaymentTransactionTransactionType = parameters.Get("payment_transaction_transaction_type"),
-                PaymentTransactionUniqueId = parameters.Get("payment_transaction_unique_id"),
-                Signature = parameters.Get("signature"),
-                WpfStatus = parameters.Get("wpf_status"),
-                WpfTransactionId = parameters.Get("wpf_transaction_id"),
-                WpfUniqueId = parameters.Get("wpf_unique_id")
-            };
-
-            return wpfNotification;
         }
 
         public bool IsAuthentic(Configuration configuration)
@@ -101,9 +78,51 @@ namespace Genesis.Net.Entities
 
         protected abstract string GetUniqueId();
 
+        /// <summary>
+        /// Using reflection fills the properties of the instance from the passed notification parameter names.
+        /// It makes standard parameter guess of the parameter names.
+        /// <list type="">
+        /// <item>"UniqueId" property is searched inside "unique_id" parameter.</item>
+        /// <item>"MyPropertyName" will be searched inside "my_property_name" parameter.</item>
+        /// </list>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="self"></param>
+        /// <param name="notificationParameters"></param>
+        protected static void FillStandardParameters<T>(T self, NameValueCollection notificationParameters)
+            where T : Notification
+        {
+            foreach (var propertyInfo in self.GetType().GetProperties())
+            {
+                var parameterNameGuess = propertyInfo.Name.GuessParamaterNameByPropertyName();
+                if (!string.IsNullOrEmpty(parameterNameGuess))
+                {
+                    var value = notificationParameters.Get(parameterNameGuess);
+                    // if property is nullable enum type
+                    if (value != null &&
+                        propertyInfo.PropertyType.IsGenericType &&
+                        propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>) &&
+                        Nullable.GetUnderlyingType(propertyInfo.PropertyType).IsEnum)
+                    {
+                        var enumValue = value.ParseEnumByTheNameInXMLEnumAttribute(Nullable.GetUnderlyingType(propertyInfo.PropertyType));
+                        propertyInfo.SetValue(self, enumValue);
+                    }
+                    else if (value != null && propertyInfo.PropertyType.IsEnum)
+                    {
+                        propertyInfo.SetValue(self, (int?)value.ParseEnumByTheNameInXMLEnumAttribute(propertyInfo.PropertyType));
+                    }
+                    else
+                    {
+                        propertyInfo.SetValue(self, value);
+                    }
+                }
+            }
+        }
+
         public byte[] GetEchoResponseBody()
         {
-            var echoResponseBody = XmlSerializationHelpers.Serialize(this);
+            var echoResponse = new NotificationEcho(this);
+            var echoResponseBody = XmlSerializationHelpers.Serialize(echoResponse);
             return echoResponseBody;
         }
     }

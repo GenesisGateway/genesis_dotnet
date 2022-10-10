@@ -12,13 +12,13 @@ namespace Genesis.Net.Specs.Entities.Responses
         void it_should_parse_success_response()
         {
             var successResponseMock = ResponseMocksFactory.CreateInitRecurringSaleSuccessResponse();
-            successResponseMock.Instance.should_be_parsable_from<InitRecurringSaleSuccessResponse>(successResponseMock.Xml);
+            successResponseMock.Instance.should_be_parsable_from<CardTransactionSuccessResponse>(successResponseMock.Xml);
         }
 
         void it_should_parse_error_response()
         {
             var errorResponseMock = ResponseMocksFactory.CreateInitRecurringSaleErrorResponse();
-            errorResponseMock.Instance.should_be_parsable_from<InitRecurringSaleErrorResponse>(errorResponseMock.Xml);
+            errorResponseMock.Instance.should_be_parsable_from<CardTransactionErrorResponse>(errorResponseMock.Xml);
         }
     }
 }

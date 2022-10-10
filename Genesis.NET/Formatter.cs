@@ -6,27 +6,9 @@ namespace Genesis.Net
 {
     public static class Formatter
     {
-        public static object FormatFromString(Type type, string value)
-        {
-            if (type == typeof(string))
-            {
-                return value;
-            }
-            else if (type == typeof(bool))
-            {
-                return Convert.ToBoolean(value);
-            }
-            else if (type == typeof(int))
-            {
-                return Convert.ToInt32(value);
-            }
-            else if (type == typeof(DateTime))
-            {
-                return DateTime.Parse(value, null, DateTimeStyles.RoundtripKind);
-            }
-
-            throw new NotSupportedException(String.Format("Values of type {0} are not supported.", type.FullName));
-        }
+        public const string DATE_FORMAT_YMD = "yyyy-MM-dd";
+        public const string DATE_FORMAT_DMY = "dd-MM-yyyy";
+        public const string TIMESTAMP_FORMAT = "yyyy-MM-dd'T'HH:mm:ssK";
 
         public static int FormatStringToMonth(string value)
         {
@@ -48,9 +30,14 @@ namespace Genesis.Net
             return year.ToString("0000");
         }
 
-        public static string FormatToString(DateTime value)
+        public static string FormatToString(DateTime value, string format = DATE_FORMAT_YMD)
         {
-            return value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            return value.ToString(format, CultureInfo.InvariantCulture);
+        }
+
+        public static DateTime ParseDate(string value, string format = DATE_FORMAT_YMD)
+        {
+            return DateTime.ParseExact(value, format , CultureInfo.InvariantCulture);
         }
 
         public static DateTime FormatFromString(string value)

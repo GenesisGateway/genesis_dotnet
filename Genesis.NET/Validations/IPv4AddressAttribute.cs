@@ -16,7 +16,7 @@ namespace Genesis.Net.Validations
             string addressString = value as string;
             if (string.IsNullOrEmpty(addressString))
             {
-                return new ValidationResult(String.Format("The provided value couldn't be recognized."));
+                return ValidationResult.Success;
             }
 
             IPAddress address;

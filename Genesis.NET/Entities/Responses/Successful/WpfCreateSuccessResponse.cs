@@ -9,6 +9,7 @@ namespace Genesis.Net.Entities.Responses.Successful
     [pMixin(Mixin = typeof(TransactionStatusModel))]
     [pMixin(Mixin = typeof(MoneyModel))]
     [pMixin(Mixin = typeof(ErrorModel))]
+    [pMixin(Mixin = typeof(ThreeDSModel))]
     [XmlRoot("wpf_payment", Namespace = "WpfCreateSuccessResponse")]
     public partial class WpfCreateSuccessResponse : Entity
     {

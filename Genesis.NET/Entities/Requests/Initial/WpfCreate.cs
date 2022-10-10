@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using Genesis.Net.Common;
 using Genesis.Net.Entities.Attributes.Request.Financial.Business;
+using Genesis.Net.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
 using Genesis.Net.Validations;
 using DataAnnotations = DataAnnotationsExtensions;
 
@@ -33,7 +34,6 @@ namespace Genesis.Net.Entities.Requests.Initial
         /// Represents the amount of money in major currency units
         /// </summary>
         [MoneyRange]
-        [Required]
         [XmlIgnore]
         public decimal Amount
         {
@@ -52,7 +52,6 @@ namespace Genesis.Net.Entities.Requests.Initial
             set { money.NativeAmount = value; }
         }
 
-        [Required]
         [XmlElement(ElementName = "currency")]
         public Iso4217CurrencyCodes Currency
         {
@@ -128,5 +127,22 @@ namespace Genesis.Net.Entities.Requests.Initial
 
         [XmlElement(ElementName = "business_attributes")]
         public BusinessAttributes BusinessAttributes { get; set; }
+
+        /// <summary>
+        /// 3DSv2 async parameters. They must be submitted in order to use the 3DSv2 authentication protocol in asynchronous workflow.
+        /// </summary>
+        [XmlElement(ElementName = "threeds_v2_params")]
+        public ThreeDSv2 ThreeDSv2 { get; set; }
+
+        /// <summary>
+        /// An exemption from Strong Customer Authentication (SCA) can be requested by submitting an exemption with <code>low_risk</code> under SCA params.
+        /// In case the issuer accepts the exemption, a step up in the authentication flow might not be required because the transaction's risk analysis has already been performed by acquirer.
+        /// Note, the requested exemption might not be accepted due to internal risk validations.
+        /// For example, to be able to utilize the low risk exemption, the BIN country of the card must be part of the European Economic Area (EEA).
+        /// Furthermore, the acquirer could accept the merchant low-risk exemption request only if the transaction amount does not exceed the acquirer low-risk exemption threshold.
+        /// Finally, the ACS might not acknowledge the merchant/acquirer's exemption request and may still require a step up in the cardholder authentication.
+        /// </summary>
+        [XmlElement(ElementName = "sca_params")]
+        public Sca Sca { get; set; }
     }
 }

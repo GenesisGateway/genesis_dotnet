@@ -99,7 +99,7 @@ namespace Genesis.Net.Entities.Responses.Successful
 					{
 					}
 					[global::CopaceticSoftware.pMixins.Attributes.MixedInMemberAttribute]
-					public global::System.String Status {
+					public global::System.Nullable<global::Genesis.Net.Entities.Enums.TransactionStates> Status {
 						get {
 							return base.ExecutePropertyGet ("Status", () => _mixinInstance.Status);
 						}
@@ -394,7 +394,7 @@ namespace Genesis.Net.Entities.Responses.Successful
 		}
 		[global::CopaceticSoftware.pMixins.Attributes.MixedInMemberAttribute]
 		[System.Xml.Serialization.XmlElementAttribute (ElementName = "status")]
-		public global::System.String Status {
+		public global::System.Nullable<global::Genesis.Net.Entities.Enums.TransactionStates> Status {
 			get {
 				return __mixins.Genesis_Net_Entities_Responses_TransactionStatusModel.Status;
 			}

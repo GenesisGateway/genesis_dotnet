@@ -1,10 +1,20 @@
 using Genesis.Net.Entities.Attributes.Request.Financial.Business;
+using System;
 using System.Xml.Serialization;
 
 namespace Genesis.Net.Entities.Requests.Initial.ThreeD
 {
+    /// <summary>
+    /// This class is deprecated. Please use: <see cref="Genesis.Net.Entities.Requests.Initial.Sale3d"/>
+    /// </summary>
+    [Obsolete("This class is deprecated. Please use Genesis.Net.Entities.Requests.Initial.Sale3d")]
     public abstract class Sale3d : InitialRequest
     {
+        public Sale3d()
+        {
+            Type = TransactionTypes.Sale3d;
+        }
+
         [XmlElement(ElementName="gaming")]
         public bool? Gaming { get; set; }
 
@@ -21,10 +31,5 @@ namespace Genesis.Net.Entities.Requests.Initial.ThreeD
 
         [XmlElement(ElementName = "business_attributes")]
         public BusinessAttributes BusinessAttributes { get; set; }
-
-        public Sale3d()
-        {
-            Type = TransactionTypes.Sale3d;
-        }
     }
 }

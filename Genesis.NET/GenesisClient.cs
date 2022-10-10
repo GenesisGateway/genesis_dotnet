@@ -1,18 +1,20 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Genesis.Net.Common;
+﻿using Genesis.Net.Common;
+using Genesis.Net.Contracts;
 using Genesis.Net.Entities;
 using Genesis.Net.Entities.Requests;
 using Genesis.Net.Entities.Requests.Initial;
-using Genesis.Net.Entities.Requests.Initial.ThreeD;
+using Genesis.Net.Entities.Requests.Initial.Threedsv2;
 using Genesis.Net.Entities.Requests.Query;
 using Genesis.Net.Entities.Requests.Referential;
 using Genesis.Net.Entities.Responses;
 using Genesis.Net.Entities.Responses.Error;
 using Genesis.Net.Entities.Responses.Successful;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Genesis.Net
 {
@@ -27,14 +29,14 @@ namespace Genesis.Net
             this.configuration = configuration;
         }
 
-        public Result<AuthorizeSuccessResponse, AuthorizeErrorResponse> Execute(Authorize authorize)
+        public Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(Authorize authorize)
         {
-            return Execute<AuthorizeSuccessResponse, AuthorizeErrorResponse>(authorize);
+            return Execute<CardTransactionSuccessResponse, CardTransactionErrorResponse>(authorize);
         }
 
-        public async Task<Result<AuthorizeSuccessResponse, AuthorizeErrorResponse>> ExecuteAsync(Authorize authorize)
+        public async Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(Authorize authorize)
         {
-            return await ExecuteAsync<AuthorizeSuccessResponse, AuthorizeErrorResponse>(authorize);
+            return await ExecuteAsync<CardTransactionSuccessResponse, CardTransactionErrorResponse>(authorize);
         }
 
         public Result<CaptureSuccessResponse, CaptureErrorResponse> Execute(Capture capture)
@@ -47,14 +49,14 @@ namespace Genesis.Net
             return await ExecuteAsync<CaptureSuccessResponse, CaptureErrorResponse>(capture);
         }
 
-        public Result<SaleSuccessResponse, SaleErrorResponse> Execute(Sale sale)
+        public Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(Sale sale)
         {
-            return Execute<SaleSuccessResponse, SaleErrorResponse>(sale);
+            return Execute<CardTransactionSuccessResponse, CardTransactionErrorResponse>(sale);
         }
 
-        public async Task<Result<SaleSuccessResponse, SaleErrorResponse>> ExecuteAsync(Sale sale)
+        public async Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(Sale sale)
         {
-            return await ExecuteAsync<SaleSuccessResponse, SaleErrorResponse>(sale);
+            return await ExecuteAsync<CardTransactionSuccessResponse, CardTransactionErrorResponse>(sale);
         }
 
         public Result<RefundSuccessResponse, RefundErrorResponse> Execute(Refund refund)
@@ -117,44 +119,86 @@ namespace Genesis.Net
             return await ExecuteAsync<AvsSuccessResponse, AvsErrorResponse>(avs);
         }
 
-        public Result<Authorize3dSuccessResponse, Authorize3dErrorResponse> Execute(Authorize3d authorize3d)
+        #region deprecated
+        public Result<Authorize3dSuccessResponse, Authorize3dErrorResponse> Execute(Entities.Requests.Initial.ThreeD.Authorize3d authorize3d)
         {
             return Execute<Authorize3dSuccessResponse, Authorize3dErrorResponse>(authorize3d);
         }
 
-        public async Task<Result<Authorize3dSuccessResponse, Authorize3dErrorResponse>> ExecuteAsync(Authorize3d authorize3d)
+        public async Task<Result<Authorize3dSuccessResponse, Authorize3dErrorResponse>> ExecuteAsync(Entities.Requests.Initial.ThreeD.Authorize3d authorize3d)
         {
             return await ExecuteAsync<Authorize3dSuccessResponse, Authorize3dErrorResponse>(authorize3d);
         }
 
-        public Result<Sale3dSuccessResponse, Sale3dErrorResponse> Execute(Sale3d sale3d)
+        public Result<Sale3dSuccessResponse, Sale3dErrorResponse> Execute(Entities.Requests.Initial.ThreeD.Sale3d sale3d)
         {
             return Execute<Sale3dSuccessResponse, Sale3dErrorResponse>(sale3d);
         }
 
-        public async Task<Result<Sale3dSuccessResponse, Sale3dErrorResponse>> ExecuteAsync(Sale3d sale3d)
+        public async Task<Result<Sale3dSuccessResponse, Sale3dErrorResponse>> ExecuteAsync(Entities.Requests.Initial.ThreeD.Sale3d sale3d)
         {
             return await ExecuteAsync<Sale3dSuccessResponse, Sale3dErrorResponse>(sale3d);
         }
 
-        public Result<InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse> Execute(InitRecurringSale3d initRecurringSale3d)
+        public Result<InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse> Execute(Entities.Requests.Initial.ThreeD.InitRecurringSale3d initRecurringSale3d)
         {
             return Execute<InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse>(initRecurringSale3d);
         }
 
-        public async Task<Result<InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse>> ExecuteAsync(InitRecurringSale3d initRecurringSale3d)
+        public async Task<Result<InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse>> ExecuteAsync(Entities.Requests.Initial.ThreeD.InitRecurringSale3d initRecurringSale3d)
         {
             return await ExecuteAsync<InitRecurringSale3dSuccessResponse, InitRecurringSale3dErrorResponse>(initRecurringSale3d);
         }
+        #endregion
 
-        public Result<InitRecurringSaleSuccessResponse, InitRecurringSaleErrorResponse> Execute(InitRecurringSale initRecurringSale)
+        public Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(Authorize3d authorize3d)
         {
-            return Execute<InitRecurringSaleSuccessResponse, InitRecurringSaleErrorResponse>(initRecurringSale);
+            return Execute<CardTransactionSuccessResponse, CardTransactionErrorResponse>(authorize3d);
         }
 
-        public async Task<Result<InitRecurringSaleSuccessResponse, InitRecurringSaleErrorResponse>> ExecuteAsync(InitRecurringSale initRecurringSale)
+        public async Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(Authorize3d authorize3d)
         {
-            return await ExecuteAsync<InitRecurringSaleSuccessResponse, InitRecurringSaleErrorResponse>(initRecurringSale);
+            return await ExecuteAsync<CardTransactionSuccessResponse, CardTransactionErrorResponse>(authorize3d);
+        }
+
+        public Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(Sale3d sale3d)
+        {
+            return Execute<CardTransactionSuccessResponse, CardTransactionErrorResponse>(sale3d);
+        }
+
+        public async Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(Sale3d sale3d)
+        {
+            return await ExecuteAsync<CardTransactionSuccessResponse, CardTransactionErrorResponse>(sale3d);
+        }
+
+        public Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(InitRecurringSale3d initRecurringSale3d)
+        {
+            return Execute<CardTransactionSuccessResponse, CardTransactionErrorResponse>(initRecurringSale3d);
+        }
+
+        public async Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(InitRecurringSale3d initRecurringSale3d)
+        {
+            return await ExecuteAsync<CardTransactionSuccessResponse, CardTransactionErrorResponse>(initRecurringSale3d);
+        }
+
+        public Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(ContinueRequest initThreeDSv2ContinueRequest)
+        {
+            return Execute<CardTransactionSuccessResponse, CardTransactionErrorResponse>(initThreeDSv2ContinueRequest);
+        }
+
+        public async Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(ContinueRequest initThreeDSv2ContinueRequest)
+        {
+            return await ExecuteAsync<CardTransactionSuccessResponse, CardTransactionErrorResponse>(initThreeDSv2ContinueRequest);
+        }
+
+        public Result<CardTransactionSuccessResponse, CardTransactionErrorResponse> Execute(InitRecurringSale initRecurringSale)
+        {
+            return Execute<CardTransactionSuccessResponse, CardTransactionErrorResponse>(initRecurringSale);
+        }
+
+        public async Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(InitRecurringSale initRecurringSale)
+        {
+            return await ExecuteAsync<CardTransactionSuccessResponse, CardTransactionErrorResponse>(initRecurringSale);
         }
 
         public Result<RecurringSaleSuccessResponse, RecurringSaleErrorResponse> Execute(RecurringSale recurringSale)
@@ -315,19 +359,41 @@ namespace Genesis.Net
 
         private WebRequest CreateWebRequest(Request request)
         {
-            string url = ComposeUrl(request.SubDomain, request.ApiPath, request.AppendTerminalToken);
+            var url = ComposeUrl(request.SubDomain, request.ApiPath, request.AppendTerminalToken);
             var webRequest = WebRequest.Create(url);
-            webRequest.Headers["Authorization"] = configuration.Authorization;
-            webRequest.Method = "POST";
-            webRequest.ContentType = "text/xml";
+            if (request is IPutRequest)
+            {
+                webRequest.Headers["Authorization"] = configuration.Authorization;
+                webRequest.Method = "PUT";
+            }
+            else
+            {
+                webRequest.Headers["Authorization"] = configuration.Authorization;
+                webRequest.Method = "POST";
+            }
 
-            byte[] data = XmlSerializationHelpers.Serialize(request);
+            byte[] data;
+            if (request is IUrlEncodedSignature)
+            {
+                webRequest.ContentType = "application/x-www-form-urlencoded";
+                var signature = (request as IUrlEncodedSignature).Signature;
+                var signatureAsKeyValuePair = new KeyValuePair<string, string>("signature", signature);
+                var signatureAsEnumerable = new List<KeyValuePair<string, string>>() { signatureAsKeyValuePair };
+                var content = new FormUrlEncodedContent(signatureAsEnumerable);
+                data = content.ReadAsByteArrayAsync().Result;
+            }
+            else
+            {
+                webRequest.ContentType = "text/xml";
+                data = XmlSerializationHelpers.Serialize(request);
+            }
+             
             webRequest.ContentLength = data.Length;
 
             var httpWebRequest = webRequest as HttpWebRequest;
             if (httpWebRequest != null)
             {
-                httpWebRequest.UserAgent = String.Format("Genesis.Net {0}", typeof(GenesisClient).Assembly.GetName().Version.ToString());
+                httpWebRequest.UserAgent = string.Format("Genesis.Net {0}", typeof(GenesisClient).Assembly.GetName().Version.ToString());
                 httpWebRequest.KeepAlive = false;
             }
 
@@ -341,12 +407,12 @@ namespace Genesis.Net
 
         private string ComposeUrl(string subDomain, string apiPath, bool appendTerminalToken)
         {
-            var url = this.IsUrlWithEnvironment() ?
-                this.GetUrlWithEnvironment(subDomain, apiPath) : this.GetUrlWithoutEnvironment(subDomain, apiPath);
+            var url = IsUrlWithEnvironment() ?
+                GetUrlWithEnvironment(subDomain, apiPath) : GetUrlWithoutEnvironment(subDomain, apiPath);
 
             if (appendTerminalToken)
             {
-                return String.Format("{0}/{1}/", url, configuration.TerminalToken);
+                return string.Format("{0}{1}", url, configuration.TerminalToken);
             }
 
             return url;
@@ -354,17 +420,17 @@ namespace Genesis.Net
 
         private bool IsUrlWithEnvironment()
         {
-            return !String.IsNullOrEmpty(configuration.Environment.ToUrlName());
+            return !string.IsNullOrEmpty(configuration.Environment.ToUrlName());
         }
 
         private string GetUrlWithEnvironment(string subDomain, string apiPath)
         {
-            return String.Format("https://{0}.{1}.{2}/{3}/", configuration.Environment.ToUrlName(), subDomain, configuration.getEndpointURL(), apiPath);
+            return string.Format("https://{0}.{1}.{2}/{3}/", configuration.Environment.ToUrlName(), subDomain, configuration.getEndpointURL(), apiPath);
         }
 
         private string GetUrlWithoutEnvironment(string subDomain, string apiPath)
         {
-            return String.Format("https://{0}.{1}/{2}/", subDomain, configuration.getEndpointURL(), apiPath);
+            return string.Format("https://{0}.{1}/{2}/", subDomain, configuration.getEndpointURL(), apiPath);
         }
 
         private MemoryStream GetResponseStream(WebRequest webRequest)
@@ -377,8 +443,7 @@ namespace Genesis.Net
             }
             catch (WebException ex)
             {
-                Stream responseStream;
-                if (TryGetResponseDataFromWebException(ex, out responseStream))
+                if (TryGetResponseDataFromWebException(ex, out var responseStream))
                 {
                     return Copy(responseStream);
                 }
@@ -404,8 +469,7 @@ namespace Genesis.Net
             }
             catch (WebException ex)
             {
-                Stream responseStream;
-                if (TryGetResponseDataFromWebException(ex, out responseStream))
+                if (TryGetResponseDataFromWebException(ex, out var responseStream))
                 {
                     return Copy(responseStream);
                 }
