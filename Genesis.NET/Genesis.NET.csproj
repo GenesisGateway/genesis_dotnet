@@ -79,6 +79,7 @@
     <Compile Include="Contracts\IUrlEncodedSignature.cs" />
     <Compile Include="Endpoints.cs" />
     <Compile Include="Entities\Attributes\Request\Financial\Business\BusinessAttributes.cs" />
+    <Compile Include="Entities\FundsStatusModel.cs" />
     <Compile Include="Entities\Notifications\APMExternalEventNotification.cs" />
     <Compile Include="Entities\Notifications\KYCNotification.cs" />
     <Compile Include="Entities\NotificationEcho.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Sdk.cs" />
     <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\ThreedsMethod.cs" />
     <Compile Include="Entities\Attributes\Request\Financial\Cards\ThreedsV2\Enums\Sdk\UiTypes.cs" />
+    <Compile Include="Entities\Requests\Referential\Reminder.cs" />
     <Compile Include="Entities\Responses\AcquirerModel.cs" />
     <Compile Include="Entities\Responses\AsyncTransactionModel.cs" />
     <Compile Include="Entities\Responses\AuthorizationModel.cs" />
@@ -350,6 +352,7 @@
       <DependentUpon>WpfReconcileErrorResponse.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Responses\GamingModel.cs" />
+    <Compile Include="Entities\Responses\InvalidTransactionsForAmountModel.cs" />
     <Compile Include="Entities\Responses\IssuerModel.cs" />
     <Compile Include="Entities\Responses\MoneyModel.cs" />
     <Compile Include="Entities\Responses\MotoModel.cs" />

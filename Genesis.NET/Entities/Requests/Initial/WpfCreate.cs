@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Xml.Serialization;
 using Genesis.Net.Common;
 using Genesis.Net.Entities.Attributes.Request.Financial.Business;
 using Genesis.Net.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
+using Genesis.Net.Entities.Requests.Referential;
 using Genesis.Net.Validations;
 using DataAnnotations = DataAnnotationsExtensions;
 
@@ -58,6 +60,10 @@ namespace Genesis.Net.Entities.Requests.Initial
             get { return money.CurrencyCode; }
             set { money.CurrencyCode = value; }
         }
+                
+        [StringLength(10)]
+        [XmlElement(ElementName = "consumer_id")]
+        public string ConsumerId { get; set; }
 
         [StringLength(255)]
         [XmlElement(ElementName = "usage")]
@@ -108,6 +114,9 @@ namespace Genesis.Net.Entities.Requests.Initial
         [XmlArrayItem(ElementName = "transaction_type")]
         public Composite[] TransactionTypes { get; set; }
 
+        [XmlElement(ElementName = "remember_card")]
+        public string RememberCard { get; set; }
+
         private int? _Lifetime;
         [XmlElement(ElementName = "lifetime")]
         public int? Lifetime
@@ -134,6 +143,16 @@ namespace Genesis.Net.Entities.Requests.Initial
         [XmlElement(ElementName = "threeds_v2_params")]
         public ThreeDSv2 ThreeDSv2 { get; set; }
 
+        [XmlElement(ElementName = "pay_later")]
+        public string PayLater { get; set; }
+
+        [XmlElement(ElementName = "reminder_language")]
+        public WpfLocales ReminderLanguage { get; set; }
+
+        [XmlArray("reminders")]
+        [XmlArrayItem(typeof(Reminder), ElementName = "reminder")]
+        public List<Reminder> Reminders { get; set; }
+
         /// <summary>
         /// An exemption from Strong Customer Authentication (SCA) can be requested by submitting an exemption with <code>low_risk</code> under SCA params.
         /// In case the issuer accepts the exemption, a step up in the authentication flow might not be required because the transaction's risk analysis has already been performed by acquirer.
@@ -144,5 +163,8 @@ namespace Genesis.Net.Entities.Requests.Initial
         /// </summary>
         [XmlElement(ElementName = "sca_params")]
         public Sca Sca { get; set; }
+
+        [XmlElement(ElementName = "web_payment_form_id")]
+        public string WebPaymentFormId { get; set; }
     }
 }

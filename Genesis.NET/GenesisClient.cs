@@ -443,7 +443,8 @@ namespace Genesis.Net
             }
             catch (WebException ex)
             {
-                if (TryGetResponseDataFromWebException(ex, out var responseStream))
+                Stream responseStream;
+                if (TryGetResponseDataFromWebException(ex, out responseStream))
                 {
                     return Copy(responseStream);
                 }
@@ -469,7 +470,8 @@ namespace Genesis.Net
             }
             catch (WebException ex)
             {
-                if (TryGetResponseDataFromWebException(ex, out var responseStream))
+                Stream responseStream;
+                if (TryGetResponseDataFromWebException(ex, out responseStream))
                 {
                     return Copy(responseStream);
                 }

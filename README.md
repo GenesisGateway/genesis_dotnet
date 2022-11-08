@@ -258,6 +258,8 @@ Genesis.Net.Entities.Requests.Initial.WpfCreate request = new Genesis.Net.Entiti
     Usage = "Genesis.NET test",
     Amount = 1,
     Currency = Iso4217CurrencyCodes.EUR,
+    ConsumerId = "123456", // only avaialable with enabled Tokenization, contact your Account Manager
+    RememberCard = "true", // only avaialable with enabled Tokenization, contact your Account Manager
     CustomerEmail = "hello@world.com",
     CustomerPhone = "3598888888888",
     Description = "description",
@@ -344,7 +346,27 @@ Genesis.Net.Entities.Requests.Initial.WpfCreate request = new Genesis.Net.Entiti
 
         // Payment Type
         PaymentType = "deposit"
-    }
+    },
+    PayLater = "true",
+    ReminderLanguage = WpfLocales.EN,
+	Reminders = new List<Reminder>
+    {
+        new Reminder
+        {
+            After = 40,
+            Channel = "email"
+        },
+        new Reminder
+        {
+            After = 10,
+            Channel = "sms"
+        }
+    },
+    Sca = new Sca
+    {
+        Exemption = ScaExemptions.LowValue
+    },
+    WebPaymentFormId = "1"
 };
 
 Genesis.Net.Result<

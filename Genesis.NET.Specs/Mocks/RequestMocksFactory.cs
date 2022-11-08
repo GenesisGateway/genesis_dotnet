@@ -2996,8 +2996,10 @@ namespace Genesis.Net.Specs.Mocks
                 Usage = "usage",
                 Amount = 1,
                 Currency = Iso4217CurrencyCodes.USD,
+                ConsumerId = "123456",
                 CustomerEmail = "hello@world.com",
                 CustomerPhone = "3598888888888",
+                RememberCard = "true",
                 Description = "description",
                 CardHolder = "Hodler Name",
                 TransactionTypes = new Composite[] {
@@ -3085,7 +3087,27 @@ namespace Genesis.Net.Specs.Mocks
                     ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
 
                     PaymentType = _paymentType
-                }
+                },
+                PayLater = "true",
+                ReminderLanguage = WpfLocales.EN,
+                Reminders = new List<Reminder>
+                {
+                    new Reminder
+                    {
+                        After = 40,
+                        Channel = "email"
+                    },
+                    new Reminder
+                    {
+                        After = 10,
+                        Channel = "sms"
+                    }
+                },
+                Sca = new Sca
+                {
+                    Exemption = ScaExemptions.LowValue
+                },
+                WebPaymentFormId = "1"
             };
 
             var xml =
@@ -3094,11 +3116,12 @@ namespace Genesis.Net.Specs.Mocks
                     "<transaction_id>id</transaction_id>" +
                     "<amount>100</amount>" +
                     "<currency>USD</currency>" +
+                    "<consumer_id>123456</consumer_id>" +
                     "<usage>usage</usage>" +
                     "<description>description</description>" +
                     "<card_holder>Hodler Name</card_holder>" +
                     "<customer_email>hello@world.com</customer_email>" +
-                    "<customer_phone>3598888888888</customer_phone>" +
+                    "<customer_phone>3598888888888</customer_phone>" +                   
                     "<notification_url>https://example.com/notify</notification_url>" +
                     "<return_success_url>http://test.com/success</return_success_url>" +
                     "<return_failure_url>http://test.com/fail</return_failure_url>" +
@@ -3139,6 +3162,7 @@ namespace Genesis.Net.Specs.Mocks
                             "<payment_subtype>authorize</payment_subtype>" +
                         "</transaction_type>" +
                     "</transaction_types>" +
+                    "<remember_card>true</remember_card>" +
                     "<lifetime xsi:nil=\"true\"/>" +
                     "<risk_params>" +
                         "<ssn>ssn</ssn>" +
@@ -3183,6 +3207,22 @@ namespace Genesis.Net.Specs.Mocks
                         "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                         "<payment_type>" + _paymentType + "</payment_type>" +
                     "</business_attributes>" +
+                    "<pay_later>true</pay_later>" +
+                    "<reminder_language>en</reminder_language>" +
+                    "<reminders>" +
+                      "<reminder>" +
+                        "<channel>email</channel>" +
+                        "<after>40</after>" +
+                      "</reminder>" +
+                      "<reminder>" +
+                        "<channel>sms</channel>" +
+                        "<after>10</after>" +
+                      "</reminder>" +
+                    "</reminders>" +
+                    "<sca_params>" +
+                      "<exemption>low_value</exemption>" +
+                    "</sca_params>" +
+                    "<web_payment_form_id>1</web_payment_form_id>" +
                 "</wpf_payment>";
 
             return new EntityMock<WpfCreate>(wpfCreate, xml);
