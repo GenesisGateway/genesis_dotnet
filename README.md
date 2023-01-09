@@ -29,7 +29,7 @@ Request types
 You can use the following request types to initialize various transactions supported by Genesis.
 
 ````
-Genesis.Net.Entities.Requests.Initial:
+Genesis.NetCore.Entities.Requests.Initial:
 * AccountVerification
 * Authorize
 * Authorize3d
@@ -43,15 +43,7 @@ Genesis.Net.Entities.Requests.Initial:
 * GooglePay
 * ApplePay
 
-Genesis.Net.Entities.Requests.Initial.ThreeD:
-* [deprecated: use Authorize3d] Authorize3dSync
-* [deprecated: use Authorize3d] Authorize3dAsync
-* [deprecated: use InitRecurringSale3d] InitRecurringSale3dSync
-* [deprecated: use InitRecurringSale3d] InitRecurringSale3dAsync
-* [deprecated: use Sale3d] Sale3dSync
-* [deprecated: use Sale3d] Sale3dAsync
-
-Genesis.Net.Entities.Requests.Query:
+Genesis.NetCore.Entities.Requests.Query:
 * Blacklist
 * SingleChargeback
 * MultiChargeback
@@ -60,7 +52,7 @@ Genesis.Net.Entities.Requests.Query:
 * SingleRetrievalRequest
 * MultiRetrievalRequest
 
-Genesis.Net.Entities.Requests.Referential:
+Genesis.NetCore.Entities.Requests.Referential:
 * Capture
 * Credit
 * RecurringSale
@@ -79,11 +71,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Genesis.Net;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
 using System.Reflection;
+using Genesis.NetCore;
 
 namespace ExampleConsoleApplication
 {
@@ -117,10 +109,10 @@ namespace ExampleConsoleApplication
             );
 
             // Initialize Genesis Client
-            var genesis = Genesis.Net.GenesisClientFactory.Create(configuration);
+            var genesis = Genesis.NetCore.GenesisClientFactory.Create(configuration);
 
             // Create Authorize request
-            var request = new Genesis.Net.Entities.Requests.Initial.Authorize();
+            var request = new Genesis.NetCore.Entities.Requests.Initial.Authorize();
 
             // Set request info
             var random = new Random();
@@ -130,13 +122,13 @@ namespace ExampleConsoleApplication
 
             // Set amount & currency
             request.Amount = 3.14M;
-            request.Currency = Genesis.Net.Common.Iso4217CurrencyCodes.EUR;
+            request.Currency = Genesis.NetCore.Common.Iso4217CurrencyCodes.EUR;
 
             // Set card info
             request.CardHolder = "John Smith";
             request.CardNumber = "4200000000000000";
-            request.ExpirationMonth = 6;
-            request.ExpirationYear = 2020;
+            request.ExpirationMonth = "6";
+            request.ExpirationYear = "2029";
             request.Cvv = "888";
             request.Moto = false;
 
@@ -145,9 +137,9 @@ namespace ExampleConsoleApplication
             request.CustomerPhone = "888888888";
 
             // Set Billing Address
-            request.BillingAddress = new Genesis.Net.Entities.Address
+            request.BillingAddress = new Genesis.NetCore.Entities.Address
             {
-                Country = Genesis.Net.Common.Iso3166CountryCodes.BG,
+                Country = Genesis.NetCore.Common.Iso3166CountryCodes.BG,
                 City = "Sofia",
                 State = "Sofia",
                 Address1 = "Street 1",
@@ -157,9 +149,9 @@ namespace ExampleConsoleApplication
             };
 
             // Set Shipping Address
-            request.ShippingAddress = new Genesis.Net.Entities.Address
+            request.ShippingAddress = new Genesis.NetCore.Entities.Address
             {
-                Country = Genesis.Net.Common.Iso3166CountryCodes.BG,
+                Country = Genesis.NetCore.Common.Iso3166CountryCodes.BG,
                 City = "Sofia",
                 State = "Sofia",
                 Address1 = "Street 1",
@@ -169,7 +161,7 @@ namespace ExampleConsoleApplication
             };
 
             // Business Attributes
-            request.BusinessAttributes = new Genesis.Net.Entities.Attributes.Request.Financial.Business.BusinessAttributes
+            request.BusinessAttributes = new Genesis.NetCore.Entities.Attributes.Request.Financial.Business.BusinessAttributes
             {
                 // Business Airlines Air Carriers
                 FlightArrivalDate = "23-12-2030",
@@ -225,8 +217,8 @@ namespace ExampleConsoleApplication
             };
 
             Result<
-                Genesis.Net.Entities.Responses.Successful.CardTransactionSuccessResponse,
-                Genesis.Net.Entities.Responses.Error.CardTransactionErrorResponse> result = genesis.Execute(request);
+                Genesis.NetCore.Entities.Responses.Successful.CardTransactionSuccessResponse,
+                Genesis.NetCore.Entities.Responses.Error.CardTransactionErrorResponse> result = genesis.Execute(request);
            
             Console.WriteLine($"{nameof(result.IsSuccessful)}: {result.IsSuccessful}");
             if (result.IsSuccessful)
@@ -252,7 +244,7 @@ Example WPF request
 
 ```c#
 Random random = new Random();
-Genesis.Net.Entities.Requests.Initial.WpfCreate request = new Genesis.Net.Entities.Requests.Initial.WpfCreate()
+Genesis.NetCore.Entities.Requests.Initial.WpfCreate request = new Genesis.NetCore.Entities.Requests.Initial.WpfCreate()
 {
     TransactionId = random.Next(1000000, 9000000).ToString(),
     Usage = "Genesis.NET test",
@@ -293,7 +285,7 @@ Genesis.Net.Entities.Requests.Initial.WpfCreate request = new Genesis.Net.Entiti
         State = "BS",
         ZipCode = "1000"
     },
-    BusinessAttributes = new Genesis.Net.Entities.Attributes.Request.Financial.Business.BusinessAttributes()
+    BusinessAttributes = new Genesis.NetCore.Entities.Attributes.Request.Financial.Business.BusinessAttributes()
     {
         // Business Airlines Air Carriers
         FlightArrivalDate = "23-12-2030",
@@ -369,9 +361,9 @@ Genesis.Net.Entities.Requests.Initial.WpfCreate request = new Genesis.Net.Entiti
     WebPaymentFormId = "1"
 };
 
-Genesis.Net.Result<
-    Genesis.Net.Entities.Responses.Successful.WpfCreateSuccessResponse,
-    Genesis.Net.Entities.Responses.Error.WpfCreateErrorResponse
+Genesis.NetCore.Result<
+    Genesis.NetCore.Entities.Responses.Successful.WpfCreateSuccessResponse,
+    Genesis.NetCore.Entities.Responses.Error.WpfCreateErrorResponse
 > res = genesis.Execute(request);
 ```
 
@@ -383,14 +375,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
-using Genesis.Net;
-using Genesis.Net.Common;
-using Genesis.Net.Entities;
-using Genesis.Net.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
-using Genesis.Net.Entities.Attributes.Request.Financial.Cards.ThreedsV2.Enums;
-using Genesis.Net.Entities.Enums;
-using Genesis.Net.Entities.Requests.Initial;
-using Genesis.Net.Entities.Requests.Initial.Threedsv2;
+using Genesis.NetCore;
+using Genesis.NetCore.Common;
+using Genesis.NetCore.Entities;
+using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
+using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2.Enums;
+using Genesis.NetCore.Entities.Enums;
+using Genesis.NetCore.Entities.Requests.Initial;
+using Genesis.NetCore.Entities.Requests.Initial.Threedsv2;
 
 namespace ConsoleTest3dv2Requests
 {
@@ -434,13 +426,13 @@ namespace ConsoleTest3dv2Requests
                 Usage = "40208 concert tickets",
                 RemoteIp = "192.168.2.12",
                 Amount = 50,
-                Currency = Genesis.Net.Common.Iso4217CurrencyCodes.USD,
+                Currency = Genesis.NetCore.Common.Iso4217CurrencyCodes.USD,
                 CardHolder = "FirstName LastName",
                 CustomerEmail = "jhonny@example.com",
                 CustomerPhone = "+1678678678678",
                 CardNumber = TestCardsNumbers.Visa3dv2ChallengeWith3dSecure, //"4938730000000001"
-                ExpirationMonth = 1,
-                ExpirationYear = 2024,
+                ExpirationMonth = "1",
+                ExpirationYear = "2029",
                 Cvv = "123",
                 BillingAddress = new Address()
                 {
@@ -559,10 +551,10 @@ namespace ConsoleTest3dv2Requests
                         Console.WriteLine($"Status: \t\t{response.SuccessResponse.Status}");
                         switch (response.SuccessResponse.Status.Value)
                         {
-                            case Genesis.Net.Entities.Enums.TransactionStates.Approved:
+                            case Genesis.NetCore.Entities.Enums.TransactionStates.Approved:
                                 Console.WriteLine("--- --- Transaction is Approved.");
                                 break;
-                            case Genesis.Net.Entities.Enums.TransactionStates.PendingAsync:
+                            case Genesis.NetCore.Entities.Enums.TransactionStates.PendingAsync:
                                 Console.WriteLine("--- --- Transaction is pending - interaction between consumer and issuer is required.");
                                 if (!string.IsNullOrEmpty(response.SuccessResponse.RedirectUrl))
                                 {
@@ -652,7 +644,7 @@ namespace ConsoleTest3dv2Requests
 }
 ```
 
-More example requests can be found in the library's specs class [`Genesis.Net.Specs.Mocks.RequestMocksFactory`](Genesis.NET.Specs/Mocks/RequestMocksFactory.cs).
+More example requests can be found in the library's specs class [`Genesis.NetCore.Specs.Mocks.RequestMocksFactory`](Genesis.NetCore.Specs/Mocks/RequestMocksFactory.cs).
 
 More information about each one of the request types can be found in the Genesis API Documentation
 

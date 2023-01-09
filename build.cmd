@@ -13,7 +13,7 @@ if "%~2"=="" (
   set outputDir=%outputDir:/=\%
 )
 
-msbuild Genesis.NET\Genesis.NET.csproj /p:Configuration=%config% /t:"Rebuild"
+msbuild Genesis.NETCore\Genesis.NetCore.csproj /p:Configuration=%config% /t:"Rebuild"
 
 md %outputDir%
-xcopy Genesis.NET\bin\%config% %outputDir% /S /Y /K
+xcopy Genesis.NETCore\bin\%config% %outputDir% /S /Y /K

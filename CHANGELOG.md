@@ -1,0 +1,119 @@
+2.0.0
+-----
+**Features**:
+* Updated the library to `.Net Standard 2.0`  in order to support .NET Core, 5, 6 and 7.  The older compatibility remains. .Net 4.5 and 4.6 are supported with the same codebase and realized by "multi-targeting".
+* Replaced the `Genesis.NET` namespace with `Genesis.NETCore`
+* Added **Client-Side Encryption** support by adding a boolean parameter `ClientSideEncryption` to the following transaction requests:
+  * Authorize
+  * Authorize 3D
+  * Sale
+  * Sale 3D
+  * Init Recurring Sale
+  * Init Recurring Sale 3D
+  * Payout
+  * Account Verification
+* Removed obsolete `Sale3dAsync`, `Authorize3dAsync`, `InitiRecurringSale3dAsync` transaction requests
+
+1.2.1
+-----
+**Features**:
+
+* Updated Web Payment Form attributes by extending support with:
+  * **Reminder Language**
+  * **Reminders**
+  * **Pay Later**
+  * **Tokenization**
+    * **Consumer Id**
+    * **Remember Card**
+  * **Web Payment Form Id**
+
+1.2.0
+-----
+**Features**:
+
+* Added 3DSv2 parameters support to the following transaction requests:
+    * **Sale 3D**
+    * **Authorize 3D**
+    * **Initi Recurring Sale 3D**
+    * **Web Payment Form**
+* Added new Sale 3D, Authorize 3D and Init Recurring Sale 3D classes under `Genesis.Net.Entities.Requests.Initial` namespace. The old Async classes are still available and will be removed in future versions.
+* Updated `remote_ip` attribute by marking it as optional.
+* Added **SCA** parameters support.
+* Updated response parameters - 3DSv2 and more.
+
+**Fixes**:
+
+* Fixed notification response generation
+
+1.1.9
+-----
+**Features**:
+
+* Added Apple Pay support
+* Added Google Pay support
+
+**Fixes**:
+
+* Fixed error upon empty Billing/Shipping Country inside the response
+
+1.1.8
+-----
+
+**Features**:
+  * Added Business Attributes support to the following transaction request:
+    * **Authorize**
+    * **Authorize 3D**
+    * **Sale**
+    * **Sale 3D**
+    * **Init Recurring Sale**
+    * **Init Recurring Sale 3D**
+    * **Capture**
+    * **Recurring Sale**
+    * **Web Payment Form**
+
+1.1.7
+-----
+
+**Features**:
+* Removed requirement for Certificate usage
+
+1.1.6
+-----
+**Fixes:**
+* Fixed bug with the building of requests' URLs
+
+1.1.5
+-----
+
+**Fixes:**
+* Updated conditionally required fields in requests
+* Removed leftover files after updating filenames
+
+1.1.3
+-----
+**Features:**
+* Added new fields to WPF Create request
+  * Card Holder
+  * Lifetime
+  * Dynamic Descriptor Params
+* Added example code to README
+
+**Fixes:**
+* Fixed WPF Reconcile request's API URL
+
+1.1.2
+-----
+
+**Features:**
+* Extended library’s tests to include checking connectivity to the gateways
+
+**Fixes:**
+* Fixed issue with SSL certificate’s path in library tests
+* Fixed issues with library’s tests - filenames and configs
+
+1.1.1
+----
+
+**Fixes**:
+* Fixed issue with the conversion from major to minor units based on regional settings
+* Fixed syntax error in specs
