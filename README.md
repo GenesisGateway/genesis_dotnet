@@ -6,7 +6,7 @@ Genesis .net
 Overview
 --------
 
-Client Library for processing payments through Genesis Payment Processing Gateway. Its highly recommended to checkout "Genesis Payment Gateway API Documentation" first, in order to get an overview of Genesis's Payment Gateway API and functionality.
+Client Library for processing payments through Genesis Payment Processing Gateway. Its highly recommended to checkout "Genesis Payment Gateway API Documentation" first, [you can discover it here](https://emerchantpay.github.io/gateway-api-docs/#version), in order to get an overview of Genesis's Payment Gateway API and functionality.
 
 Requirements
 ------------

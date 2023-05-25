@@ -1,6 +1,14 @@
+2.0.1
+-----
+**Features**:
+
+* Updated project README by adding a reference to the official Gateway API Documentation
+* Added Release Notes to the NuGet Package configuration
+
 2.0.0
 -----
 **Features**:
+
 * Updated the library to `.Net Standard 2.0`  in order to support .NET Core, 5, 6 and 7.  The older compatibility remains. .Net 4.5 and 4.6 are supported with the same codebase and realized by "multi-targeting".
 * Replaced the `Genesis.NET` namespace with `Genesis.NETCore`
 * Added **Client-Side Encryption** support by adding a boolean parameter `ClientSideEncryption` to the following transaction requests:
@@ -58,40 +66,42 @@
 
 1.1.8
 -----
-
 **Features**:
-  * Added Business Attributes support to the following transaction request:
-    * **Authorize**
-    * **Authorize 3D**
-    * **Sale**
-    * **Sale 3D**
-    * **Init Recurring Sale**
-    * **Init Recurring Sale 3D**
-    * **Capture**
-    * **Recurring Sale**
-    * **Web Payment Form**
+
+* Added Business Attributes support to the following transaction request:
+  * **Authorize**
+  * **Authorize 3D**
+  * **Sale**
+  * **Sale 3D**
+  * **Init Recurring Sale**
+  * **Init Recurring Sale 3D**
+  * **Capture**
+  * **Recurring Sale**
+  * **Web Payment Form**
 
 1.1.7
 -----
-
 **Features**:
+
 * Removed requirement for Certificate usage
 
 1.1.6
 -----
 **Fixes:**
+
 * Fixed bug with the building of requests' URLs
 
 1.1.5
 -----
-
 **Fixes:**
+
 * Updated conditionally required fields in requests
 * Removed leftover files after updating filenames
 
 1.1.3
 -----
 **Features:**
+
 * Added new fields to WPF Create request
   * Card Holder
   * Lifetime
@@ -99,15 +109,18 @@
 * Added example code to README
 
 **Fixes:**
+
 * Fixed WPF Reconcile request's API URL
 
 1.1.2
 -----
 
 **Features:**
+
 * Extended library’s tests to include checking connectivity to the gateways
 
 **Fixes:**
+
 * Fixed issue with SSL certificate’s path in library tests
 * Fixed issues with library’s tests - filenames and configs
 
@@ -115,5 +128,6 @@
 ----
 
 **Fixes**:
+
 * Fixed issue with the conversion from major to minor units based on regional settings
 * Fixed syntax error in specs
