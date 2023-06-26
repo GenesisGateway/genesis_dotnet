@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using Genesis.NetCore.Entities.Attributes.Request.Financial.Recurring;
+using System.Xml.Serialization;
 
 namespace Genesis.NetCore.Entities.Requests.Initial
 {
@@ -8,5 +9,8 @@ namespace Genesis.NetCore.Entities.Requests.Initial
         public InitRecurringSale() : base(TransactionTypes.InitRecurringSale)
         {
         }
+
+        [XmlElement(ElementName = "managed_recurring")]
+        public ManagedRecurring ManagedRecurring { get; set; }
     }
 }

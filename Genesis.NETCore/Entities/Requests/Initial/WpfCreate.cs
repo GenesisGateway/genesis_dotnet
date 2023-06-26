@@ -7,6 +7,7 @@ using Genesis.NetCore.Entities.Attributes.Request.Financial.Business;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
 using Genesis.NetCore.Entities.Requests.Referential;
 using Genesis.NetCore.Validations;
+using Genesis.NetCore.Entities.Enums.Recurring;
 
 namespace Genesis.NetCore.Entities.Requests.Initial
 {
@@ -129,7 +130,12 @@ namespace Genesis.NetCore.Entities.Requests.Initial
         public DynamicDescriptor DynamicDescriptorParams { get; set; }
 
         [XmlElement(ElementName = "business_attributes")]
-        public BusinessAttributes BusinessAttributes { get; set; }
+        public BusinessAttributes BusinessAttributes { get; set; }        
+
+        [XmlElement(ElementName = "recurring_type")]
+        public RecurringType? RecurringType { get; set; }
+
+        public bool ShouldSerializeRecurringType() { return RecurringType != null; }
 
         /// <summary>
         /// 3DSv2 async parameters. They must be submitted in order to use the 3DSv2 authentication protocol in asynchronous workflow.

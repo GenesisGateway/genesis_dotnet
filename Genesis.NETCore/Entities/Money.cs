@@ -6,6 +6,15 @@ namespace Genesis.NetCore.Entities
 {
     public class Money : IEntity
     {
+        public Money() { }
+
+
+        public Money(Iso4217CurrencyCodes currency, decimal majorAmount)
+        {
+            CurrencyCode = currency;
+            MajorAmount = majorAmount;
+        }
+
         private readonly IFormatProvider conversionCultureInfo = CultureInfo.GetCultureInfo("en-US");
 
         private string nativeAmount;

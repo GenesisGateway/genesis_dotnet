@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Genesis.NetCore.Entities;
+using Genesis.NetCore.Entities.Attributes.Request.Financial.Recurring;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
@@ -7,8 +10,16 @@ using System.Xml.Serialization;
 
 namespace Genesis.NetCore.Common
 {
-    public class Composite : Dictionary<String, String>, IXmlSerializable
+    public class Composite : Dictionary<String, object>, IXmlSerializable
     {
+        // Add here the Complex Type objects for Composite
+        // Key - xml element Name
+        // Value - the Type of the complex object
+        private Dictionary<string, Type> complexObjects = new Dictionary<string, Type>()
+        {
+            { "managed_recurring", typeof(ManagedRecurring) }
+        };
+
         public XmlSchema GetSchema()
         {
             return null;
@@ -24,10 +35,38 @@ namespace Genesis.NetCore.Common
 
             while (reader.NodeType != XmlNodeType.EndElement)
             {
-                reader.ReadStartElement();
+                if (complexObjects.ContainsKey(reader.Name))
+                {
+                    var key = reader.Name;
+                    var outerXml = reader.ReadOuterXml().Replace(" xmlns=\"WpfCreate\"", String.Empty);
 
-                var value = ReadValue(reader);
-                this.Add(reader.Name, value);
+                    object result;
+                    Type valueType;
+                    complexObjects.TryGetValue(key, out valueType);
+                                       
+                    var ser = new XmlSerializer(valueType);
+                    using (var read = new StringReader(outerXml))
+                    {
+                        result = (IEntity)ser.Deserialize(read);
+                    }
+
+                    this.Add(key, result);
+                }
+                else
+                {
+                    reader.ReadStartElement();
+                    object value;
+                    if (reader.NodeType == XmlNodeType.Text)
+                    {
+                        value = ReadValue(reader);
+                    }
+                    else
+                    {
+                        value = reader.ReadElementContentAsObject();
+                    }
+
+                    this.Add(reader.Name, value);
+                }
 
                 reader.ReadEndElement();
                 reader.MoveToContent();
@@ -49,9 +88,20 @@ namespace Genesis.NetCore.Common
 
         public void WriteXml(XmlWriter writer)
         {
+
             foreach (String key in this.Keys)
             {
-                writer.WriteElementString(key, this[key]);
+                if (!(this[key] is string))
+                {
+                    var res = XmlSerializationHelpers.Serialize(this[key] as IEntity, true);
+                    var str = System.Text.Encoding.UTF8.GetString(res).ToCharArray();
+                    var count = str.Length;
+                    writer.WriteRaw(str, 0, count);
+                }
+                else
+                {
+                    writer.WriteElementString(key, this[key].ToString().ToLower());
+                }
             }
         }
 
@@ -69,7 +119,7 @@ namespace Genesis.NetCore.Common
 
             foreach (string key in this.Keys)
             {
-                String value, otherValue;
+                object value, otherValue;
                 if (this.TryGetValue(key, out value) && other.TryGetValue(key, out otherValue))
                 {
                     if (!String.Equals(value, otherValue))

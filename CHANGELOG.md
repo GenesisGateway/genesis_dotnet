@@ -1,3 +1,12 @@
+2.0.2
+-----
+**Features**:
+
+* Added Recurring Type attribute support to the following transaction requests: Authorize, Authorize 3D, Sale, Sale 3D, Web Payment Form
+* Added Managed Recurring attributes support to the following transaction requests: Authorize, Authorize 3D, Sale, Sale 3D, Init Recurring Sale, Init Recurring Sale 3D
+* Added Manager Recurring attributes support to the Web Payment Form Transaction Types Composite object
+* Added Reference Id attributes support to the following transaction requests: Authorize, Sale
+
 2.0.1
 -----
 **Features**:

@@ -1,5 +1,8 @@
 using System.Xml.Serialization;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Business;
+using Genesis.NetCore.Entities.Attributes.Request.Financial.Recurring;
+using Genesis.NetCore.Entities.Requests.Initial;
+using Genesis.NetCore.Validations;
 
 namespace Genesis.NetCore.Entities.Requests.Referential
 {
@@ -8,6 +11,9 @@ namespace Genesis.NetCore.Entities.Requests.Referential
     {
         [XmlElement(ElementName = "business_attributes")]
         public BusinessAttributes BusinessAttributes { get; set; }
+
+        [XmlElement(ElementName = "managed_recurring")]
+        public ManagedRecurring ManagedRecurring { get; set; }
 
         public RecurringSale()
         {

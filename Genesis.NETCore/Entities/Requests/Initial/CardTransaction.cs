@@ -1,5 +1,8 @@
-﻿using System.Xml.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Business;
+using Genesis.NetCore.Entities.Requests.Referential;
+using Genesis.NetCore.Validations;
 
 namespace Genesis.NetCore.Entities.Requests.Initial
 {

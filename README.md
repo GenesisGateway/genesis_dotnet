@@ -644,6 +644,27 @@ namespace ConsoleTest3dv2Requests
 }
 ```
 
+Managed Recurring
+-----------------------------------------------------------------
+Managed Recurring provides the option to automatically schedule recurring transactions for a specific day and time. Managed Recurring is available after additional configuration.
+
+In order to suit the gateway requirements of sending the `amount` or `max_amount` as an integer we are providing an option of doing such minor currency conversion with the help of the library's internal tools.
+
+You can do it in the following way:
+```
+ManagedRecurring = new ManagedRecurring()
+                {
+                    Mode = Mode.Automatic,
+                    Interval = Interval.Days,
+                    FirstDate = "2040-12-18",
+                    TimeOfDay = 5,
+                    Period = 22,
+                    Amount = new Money(Iso4217CurrencyCodes.USD, 5.5M).MinorAmount,
+                    MaxCount = 10
+                },
+```
+
+
 More example requests can be found in the library's specs class [`Genesis.NetCore.Specs.Mocks.RequestMocksFactory`](Genesis.NetCore.Specs/Mocks/RequestMocksFactory.cs).
 
 More information about each one of the request types can be found in the Genesis API Documentation

@@ -13,14 +13,14 @@ namespace Genesis.NetCore.Common
     {
         private static XmlAttributeOverrides xmlAttributeOverrides;
 
-        public static byte[] Serialize(IEntity entity)
+        public static byte[] Serialize(IEntity entity, bool omitXmlDeclaration = false)
         {
             using (var textWriter = new StringWriterUtf8())
             {
                 XmlWriterSettings settings = new XmlWriterSettings()
                 {
                     Indent = false,
-                    OmitXmlDeclaration = false,
+                    OmitXmlDeclaration = omitXmlDeclaration,
                     NewLineChars = string.Empty
                 };
 

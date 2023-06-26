@@ -5,6 +5,9 @@ using Genesis.NetCore.Entities;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Business;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2.Enums;
+using Genesis.NetCore.Entities.Attributes.Request.Financial.Recurring;
+using Genesis.NetCore.Entities.Enums.ManagedRecurring;
+using Genesis.NetCore.Entities.Enums.Recurring;
 using Genesis.NetCore.Entities.Requests.Initial;
 using Genesis.NetCore.Entities.Requests.Query;
 using Genesis.NetCore.Entities.Requests.Referential;
@@ -16,18 +19,20 @@ namespace Genesis.NetCore.Specs.Mocks
         const string _digitNumber = "123456789";
         const string _contractorName = "Martin Fowler";
         const string _paymentType = "deposit";
+        const string _recurringType = "initial";
 
         public static EntityMock<Authorize> CreateValidAuthorize()
         {
             var _startDate = DateTime.Now.AddMonths(-1);
             var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.USD;
 
             var authorize = new Authorize()
             {
                 Id = "id",
                 Usage = "usage",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 RemoteIp = "255.10.100.10",
                 CardHolder = "card holder",
                 ExpirationMonth = "1",
@@ -36,6 +41,8 @@ namespace Genesis.NetCore.Specs.Mocks
                 CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
+                RecurringType = RecurringType.Subsequent,
+                ReferenceId = "406bc1b340472db4dbbba4b749850234",
                 BillingAddress = new Address()
                 {
                     Address1 = "billing address1",
@@ -74,6 +81,16 @@ namespace Genesis.NetCore.Specs.Mocks
                 {
                     MerchantName = "Test Merchant",
                     MerchantCity = "Testing Town"
+                },
+                ManagedRecurring = new ManagedRecurring()
+                {
+                    Mode = Mode.Automatic,
+                    Interval = Interval.Days,
+                    FirstDate = "2021-12-18",
+                    TimeOfDay = 5,
+                    Period = 22,
+                    Amount = new Money(_currency, 5.99M).MinorAmount,
+                    MaxCount = 10
                 },
                 BusinessAttributes = new BusinessAttributes()
                 {
@@ -192,6 +209,17 @@ namespace Genesis.NetCore.Specs.Mocks
                       "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                       "<payment_type>" + _paymentType + "</payment_type>" +
                       "</business_attributes>" +
+                      "<managed_recurring>" +
+                          "<mode>automatic</mode>" +
+                          "<interval>days</interval>" +
+                          "<first_date>2021-12-18</first_date>" +
+                          "<time_of_day>5</time_of_day>" +
+                          "<period>22</period>" +
+                          "<amount>599</amount>" +
+                          "<max_count>10</max_count>" +
+                      "</managed_recurring>" +
+                      "<recurring_type>subsequent</recurring_type>" +
+                      "<reference_id>406bc1b340472db4dbbba4b749850234</reference_id>" +
                       "</payment_transaction>";
 
             return new EntityMock<Authorize>(authorize, xml);
@@ -201,13 +229,14 @@ namespace Genesis.NetCore.Specs.Mocks
         {
             var _startDate = DateTime.Now.AddMonths(-1);
             var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.USD;
 
             var authorize3dAsync = new Authorize3d()
             {
                 Id = "id",
                 Usage = "usage",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 RemoteIp = "255.10.100.10",
                 CardHolder = "card holder",
                 ExpirationMonth = "1",
@@ -387,12 +416,14 @@ namespace Genesis.NetCore.Specs.Mocks
 
         public static EntityMock<Authorize3d> CreateValidAuthorize3dSync()
         {
+            var _currency = Iso4217CurrencyCodes.USD;
+
             var authorize3dSync = new Authorize3d()
             {
                 Id = "id",
                 Usage = "usage",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 RemoteIp = "255.10.100.10",
                 CardHolder = "card holder",
                 ExpirationMonth = "1",
@@ -513,13 +544,14 @@ namespace Genesis.NetCore.Specs.Mocks
         {
             var _startDate = DateTime.Now.AddMonths(-1);
             var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.USD;
 
             var initRecurringSale3dAsync = new InitRecurringSale3d()
             {
                 Id = "id",
                 Usage = "usage",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 RemoteIp = "255.10.100.10",
                 CardHolder = "card holder",
                 ExpirationMonth = "1",
@@ -569,6 +601,17 @@ namespace Genesis.NetCore.Specs.Mocks
                 {
                     MerchantName = "Test Merchant",
                     MerchantCity = "Testing Town"
+                },
+                ManagedRecurring = new ManagedRecurring()
+                {
+                    Mode = Mode.Manual,
+                    Interval = Interval.Days,
+                    FirstDate = "2021-12-18",
+                    TimeOfDay = 5,
+                    Period = 22,
+                    Amount = new Money(_currency, 0.99M).MinorAmount,
+                    MaxCount = 10,
+                    PaymentType = PaymentType.Subsequent
                 },
                 BusinessAttributes = new BusinessAttributes()
                 {
@@ -691,6 +734,16 @@ namespace Genesis.NetCore.Specs.Mocks
                      "<notification_url>https://example.com/notify</notification_url>" +
                      "<return_success_url>http://test.com/success</return_success_url>" +
                      "<return_failure_url>http://test.com/fail</return_failure_url>" +
+                     "<managed_recurring>" +
+                       "<mode>manual</mode>" +
+                       "<interval>days</interval>" +
+                       "<first_date>2021-12-18</first_date>" +
+                       "<time_of_day>5</time_of_day>" +
+                       "<period>22</period>" +
+                       "<amount>99</amount>" +
+                       "<max_count>10</max_count>" +
+                       "<payment_type>subsequent</payment_type>" +
+                    "</managed_recurring>" +                     
                      "</payment_transaction>";
 
             return new EntityMock<InitRecurringSale3d>(initRecurringSale3dAsync, xml);
@@ -698,12 +751,14 @@ namespace Genesis.NetCore.Specs.Mocks
 
         public static EntityMock<InitRecurringSale3d> CreateValidInitRecurringSale3dSync()
         {
+            var _currency = Iso4217CurrencyCodes.USD;
+
             var initRecurringSale3dSync = new InitRecurringSale3d()
             {
                 Id = "id",
                 Usage = "usage",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 RemoteIp = "255.10.100.10",
                 CardHolder = "card holder",
                 ExpirationMonth = "1",
@@ -824,13 +879,14 @@ namespace Genesis.NetCore.Specs.Mocks
         {
             var _startDate = DateTime.Now.AddMonths(-1);
             var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.USD;
 
             var sale3dAsync = new Sale3d()
             {
                 Id = "id",
                 Usage = "usage",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 RemoteIp = "255.10.100.10",
                 CardHolder = "card holder",
                 ExpirationMonth = "1",
@@ -1009,12 +1065,14 @@ namespace Genesis.NetCore.Specs.Mocks
 
         public static EntityMock<Sale3d> CreateValidSale3dSync()
         {
+            var _currency = Iso4217CurrencyCodes.USD;
+
             var sale3dSync = new Sale3d()
             {
                 Id = "id",
                 Usage = "usage",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 RemoteIp = "255.10.100.10",
                 CardHolder = "card holder",
                 ExpirationMonth = "1",
@@ -1133,13 +1191,15 @@ namespace Genesis.NetCore.Specs.Mocks
 
         public static EntityMock<InitRecurringSale3d> CreateValidFrictionless3dv2()
         {
+            var _currency = Iso4217CurrencyCodes.USD;
+
             var sale3dv2 = new InitRecurringSale3d()
             {
                 Id = "119643250547501c79d8295",
                 Usage = "40208 concert tickets",
                 RemoteIp = "245.253.2.12",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 CardHolder = "Travis Pastrana",
                 CardNumber = CardsNumbers.Visa3dsv2FrictionlessAuthenticated,
                 ExpirationMonth = "12",
@@ -1160,6 +1220,16 @@ namespace Genesis.NetCore.Specs.Mocks
                 NotificationUrl = "https://www.example.com/notification",
                 ReturnSuccessUrl = "http://www.example.com/success",
                 ReturnFailureUrl = "http://www.example.com/failure",
+                ManagedRecurring = new ManagedRecurring()
+                {
+                    Mode = Mode.Automatic,
+                    Interval = Interval.Days,
+                    FirstDate = "2021-12-18",
+                    TimeOfDay = 5,
+                    Period = 22,
+                    Amount = new Money(_currency, 2.01M).MinorAmount,
+                    MaxCount = 10
+                },
                 ThreeDSv2 = new ThreeDSv2
                 {
                     ThreedsMethod = new ThreedsMethod()
@@ -1262,7 +1332,7 @@ namespace Genesis.NetCore.Specs.Mocks
                     <city>Los Angeles</city>
                     <state>CA</state>
                     <country>US</country>
-                  </billing_address>
+                  </billing_address>                 
                   <notification_url>https://www.example.com/notification</notification_url>
                   <return_success_url>http://www.example.com/success</return_success_url>
                   <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -1332,6 +1402,15 @@ namespace Genesis.NetCore.Specs.Mocks
                   <sca_params>
                     <exemption>low_risk</exemption>
                   </sca_params>
+                  <managed_recurring>
+                      <mode>automatic</mode>
+                      <interval>days</interval>
+                      <first_date>2021-12-18</first_date>
+                      <time_of_day>5</time_of_day>
+                      <period>22</period>
+                      <amount>201</amount>
+                      <max_count>10</max_count>
+                  </managed_recurring>
                 </payment_transaction>";
 
             return new EntityMock<InitRecurringSale3d>(sale3dv2, xml);
@@ -1339,13 +1418,15 @@ namespace Genesis.NetCore.Specs.Mocks
 
         public static EntityMock<InitRecurringSale3d> CreateValidFrictionless3dv2With3dSecure()
         {
+            var _currency = Iso4217CurrencyCodes.USD;
+
             var sale3dv2With3dSecure = new InitRecurringSale3d()
             {
                 Id = "119643250547501c79d8295",
                 Usage = "40208 concert tickets",
                 RemoteIp = "245.253.2.12",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 CardHolder = "Travis Pastrana",
                 CardNumber = CardsNumbers.Visa3dsv2FrictionlessWith3dsMethodAuthenticated,
                 ExpirationMonth = "12",
@@ -1366,6 +1447,16 @@ namespace Genesis.NetCore.Specs.Mocks
                 NotificationUrl = "https://www.example.com/notification",
                 ReturnSuccessUrl = "http://www.example.com/success",
                 ReturnFailureUrl = "http://www.example.com/failure",
+                ManagedRecurring = new ManagedRecurring()
+                {
+                    Mode = Mode.Automatic,
+                    Interval = Interval.Days,
+                    FirstDate = "2021-12-18",
+                    TimeOfDay = 5,
+                    Period = 22,
+                    Amount = new Money(_currency, 5).MinorAmount,
+                    MaxCount = 10
+                },
                 ThreeDSv2 = new ThreeDSv2
                 {
                     ThreedsMethod = new ThreedsMethod()
@@ -1468,7 +1559,7 @@ namespace Genesis.NetCore.Specs.Mocks
       <city>Los Angeles</city>
       <state>CA</state>
       <country>US</country>
-    </billing_address>
+    </billing_address>    
     <notification_url>https://www.example.com/notification</notification_url>
     <return_success_url>http://www.example.com/success</return_success_url>
     <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -1538,12 +1629,23 @@ namespace Genesis.NetCore.Specs.Mocks
     <sca_params>
       <exemption>low_risk</exemption>
     </sca_params>
+    <managed_recurring>
+        <mode>automatic</mode>
+        <interval>days</interval>
+        <first_date>2021-12-18</first_date>
+        <time_of_day>5</time_of_day>
+        <period>22</period>
+        <amount>500</amount>
+        <max_count>10</max_count>
+    </managed_recurring>
   </payment_transaction>";
             return new EntityMock<InitRecurringSale3d>(sale3dv2With3dSecure, xml);
         }
 
         public static EntityMock<Authorize3d> CreateValidChallenge3dv2()
         {
+            var _currency = Iso4217CurrencyCodes.USD;
+
             var challenge3dv2With3dSecure = new Authorize3d()
             {
                 TransactionType = TransactionTypes.Authorize3d,
@@ -1551,7 +1653,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 Usage = "40208 concert tickets",
                 RemoteIp = "245.253.2.12",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 CardHolder = "Travis Pastrana",
                 CardNumber = CardsNumbers.Visa3dsv2Challenge,
                 ExpirationMonth = "12",
@@ -1741,6 +1843,8 @@ namespace Genesis.NetCore.Specs.Mocks
 
         public static EntityMock<Sale3d> CreateValidChallenge3dv2With3dSecure()
         {
+            var _currency = Iso4217CurrencyCodes.USD;
+
             var challenge3dv2With3dSecure = new Sale3d()
             {
                 TransactionType = TransactionTypes.Sale3d,
@@ -1748,7 +1852,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 Usage = "40208 concert tickets",
                 RemoteIp = "245.253.2.12",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 CardHolder = "Travis Pastrana",
                 CardNumber = CardsNumbers.Visa3dsv2ChallengeWith3dsMethod,
                 ExpirationMonth = "12",
@@ -1769,6 +1873,17 @@ namespace Genesis.NetCore.Specs.Mocks
                 NotificationUrl = "https://www.example.com/notification",
                 ReturnSuccessUrl = "http://www.example.com/success",
                 ReturnFailureUrl = "http://www.example.com/failure",
+                RecurringType = RecurringType.Managed,
+                ManagedRecurring = new ManagedRecurring()
+                {
+                    Mode = Mode.Automatic,
+                    Interval = Interval.Days,
+                    FirstDate = "2021-12-18",
+                    TimeOfDay = 5,
+                    Period = 22,
+                    Amount = new Money(_currency, 5).MinorAmount,
+                    MaxCount = 10
+                },
                 ThreeDSv2 = new ThreeDSv2
                 {
                     ThreedsMethod = new ThreedsMethod()
@@ -1866,7 +1981,7 @@ namespace Genesis.NetCore.Specs.Mocks
       <city>Los Angeles</city>
       <state>CA</state>
       <country>US</country>
-    </billing_address>
+    </billing_address>    
     <notification_url>https://www.example.com/notification</notification_url>
     <return_success_url>http://www.example.com/success</return_success_url>
     <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -1932,12 +2047,24 @@ namespace Genesis.NetCore.Specs.Mocks
     <sca_params>
       <exemption>low_risk</exemption>
     </sca_params>
+    <managed_recurring>
+        <mode>automatic</mode>
+        <interval>days</interval>
+        <first_date>2021-12-18</first_date>
+        <time_of_day>5</time_of_day>
+        <period>22</period>
+        <amount>500</amount>
+        <max_count>10</max_count>
+    </managed_recurring>
+    <recurring_type>managed</recurring_type>
   </payment_transaction>";
             return new EntityMock<Sale3d>(challenge3dv2With3dSecure, xml);
         }
 
         public static EntityMock<InitRecurringSale3d> CreateValidFallback3dv2()
         {
+            var _currency = Iso4217CurrencyCodes.USD;
+
             var fallback3dv2 = new InitRecurringSale3d()
             {
                 TransactionType = TransactionTypes.InitRecurringSale3d,
@@ -1945,7 +2072,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 Usage = "40208 concert tickets",
                 RemoteIp = "245.253.2.12",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 CardHolder = "Travis Pastrana",
                 CardNumber = CardsNumbers.Visa3dsv2FallbackTo3dv1,
                 ExpirationMonth = "12",
@@ -1966,6 +2093,16 @@ namespace Genesis.NetCore.Specs.Mocks
                 NotificationUrl = "https://www.example.com/notification",
                 ReturnSuccessUrl = "http://www.example.com/success",
                 ReturnFailureUrl = "http://www.example.com/failure",
+                ManagedRecurring = new ManagedRecurring()
+                {
+                    Mode = Mode.Automatic,
+                    Interval = Interval.Days,
+                    FirstDate = "2021-12-18",
+                    TimeOfDay = 5,
+                    Period = 22,
+                    Amount = new Money(_currency, 5).MinorAmount,
+                    MaxCount = 10
+                },
                 ThreeDSv2 = new ThreeDSv2
                 {
                     ThreedsMethod = new ThreedsMethod()
@@ -2064,7 +2201,7 @@ namespace Genesis.NetCore.Specs.Mocks
       <city>Los Angeles</city>
       <state>CA</state>
       <country>US</country>
-    </billing_address>
+    </billing_address>    
     <notification_url>https://www.example.com/notification</notification_url>
     <return_success_url>http://www.example.com/success</return_success_url>
     <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -2131,6 +2268,15 @@ namespace Genesis.NetCore.Specs.Mocks
         <frequency>30</frequency>
       </recurring>
     </threeds_v2_params>
+    <managed_recurring>
+        <mode>automatic</mode>
+        <interval>days</interval>
+        <first_date>2021-12-18</first_date>
+        <time_of_day>5</time_of_day>
+        <period>22</period>
+        <amount>500</amount>
+        <max_count>10</max_count>
+    </managed_recurring>
   </payment_transaction>";
 
             return new EntityMock<InitRecurringSale3d>(fallback3dv2, xml);
@@ -2138,6 +2284,8 @@ namespace Genesis.NetCore.Specs.Mocks
 
         public static EntityMock<InitRecurringSale3d> CreateValidFallback3dv2With3dSecure()
         {
+            var _currency = Iso4217CurrencyCodes.USD;
+
             var fallback3dv2 = new InitRecurringSale3d()
             {
                 TransactionType = TransactionTypes.InitRecurringSale3d,
@@ -2145,7 +2293,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 Usage = "40208 concert tickets",
                 RemoteIp = "245.253.2.12",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 CardHolder = "Travis Pastrana",
                 CardNumber = CardsNumbers.Visa3dsv2FallbackTo3dv1With3dsMethod,
                 ExpirationMonth = "12",
@@ -2166,6 +2314,16 @@ namespace Genesis.NetCore.Specs.Mocks
                 NotificationUrl = "https://www.example.com/notification",
                 ReturnSuccessUrl = "http://www.example.com/success",
                 ReturnFailureUrl = "http://www.example.com/failure",
+                ManagedRecurring = new ManagedRecurring()
+                {
+                    Mode = Mode.Automatic,
+                    Interval = Interval.Days,
+                    FirstDate = "2021-12-18",
+                    TimeOfDay = 5,
+                    Period = 22,
+                    Amount = new Money(_currency, 5).MinorAmount,
+                    MaxCount = 10
+                },
                 ThreeDSv2 = new ThreeDSv2
                 {
                     ThreedsMethod = new ThreedsMethod()
@@ -2264,7 +2422,7 @@ namespace Genesis.NetCore.Specs.Mocks
       <city>Los Angeles</city>
       <state>CA</state>
       <country>US</country>
-    </billing_address>
+    </billing_address>    
     <notification_url>https://www.example.com/notification</notification_url>
     <return_success_url>http://www.example.com/success</return_success_url>
     <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -2331,6 +2489,15 @@ namespace Genesis.NetCore.Specs.Mocks
         <frequency>30</frequency>
       </recurring>
     </threeds_v2_params>
+    <managed_recurring>
+        <mode>automatic</mode>
+        <interval>days</interval>
+        <first_date>2021-12-18</first_date>
+        <time_of_day>5</time_of_day>
+        <period>22</period>
+        <amount>500</amount>
+        <max_count>10</max_count>
+    </managed_recurring>
   </payment_transaction>";
 
             return new EntityMock<InitRecurringSale3d>(fallback3dv2, xml);
@@ -2547,13 +2714,14 @@ namespace Genesis.NetCore.Specs.Mocks
         {
             var _startDate = DateTime.Now.AddMonths(-1);
             var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.USD;
 
             var initRecurringSale = new InitRecurringSale()
             {
                 Id = "id",
                 Usage = "usage",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 RemoteIp = "255.10.100.10",
                 CardHolder = "card holder",
                 ExpirationMonth = "1",
@@ -2561,7 +2729,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 CustomerEmail = "hello@world.com",
                 CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
-                Cvv = "123",
+                Cvv = "123",                
                 BillingAddress = new Address()
                 {
                     Address1 = "billing address1",
@@ -2601,6 +2769,18 @@ namespace Genesis.NetCore.Specs.Mocks
                     MerchantName = "Test Merchant",
                     MerchantCity = "Testing Town"
                 },
+                ManagedRecurring = new ManagedRecurring()
+                {
+                    Mode = Mode.Manual,
+                    Interval = Interval.Days,
+                    AmountType = AmountType.Fixed,
+                    Frequency = Frequency.Weekly,
+                    RegistrationReferenceNumber = "123434",
+                    MaxAmount = new Money(_currency, 2).MinorAmount,
+                    MaxCount = 99,
+                    PaymentType = PaymentType.Subsequent,
+                    Validated = true
+                },
                 BusinessAttributes = new BusinessAttributes()
                 {
                     FlightArrivalDate = _startDate.ToShortDateString(),
@@ -2637,7 +2817,8 @@ namespace Genesis.NetCore.Specs.Mocks
                     ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
 
                     PaymentType = _paymentType
-                }
+                },
+                
             };
 
             var xml =
@@ -2719,6 +2900,17 @@ namespace Genesis.NetCore.Specs.Mocks
                     "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                     "<payment_type>" + _paymentType + "</payment_type>" +
                     "</business_attributes>" +
+                    "<managed_recurring>" +
+                      "<mode>manual</mode>" +
+                      "<interval>days</interval>" +
+                      "<max_count>99</max_count>" +
+                      "<payment_type>subsequent</payment_type>" +
+                      "<amount_type>fixed</amount_type>" +
+                      "<frequency>weekly</frequency>" +
+                      "<registration_reference_number>123434</registration_reference_number>" +
+                      "<max_amount>200</max_amount>" +
+                      "<validated>true</validated>" +
+                    "</managed_recurring>" +
                     "</payment_transaction>";
 
             return new EntityMock<InitRecurringSale>(initRecurringSale, xml);
@@ -2809,13 +3001,14 @@ namespace Genesis.NetCore.Specs.Mocks
         {
             var _startDate = DateTime.Now.AddMonths(-1);
             var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.USD;
 
             var sale = new Sale()
             {
                 Id = "id",
                 Usage = "usage",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 RemoteIp = "255.10.100.10",
                 CardHolder = "card holder",
                 ExpirationMonth = "1",
@@ -2824,6 +3017,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
                 Cvv = "123",
+                RecurringType = RecurringType.Initial,
                 BillingAddress = new Address()
                 {
                     Address1 = "billing address1",
@@ -2916,7 +3110,7 @@ namespace Genesis.NetCore.Specs.Mocks
                       "<customer_email>hello@world.com</customer_email>" +
                       "<customer_phone>3598888888888</customer_phone>" +
                       "<card_number>4711100000000000</card_number>" +
-                      "<cvv>123</cvv>" +
+                      "<cvv>123</cvv>" +                     
                       "<billing_address>" +
                       "<first_name>billing first name</first_name>" +
                       "<last_name>billing last name</last_name>" +
@@ -2980,6 +3174,7 @@ namespace Genesis.NetCore.Specs.Mocks
                       "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                       "<payment_type>" + _paymentType + "</payment_type>" +
                       "</business_attributes>" +
+                      "<recurring_type>initial</recurring_type>" +
                       "</payment_transaction>";
 
             return new EntityMock<Sale>(sale, xml);
@@ -2989,13 +3184,14 @@ namespace Genesis.NetCore.Specs.Mocks
         {
             var _startDate = DateTime.Now.AddMonths(-1);
             var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.USD;
 
             var wpfCreate = new WpfCreate()
             {
                 TransactionId = "id",
                 Usage = "usage",
                 Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
+                Currency = _currency,
                 ConsumerId = "123456",
                 CustomerEmail = "hello@world.com",
                 CustomerPhone = "3598888888888",
@@ -3003,15 +3199,25 @@ namespace Genesis.NetCore.Specs.Mocks
                 Description = "description",
                 CardHolder = "Hodler Name",
                 TransactionTypes = new Composite[] {
-                    new Composite() { { "name", "sale" } }, new Composite() { { "name", "sale3d" } },
+                    new Composite() { { "name", "sale" } }, new Composite() { { "name", TransactionTypes.Sale3d.ToString() } },
                     new Composite() { { "name", "ezeewallet" }, { "source_wallet_id", "emil@example.com" } },
                     new Composite() { { "name", "apple_pay" }, { "payment_subtype", "authorize" } },
-                    new Composite() { { "name", "google_pay" }, { "payment_subtype", "authorize" } }
+                    new Composite() { { "name", "google_pay" }, { "payment_subtype", "authorize" } },
+                    new Composite() { { "name", "init_recurring_sale" }, { "managed_recurring", new ManagedRecurring() {
+                        Mode = Mode.Automatic,
+                        Interval = Interval.Days,
+                        FirstDate = "2021-12-18",
+                        TimeOfDay = 5,
+                        Period = 22,
+                        Amount = new Money(_currency, 5).MinorAmount,
+                        MaxCount = 10
+                    } } }
                 },
                 ReturnCancelUrl = "http://test.com/cancel",
                 ReturnFailureUrl = "http://test.com/fail",
                 ReturnSuccessUrl = "http://test.com/success",
                 NotificationUrl = "https://example.com/notify",
+                RecurringType = RecurringType.Managed,
                 BillingAddress = new Address()
                 {
                     Address1 = "billing address1",
@@ -3125,7 +3331,7 @@ namespace Genesis.NetCore.Specs.Mocks
                     "<notification_url>https://example.com/notify</notification_url>" +
                     "<return_success_url>http://test.com/success</return_success_url>" +
                     "<return_failure_url>http://test.com/fail</return_failure_url>" +
-                    "<return_cancel_url>http://test.com/cancel</return_cancel_url>" +
+                    "<return_cancel_url>http://test.com/cancel</return_cancel_url>" +                    
                     "<billing_address>" +
                         "<first_name>billing first name</first_name>" +
                         "<last_name>billing last name</last_name>" +
@@ -3147,19 +3353,35 @@ namespace Genesis.NetCore.Specs.Mocks
                         "<country>BG</country>" +
                     "</shipping_address>" +
                     "<transaction_types>" +
-                        "<transaction_type><name>sale</name></transaction_type>" +
-                        "<transaction_type><name>sale3d</name></transaction_type>" +
                         "<transaction_type>" +
-                            "<name>ezeewallet</name>" +
-                            "<source_wallet_id>emil@example.com</source_wallet_id>" +
+                          "<name>sale</name>" +
                         "</transaction_type>" +
                         "<transaction_type>" +
-                            "<name>apple_pay</name>" +
-                            "<payment_subtype>authorize</payment_subtype>" +
+                          "<name>sale3d</name>" +
                         "</transaction_type>" +
                         "<transaction_type>" +
-                            "<name>google_pay</name>" +
-                            "<payment_subtype>authorize</payment_subtype>" +
+                          "<name>ezeewallet</name>" +
+                          "<source_wallet_id>emil@example.com</source_wallet_id>" +
+                        "</transaction_type>" +
+                        "<transaction_type>" +
+                          "<name>apple_pay</name>" +
+                          "<payment_subtype>authorize</payment_subtype>" +
+                        "</transaction_type>" +
+                        "<transaction_type>" +
+                          "<name>google_pay</name>" +
+                          "<payment_subtype>authorize</payment_subtype>" +
+                        "</transaction_type>" +
+                        "<transaction_type>" +
+                          "<name>init_recurring_sale</name>" +
+                          "<managed_recurring>" +
+                            "<mode>automatic</mode>" +
+                            "<interval>days</interval>" +
+                            "<first_date>2021-12-18</first_date>" +
+                            "<time_of_day>5</time_of_day>" +
+                            "<period>22</period>" +
+                            "<amount>500</amount>" +
+                            "<max_count>10</max_count>" +
+                          "</managed_recurring>" +
                         "</transaction_type>" +
                     "</transaction_types>" +
                     "<remember_card>true</remember_card>" +
@@ -3207,6 +3429,7 @@ namespace Genesis.NetCore.Specs.Mocks
                         "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                         "<payment_type>" + _paymentType + "</payment_type>" +
                     "</business_attributes>" +
+                    "<recurring_type>managed</recurring_type>" +
                     "<pay_later>true</pay_later>" +
                     "<reminder_language>en</reminder_language>" +
                     "<reminders>" +
@@ -3226,6 +3449,212 @@ namespace Genesis.NetCore.Specs.Mocks
                 "</wpf_payment>";
 
             return new EntityMock<WpfCreate>(wpfCreate, xml);
+        }
+
+        public static EntityMock<Sale> CreateValidSaleRecurring()
+        {
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.USD;
+
+            var sale = new Sale()
+            {
+                Id = "id",
+                Usage = "usage",
+                Amount = 1,
+                Currency = _currency,
+                RemoteIp = "255.10.100.10",
+                CardHolder = "card holder",
+                ExpirationMonth = "1",
+                ExpirationYear = "2025",
+                CustomerEmail = "hello@world.com",
+                CustomerPhone = "3598888888888",
+                CardNumber = CardsNumbers.Visa3dSecureEnrolled,
+                Cvv = "123",
+                RecurringType = RecurringType.Managed,
+                BillingAddress = new Address()
+                {
+                    Address1 = "billing address1",
+                    Address2 = "billing address2",
+                    City = "billing city",
+                    Country = Iso3166CountryCodes.BG,
+                    FirstName = "billing first name",
+                    LastName = "billing last name",
+                    State = "BS",
+                    ZipCode = "1000"
+                },
+                ShippingAddress = new Address()
+                {
+                    Address1 = "shipping address1",
+                    Address2 = "shipping address2",
+                    City = "shipping city",
+                    Country = Iso3166CountryCodes.BG,
+                    FirstName = "shipping first name",
+                    LastName = "shipping last name",
+                    State = "BS",
+                    ZipCode = "1000"
+                },
+                RiskParams = new RiskParams()
+                {
+                    Email = "hello@world.com",
+                    MacAddress = "mac address",
+                    Phone = "3598888888888",
+                    RemoteIp = "255.10.100.10",
+                    SerialNumber = "serial number",
+                    SessionId = "session id",
+                    Ssn = "ssn",
+                    UserId = "user id",
+                    UserLevel = "user level"
+                },
+                DynamicDescriptorParams = new DynamicDescriptor()
+                {
+                    MerchantName = "Test Merchant",
+                    MerchantCity = "Testing Town"
+                },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
+                },
+                ManagedRecurring = new ManagedRecurring()
+                {
+                    Mode = Mode.Manual,
+                    Interval = Interval.Days,
+                    AmountType = AmountType.Fixed,
+                    Frequency = Frequency.Weekly,
+                    RegistrationReferenceNumber = "123434",
+                    MaxAmount = new Money(_currency, 1.99M).MinorAmount,
+                    MaxCount = 99,
+                    PaymentType = PaymentType.Subsequent,
+                    Validated = true
+                }
+            };
+
+            var xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                      "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Sale\">" +
+                      "<transaction_type>sale</transaction_type>" +
+                      "<transaction_id>id</transaction_id>" +
+                      "<usage>usage</usage>" +
+                      "<amount>100</amount>" +
+                      "<currency>USD</currency>" +
+                      "<remote_ip>255.10.100.10</remote_ip>" +
+                      "<card_holder>card holder</card_holder>" +
+                      "<expiration_month>01</expiration_month>" +
+                      "<expiration_year>2025</expiration_year>" +
+                      "<customer_email>hello@world.com</customer_email>" +
+                      "<customer_phone>3598888888888</customer_phone>" +
+                      "<card_number>4711100000000000</card_number>" +
+                      "<cvv>123</cvv>" +
+                      "<billing_address>" +
+                      "<first_name>billing first name</first_name>" +
+                      "<last_name>billing last name</last_name>" +
+                      "<address1>billing address1</address1>" +
+                      "<address2>billing address2</address2>" +
+                      "<zip_code>1000</zip_code>" +
+                      "<city>billing city</city>" +
+                      "<state>BS</state>" +
+                      "<country>BG</country>" +
+                      "</billing_address>" +
+                      "<shipping_address>" +
+                      "<first_name>shipping first name</first_name>" +
+                      "<last_name>shipping last name</last_name>" +
+                      "<address1>shipping address1</address1>" +
+                      "<address2>shipping address2</address2>" +
+                      "<zip_code>1000</zip_code>" +
+                      "<city>shipping city</city>" +
+                      "<state>BS</state>" +
+                      "<country>BG</country>" +
+                      "</shipping_address>" +
+                      "<risk_params>" +
+                      "<ssn>ssn</ssn>" +
+                      "<mac_address>mac address</mac_address>" +
+                      "<session_id>session id</session_id>" +
+                      "<user_id>user id</user_id>" +
+                      "<user_level>user level</user_level>" +
+                      "<email>hello@world.com</email>" +
+                      "<phone>3598888888888</phone>" +
+                      "<remote_ip>255.10.100.10</remote_ip>" +
+                      "<serial_number>serial number</serial_number>" +
+                      "</risk_params>" +
+                      "<dynamic_descriptor_params>" +
+                      "<merchant_name>Test Merchant</merchant_name>" +
+                      "<merchant_city>Testing Town</merchant_city>" +
+                      "</dynamic_descriptor_params>" +
+                      "<business_attributes>" +
+                      "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                      "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                      "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                      "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                      "<event_id>" + _digitNumber + "</event_id>" +
+                      "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                      "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                      "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                      "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                      "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                      "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                      "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                      "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                      "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                      "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                      "<supplier_name>" + _contractorName + "</supplier_name>" +
+                      "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                      "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                      "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                      "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                      "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                      "<origin_city>Sofia</origin_city>" +
+                      "<contractor_name>" + _contractorName + "</contractor_name>" +
+                      "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                      "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                      "<payment_type>" + _paymentType + "</payment_type>" +                      
+                      "</business_attributes>" +
+                      "<managed_recurring>" +
+                        "<mode>manual</mode>" +
+                        "<interval>days</interval>" +
+                        "<max_count>99</max_count>" +
+                        "<payment_type>subsequent</payment_type>" +
+                        "<amount_type>fixed</amount_type>" +
+                        "<frequency>weekly</frequency>" +
+                        "<registration_reference_number>123434</registration_reference_number>" +
+                        "<max_amount>199</max_amount>" +
+                        "<validated>true</validated>" +
+                      "</managed_recurring>" +
+                      "<recurring_type>managed</recurring_type>" +
+                      "</payment_transaction>";
+
+            return new EntityMock<Sale>(sale, xml);
         }
 
         public static EntityMock<Blacklist> CreateValidBlacklist()
