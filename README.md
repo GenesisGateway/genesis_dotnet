@@ -43,6 +43,9 @@ Genesis.NetCore.Entities.Requests.Initial:
 * GooglePay
 * ApplePay
 
+Genesis.NetCore.Entities.Requests.Initial.Threedsv2:
+* ContinueRequest
+
 Genesis.NetCore.Entities.Requests.Query:
 * Blacklist
 * SingleChargeback
@@ -413,7 +416,7 @@ namespace ConsoleTest3dv2Requests
                 token,
                 username,
                 password,
-                Endpoints.EComProcessing
+                Endpoints.eMerchantPay
             );
 
             // Initialize Genesis Client
@@ -430,10 +433,18 @@ namespace ConsoleTest3dv2Requests
                 CardHolder = "FirstName LastName",
                 CustomerEmail = "jhonny@example.com",
                 CustomerPhone = "+1678678678678",
-                CardNumber = TestCardsNumbers.Visa3dv2ChallengeWith3dSecure, //"4938730000000001"
+
+                // Test Cases
+                CardNumber = "4012000000060085", // Test Case: Synchronous 3DSv2 Request with Frictionless flow
+                // CardNumber = "4066330000000004", // Test Case: Asynchronous 3DSv2 Request with 3DS-Method and Frictionless flow
+                // CardNumber = "4918190000000002", // Test Case: Asynchronous 3DSv2 Request with Challenge flow
+                // CardNumber = "4938730000000001", // Test Case: Asynchronous 3DSv2 Request with 3DS-Method Challenge flow
+                // CardNumber = "4901170000000003", // Test Case: Asynchronous 3DSv2 Request with Fallback flow
+                // CardNumber = "4901164281364345", // Test Case: Asynchronous 3DSv2 Request with 3DS-Method Fallback flow
+
                 ExpirationMonth = "1",
                 ExpirationYear = "2029",
-                Cvv = "123",
+                Cvv = "888",
                 BillingAddress = new Address()
                 {
                     Address1 = "Muster Str. 18",
@@ -515,14 +526,14 @@ namespace ConsoleTest3dv2Requests
                     {
                         Interface = Interfaces.Native,
                         UiTypes = new List<UiTypes>
-                        {
-                            UiTypes.SingleSelect,
-                            UiTypes.MultiSelect,
-                            UiTypes.Text
-                        },
-                        ApplicationId = Guid.Parse("fc1650c0-5778-0138-8205-2cbc32a32d65"),
-                        EncryptedData = "encrypted-data-here",
-                        EphemeralPublicKeyPair = "public-key-pair",
+                    {
+                        UiTypes.SingleSelect,
+                        UiTypes.MultiSelect,
+                        UiTypes.Text
+                    },
+                    ApplicationId = Guid.Parse("fc1650c0-5778-0138-8205-2cbc32a32d65"),
+                    EncryptedData = "encrypted-data-here",
+                    EphemeralPublicKeyPair = "public-key-pair",
                         MaxTimeout = 10,
                         ReferenceNumber = "sdk-reference-number-here"
                     },
@@ -541,23 +552,29 @@ namespace ConsoleTest3dv2Requests
             try
             {
                 var response = client.Execute(request);
-
                 if (response.IsSuccessful)
                 {
                     Console.WriteLine("--- Response is successful.");
-                    Console.WriteLine($"Unique id:\t\t{ response.SuccessResponse.UniqueId}");
+                    Console.WriteLine($"Unique id:\t\t{response.SuccessResponse.UniqueId}");
+
                     if (response.SuccessResponse.Status.HasValue)
                     {
                         Console.WriteLine($"Status: \t\t{response.SuccessResponse.Status}");
+
                         switch (response.SuccessResponse.Status.Value)
                         {
                             case Genesis.NetCore.Entities.Enums.TransactionStates.Approved:
                                 Console.WriteLine("--- --- Transaction is Approved.");
+                                Console.WriteLine("--- Test Case: Synchronous 3DSv2 Request with Frictionless flow");
                                 break;
-                            case Genesis.NetCore.Entities.Enums.TransactionStates.PendingAsync:
-                                Console.WriteLine("--- --- Transaction is pending - interaction between consumer and issuer is required.");
+
+                             case Genesis.NetCore.Entities.Enums.TransactionStates.PendingAsync:
+                                Console.WriteLine("--- Transaction is pending - interaction between consumer and issuer is required.");
+
                                 if (!string.IsNullOrEmpty(response.SuccessResponse.RedirectUrl))
                                 {
+                                    Console.WriteLine("--- 3DSv2 Challenge");
+                                    Console.WriteLine("--- Test Case: Asynchronous 3DSv2 Request with Challenge flow or Fallback flow");
                                     Console.WriteLine($"Redirect type:\t{response.SuccessResponse.RedirectUrlType}");
                                     Console.WriteLine($"Redirect url:\t{response.SuccessResponse.RedirectUrl}");
                                     Console.WriteLine();
@@ -567,59 +584,66 @@ namespace ConsoleTest3dv2Requests
                                 {
                                     Console.WriteLine($"ThreedsMethodContinueUrl:\t{response.SuccessResponse.ThreedsMethodContinueUrl}");
                                     Console.WriteLine($"ThreedsMethodUrl:\t{response.SuccessResponse.ThreedsMethodUrl}");
-                                    Console.WriteLine();
-                                }
-
-                                if (!string.IsNullOrEmpty(response.SuccessResponse.ThreedsMethodUrl))
-                                {
                                     Console.WriteLine($"Time: \t{response.SuccessResponse.Time.ToString("o", CultureInfo.InvariantCulture)}");
                                     Console.WriteLine($"ProxyAmount: \t{response.SuccessResponse.ProxyAmount}");
+
                                     var signature = response.SuccessResponse.GenerateSignature(configuration);
                                     Console.WriteLine($"Signature: \t{signature}");
-                                    var continueRequest = new ThreeDSv2ContinueRequest(response.SuccessResponse, configuration);
+
+                                    var continueRequest = new Genesis.NetCore.Entities.Requests.Initial.Threedsv2.ContinueRequest(response.SuccessResponse, configuration);
                                     var continueResponse = client.Execute(continueRequest);
-                                    if (continueResponse.IsSuccessful)
-                                    {
-                                        Console.WriteLine("--- Continue request successful.");
-                                        Console.WriteLine($"UniqueId: \t\t{continueResponse.SuccessResponse.UniqueId}");
-                                        Console.WriteLine($"TransactionId: \t\t{continueResponse.SuccessResponse.TransactionId}");
-                                        Console.WriteLine($"Amount: \t\t{continueResponse.SuccessResponse.Amount}");
-                                        Console.WriteLine($"Status: \t\t{continueResponse.SuccessResponse.Status}");
-                                        if (continueResponse.SuccessResponse.Status == TransactionStates.PendingAsync)
+
+                                        if (continueResponse.IsSuccessful)
                                         {
-                                            Console.WriteLine("--- Status is pending async!");
-                                            Console.WriteLine($"RedirectUrlType: \t{continueResponse.SuccessResponse.RedirectUrlType}");
-                                            Console.WriteLine($"RedirectUrl: \t\t{continueResponse.SuccessResponse.RedirectUrl}");
+                                            Console.WriteLine("--- --- Continue request successful.");
+                                            Console.WriteLine($"UniqueId: \t\t{continueResponse.SuccessResponse.UniqueId}");
+                                            Console.WriteLine($"TransactionId: \t\t{continueResponse.SuccessResponse.TransactionId}");
+                                            Console.WriteLine($"Amount: \t\t{continueResponse.SuccessResponse.Amount}");
+                                            Console.WriteLine($"Status: \t\t{continueResponse.SuccessResponse.Status}");
+
+                                            if (continueResponse.SuccessResponse.Status == TransactionStates.Approved)
+                                            {
+                                                Console.WriteLine("--- --- Transaction is Approved.");
+                                                Console.WriteLine("--- Test Case: Asynchronous 3DSv2 Request with 3DS-Method and Frictionless flow.");
+                                                break;
+                                            }
+
+                                            if (continueResponse.SuccessResponse.Status == TransactionStates.PendingAsync)
+                                            {
+                                                Console.WriteLine("--- --- Status is pending async!");
+                                                Console.WriteLine("--- Test Case: Asynchronous 3DSv2 Request with 3DS-Method Challenge flow or 3DS-Method Fallback flow");
+                                                Console.WriteLine($"RedirectUrlType: \t{continueResponse.SuccessResponse.RedirectUrlType}");
+                                                Console.WriteLine($"RedirectUrl: \t\t{continueResponse.SuccessResponse.RedirectUrl}");
+                                            }
                                         }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("--- Continue request error.");
-                                        Console.WriteLine($"Status: \t\t{continueResponse.ErrorResponse.Status}");
-                                        Console.WriteLine($"UniqueId: \t\t{continueResponse.ErrorResponse.UniqueId}");
-                                        Console.WriteLine($"Message: \t\t{continueResponse.ErrorResponse.Message}");
-                                        Console.WriteLine($"TechnicalMessage: \t{continueResponse.ErrorResponse.TechnicalMessage}");
+                                        else
+                                        {
+                                            Console.WriteLine("--- --- Continue request error.");
+                                            Console.WriteLine($"Status: \t\t{continueResponse.ErrorResponse.Status}");
+                                            Console.WriteLine($"UniqueId: \t\t{continueResponse.ErrorResponse.UniqueId}");
+                                            Console.WriteLine($"Message: \t\t{continueResponse.ErrorResponse.Message}");
+                                            Console.WriteLine($"TechnicalMessage: \t{continueResponse.ErrorResponse.TechnicalMessage}");
+                                        }
+
+                                        Console.WriteLine();
                                     }
 
-                                    Console.WriteLine();
-                                }
-
-                                break;
-                            case TransactionStates.Declined:
-                                Console.WriteLine("--- --- Transaction is Declined.");
-                                break;
-                            default:
-                                break;
+                                    break;
+                                case TransactionStates.Declined:
+                                    Console.WriteLine("--- --- Transaction is Declined.");
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
-                }
                 else
                 {
                     Console.WriteLine("--- Response not successful (error).");
-                    Console.WriteLine($"Unique id:\t\t{ response.ErrorResponse.UniqueId}");
-                    Console.WriteLine($"Status:   \t\t{ response.ErrorResponse.Status}");
-                    Console.WriteLine($"Message:   \t\t{ response.ErrorResponse.Message}");
-                    Console.WriteLine($"TechnicalMessage:\t{ response.ErrorResponse.TechnicalMessage}");
+                    Console.WriteLine($"Unique id:\t\t{response.ErrorResponse.UniqueId}");
+                    Console.WriteLine($"Status:   \t\t{response.ErrorResponse.Status}");
+                    Console.WriteLine($"Message:   \t\t{response.ErrorResponse.Message}");
+                    Console.WriteLine($"TechnicalMessage:\t{response.ErrorResponse.TechnicalMessage}");
                 }
             }
             catch (Exception ex)
@@ -627,6 +651,7 @@ namespace ConsoleTest3dv2Requests
                 Console.WriteLine("--- Exception!");
                 var x = ex;
                 Console.WriteLine(x.Message);
+
                 while (x.InnerException != null)
                 {
                     x = x.InnerException;
@@ -643,6 +668,46 @@ namespace ConsoleTest3dv2Requests
     }
 }
 ```
+
+Gateway Notification
+-----------------------------------------------------------------
+With the asynchronous payment flows like Web Payment Form the Gateway sends the transaction events upon status change on the defined notification_url. The library contains a Notification module that helps handle the received gateway notification and can provide easy reconciliation execution.
+
+```c#
+// Set merchant credentials
+string username = "YOUR_USERNAME";
+string password = "YOUR_PASSWORD";
+string token    = "YOUR_TOKEN";
+
+// Initialize configuration - endpoint and env
+Configuration configuration = new Configuration(
+    Environments.Staging,
+    token,
+    username,
+    password,
+    Endpoints.eMerchantPay
+);
+
+var notificationData = string.Format("transaction_id={0}&unique_id={1}&transaction_type={2}&terminal_token={3}&status={4}&signature={5}",
+    "transaction_id",
+    "unique_id",
+    "transaction_type",
+    "terminal_token",
+    "status",
+    "signature");
+
+Notification notification = Notification.Parse(notificationData);
+
+// Validate the Notification
+Console.WriteLine(notification.IsAuthentic(configuration));
+
+// Process the notification
+
+// Output the expected response from the Gateway
+Console.WriteLine(Encoding.UTF8.GetString(notification.GetEchoResponseBody()));
+```
+
+
 
 Managed Recurring
 -----------------------------------------------------------------
@@ -665,7 +730,7 @@ ManagedRecurring = new ManagedRecurring()
 ```
 
 
-More example requests can be found in the library's specs class [`Genesis.NetCore.Specs.Mocks.RequestMocksFactory`](Genesis.NetCore.Specs/Mocks/RequestMocksFactory.cs).
+More example requests can be found in the library's specs class [`Genesis.NETCore.Specs.Mocks.RequestMocksFactory`](Genesis.NETCore.Specs/Mocks/RequestMocksFactory.cs).
 
 More information about each one of the request types can be found in the Genesis API Documentation
 

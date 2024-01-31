@@ -86,6 +86,78 @@ namespace Genesis.NetCore.Common
         /// Bulgarian locale and language
         /// </summary>
         [XmlEnum("bg")]
-        BG
+        BG,
+
+        /// <summary>
+        /// Dutch locale and language
+        /// </summary>
+        [XmlEnum("nl")]
+        NL,
+
+        /// <summary>
+        /// Icelandic locale and language
+        /// </summary>
+        [XmlEnum("is")]
+        IS,
+
+        /// <summary>
+        /// Indonesian locale and language
+        /// </summary>
+        [XmlEnum("id")]
+        ID,
+
+        /// <summary>
+        /// Malay locale and language
+        /// </summary>
+        [XmlEnum("ms")]
+        MS,
+
+        /// <summary>
+        /// Thai locale and language
+        /// </summary>
+        [XmlEnum("th")]
+        TH,
+
+        /// <summary>
+        /// Czech locale and language
+        /// </summary>
+        [XmlEnum("cs")]
+        CS,
+
+        /// <summary>
+        /// Croatian locale and language
+        /// </summary>
+        [XmlEnum("hr")]
+        HR,
+
+        /// <summary>
+        /// Slovenian locale and language
+        /// </summary>
+        [XmlEnum("sl")]
+        SL,
+
+        /// <summary>
+        /// Finnish locale and language
+        /// </summary>
+        [XmlEnum("fi")]
+        FI,
+
+        /// <summary>
+        /// Norwegian locale and language
+        /// </summary>
+        [XmlEnum("no")]
+        NO,
+
+        /// <summary>
+        /// Danish locale and language
+        /// </summary>
+        [XmlEnum("da")]
+        DA,
+
+        /// <summary>
+        /// Swedish locale and language
+        /// </summary>
+        [XmlEnum("sv")]
+        SV
     }
 }

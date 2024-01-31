@@ -1,3 +1,22 @@
+2.0.3
+-----
+**Features**:
+
+* Improved documentation
+* Added support for the following Web Payment Form locales:
+  * `NL`, Dutch
+  * `IS`, Icelandic
+  * `ID`, Indonesian
+  * `MS`, Malay
+  * `TH`, Thai
+  * `CS`, Czech
+  * `HR`, Croatian
+  * `SL`, Slovenian
+  * `FI`, Finnish
+  * `NO`, Norwegian
+  * `DA`, Danish
+  * `SV`, Swedish
+
 2.0.2
 -----
 **Features**:
