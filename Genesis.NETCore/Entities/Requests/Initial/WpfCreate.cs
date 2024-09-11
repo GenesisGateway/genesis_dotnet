@@ -1,13 +1,14 @@
+using Genesis.NetCore.Common;
+using Genesis.NetCore.Entities.Attributes.Request.Financial.Business;
+using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
+using Genesis.NetCore.Entities.Attributes.Request.Financial.Funding;
+using Genesis.NetCore.Entities.Enums.Recurring;
+using Genesis.NetCore.Entities.Requests.Referential;
+using Genesis.NetCore.Validations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
-using Genesis.NetCore.Common;
-using Genesis.NetCore.Entities.Attributes.Request.Financial.Business;
-using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
-using Genesis.NetCore.Entities.Requests.Referential;
-using Genesis.NetCore.Validations;
-using Genesis.NetCore.Entities.Enums.Recurring;
 
 namespace Genesis.NetCore.Entities.Requests.Initial
 {
@@ -130,7 +131,7 @@ namespace Genesis.NetCore.Entities.Requests.Initial
         public DynamicDescriptor DynamicDescriptorParams { get; set; }
 
         [XmlElement(ElementName = "business_attributes")]
-        public BusinessAttributes BusinessAttributes { get; set; }        
+        public BusinessAttributes BusinessAttributes { get; set; }
 
         [XmlElement(ElementName = "recurring_type")]
         public RecurringType? RecurringType { get; set; }
@@ -166,5 +167,11 @@ namespace Genesis.NetCore.Entities.Requests.Initial
 
         [XmlElement(ElementName = "web_payment_form_id")]
         public string WebPaymentFormId { get; set; }
+
+        /// <summary>
+        /// Funding Transaction Params
+        /// </summary>
+        [XmlElement(ElementName = "funding")]
+        public FundingAttributes Funding { get; set; }
     }
 }

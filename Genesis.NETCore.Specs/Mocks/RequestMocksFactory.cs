@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using Genesis.NetCore.Common;
+﻿using Genesis.NetCore.Common;
 using Genesis.NetCore.Entities;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Business;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2.Enums;
+using Genesis.NetCore.Entities.Attributes.Request.Financial.Funding;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Recurring;
+using Genesis.NetCore.Entities.Enums.Funding;
 using Genesis.NetCore.Entities.Enums.ManagedRecurring;
 using Genesis.NetCore.Entities.Enums.Recurring;
 using Genesis.NetCore.Entities.Requests.Initial;
 using Genesis.NetCore.Entities.Requests.Query;
 using Genesis.NetCore.Entities.Requests.Referential;
+using System;
+using System.Collections.Generic;
 
 namespace Genesis.NetCore.Specs.Mocks
 {
@@ -128,6 +130,18 @@ namespace Genesis.NetCore.Specs.Mocks
                     ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
 
                     PaymentType = _paymentType
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -209,6 +223,16 @@ namespace Genesis.NetCore.Specs.Mocks
                       "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                       "<payment_type>" + _paymentType + "</payment_type>" +
                       "</business_attributes>" +
+                      "<funding>" +
+                        "<identifier_type>own_account</identifier_type>" +
+                        "<receiver>" +
+                          "<first_name>First</first_name>" +
+                          "<last_name>Last</last_name>" +
+                          "<country>FR</country>" +
+                          "<account_number>acc_number_example</account_number>" +
+                          "<account_number_type>iban</account_number_type>" +
+                        "</receiver>" +
+                      "</funding>" +
                       "<managed_recurring>" +
                           "<mode>automatic</mode>" +
                           "<interval>days</interval>" +
@@ -323,6 +347,18 @@ namespace Genesis.NetCore.Specs.Mocks
                     ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
 
                     PaymentType = _paymentType
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
 
             };
@@ -406,6 +442,16 @@ namespace Genesis.NetCore.Specs.Mocks
                     "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                     "<payment_type>" + _paymentType + "</payment_type>" +
                     "</business_attributes>" +
+                    "<funding>" +
+                      "<identifier_type>own_account</identifier_type>" +
+                      "<receiver>" +
+                        "<first_name>First</first_name>" +
+                        "<last_name>Last</last_name>" +
+                        "<country>FR</country>" +
+                        "<account_number>acc_number_example</account_number>" +
+                        "<account_number_type>iban</account_number_type>" +
+                      "</receiver>" +
+                    "</funding>" +
                     "<notification_url>https://example.com/notify</notification_url>" +
                     "<return_success_url>http://test.com/success</return_success_url>" +
                     "<return_failure_url>http://test.com/fail</return_failure_url>" +
@@ -476,6 +522,18 @@ namespace Genesis.NetCore.Specs.Mocks
                     Cavv = "Testing Cavv",
                     Eci = "Testing Eci",
                     Xid = "Testing Xid"
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -530,6 +588,16 @@ namespace Genesis.NetCore.Specs.Mocks
                     "<merchant_name>Test Merchant</merchant_name>" +
                     "<merchant_city>Testing Town</merchant_city>" +
                     "</dynamic_descriptor_params>" +
+                    "<funding>" +
+                      "<identifier_type>own_account</identifier_type>" +
+                      "<receiver>" +
+                        "<first_name>First</first_name>" +
+                        "<last_name>Last</last_name>" +
+                        "<country>FR</country>" +
+                        "<account_number>acc_number_example</account_number>" +
+                        "<account_number_type>iban</account_number_type>" +
+                      "</receiver>" +
+                    "</funding>" +
                     "<mpi_params>" +
                     "<cavv>Testing Cavv</cavv>" +
                     "<eci>Testing Eci</eci>" +
@@ -649,6 +717,18 @@ namespace Genesis.NetCore.Specs.Mocks
                     ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
 
                     PaymentType = _paymentType
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -731,6 +811,16 @@ namespace Genesis.NetCore.Specs.Mocks
                      "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                      "<payment_type>" + _paymentType + "</payment_type>" +
                      "</business_attributes>" +
+                     "<funding>" +
+                       "<identifier_type>own_account</identifier_type>" +
+                       "<receiver>" +
+                         "<first_name>First</first_name>" +
+                         "<last_name>Last</last_name>" +
+                         "<country>FR</country>" +
+                         "<account_number>acc_number_example</account_number>" +
+                         "<account_number_type>iban</account_number_type>" +
+                       "</receiver>" +
+                     "</funding>" +
                      "<notification_url>https://example.com/notify</notification_url>" +
                      "<return_success_url>http://test.com/success</return_success_url>" +
                      "<return_failure_url>http://test.com/fail</return_failure_url>" +
@@ -743,7 +833,7 @@ namespace Genesis.NetCore.Specs.Mocks
                        "<amount>99</amount>" +
                        "<max_count>10</max_count>" +
                        "<payment_type>subsequent</payment_type>" +
-                    "</managed_recurring>" +                     
+                     "</managed_recurring>" +
                      "</payment_transaction>";
 
             return new EntityMock<InitRecurringSale3d>(initRecurringSale3dAsync, xml);
@@ -811,6 +901,18 @@ namespace Genesis.NetCore.Specs.Mocks
                     Cavv = "Testing Cavv",
                     Eci = "Testing Eci",
                     Xid = "Testing Xid"
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -865,6 +967,16 @@ namespace Genesis.NetCore.Specs.Mocks
                      "<merchant_name>Test Merchant</merchant_name>" +
                      "<merchant_city>Testing Town</merchant_city>" +
                      "</dynamic_descriptor_params>" +
+                     "<funding>" +
+                       "<identifier_type>own_account</identifier_type>" +
+                       "<receiver>" +
+                         "<first_name>First</first_name>" +
+                         "<last_name>Last</last_name>" +
+                         "<country>FR</country>" +
+                         "<account_number>acc_number_example</account_number>" +
+                         "<account_number_type>iban</account_number_type>" +
+                       "</receiver>" +
+                     "</funding>" +
                      "<mpi_params>" +
                      "<cavv>Testing Cavv</cavv>" +
                      "<eci>Testing Eci</eci>" +
@@ -973,6 +1085,18 @@ namespace Genesis.NetCore.Specs.Mocks
                     ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
 
                     PaymentType = _paymentType
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -1055,6 +1179,16 @@ namespace Genesis.NetCore.Specs.Mocks
                      "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                      "<payment_type>" + _paymentType + "</payment_type>" +
                      "</business_attributes>" +
+                     "<funding>" +
+                       "<identifier_type>own_account</identifier_type>" +
+                       "<receiver>" +
+                         "<first_name>First</first_name>" +
+                         "<last_name>Last</last_name>" +
+                         "<country>FR</country>" +
+                         "<account_number>acc_number_example</account_number>" +
+                         "<account_number_type>iban</account_number_type>" +
+                       "</receiver>" +
+                     "</funding>" +
                      "<notification_url>https://example.com/notify</notification_url>" +
                      "<return_success_url>http://test.com/success</return_success_url>" +
                      "<return_failure_url>http://test.com/fail</return_failure_url>" +
@@ -1126,6 +1260,18 @@ namespace Genesis.NetCore.Specs.Mocks
                     Eci = "Testing Eci",
                     Xid = "Testing Xid"
                 },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
+                }
             };
 
             var xml =
@@ -1179,6 +1325,16 @@ namespace Genesis.NetCore.Specs.Mocks
                      "<merchant_name>Test Merchant</merchant_name>" +
                      "<merchant_city>Testing Town</merchant_city>" +
                      "</dynamic_descriptor_params>" +
+                     "<funding>" +
+                       "<identifier_type>own_account</identifier_type>" +
+                       "<receiver>" +
+                         "<first_name>First</first_name>" +
+                         "<last_name>Last</last_name>" +
+                         "<country>FR</country>" +
+                         "<account_number>acc_number_example</account_number>" +
+                         "<account_number_type>iban</account_number_type>" +
+                       "</receiver>" +
+                     "</funding>" +
                      "<mpi_params>" +
                      "<cavv>Testing Cavv</cavv>" +
                      "<eci>Testing Eci</eci>" +
@@ -1306,6 +1462,18 @@ namespace Genesis.NetCore.Specs.Mocks
                 Sca = new Sca()
                 {
                     Exemption = ScaExemptions.LowRisk
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -1332,7 +1500,17 @@ namespace Genesis.NetCore.Specs.Mocks
                     <city>Los Angeles</city>
                     <state>CA</state>
                     <country>US</country>
-                  </billing_address>                 
+                  </billing_address>
+                  <funding>
+                      <identifier_type>own_account</identifier_type>
+                      <receiver>
+                          <first_name>First</first_name>
+                          <last_name>Last</last_name>
+                          <country>FR</country>
+                          <account_number>acc_number_example</account_number>
+                          <account_number_type>iban</account_number_type>
+                      </receiver>
+                  </funding>
                   <notification_url>https://www.example.com/notification</notification_url>
                   <return_success_url>http://www.example.com/success</return_success_url>
                   <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -1533,6 +1711,18 @@ namespace Genesis.NetCore.Specs.Mocks
                 Sca = new Sca()
                 {
                     Exemption = ScaExemptions.LowRisk
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -1559,7 +1749,17 @@ namespace Genesis.NetCore.Specs.Mocks
       <city>Los Angeles</city>
       <state>CA</state>
       <country>US</country>
-    </billing_address>    
+    </billing_address>
+    <funding>
+        <identifier_type>own_account</identifier_type>
+        <receiver>
+            <first_name>First</first_name>
+            <last_name>Last</last_name>
+            <country>FR</country>
+            <account_number>acc_number_example</account_number>
+            <account_number_type>iban</account_number_type>
+        </receiver>
+    </funding>
     <notification_url>https://www.example.com/notification</notification_url>
     <return_success_url>http://www.example.com/success</return_success_url>
     <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -1745,6 +1945,18 @@ namespace Genesis.NetCore.Specs.Mocks
                 Sca = new Sca()
                 {
                     Exemption = ScaExemptions.LowRisk
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -1772,6 +1984,16 @@ namespace Genesis.NetCore.Specs.Mocks
       <state>CA</state>
       <country>US</country>
     </billing_address>
+    <funding>
+      <identifier_type>own_account</identifier_type>
+      <receiver>
+        <first_name>First</first_name>
+        <last_name>Last</last_name>
+        <country>FR</country>
+        <account_number>acc_number_example</account_number>
+        <account_number_type>iban</account_number_type>
+      </receiver>
+    </funding>
     <notification_url>https://www.example.com/notification</notification_url>
     <return_success_url>http://www.example.com/success</return_success_url>
     <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -1955,6 +2177,18 @@ namespace Genesis.NetCore.Specs.Mocks
                 Sca = new Sca()
                 {
                     Exemption = ScaExemptions.LowRisk
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -1981,7 +2215,17 @@ namespace Genesis.NetCore.Specs.Mocks
       <city>Los Angeles</city>
       <state>CA</state>
       <country>US</country>
-    </billing_address>    
+    </billing_address>
+    <funding>
+      <identifier_type>own_account</identifier_type>
+      <receiver>
+        <first_name>First</first_name>
+        <last_name>Last</last_name>
+        <country>FR</country>
+        <account_number>acc_number_example</account_number>
+        <account_number_type>iban</account_number_type>
+      </receiver>
+    </funding>
     <notification_url>https://www.example.com/notification</notification_url>
     <return_success_url>http://www.example.com/success</return_success_url>
     <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -2175,6 +2419,18 @@ namespace Genesis.NetCore.Specs.Mocks
                         ExpirationDate = new DateTime(2022, 11, 25).Date,
                         Frequency = 30,
                     }
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -2201,7 +2457,17 @@ namespace Genesis.NetCore.Specs.Mocks
       <city>Los Angeles</city>
       <state>CA</state>
       <country>US</country>
-    </billing_address>    
+    </billing_address>
+    <funding>
+        <identifier_type>own_account</identifier_type>
+        <receiver>
+            <first_name>First</first_name>
+            <last_name>Last</last_name>
+            <country>FR</country>
+            <account_number>acc_number_example</account_number>
+            <account_number_type>iban</account_number_type>
+        </receiver>
+    </funding>
     <notification_url>https://www.example.com/notification</notification_url>
     <return_success_url>http://www.example.com/success</return_success_url>
     <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -2396,6 +2662,18 @@ namespace Genesis.NetCore.Specs.Mocks
                         ExpirationDate = new DateTime(2022, 11, 25).Date,
                         Frequency = 30,
                     }
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -2422,7 +2700,17 @@ namespace Genesis.NetCore.Specs.Mocks
       <city>Los Angeles</city>
       <state>CA</state>
       <country>US</country>
-    </billing_address>    
+    </billing_address>
+    <funding>
+        <identifier_type>own_account</identifier_type>
+        <receiver>
+            <first_name>First</first_name>
+            <last_name>Last</last_name>
+            <country>FR</country>
+            <account_number>acc_number_example</account_number>
+            <account_number_type>iban</account_number_type>
+        </receiver>
+    </funding>
     <notification_url>https://www.example.com/notification</notification_url>
     <return_success_url>http://www.example.com/success</return_success_url>
     <return_failure_url>http://www.example.com/failure</return_failure_url>
@@ -2729,7 +3017,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 CustomerEmail = "hello@world.com",
                 CustomerPhone = "3598888888888",
                 CardNumber = CardsNumbers.Visa3dSecureEnrolled,
-                Cvv = "123",                
+                Cvv = "123",
                 BillingAddress = new Address()
                 {
                     Address1 = "billing address1",
@@ -2818,7 +3106,18 @@ namespace Genesis.NetCore.Specs.Mocks
 
                     PaymentType = _paymentType
                 },
-                
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
+                }
             };
 
             var xml =
@@ -2900,6 +3199,16 @@ namespace Genesis.NetCore.Specs.Mocks
                     "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                     "<payment_type>" + _paymentType + "</payment_type>" +
                     "</business_attributes>" +
+                    "<funding>" +
+                      "<identifier_type>own_account</identifier_type>" +
+                      "<receiver>" +
+                        "<first_name>First</first_name>" +
+                        "<last_name>Last</last_name>" +
+                        "<country>FR</country>" +
+                        "<account_number>acc_number_example</account_number>" +
+                        "<account_number_type>iban</account_number_type>" +
+                      "</receiver>" +
+                    "</funding>" +
                     "<managed_recurring>" +
                       "<mode>manual</mode>" +
                       "<interval>days</interval>" +
@@ -3093,6 +3402,18 @@ namespace Genesis.NetCore.Specs.Mocks
                     ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
 
                     PaymentType = _paymentType
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -3110,7 +3431,7 @@ namespace Genesis.NetCore.Specs.Mocks
                       "<customer_email>hello@world.com</customer_email>" +
                       "<customer_phone>3598888888888</customer_phone>" +
                       "<card_number>4711100000000000</card_number>" +
-                      "<cvv>123</cvv>" +                     
+                      "<cvv>123</cvv>" +
                       "<billing_address>" +
                       "<first_name>billing first name</first_name>" +
                       "<last_name>billing last name</last_name>" +
@@ -3174,6 +3495,16 @@ namespace Genesis.NetCore.Specs.Mocks
                       "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
                       "<payment_type>" + _paymentType + "</payment_type>" +
                       "</business_attributes>" +
+                      "<funding>" +
+                        "<identifier_type>own_account</identifier_type>" +
+                        "<receiver>" +
+                          "<first_name>First</first_name>" +
+                          "<last_name>Last</last_name>" +
+                          "<country>FR</country>" +
+                          "<account_number>acc_number_example</account_number>" +
+                          "<account_number_type>iban</account_number_type>" +
+                        "</receiver>" +
+                      "</funding>" +
                       "<recurring_type>initial</recurring_type>" +
                       "</payment_transaction>";
 
@@ -3313,7 +3644,19 @@ namespace Genesis.NetCore.Specs.Mocks
                 {
                     Exemption = ScaExemptions.LowValue
                 },
-                WebPaymentFormId = "1"
+                WebPaymentFormId = "1",
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
+                }
             };
 
             var xml =
@@ -3331,7 +3674,7 @@ namespace Genesis.NetCore.Specs.Mocks
                     "<notification_url>https://example.com/notify</notification_url>" +
                     "<return_success_url>http://test.com/success</return_success_url>" +
                     "<return_failure_url>http://test.com/fail</return_failure_url>" +
-                    "<return_cancel_url>http://test.com/cancel</return_cancel_url>" +                    
+                    "<return_cancel_url>http://test.com/cancel</return_cancel_url>" +
                     "<billing_address>" +
                         "<first_name>billing first name</first_name>" +
                         "<last_name>billing last name</last_name>" +
@@ -3446,6 +3789,16 @@ namespace Genesis.NetCore.Specs.Mocks
                       "<exemption>low_value</exemption>" +
                     "</sca_params>" +
                     "<web_payment_form_id>1</web_payment_form_id>" +
+                    "<funding>" +
+                        "<identifier_type>own_account</identifier_type>" +
+                        "<receiver>" +
+                            "<first_name>First</first_name>" +
+                            "<last_name>Last</last_name>" +
+                            "<country>FR</country>" +
+                            "<account_number>acc_number_example</account_number>" +
+                            "<account_number_type>iban</account_number_type>" +
+                        "</receiver>" +
+                    "</funding>" +
                 "</wpf_payment>";
 
             return new EntityMock<WpfCreate>(wpfCreate, xml);
@@ -3559,6 +3912,18 @@ namespace Genesis.NetCore.Specs.Mocks
                     MaxCount = 99,
                     PaymentType = PaymentType.Subsequent,
                     Validated = true
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
                 }
             };
 
@@ -3638,8 +4003,18 @@ namespace Genesis.NetCore.Specs.Mocks
                       "<contractor_name>" + _contractorName + "</contractor_name>" +
                       "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
                       "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
-                      "<payment_type>" + _paymentType + "</payment_type>" +                      
+                      "<payment_type>" + _paymentType + "</payment_type>" +
                       "</business_attributes>" +
+                      "<funding>" +
+                        "<identifier_type>own_account</identifier_type>" +
+                        "<receiver>" +
+                          "<first_name>First</first_name>" +
+                          "<last_name>Last</last_name>" +
+                          "<country>FR</country>" +
+                          "<account_number>acc_number_example</account_number>" +
+                          "<account_number_type>iban</account_number_type>" +
+                        "</receiver>" +
+                      "</funding>" +
                       "<managed_recurring>" +
                         "<mode>manual</mode>" +
                         "<interval>days</interval>" +

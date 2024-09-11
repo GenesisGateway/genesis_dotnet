@@ -62,5 +62,13 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial
         {
             wpfCreateMock.Instance.should_serialize_to(wpfCreateMock.Xml);
         }
+
+        [TestMethod]
+        public void it_should_validate_state_in_the_address()
+        {
+            wpfCreateMock.Instance.BillingAddress.Country = Common.Iso3166CountryCodes.US;
+            wpfCreateMock.Instance.BillingAddress.State = "BS"; // invalid state in US country
+            wpfCreateMock.Instance.on_validation_should_have(1, new[] { "State" }, new[] { "BS is not a valid ISO 3166-2 state code in US" });
+        }
     }
 }

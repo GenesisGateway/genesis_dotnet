@@ -1,3 +1,10 @@
+2.0.4
+-----
+**Features**:
+
+* Added Funding parameters support
+* Added Address State validation in the Web Payment Form
+
 2.0.3
 -----
 **Features**:

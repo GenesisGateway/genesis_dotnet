@@ -4,9 +4,9 @@
     <TargetFrameworks>netstandard2.0;net46;net45</TargetFrameworks>
     <AssemblyName>Genesis.NetCore</AssemblyName>
     <RootNamespace>Genesis.NetCore</RootNamespace>
-    <AssemblyVersion>2.0.3.0</AssemblyVersion>
-    <FileVersion>2.0.3.0</FileVersion>
-    <Version>2.0.3</Version>
+    <AssemblyVersion>2.0.4.0</AssemblyVersion>
+    <FileVersion>2.0.4.0</FileVersion>
+    <Version>2.0.4</Version>
     <Authors>emerchantpay</Authors>
     <Copyright>Copyright (C) 2018-2024 emerchantpay Ltd.</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>

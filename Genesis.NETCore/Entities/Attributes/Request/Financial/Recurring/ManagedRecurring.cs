@@ -17,7 +17,6 @@ namespace Genesis.NetCore.Entities.Attributes.Request.Financial.Recurring
 
         // For Standard Managed Recurring
         [Required]
-        [StringLength(6)]
         [XmlElement(ElementName = "interval")]
         public Interval Interval { get; set; }
 

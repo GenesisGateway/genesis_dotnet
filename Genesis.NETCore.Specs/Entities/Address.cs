@@ -39,26 +39,23 @@ namespace Genesis.NetCore.Specs.Entities
             address.State = "BS";
 
             var validationErrors = EntitiesValidator.GetValidationErrors(address);
-            validationErrors.Count().should_be(1);
-
-            var actualMemberName = validationErrors.First().MemberNames.First();
-            actualMemberName.should_be("State");
-
-            var expectedErrorMessages = new string[] {
+            address.on_validation_should_have(1, new[] { "State" }, new[] {
                 ValidationMessages.InvalidStateCode(address.State, address.Country)
-            };
-
-            var actualErrorMessages = validationErrors.Select(e => e.ErrorMessage).ToArray();
-            actualErrorMessages.should_be(expectedErrorMessages);
+            });
         }
 
         [TestMethod]
         public void it_should_report_valid_state_on_validation()
         {
             address.State = "CA";
+            address.should_be_valid();
+        }
 
-            var validationErrors = EntitiesValidator.GetValidationErrors(address);
-            validationErrors.Count().should_be(0);
+        [TestMethod]
+        public void it_should_report_invalid_state_on_empty_string_validation()
+        {
+            address.State = string.Empty;
+            address.on_validation_should_have(1, new[] { "State" }, new[] { "The provided value couldn't be recognized." });
         }
     }
 }
