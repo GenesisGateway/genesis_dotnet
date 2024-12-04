@@ -5,9 +5,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Genesis.NetCore.Specs.Entities.Requests.Initial
 {
     [TestClass]
-    public class describe_account_verification : InitialRequestValidation<AccountVerification>
+    public class describe_sale_with_jpy_currency : InitialRequestValidation<Sale>
     {
-        public describe_account_verification() : base(() => RequestMocksFactory.CreateValidAccountVerification())
+        public describe_sale_with_jpy_currency() : base(() => RequestMocksFactory.CreateValidSaleWithJPYCurrency(), -1m)
         {
         }
     }

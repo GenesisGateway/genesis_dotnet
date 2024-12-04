@@ -7,7 +7,7 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial.ThreeD
     [TestClass]
     public class describe_init_recurring_sale_3d_sync : InitialRequestValidation<InitRecurringSale3d>
     {
-        public describe_init_recurring_sale_3d_sync() : base(() => RequestMocksFactory.CreateValidInitRecurringSale3dSync())
+        public describe_init_recurring_sale_3d_sync() : base(() => RequestMocksFactory.CreateValidInitRecurringSale3dSync(), -0.01m)
         {
         }
     }

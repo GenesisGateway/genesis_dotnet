@@ -9,7 +9,6 @@ namespace Genesis.NetCore.Entities.Responses.Error
     public class WpfCreateErrorResponse :
         TransactionModel,
         ITransactionModel,
-        IErrorModel,
         IErrorResponse,
         ITransactionStatusModel,
         ITransactionTypeModel

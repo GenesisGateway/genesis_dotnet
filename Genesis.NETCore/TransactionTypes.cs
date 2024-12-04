@@ -40,9 +40,6 @@ namespace Genesis.NetCore
         [XmlEnum("payout")]
         Payout = 12,
 
-        [XmlEnum("account_verification")]
-        AccountVerification = 13,
-
         [XmlEnum("avs")]
         Avs = 14,
 
@@ -72,5 +69,11 @@ namespace Genesis.NetCore
 
         [XmlEnum("apple_pay")]
         ApplePay = 23,
+
+        [XmlEnum("online_banking")]
+        OnlineBanking = 24,
+
+        [XmlEnum("bank_payout")]
+        BankPayout = 25,
     }
 }

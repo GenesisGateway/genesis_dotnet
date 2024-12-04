@@ -1,13 +1,9 @@
 using System.Xml.Serialization;
-using Genesis.NetCore.Errors;
 
 namespace Genesis.NetCore.Entities.Responses.Models
 {
-    internal interface IErrorModel
+    public interface ITechnicalMessageModel
     {
-        [XmlElement(ElementName = "code")]
-        ErrorCodes Code { get; set; }
-
         [XmlElement(ElementName = "technical_message")]
         string TechnicalMessage { get; set; }
 

@@ -7,7 +7,7 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial.ThreeD
     [TestClass]
     public class describe_authorize_3d_sync : InitialRequestValidation<Authorize3d>
     {
-        public describe_authorize_3d_sync() : base(() => RequestMocksFactory.CreateValidAuthorize3dSync())
+        public describe_authorize_3d_sync() : base(() => RequestMocksFactory.CreateValidAuthorize3dSync(), -0.01m)
         {
         }
     }

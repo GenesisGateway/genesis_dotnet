@@ -24,7 +24,7 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial
         [TestMethod]
         public void it_should_validate_required_properties()
         {
-            pproMock.Instance.on_validation_should_behave_like_required("Id", "ReturnSuccessUrl", "ReturnFailureUrl", "PaymentType");
+            pproMock.Instance.on_validation_should_behave_like_required("Id", "ReturnSuccessUrl", "ReturnFailureUrl");
         }
 
         [TestMethod]

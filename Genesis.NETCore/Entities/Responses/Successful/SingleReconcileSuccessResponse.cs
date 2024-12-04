@@ -1,7 +1,6 @@
 using System.Xml.Serialization;
 using Genesis.NetCore.Entities.Enums;
 using Genesis.NetCore.Entities.Responses.Models;
-using Genesis.NetCore.Errors;
 
 namespace Genesis.NetCore.Entities.Responses.Successful
 {
@@ -14,7 +13,7 @@ namespace Genesis.NetCore.Entities.Responses.Successful
         IAcquirerModel,
         IAuthorizationModel,
         ICustomerModel,
-        IErrorModel,
+        ITechnicalMessageModel,
         IIssuerModel,
         IPaymentAddressModel,
         IThreeDSModel,
@@ -25,7 +24,6 @@ namespace Genesis.NetCore.Entities.Responses.Successful
         public string AuthorizationCode { get; set; }
         public string CustomerEmail { get; set; }
         public string CustomerPhone { get; set; }
-        public ErrorCodes Code { get; set; }
         public string TechnicalMessage { get; set; }
         public string Message { get; set; }
         public string ResponseCode { get; set; }

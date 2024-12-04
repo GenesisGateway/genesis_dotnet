@@ -8,7 +8,6 @@ namespace Genesis.NetCore.Entities.Responses.Models
         [XmlElement(ElementName = "descriptor")]
         string Descriptor { get; set; }
 
-
         [XmlElement(ElementName = "mode")]
         string Mode { get; set; }
 

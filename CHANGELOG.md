@@ -1,3 +1,14 @@
+2.1.0
+-----
+**Features**:
+
+* Added neighborhood attribute support to the Address
+* Added allowed Genesis.NetCore.Entities.Enums.PproPaymentType for PPRO Payment Types
+* Added Online Banking transaction request
+* Added Bank Payout transaction request
+* Added Smart Router API support
+* Removed Account Verification transaction request. You can use Sale/3D, Authorize/3D with zero amount (Account Verification V2)
+
 2.0.4
 -----
 **Features**:

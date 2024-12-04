@@ -31,3 +31,4 @@ TestResults/
 !packages/repositories.config
 
 dotnet_report.xml
+/*.playlist

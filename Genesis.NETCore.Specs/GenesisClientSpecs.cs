@@ -33,19 +33,6 @@ namespace Genesis.NetCore.Specs
         }
 
         [TestMethod]
-        public void it_should_correctly_process_AccountVerification_requests()
-        {
-            var validAccountVerification = RequestMocksFactory.CreateValidAccountVerification().Instance;
-            var invalidAccountVerification = RequestMocksFactory.CreateValidAccountVerification().Instance;
-            invalidAccountVerification.Amount = -1;
-
-            var specsContainer = new describe_transaction_execution<AccountVerification, AccountVerificationSuccessResponse, AccountVerificationErrorResponse>(genesis, validAccountVerification,
-                ResponseMocksFactory.CreateAccountVerificationSuccessResponse().Xml, ResponseMocksFactory.CreateAccountVerificationErrorResponse().Xml, invalidAccountVerification);
-
-            SpecHelper.RunSpecs(specsContainer);
-        }
-
-        [TestMethod]
         public void it_should_correctly_process_Avs_requests()
         {
             var validAvs = RequestMocksFactory.CreateValidAvs().Instance;

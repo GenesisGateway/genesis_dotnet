@@ -3,6 +3,7 @@ using Genesis.NetCore.Common;
 using Genesis.NetCore.Common.ThreedsV2;
 using Genesis.NetCore.Entities.Enums;
 using Genesis.NetCore.Entities.Enums.ThreeDS;
+using Genesis.NetCore.Entities.Responses.Error;
 using Genesis.NetCore.Entities.Responses.Models;
 using Genesis.NetCore.Errors;
 
@@ -21,7 +22,7 @@ namespace Genesis.NetCore.Entities.Responses.Successful
         IAvsResponseModel,
         ICvvResultCodeModel,
         IDynamicDescriptorModel,
-        IErrorModel,
+        IErrorResponse,
         IGamingModel,
         IIssuerModel,
         IRecurringAdviceModel,

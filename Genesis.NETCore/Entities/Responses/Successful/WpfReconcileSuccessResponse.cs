@@ -1,7 +1,6 @@
 ﻿using System.Xml.Serialization;
 using Genesis.NetCore.Entities.Enums;
 using Genesis.NetCore.Entities.Responses.Models;
-using Genesis.NetCore.Errors;
 
 namespace Genesis.NetCore.Entities.Responses.Successful
 {
@@ -11,11 +10,10 @@ namespace Genesis.NetCore.Entities.Responses.Successful
         MoneyAndTransactionModel,
         IMoneyModel,
         ITransactionModel,
-        IErrorModel,
+        ITechnicalMessageModel,
         IPaymentTransactionsModel,
         ITransactionStatusModel
     {
-        public ErrorCodes Code { get; set; }
         public string TechnicalMessage { get; set; }
         public string Message { get; set; }
         public PaymentResponse[] Payments { get; set; }

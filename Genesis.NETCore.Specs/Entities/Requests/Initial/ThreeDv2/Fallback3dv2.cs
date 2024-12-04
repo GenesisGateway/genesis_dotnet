@@ -7,7 +7,7 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial.ThreeDv2
     [TestClass]
     public class describe_Fallback3dv2 : InitialRequestValidation<InitRecurringSale3d>
     {
-        public describe_Fallback3dv2() : base(() => RequestMocksFactory.CreateValidFallback3dv2())
+        public describe_Fallback3dv2() : base(() => RequestMocksFactory.CreateValidFallback3dv2(), -0.01m)
         {
         }
     }

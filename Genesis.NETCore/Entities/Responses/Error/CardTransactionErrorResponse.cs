@@ -17,7 +17,6 @@ namespace Genesis.NetCore.Entities.Responses.Error
         IAvsResponseModel,
         ICvvResultCodeModel,
         IDynamicDescriptorModel,
-        IErrorModel,
         IErrorResponse,
         IGamingModel,
         IIssuerModel,

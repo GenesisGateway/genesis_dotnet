@@ -1031,82 +1031,6 @@ namespace Genesis.NetCore.Specs.Mocks
             return new EntityMock<CardTransactionErrorResponse>(errorResponse, errorResponseXml);
         }
 
-        public static EntityMock<AccountVerificationSuccessResponse> CreateAccountVerificationSuccessResponse()
-        {
-            var successResponse = new AccountVerificationSuccessResponse()
-            {
-                TransactionType = TransactionTypes.AccountVerification,
-                AvsResponseCode = "5I",
-                AvsResponseText = "Response provided by issuer processor; Address information not verified.",
-                AuthorizationCode = "345678",
-                Descriptor = "descriptor one",
-                Status = TransactionStates.Approved,
-                ResponseCode = "83",
-                UniqueId = "5e2cbbad71d2b13432323153c208223a",
-                TransactionId = "119643250547501c79d8295",
-                Mode = "live",
-                ProxyTime = "2007-11-30T14:21:48Z",
-                SentToAcquirer = true
-            };
-
-            var successResponseXml =
-                                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
-                                    "<payment_response>" +
-                                    "<transaction_type>account_verification</transaction_type>" +
-                                    "<status>approved</status>" +
-                                    "<avs_response_code>5I</avs_response_code>" +
-                                    "<avs_response_text>Response provided by issuer processor; Address information not verified.</avs_response_text>" +
-                                    "<authorization_code>345678</authorization_code>" +
-                                    "<response_code>83</response_code>" +
-                                    "<unique_id>5e2cbbad71d2b13432323153c208223a</unique_id>" +
-                                    "<transaction_id>119643250547501c79d8295</transaction_id>" +
-                                    "<mode>live</mode>" +
-                                    "<timestamp>2007-11-30T14:21:48Z</timestamp>" +
-                                    "<descriptor>descriptor one</descriptor>" +
-                                    "<sent_to_acquirer>true</sent_to_acquirer>" +
-                                    "</payment_response>";
-
-            return new EntityMock<AccountVerificationSuccessResponse>(successResponse, successResponseXml);
-        }
-
-        public static EntityMock<AccountVerificationErrorResponse> CreateAccountVerificationErrorResponse()
-        {
-            var errorResponse = new AccountVerificationErrorResponse()
-            {
-                TransactionType = TransactionTypes.AccountVerification,
-                Status = TransactionStates.Error,
-                ResponseCode = "57",
-                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
-                TransactionId = "1196439228475036bc3a791",
-                Code = ErrorCodes.InputDataInvalidError,
-                TechnicalMessage = "’billing_address[zip_code]’ is invalid!",
-                Message = "’billing_address[zip_code]’ is invalid!",
-                Mode = "live",
-                ProxyTime = "2007-11-30T16:13:50Z",
-                Descriptor = "descriptor one",
-                SentToAcquirer = false
-            };
-
-            var errorResponseXml =
-                                  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
-                                  "<payment_response>" +
-                                  "<transaction_type>account_verification</transaction_type>" +
-                                  "<status>error</status>" +
-                                  "<response_code>57</response_code>" +
-                                  "<unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>" +
-                                  "<transaction_id>1196439228475036bc3a791</transaction_id>" +
-                                  "<code>340</code>" +
-                                  "<technical_message>’billing_address[zip_code]’ is invalid!</technical_message>" +
-                                  "<message>’billing_address[zip_code]’ is invalid!</message>" +
-                                  "<mode>live</mode>" +
-                                  "<timestamp>2007-11-30T16:13:50Z</timestamp>" +
-                                  "<descriptor>descriptor one</descriptor>" +
-                                  "<sent_to_acquirer>false</sent_to_acquirer>" +
-                                  "</payment_response>";
-
-            return new EntityMock<AccountVerificationErrorResponse>(errorResponse, errorResponseXml);
-        }
-
         public static EntityMock<CardTransactionSuccessResponse> CreateAuthorizeSuccessResponse(bool setCode = false)
         {
             var successResponse = new CardTransactionSuccessResponse()
@@ -3530,5 +3454,224 @@ namespace Genesis.NetCore.Specs.Mocks
 
             return new EntityMock<PproErrorResponse>(errorResponse, errorResponseXml);
         }
+
+        public static EntityMock<OnlineBankingSuccessResponse> CreateOnlineBankingSuccessResponse1()
+        {
+            var successResponse = new OnlineBankingSuccessResponse()
+            {
+                TransactionType = TransactionTypes.OnlineBanking,
+                Status = TransactionStates.PendingAsync,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                TechnicalMessage = "Transaction successful!",
+                Message = "Transaction successful!",
+                RedirectUrl = "https://staging.gate.emerchantpay.net/redirect/to_acquirer/649e1ff35c61",
+                Mode = "live",
+                ProxyTime = "2024-11-18T13:05:56Z",
+                Descriptor = "Descriptor one",
+                ProxyAmount = "50000",
+                Currency = Iso4217CurrencyCodes.CNY,
+                SentToAcquirer = true,
+                BankCode = "CITIC",
+                PaymentType = OnlineBankingPaymentType.AlipayQr
+            };
+
+            var successResponseXml =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                "<payment_response>" +
+                "<transaction_type>online_banking</transaction_type>" +
+                "<status>pending_async</status>" +
+                "<mode>live</mode>" +
+                "<transaction_id>119643250547501c79d8295</transaction_id>" +
+                "<unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>" +
+                "<technical_message>Transaction successful!</technical_message>" +
+                "<message>Transaction successful!</message>" +
+                "<redirect_url>https://staging.gate.emerchantpay.net/redirect/to_acquirer/649e1ff35c61</redirect_url>" +
+                "<timestamp>2024-11-18T13:05:56Z</timestamp>" +
+                "<descriptor>Descriptor one</descriptor>" +
+                "<amount>50000</amount>" +
+                "<currency>CNY</currency>" +
+                "<sent_to_acquirer>true</sent_to_acquirer>" +
+                "<bank_code>CITIC</bank_code>" +
+                "<payment_type>alipay_qr</payment_type>" +
+                "</payment_response>";
+
+            return new EntityMock<OnlineBankingSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<OnlineBankingSuccessResponse> CreateOnlineBankingSuccessResponse2()
+        {
+            var successResponse = new OnlineBankingSuccessResponse()
+            {
+                TransactionType = TransactionTypes.OnlineBanking,
+                Status = TransactionStates.PendingAsync,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                TechnicalMessage = "Transaction successful!",
+                Message = "Transaction successful!",
+                RedirectUrl = "https://staging.gate.emerchantpay.net/redirect/to_acquirer/649e1ff35c61",
+                Mode = "live",
+                ProxyTime = "2024-11-18T13:05:56Z",
+                Descriptor = "Descriptor one",
+                ProxyAmount = "50000",
+                Currency = Iso4217CurrencyCodes.MXN,
+                SentToAcquirer = true,
+                BankCode = "SE",
+                PaymentType = OnlineBankingPaymentType.OnlineBanking,
+                AccountDetails = new AccountDetailsModel()
+                {
+                    ReferenceNumber = "1000210",
+                    AccountNumber = "646180320000000006"
+                }
+            };
+            var successResponseXml =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                "<payment_response>" +
+                "<transaction_type>online_banking</transaction_type>" +
+                "<status>pending_async</status>" +
+                "<mode>live</mode>" +
+                "<transaction_id>119643250547501c79d8295</transaction_id>" +
+                "<unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>" +
+                "<technical_message>Transaction successful!</technical_message>" +
+                "<message>Transaction successful!</message>" +
+                "<timestamp>2024-11-18T13:05:56Z</timestamp>" +
+                "<descriptor>Descriptor one</descriptor>" +
+                "<amount>50000</amount>" +
+                "<currency>MXN</currency>" +
+                "<sent_to_acquirer>true</sent_to_acquirer>" +
+                "<bank_code>SE</bank_code>" +
+                "<payment_type>online_banking</payment_type>" +
+                "<account_details>" +
+                    "<reference_number>1000210</reference_number>" +
+                    "<account_number>646180320000000006</account_number>" +
+                "</account_details>" +
+                "</payment_response>";
+
+            return new EntityMock<OnlineBankingSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<OnlineBankingErrorResponse> CreateOnlineBankingErrorResponse()
+        {
+            var errorResponse = new OnlineBankingErrorResponse()
+            {
+                TransactionType = TransactionTypes.OnlineBanking,
+                Status = TransactionStates.Error,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                Code = (ErrorCodes)110,
+                TechnicalMessage = "amount is missing",
+                Message = "Please check input data for errors!",
+                Mode = "live",
+                ProxyTime = "2024-11-18T13:05:56Z",
+                Descriptor = "Descriptor one",
+                ProxyAmount = "50000",
+                Currency = Iso4217CurrencyCodes.CNY,
+                SentToAcquirer = true
+            };
+
+            var errorResponseXml =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                "<payment_response>" +
+                "<transaction_type>online_banking</transaction_type>" +
+                "<status>error</status>" +
+                "<mode>live</mode>" +
+                "<transaction_id>119643250547501c79d8295</transaction_id>" +
+                "<unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>" +
+                "<code>110</code>" +
+                "<technical_message>amount is missing</technical_message>" +
+                "<message>Please check input data for errors!</message>" +
+                "<timestamp>2024-11-18T13:05:56Z</timestamp>" +
+                "<descriptor>Descriptor one</descriptor>" +
+                "<amount>50000</amount>" +
+                "<currency>CNY</currency>" +
+                "<sent_to_acquirer>true</sent_to_acquirer>" +
+                "<bank_code>CITIC</bank_code>" +
+                "<payment_type>online_banking</payment_type>" +
+                "</payment_response>";
+
+            return new EntityMock<OnlineBankingErrorResponse>(errorResponse, errorResponseXml);
+        }
+
+        public static EntityMock<BankPayoutSuccessResponse> CreateBankPayoutSuccessResponse()
+        {
+            var successResponse = new BankPayoutSuccessResponse()
+            {
+                TransactionType = TransactionTypes.BankPayout,
+                Status = TransactionStates.PendingAsync,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                TechnicalMessage = "Transaction successful!",
+                Message = "Transaction successful!",
+                Mode = "live",
+                ProxyTime = "2024-11-18T13:06:00Z",
+                Descriptor = "Descriptor one",
+                ProxyAmount = "50000",
+                Currency = Iso4217CurrencyCodes.INR,
+                SentToAcquirer = true
+            };
+            var successResponseXml =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                "<payment_response>" +
+                    "<transaction_type>bank_payout</transaction_type>" +
+                    "<status>pending_async</status>" +
+                    "<mode>live</mode>" +
+                    "<transaction_id>119643250547501c79d8295</transaction_id>" +
+                    "<unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>" +
+                    "<technical_message>Transaction successful!</technical_message>" +
+                    "<message>Transaction successful!</message>" +
+                    "<timestamp>2024-11-18T13:06:00Z</timestamp>" +
+                    "<descriptor>Descriptor one</descriptor>" +
+                    "<amount>50000</amount>" +
+                    "<currency>INR</currency>" +
+                    "<sent_to_acquirer>true</sent_to_acquirer>" +
+                "</payment_response>";
+
+            return new EntityMock<BankPayoutSuccessResponse>(successResponse, successResponseXml);
+        }
+
+        public static EntityMock<BankPayoutErrorResponse> CreateBankPayoutErrorResponse()
+        {
+            var errorResponse = new BankPayoutErrorResponse()
+            {
+                TransactionType = TransactionTypes.OnlineBanking,
+                Status = TransactionStates.Error,
+                UniqueId = "44177a21403427eb96664a6d7e5d5d48",
+                TransactionId = "119643250547501c79d8295",
+                Code = (ErrorCodes)110,
+                TechnicalMessage = "amount is missing",
+                Message = "Please check input data for errors!",
+                Mode = "live",
+                ProxyTime = "2024-11-18T13:05:56Z",
+                Descriptor = "Descriptor one",
+                ProxyAmount = "50000",
+                Currency = Iso4217CurrencyCodes.CNY,
+                SentToAcquirer = true
+            };
+
+            var errorResponseXml =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                "<payment_response>" +
+                "<transaction_type>online_banking</transaction_type>" +
+                "<status>error</status>" +
+                "<mode>live</mode>" +
+                "<transaction_id>119643250547501c79d8295</transaction_id>" +
+                "<unique_id>44177a21403427eb96664a6d7e5d5d48</unique_id>" +
+                "<code>110</code>" +
+                "<technical_message>amount is missing</technical_message>" +
+                "<message>Please check input data for errors!</message>" +
+                "<timestamp>2024-11-18T13:05:56Z</timestamp>" +
+                "<descriptor>Descriptor one</descriptor>" +
+                "<amount>50000</amount>" +
+                "<currency>CNY</currency>" +
+                "<sent_to_acquirer>true</sent_to_acquirer>" +
+                "<bank_code>CITIC</bank_code>" +
+                "<payment_type>online_banking</payment_type>" +
+                "</payment_response>";
+
+            return new EntityMock<BankPayoutErrorResponse>(errorResponse, errorResponseXml);
+        }
+
+
+
     }
 }

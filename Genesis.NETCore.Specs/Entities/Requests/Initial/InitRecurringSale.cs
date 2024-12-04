@@ -7,7 +7,7 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial
     [TestClass]
     public class describe_init_recurring_sale : InitialRequestValidation<InitRecurringSale>
     {
-        public describe_init_recurring_sale() : base(() => RequestMocksFactory.CreateValidInitRecurringSale())
+        public describe_init_recurring_sale() : base(() => RequestMocksFactory.CreateValidInitRecurringSale(), -0.01m)
         {
         }
     }

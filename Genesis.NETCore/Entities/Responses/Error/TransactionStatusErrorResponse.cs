@@ -7,7 +7,6 @@ namespace Genesis.NetCore.Entities.Responses.Error
     public class TransactionStatusErrorResponse :
         IResponse,
         IErrorResponse,
-        IErrorModel,
         ITransactionStatusModel
     {
         public ErrorCodes Code { get; set; }

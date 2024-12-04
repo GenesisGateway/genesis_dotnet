@@ -19,11 +19,16 @@ namespace Genesis.NetCore.Common
             }
         }
 
-        public static string ToUrlName(this Environments environment)
+        public static string ToUrlName(this Environments environment, bool useSmartRouting)
         {
             switch (environment)
             {
                 case Environments.Production:
+                    if (useSmartRouting)
+                    {
+                        return "prod";
+                    }
+
                     return string.Empty;
                 case Environments.Staging:
                     return "staging";

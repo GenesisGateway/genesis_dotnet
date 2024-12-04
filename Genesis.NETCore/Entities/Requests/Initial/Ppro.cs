@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
+using Genesis.NetCore.Entities.Enums;
 
 namespace Genesis.NetCore.Entities.Requests.Initial
 {
     [XmlRoot("payment_transaction", Namespace = "Ppro")]
     public class Ppro : AlternativePaymentMethod
     {
-        [Required]
         [XmlElement(ElementName = "payment_type")]
-        public string PaymentType { get; set; }
+        public PproPaymentType PaymentType { get; set; }
 
         [StringLength(10)]
         [XmlElement(ElementName = "account_number")]

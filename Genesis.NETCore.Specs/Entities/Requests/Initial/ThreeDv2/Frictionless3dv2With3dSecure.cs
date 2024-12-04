@@ -7,7 +7,7 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial.ThreeDv2
     [TestClass]
     public class describe_Frictionless3dv2With3dSecure : InitialRequestValidation<InitRecurringSale3d>
     {
-        public describe_Frictionless3dv2With3dSecure() : base(() => RequestMocksFactory.CreateValidFrictionless3dv2With3dSecure())
+        public describe_Frictionless3dv2With3dSecure() : base(() => RequestMocksFactory.CreateValidFrictionless3dv2With3dSecure(), -0.01m)
         {
         }
     }

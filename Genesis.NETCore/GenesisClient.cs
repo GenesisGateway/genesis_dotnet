@@ -19,6 +19,8 @@ namespace Genesis.NetCore
 {
     internal class GenesisClient : IGenesisClient
     {
+        private const string SmartRoutingApiPath = "transactions";
+        private const string SmartRoutingSubDomain = "api";
         private readonly Configuration configuration;
 
         public GenesisClient(Configuration configuration)
@@ -96,16 +98,6 @@ namespace Genesis.NetCore
         public async Task<Result<PayoutSuccessResponse, PayoutErrorResponse>> ExecuteAsync(Payout payout)
         {
             return await ExecuteAsync<PayoutSuccessResponse, PayoutErrorResponse>(payout);
-        }
-
-        public Result<AccountVerificationSuccessResponse, AccountVerificationErrorResponse> Execute(AccountVerification accountVerification)
-        {
-            return Execute<AccountVerificationSuccessResponse, AccountVerificationErrorResponse>(accountVerification);
-        }
-
-        public async Task<Result<AccountVerificationSuccessResponse, AccountVerificationErrorResponse>> ExecuteAsync(AccountVerification accountVerification)
-        {
-            return await ExecuteAsync<AccountVerificationSuccessResponse, AccountVerificationErrorResponse>(accountVerification);
         }
 
         public Result<AvsSuccessResponse, AvsErrorResponse> Execute(Avs avs)
@@ -288,6 +280,36 @@ namespace Genesis.NetCore
             return await ExecuteAsync<GooglePaySuccessResponse, GooglePayErrorResponse>(googlePay);
         }
 
+        public Result<PproSuccessResponse, PproErrorResponse> Execute(Ppro ppro)
+        {
+            return Execute<PproSuccessResponse, PproErrorResponse>(ppro);
+        }
+
+        public async Task<Result<PproSuccessResponse, PproErrorResponse>> ExecuteAsync(Ppro ppro)
+        {
+            return await ExecuteAsync<PproSuccessResponse, PproErrorResponse>(ppro);
+        }
+
+        public Result<OnlineBankingSuccessResponse, OnlineBankingErrorResponse> Execute(OnlineBanking onlineBanking)
+        {
+            return Execute<OnlineBankingSuccessResponse, OnlineBankingErrorResponse>(onlineBanking);
+        }
+
+        public async Task<Result<OnlineBankingSuccessResponse, OnlineBankingErrorResponse>> ExecuteAsync(OnlineBanking onlineBanking)
+        {
+            return await ExecuteAsync<OnlineBankingSuccessResponse, OnlineBankingErrorResponse>(onlineBanking);
+        }
+
+        public Result<BankPayoutSuccessResponse, BankPayoutErrorResponse> Execute(BankPayout bankPayout)
+        {
+            return Execute<BankPayoutSuccessResponse, BankPayoutErrorResponse>(bankPayout);
+        }
+
+        public async Task<Result<BankPayoutSuccessResponse, BankPayoutErrorResponse>> ExecuteAsync(BankPayout bankPayout)
+        {
+            return await ExecuteAsync<BankPayoutSuccessResponse, BankPayoutErrorResponse>(bankPayout);
+        }
+
         private Result<S, E> Execute<S, E>(Request request)
             where S : IEntity
             where E : IEntity, IErrorResponse
@@ -323,8 +345,10 @@ namespace Genesis.NetCore
         public WebRequest CreateWebRequest(Request request)
         {
             EntitiesValidator.Validate(request);
+            var isSmartRoutingAvailable = request is ProcessRequest;
+            var usingSmartRouting = configuration.UseSmartRouting && isSmartRoutingAvailable;
 
-            var url = ComposeUrl(request.SubDomain, request.ApiPath, request.AppendTerminalToken);
+            var url = ComposeUrl(request.SubDomain, request.ApiPath, request.AppendTerminalToken, usingSmartRouting);
             var webRequest = WebRequest.Create(url);
             if (request is IPutRequest)
             {
@@ -350,6 +374,7 @@ namespace Genesis.NetCore
             else
             {
                 webRequest.ContentType = "text/xml";
+                webRequest.Headers["Accept"] = "text/xml";
                 data = XmlSerializationHelpers.Serialize(request);
             }
 
@@ -370,12 +395,19 @@ namespace Genesis.NetCore
             return webRequest;
         }
 
-        private string ComposeUrl(string subDomain, string apiPath, bool appendTerminalToken)
+        private string ComposeUrl(string subDomain, string apiPath, bool appendTerminalToken, bool usingSmartRouting)
         {
-            var url = IsUrlWithEnvironment() ?
-                GetUrlWithEnvironment(subDomain, apiPath) : GetUrlWithoutEnvironment(subDomain, apiPath);
+            string url;
+            if (IsUrlWithEnvironment(usingSmartRouting))
+            {
+                url = GetUrlWithEnvironment(subDomain, apiPath, usingSmartRouting);
+            }
+            else
+            {
+                url = GetUrlWithoutEnvironment(subDomain, apiPath);
+            }
 
-            if (appendTerminalToken)
+            if (appendTerminalToken && !usingSmartRouting)
             {
                 return string.Format("{0}{1}", url, configuration.TerminalToken);
             }
@@ -383,14 +415,21 @@ namespace Genesis.NetCore
             return url;
         }
 
-        private bool IsUrlWithEnvironment()
+        private bool IsUrlWithEnvironment(bool useSmartRouting)
         {
-            return !string.IsNullOrEmpty(configuration.Environment.ToUrlName());
+            return !string.IsNullOrEmpty(configuration.Environment.ToUrlName(useSmartRouting));
         }
 
-        private string GetUrlWithEnvironment(string subDomain, string apiPath)
+        private string GetUrlWithEnvironment(string subDomain, string apiPath, bool useSmartRouting)
         {
-            return string.Format("https://{0}.{1}.{2}/{3}/", configuration.Environment.ToUrlName(), subDomain, configuration.getEndpointURL(), apiPath);
+            if (useSmartRouting)
+            {
+                return string.Format("https://{0}.{1}.{2}/{3}/", configuration.Environment.ToUrlName(configuration.UseSmartRouting), configuration.UseSmartRouting ? SmartRoutingSubDomain : subDomain, configuration.getEndpointURL(), SmartRoutingApiPath);
+            }
+            else
+            {
+                return string.Format("https://{0}.{1}.{2}/{3}/", configuration.Environment.ToUrlName(configuration.UseSmartRouting), subDomain, configuration.getEndpointURL(), apiPath);
+            }
         }
 
         private string GetUrlWithoutEnvironment(string subDomain, string apiPath)

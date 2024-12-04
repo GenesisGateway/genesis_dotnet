@@ -1,5 +1,4 @@
 using System.Xml.Serialization;
-using Genesis.NetCore.Entities.Responses.Models;
 using Genesis.NetCore.Errors;
 
 namespace Genesis.NetCore.Entities.Responses.Error
@@ -7,8 +6,7 @@ namespace Genesis.NetCore.Entities.Responses.Error
     [XmlRoot("blacklist_response", Namespace = "BlacklistErrorResponse")]
     public class BlacklistErrorResponse :
         IResponse,
-        IErrorResponse,
-        IErrorModel
+        IErrorResponse
     {
         public ErrorCodes Code { get; set; }
         public string TechnicalMessage { get; set; }

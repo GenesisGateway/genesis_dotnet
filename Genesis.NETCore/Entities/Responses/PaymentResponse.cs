@@ -12,7 +12,6 @@ namespace Genesis.NetCore.Entities.Responses
         IAcquirerModel,
         IAuthorizationModel,
         ICustomerModel,
-        IErrorModel,
         IErrorResponse,
         IIssuerModel,
         IPaymentAddressModel,

@@ -30,7 +30,6 @@ You can use the following request types to initialize various transactions suppo
 
 ````
 Genesis.NetCore.Entities.Requests.Initial:
-* AccountVerification
 * Authorize
 * Authorize3d
 * Avs
@@ -42,6 +41,8 @@ Genesis.NetCore.Entities.Requests.Initial:
 * WpfCreate
 * GooglePay
 * ApplePay
+* OnlineBanking
+* BankPayout
 
 Genesis.NetCore.Entities.Requests.Initial.Threedsv2:
 * ContinueRequest
@@ -733,6 +734,30 @@ ManagedRecurring = new ManagedRecurring()
 More example requests can be found in the library's specs class [`Genesis.NETCore.Specs.Mocks.RequestMocksFactory`](Genesis.NETCore.Specs/Mocks/RequestMocksFactory.cs).
 
 More information about each one of the request types can be found in the Genesis API Documentation
+
+
+Smart Routing
+-----------------------------------------------------------------
+The Smart Routing API is a higher-level abstraction that allows for simpler and more efficient gateway Processing API integration, that doesn't require the terminal token as part of the URL when creating transactions'
+
+By default the Smart Router is disabled. Contact your account manager to use the functionality.
+To enable it in the code, set `useSmartRouting` parameter to `true` in `Configuration` class:
+```
+// Set merchant credentials
+string username = "YOUR_USERNAME";
+string password = "YOUR_PASSWORD";
+string token    = "YOUR_TOKEN"; // <-- not used by 'Smart Routing' requests
+
+// Initialize configuration - endpoint and env
+Configuration configuration = new Configuration(
+    environment:    Environments.Staging,
+    terminalToken:  token,
+    apiLogin:       username,
+    apiPassword:    password,
+    endpoint:       Endpoints.eMerchantPay,
+    useSmartRouting: true       // <-- default value is: false
+);
+```
 
 License
 -------------

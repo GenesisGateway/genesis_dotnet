@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using Genesis.NetCore.Common;
 using Genesis.NetCore.Entities;
 using Genesis.NetCore.Specs.Mocks;
@@ -36,12 +39,25 @@ namespace Genesis.NetCore.Specs
 
             if (mockHttpWebRequests)
             {
-                RegisterMockWebRequestCreator();
                 config = CreateEmptyStagingConfiguration();
             }
             else
             {
                 config = CreateCompleteStagingConfiguration();
+            }
+
+            return CreateGenesisClient(config, mockHttpWebRequests);
+        }
+
+        public static IGenesisClient CreateGenesisClient(Configuration config, bool mockHttpWebRequests = true)
+        {
+            if (mockHttpWebRequests)
+            {
+                RegisterMockWebRequestCreator();
+            }
+            else
+            {
+                ClearWebRequestPrefixList();
             }
 
             ConfigStorage = config;
@@ -59,6 +75,36 @@ namespace Genesis.NetCore.Specs
             WebRequest.RegisterPrefix("https://staging.wpf", creator);
         }
 
+        /// <summary>
+        /// Used to undo RegisterMockWebRequestCreator method.
+        /// </summary>
+        /// <param name="webRequest"></param>
+        public static void ClearWebRequestPrefixList()
+        {
+            var propertyInfo = typeof(WebRequest)
+                .GetProperty("PrefixList", BindingFlags.NonPublic | BindingFlags.Static);
+
+            var prefixes = (IList)propertyInfo.GetValue(null);
+            var prefixesToRemove = new List<dynamic>();
+            foreach (var prefix in prefixes)
+            {
+                var prefixType = prefix.GetType();
+                var prefixField = prefixType.GetField("Prefix");
+                var prefixValue = prefixField.GetValue(prefix) as string;
+                if (prefixValue.StartsWith("https://"))
+                {
+                    prefixesToRemove.Add(prefix);
+                }
+            }
+
+            foreach (var prefix in prefixesToRemove)
+            {
+                prefixes.Remove(prefix);
+            }
+
+            var prefixesCount = prefixes.Count;
+        }
+
         public static Configuration CreateEmptyStagingConfiguration()
         {
             var configuration = new Configuration(environment: Environments.Staging,
@@ -73,8 +119,8 @@ namespace Genesis.NetCore.Specs
         {
             var configuration = new Configuration(environment: Environments.Staging,
                 terminalToken: "terminal_token",
-                apiLogin:      "merchant_username",
-                apiPassword:   "merchant_password",
+                apiLogin: "merchant_username",
+                apiPassword: "merchant_password",
                 endpoint: Endpoints.EComProcessing);
             return configuration;
         }

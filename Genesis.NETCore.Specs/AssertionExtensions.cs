@@ -39,9 +39,9 @@ namespace Genesis.NetCore.Specs
             }
         }
 
-        public static void on_validation_should_behave_like_amount(this IEntity entity, string amountPropertyName)
+        public static void on_validation_should_behave_like_amount(this IEntity entity, string amountPropertyName, decimal invalidAmmount = 0)
         {
-            var amountValidationSpecs = new describe_amount_validation(entity, amountPropertyName);
+            var amountValidationSpecs = new describe_amount_validation(entity, amountPropertyName, invalidAmmount);
             SpecHelper.RunSpecs(amountValidationSpecs);
         }
 
@@ -68,7 +68,7 @@ namespace Genesis.NetCore.Specs
             var yearValidationSpecs = new describe_year_validation(entity, yearPropertyName);
             SpecHelper.RunSpecs(yearValidationSpecs);
         }
-        
+
         public static void on_validation_should_behave_like_year_with_client_side_encryption(this IEntity entity, string yearPropertyName, string csePropertyName)
         {
             var yearValidationSpecs = new describe_year_validation(entity, yearPropertyName, csePropertyName);
@@ -129,6 +129,12 @@ namespace Genesis.NetCore.Specs
         public static void on_validation_should_behave_like_url(this IEntity entity, string urlPropertyName)
         {
             var urlValidationSpecs = new describe_url(entity, urlPropertyName);
+            SpecHelper.RunSpecs(urlValidationSpecs);
+        }
+
+        public static void on_validation_should_behave_like_supported_currencies(this IEntity entity)
+        {
+            var urlValidationSpecs = new DescribeSupportedValuesValidation(entity, Iso4217CurrencyCodes.Undefined);
             SpecHelper.RunSpecs(urlValidationSpecs);
         }
 
@@ -219,6 +225,18 @@ namespace Genesis.NetCore.Specs
         // moved here from entity class
         public static Tuple<bool, string> EntityEquals(this object self, object obj)
         {
+            if ((self == null || obj == null) && (self != null || obj != null))
+            {
+                if (self != null)
+                {
+                    return new Tuple<bool, string>(false, string.Format("Other/expected object is null, actual object is: {0}: {1}", self.GetType().Name, self));
+                }
+                else if (obj != null)
+                {
+                    return new Tuple<bool, string>(false, string.Format("Self/actual object is null, the other object is: {0}: {1}", obj.GetType().Name, obj));
+                }
+            }
+
             if (self.GetType() != obj.GetType())
             {
                 return new Tuple<bool, string>(false, string.Format("Objects are with different types: {0} != {1}", self.GetType().Name, obj.GetType().Name));

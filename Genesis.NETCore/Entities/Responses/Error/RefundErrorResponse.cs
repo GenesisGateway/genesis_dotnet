@@ -8,7 +8,6 @@ namespace Genesis.NetCore.Entities.Responses.Error
     [XmlRoot("payment_response", Namespace = "RefundErrorResponse")]
     public class RefundErrorResponse :
         MoneyAndTransactionModel,
-        IErrorModel,
         IErrorResponse,
         IIssuerModel,
         ITransactionStatusModel,

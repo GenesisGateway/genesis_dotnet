@@ -10,6 +10,7 @@ namespace Genesis.NetCore
         public readonly string ApiLogin;
         public readonly string ApiPassword;
         public readonly Endpoints Endpoint;
+        public readonly bool UseSmartRouting;
 
         private string authorization;
 
@@ -26,13 +27,24 @@ namespace Genesis.NetCore
             }
         }
 
-        public Configuration(Environments environment, string terminalToken, string apiLogin, string apiPassword, Endpoints endpoint)
+        public Configuration(Environments environment, string apiLogin, string apiPassword, Endpoints endpoint, bool useSmartRouting = false)
+        {
+            Environment = environment;
+            TerminalToken = string.Empty;
+            ApiLogin = apiLogin;
+            ApiPassword = apiPassword;
+            Endpoint = endpoint;
+            UseSmartRouting = useSmartRouting;
+        }
+
+        public Configuration(Environments environment, string terminalToken, string apiLogin, string apiPassword, Endpoints endpoint, bool useSmartRouting = false)
         {
             Environment = environment;
             TerminalToken = terminalToken;
             ApiLogin = apiLogin;
             ApiPassword = apiPassword;
             Endpoint = endpoint;
+            UseSmartRouting = useSmartRouting;
         }
 
         public string getEndpointURL()

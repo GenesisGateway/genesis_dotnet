@@ -35,5 +35,9 @@ namespace Genesis.NetCore.Entities
 
         [XmlElement(ElementName = "country")]
         public Iso3166CountryCodes? Country { get; set; }
+
+        [StringLength(255)]
+        [XmlElement(ElementName = "neighborhood")]
+        public string Neighborhood { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace Genesis.NetCore.Entities.Requests.Initial
         /// <summary>
         /// Represents the amount of money in major currency units
         /// </summary>
-        [MoneyRange]
+        [MoneyRange(0)]
         [XmlIgnore]
         public decimal Amount
         {

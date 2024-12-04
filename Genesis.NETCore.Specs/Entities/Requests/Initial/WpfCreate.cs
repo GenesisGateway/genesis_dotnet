@@ -30,7 +30,7 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial
         [TestMethod]
         public void it_should_validate_amount()
         {
-            wpfCreateMock.Instance.on_validation_should_behave_like_amount("Amount");
+            wpfCreateMock.Instance.on_validation_should_behave_like_amount("Amount", -0.01m);
         }
 
         [TestMethod]

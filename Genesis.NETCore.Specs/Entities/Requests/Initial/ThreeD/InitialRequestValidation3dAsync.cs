@@ -8,7 +8,7 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial.ThreeD
     public abstract class InitialRequestValidation3dAsync<T> : InitialRequestValidation<T>
         where T : InitialRequest
     {
-        public InitialRequestValidation3dAsync(Func<EntityMock<T>> getMockObject) : base(getMockObject)
+        public InitialRequestValidation3dAsync(Func<EntityMock<T>> getMockObject) : base(getMockObject, -0.01m)
         {
         }
 

@@ -5,6 +5,7 @@ using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Cards.ThreedsV2.Enums;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Funding;
 using Genesis.NetCore.Entities.Attributes.Request.Financial.Recurring;
+using Genesis.NetCore.Entities.Enums;
 using Genesis.NetCore.Entities.Enums.Funding;
 using Genesis.NetCore.Entities.Enums.ManagedRecurring;
 using Genesis.NetCore.Entities.Enums.Recurring;
@@ -2791,110 +2792,6 @@ namespace Genesis.NetCore.Specs.Mocks
             return new EntityMock<InitRecurringSale3d>(fallback3dv2, xml);
         }
 
-        public static EntityMock<AccountVerification> CreateValidAccountVerification()
-        {
-            var accountVerification = new AccountVerification()
-            {
-                Id = "id",
-                Usage = "usage",
-                Amount = 1,
-                Currency = Iso4217CurrencyCodes.USD,
-                RemoteIp = "255.10.100.10",
-                CardHolder = "card holder",
-                ExpirationMonth = "1",
-                ExpirationYear = "2025",
-                CustomerEmail = "hello@world.com",
-                CustomerPhone = "3598888888888",
-                CardNumber = CardsNumbers.Visa3dSecureEnrolled,
-                Cvv = "123",
-                BillingAddress = new Address()
-                {
-                    Address1 = "billing address1",
-                    Address2 = "billing address2",
-                    City = "billing city",
-                    Country = Iso3166CountryCodes.BG,
-                    FirstName = "billing first name",
-                    LastName = "billing last name",
-                    State = "BS",
-                    ZipCode = "1000"
-                },
-                ShippingAddress = new Address()
-                {
-                    Address1 = "shipping address1",
-                    Address2 = "shipping address2",
-                    City = "shipping city",
-                    Country = Iso3166CountryCodes.BG,
-                    FirstName = "shipping first name",
-                    LastName = "shipping last name",
-                    State = "BS",
-                    ZipCode = "1000"
-                },
-                RiskParams = new RiskParams()
-                {
-                    Email = "hello@world.com",
-                    MacAddress = "mac address",
-                    Phone = "3598888888888",
-                    RemoteIp = "255.10.100.10",
-                    SerialNumber = "serial number",
-                    SessionId = "session id",
-                    Ssn = "ssn",
-                    UserId = "user id",
-                    UserLevel = "user level"
-                }
-            };
-
-            var xml =
-                     "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                     "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"AccountVerification\">" +
-                     "<transaction_type>account_verification</transaction_type>" +
-                     "<transaction_id>id</transaction_id>" +
-                     "<usage>usage</usage>" +
-                     "<amount>100</amount>" +
-                     "<currency>USD</currency>" +
-                     "<remote_ip>255.10.100.10</remote_ip>" +
-                     "<card_holder>card holder</card_holder>" +
-                     "<expiration_month>01</expiration_month>" +
-                     "<expiration_year>2025</expiration_year>" +
-                     "<customer_email>hello@world.com</customer_email>" +
-                     "<customer_phone>3598888888888</customer_phone>" +
-                     "<card_number>4711100000000000</card_number>" +
-                     "<cvv>123</cvv>" +
-                     "<billing_address>" +
-                     "<first_name>billing first name</first_name>" +
-                     "<last_name>billing last name</last_name>" +
-                     "<address1>billing address1</address1>" +
-                     "<address2>billing address2</address2>" +
-                     "<zip_code>1000</zip_code>" +
-                     "<city>billing city</city>" +
-                     "<state>BS</state>" +
-                     "<country>BG</country>" +
-                     "</billing_address>" +
-                     "<shipping_address>" +
-                     "<first_name>shipping first name</first_name>" +
-                     "<last_name>shipping last name</last_name>" +
-                     "<address1>shipping address1</address1>" +
-                     "<address2>shipping address2</address2>" +
-                     "<zip_code>1000</zip_code>" +
-                     "<city>shipping city</city>" +
-                     "<state>BS</state>" +
-                     "<country>BG</country>" +
-                     "</shipping_address>" +
-                     "<risk_params>" +
-                     "<ssn>ssn</ssn>" +
-                     "<mac_address>mac address</mac_address>" +
-                     "<session_id>session id</session_id>" +
-                     "<user_id>user id</user_id>" +
-                     "<user_level>user level</user_level>" +
-                     "<email>hello@world.com</email>" +
-                     "<phone>3598888888888</phone>" +
-                     "<remote_ip>255.10.100.10</remote_ip>" +
-                     "<serial_number>serial number</serial_number>" +
-                     "</risk_params>" +
-                     "</payment_transaction>";
-
-            return new EntityMock<AccountVerification>(accountVerification, xml);
-        }
-
         public static EntityMock<Avs> CreateValidAvs()
         {
             var avs = new Avs()
@@ -3424,6 +3321,211 @@ namespace Genesis.NetCore.Specs.Mocks
                       "<usage>usage</usage>" +
                       "<amount>100</amount>" +
                       "<currency>USD</currency>" +
+                      "<remote_ip>255.10.100.10</remote_ip>" +
+                      "<card_holder>card holder</card_holder>" +
+                      "<expiration_month>01</expiration_month>" +
+                      "<expiration_year>2025</expiration_year>" +
+                      "<customer_email>hello@world.com</customer_email>" +
+                      "<customer_phone>3598888888888</customer_phone>" +
+                      "<card_number>4711100000000000</card_number>" +
+                      "<cvv>123</cvv>" +
+                      "<billing_address>" +
+                      "<first_name>billing first name</first_name>" +
+                      "<last_name>billing last name</last_name>" +
+                      "<address1>billing address1</address1>" +
+                      "<address2>billing address2</address2>" +
+                      "<zip_code>1000</zip_code>" +
+                      "<city>billing city</city>" +
+                      "<state>BS</state>" +
+                      "<country>BG</country>" +
+                      "</billing_address>" +
+                      "<shipping_address>" +
+                      "<first_name>shipping first name</first_name>" +
+                      "<last_name>shipping last name</last_name>" +
+                      "<address1>shipping address1</address1>" +
+                      "<address2>shipping address2</address2>" +
+                      "<zip_code>1000</zip_code>" +
+                      "<city>shipping city</city>" +
+                      "<state>BS</state>" +
+                      "<country>BG</country>" +
+                      "</shipping_address>" +
+                      "<risk_params>" +
+                      "<ssn>ssn</ssn>" +
+                      "<mac_address>mac address</mac_address>" +
+                      "<session_id>session id</session_id>" +
+                      "<user_id>user id</user_id>" +
+                      "<user_level>user level</user_level>" +
+                      "<email>hello@world.com</email>" +
+                      "<phone>3598888888888</phone>" +
+                      "<remote_ip>255.10.100.10</remote_ip>" +
+                      "<serial_number>serial number</serial_number>" +
+                      "</risk_params>" +
+                      "<dynamic_descriptor_params>" +
+                      "<merchant_name>Test Merchant</merchant_name>" +
+                      "<merchant_city>Testing Town</merchant_city>" +
+                      "</dynamic_descriptor_params>" +
+                      "<business_attributes>" +
+                      "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                      "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                      "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                      "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                      "<event_id>" + _digitNumber + "</event_id>" +
+                      "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                      "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                      "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                      "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                      "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                      "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                      "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                      "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                      "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                      "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                      "<supplier_name>" + _contractorName + "</supplier_name>" +
+                      "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                      "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                      "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                      "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                      "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                      "<origin_city>Sofia</origin_city>" +
+                      "<contractor_name>" + _contractorName + "</contractor_name>" +
+                      "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                      "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                      "<payment_type>" + _paymentType + "</payment_type>" +
+                      "</business_attributes>" +
+                      "<funding>" +
+                        "<identifier_type>own_account</identifier_type>" +
+                        "<receiver>" +
+                          "<first_name>First</first_name>" +
+                          "<last_name>Last</last_name>" +
+                          "<country>FR</country>" +
+                          "<account_number>acc_number_example</account_number>" +
+                          "<account_number_type>iban</account_number_type>" +
+                        "</receiver>" +
+                      "</funding>" +
+                      "<recurring_type>initial</recurring_type>" +
+                      "</payment_transaction>";
+
+            return new EntityMock<Sale>(sale, xml);
+        }
+
+        public static EntityMock<Sale> CreateValidSaleWithJPYCurrency()
+        {
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.JPY;
+
+            var sale = new Sale()
+            {
+                Id = "id",
+                Usage = "usage",
+                Amount = 1,
+                Currency = _currency,
+                RemoteIp = "255.10.100.10",
+                CardHolder = "card holder",
+                ExpirationMonth = "1",
+                ExpirationYear = "2025",
+                CustomerEmail = "hello@world.com",
+                CustomerPhone = "3598888888888",
+                CardNumber = CardsNumbers.Visa3dSecureEnrolled,
+                Cvv = "123",
+                RecurringType = RecurringType.Initial,
+                BillingAddress = new Address()
+                {
+                    Address1 = "billing address1",
+                    Address2 = "billing address2",
+                    City = "billing city",
+                    Country = Iso3166CountryCodes.BG,
+                    FirstName = "billing first name",
+                    LastName = "billing last name",
+                    State = "BS",
+                    ZipCode = "1000"
+                },
+                ShippingAddress = new Address()
+                {
+                    Address1 = "shipping address1",
+                    Address2 = "shipping address2",
+                    City = "shipping city",
+                    Country = Iso3166CountryCodes.BG,
+                    FirstName = "shipping first name",
+                    LastName = "shipping last name",
+                    State = "BS",
+                    ZipCode = "1000"
+                },
+                RiskParams = new RiskParams()
+                {
+                    Email = "hello@world.com",
+                    MacAddress = "mac address",
+                    Phone = "3598888888888",
+                    RemoteIp = "255.10.100.10",
+                    SerialNumber = "serial number",
+                    SessionId = "session id",
+                    Ssn = "ssn",
+                    UserId = "user id",
+                    UserLevel = "user level"
+                },
+                DynamicDescriptorParams = new DynamicDescriptor()
+                {
+                    MerchantName = "Test Merchant",
+                    MerchantCity = "Testing Town"
+                },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
+                },
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "First",
+                        LastName = "Last",
+                        Country = Iso3166CountryCodes.FR,
+                        AccountNumber = "acc_number_example",
+                        AccountNumberType = ReceiverAccountNumberType.Iban
+                    }
+                }
+            };
+
+            var xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                      "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"Sale\">" +
+                      "<transaction_type>sale</transaction_type>" +
+                      "<transaction_id>id</transaction_id>" +
+                      "<usage>usage</usage>" +
+                      "<amount>1</amount>" +
+                      "<currency>JPY</currency>" +
                       "<remote_ip>255.10.100.10</remote_ip>" +
                       "<card_holder>card holder</card_holder>" +
                       "<expiration_month>01</expiration_month>" +
@@ -4860,7 +4962,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 ReturnFailureUrl = "https://example.com/return_failure",
                 ProxyAmount = "519",
                 Currency = Iso4217CurrencyCodes.EUR,
-                PaymentType = "giropay",
+                PaymentType = PproPaymentType.EPS,
                 Bic = "GENODETT488",
                 Iban = "DE07444488880123456789",
                 AccountNumber = "334432",
@@ -4905,7 +5007,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 "<risk_params>" +
                 "<user_id>123456</user_id>" +
                 "</risk_params>" +
-                "<payment_type>giropay</payment_type>" +
+                "<payment_type>eps</payment_type>" +
                 "<account_number>334432</account_number>" +
                 "<bank_code>12345678</bank_code>" +
                 "<bic>GENODETT488</bic>" +
@@ -4914,6 +5016,149 @@ namespace Genesis.NetCore.Specs.Mocks
                 "</payment_transaction>";
 
             return new EntityMock<Ppro>(ppro, xml);
+        }
+
+        public static EntityMock<OnlineBanking> CreateValidOnlineBanking()
+        {
+            var onlineBanking = new OnlineBanking()
+            {
+                Id = "119643250547501c79d8295",
+                Usage = "40208 concert tickets",
+                RemoteIp = "245.253.2.12",
+                ReturnSuccessUrl = "http://www.example.com/success",
+                ReturnFailureUrl = "http://www.example.com/failure",
+                ProxyAmount = "50000",
+                Currency = Iso4217CurrencyCodes.CNY,
+                PaymentType = OnlineBankingPaymentType.OnlineBanking,
+                BankCode = "CITIC",
+                CustomerEmail = "travis@example.com",
+                ConsumerReference = "Consumer Reference",
+                BillingAddress = new Address()
+                {
+                    FirstName = "Travis",
+                    LastName = "Pastrana",
+                    Address1 = "Muster Str. 12",
+                    ZipCode = "10178",
+                    City = "Los Angeles",
+                    Country = Iso3166CountryCodes.US,
+                    Neighborhood = "Hollywood",
+                    State = "CA"
+                },
+            };
+
+            var xml =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"OnlineBanking\">" +
+                "<transaction_type>online_banking</transaction_type>" +
+                "<transaction_id>119643250547501c79d8295</transaction_id>" +
+                "<usage>40208 concert tickets</usage>" +
+                "<amount>50000</amount>" +
+                "<currency>CNY</currency>" +
+                "<remote_ip>245.253.2.12</remote_ip>" +
+                "<return_success_url>http://www.example.com/success</return_success_url>" +
+                "<return_failure_url>http://www.example.com/failure</return_failure_url>" +
+                "<customer_email>travis@example.com</customer_email>" +
+                "<bank_code>CITIC</bank_code>" +
+                "<payment_type>online_banking</payment_type>" +
+                "<consumer_reference>Consumer Reference</consumer_reference>" +
+                "<billing_address>" +
+                "<first_name>Travis</first_name>" +
+                "<last_name>Pastrana</last_name>" +
+                "<address1>Muster Str. 12</address1>" +
+                "<zip_code>10178</zip_code>" +
+                "<city>Los Angeles</city>" +
+                "<state>CA</state>" +
+                "<country>US</country>" +
+                "<neighborhood>Hollywood</neighborhood>" +
+                "</billing_address>" +
+                "</payment_transaction>";
+
+            return new EntityMock<OnlineBanking>(onlineBanking, xml);
+        }
+
+        public static EntityMock<BankPayout> CreateValidBankPayout()
+        {
+            var bankPayout = new BankPayout()
+            {
+                Id = "119643250547501c79d8295",
+                Usage = "40208 concert tickets",
+                RemoteIp = "245.253.2.12",
+                NotificationUrl = "https://www.example.com/notification",
+                ReturnSuccessUrl = "http://www.example.com/success",
+                ReturnFailureUrl = "http://www.example.com/failure",
+                ProxyAmount = "50000",
+                Currency = Iso4217CurrencyCodes.INR,
+                CustomerPhone = "+1987987987987",
+                CustomerEmail = "travis@example.com",
+                BankName = "Netbanking",
+                BankCode = "321",
+                BankBranch = "HDFC0000001",
+                BankAccountNumber = "1234123412341234",
+                BankAccountName = "Anurak Nghuen",
+                IdCardNumber = "123789456",
+                PayerBankPhoneNumber = "01234567891",
+                BankAccountType = BankAccountType.Checking,
+                BankAccountVerificationDigit = "1",
+                DocumentType = "PASS",
+                PaymentType = BankPayoutSubtype.BankToBank,
+                BillingAddress = new Address()
+                {
+                    FirstName = "Anurak",
+                    LastName = "Nghuen",
+                    Address1 = "Muster Str. 12",
+                    ZipCode = "10178",
+                    City = "New Delhi",
+                    State = "New Delhi",
+                    Country = Iso3166CountryCodes.IN
+                },
+                CompanyType = "Inc",
+                CompanyActivity = "Activity",
+                IncorporationDate = new DateTime(2022, 12, 22),
+                MothersName = "Nala",
+                PixKey = "1234567890"
+            };
+
+            var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                "<payment_transaction xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"BankPayout\">" +
+                    "<transaction_type>bank_payout</transaction_type>" +
+                    "<transaction_id>119643250547501c79d8295</transaction_id>" +
+                    "<usage>40208 concert tickets</usage>" +
+                    "<amount>50000</amount>" +
+                    "<currency>INR</currency>" +
+                    "<remote_ip>245.253.2.12</remote_ip>" +
+                    "<notification_url>https://www.example.com/notification</notification_url>" +
+                    "<return_success_url>http://www.example.com/success</return_success_url>" +
+                    "<return_failure_url>http://www.example.com/failure</return_failure_url>" +
+                    "<bank_name>Netbanking</bank_name>" +
+                    "<bank_code>321</bank_code>" +
+                    "<customer_email>travis@example.com</customer_email>" +
+                    "<customer_phone>+1987987987987</customer_phone>" +
+                    "<bank_branch>HDFC0000001</bank_branch>" +
+                    "<bank_account_name>Anurak Nghuen</bank_account_name>" +
+                    "<bank_account_number>1234123412341234</bank_account_number>" +
+                    "<id_card_number>123789456</id_card_number>" +
+                    "<payer_bank_phone_number>01234567891</payer_bank_phone_number>" +
+                    "<bank_account_type>C</bank_account_type>" +
+                    "<bank_account_verification_digit>1</bank_account_verification_digit>" +
+                    "<document_type>PASS</document_type>" +
+                    "<payment_type>bank_to_bank</payment_type>" +
+                    "<company_type>Inc</company_type>" +
+                    "<company_activity>Activity</company_activity>" +
+                    "<incorporation_date>22-12-2022</incorporation_date>" +
+                    "<mothers_name>Nala</mothers_name>" +
+                    "<pix_key>1234567890</pix_key>" +
+                    "<billing_address>" +
+                        "<first_name>Anurak</first_name>" +
+                        "<last_name>Nghuen</last_name>" +
+                        "<address1>Muster Str. 12</address1>" +
+                        "<zip_code>10178</zip_code>" +
+                        "<city>New Delhi</city>" +
+                        "<state>New Delhi</state>" +
+                        "<country>IN</country>" +
+                    "</billing_address>" +
+                "</payment_transaction>";
+
+            return new EntityMock<BankPayout>(bankPayout, xml);
         }
     }
 }

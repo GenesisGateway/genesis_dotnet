@@ -83,16 +83,6 @@ namespace Genesis.NetCore
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
-        Result<AccountVerificationSuccessResponse, AccountVerificationErrorResponse> Execute(AccountVerification accountVerification);
-
-        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
-        /// <exception cref="T:System.Net.WebException"/>
-        /// <exception cref="T:System.IO.InvalidDataException"/>
-        Task<Result<AccountVerificationSuccessResponse, AccountVerificationErrorResponse>> ExecuteAsync(AccountVerification accountVerification);
-
-        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
-        /// <exception cref="T:System.Net.WebException"/>
-        /// <exception cref="T:System.IO.InvalidDataException"/>
         Result<AvsSuccessResponse, AvsErrorResponse> Execute(Avs avs);
 
         /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
@@ -269,5 +259,36 @@ namespace Genesis.NetCore
         /// <exception cref="T:System.Net.WebException"/>
         /// <exception cref="T:System.IO.InvalidDataException"/>
         Task<Result<CardTransactionSuccessResponse, CardTransactionErrorResponse>> ExecuteAsync(ContinueRequest initThreeDSv2ContinueRequest);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Result<PproSuccessResponse, PproErrorResponse> Execute(Ppro ppro);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Task<Result<PproSuccessResponse, PproErrorResponse>> ExecuteAsync(Ppro ppro);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Result<OnlineBankingSuccessResponse, OnlineBankingErrorResponse> Execute(OnlineBanking onlineBanking);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Task<Result<OnlineBankingSuccessResponse, OnlineBankingErrorResponse>> ExecuteAsync(OnlineBanking onlineBanking);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Result<BankPayoutSuccessResponse, BankPayoutErrorResponse> Execute(BankPayout bankPayout);
+
+        /// <exception cref="T:System.ComponentModel.DataAnnotations.ValidationException"/>
+        /// <exception cref="T:System.Net.WebException"/>
+        /// <exception cref="T:System.IO.InvalidDataException"/>
+        Task<Result<BankPayoutSuccessResponse, BankPayoutErrorResponse>> ExecuteAsync(BankPayout bankPayout);
+
     }
 }

@@ -1,25 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Genesis.NetCore.Common;
+﻿using Genesis.NetCore.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace Genesis.NetCore.Validations
 {
     internal class MoneyRangeAttribute : ValidationAttribute
     {
-        private const int MinMinorAmount = 1;
+        private readonly int MinMinorAmount = 1;
 
         public readonly string CurrencyPropertyName;
 
-        public MoneyRangeAttribute(string currencyPropertyName = "Currency")
+        public MoneyRangeAttribute(int minMinorAmount = 1, string currencyPropertyName = "Currency")
         {
-            CurrencyPropertyName = currencyPropertyName;
+            this.MinMinorAmount = minMinorAmount;
+            this.CurrencyPropertyName = currencyPropertyName;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var majorAmount = (decimal)value;
             var currencyCode = GetCurrencyCode(validationContext.ObjectInstance);
-            int minorAmount;
-            if (Iso4217Currencies.TryConvertMajorToMinor(currencyCode, majorAmount, out minorAmount))
+
+            if (Iso4217Currencies.TryConvertMajorToMinor(currencyCode, majorAmount, out var minorAmount))
             {
                 if (minorAmount >= MinMinorAmount)
                 {

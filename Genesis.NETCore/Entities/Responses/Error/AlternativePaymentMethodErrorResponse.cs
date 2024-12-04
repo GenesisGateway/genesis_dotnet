@@ -9,7 +9,6 @@ namespace Genesis.NetCore.Entities.Responses.Error
         IMoneyModel,
         ITransactionModel,
         IAcquirerModel,
-        IErrorModel,
         IErrorResponse,
         ITransactionStatusModel,
         ITransactionTypeModel

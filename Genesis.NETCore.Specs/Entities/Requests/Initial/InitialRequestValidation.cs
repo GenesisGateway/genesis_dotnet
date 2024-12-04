@@ -11,10 +11,12 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial
         protected T initialRequestMock;
         protected string initialRequestMockXml;
         private readonly Func<EntityMock<T>> getMockObjectFunk;
+        private readonly decimal invalidAmount;
 
-        public InitialRequestValidation(Func<EntityMock<T>> getMockObject)
+        public InitialRequestValidation(Func<EntityMock<T>> getMockObject, decimal invalidAmount = -0.01m)
         {
             getMockObjectFunk = getMockObject;
+            this.invalidAmount = invalidAmount;
         }
 
         [TestInitialize]
@@ -40,7 +42,7 @@ namespace Genesis.NetCore.Specs.Entities.Requests.Initial
         [TestMethod]
         public void it_should_validate_amount()
         {
-            initialRequestMock.on_validation_should_behave_like_amount("Amount");
+            initialRequestMock.on_validation_should_behave_like_amount("Amount", invalidAmount);
         }
 
         [TestMethod]
