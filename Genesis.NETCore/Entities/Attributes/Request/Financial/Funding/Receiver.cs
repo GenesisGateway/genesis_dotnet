@@ -30,7 +30,7 @@ namespace Genesis.NetCore.Entities.Attributes.Request.Financial.Funding
         public Iso3166CountryCodes? Country { get; set; }
 
         /// <summary>
-        /// Receiver account number
+        /// Receiver account number. Mandatory for Mastercard. If Sender Reference Number is provided then it becomes optional for VISA.
         /// </summary>
         [XmlElement(ElementName = "account_number")]
         public string AccountNumber { get; set; }
@@ -40,5 +40,31 @@ namespace Genesis.NetCore.Entities.Attributes.Request.Financial.Funding
         /// </summary>
         [XmlElement(ElementName = "account_number_type")]
         public ReceiverAccountNumberType? AccountNumberType { get; set; }
+
+        public bool AccountNumberTypeSpecified
+        {
+            get
+            {
+                return this.AccountNumberType.HasValue;
+            }
+        }
+
+        /// <summary>
+        /// Receiver address. Only required in case of VISA and Canadian cards.
+        /// </summary>
+        [XmlElement(ElementName = "address")]
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Receiver state. Only required in case of VISA and Canadian cards.
+        /// </summary>
+        [XmlElement(ElementName = "state")]
+        public string State { get; set; }
+
+        /// <summary>
+        /// Receiver city. Only required in case of VISA and Canadian cards.
+        /// </summary>
+        [XmlElement(ElementName = "city")]
+        public string City { get; set; }
     }
 }

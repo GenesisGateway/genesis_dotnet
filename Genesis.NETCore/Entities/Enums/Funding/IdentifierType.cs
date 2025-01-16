@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace Genesis.NetCore.Entities.Enums.Funding
 {
     /// <summary>
-    /// Funding Transaction identifier types
+    /// Types of Mastercard Funding Transaction 
     /// </summary>
     [Serializable]
     public enum IdentifierType

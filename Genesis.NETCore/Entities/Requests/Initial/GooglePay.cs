@@ -33,6 +33,12 @@ namespace Genesis.NetCore.Entities.Requests.Initial
             }
         }
 
+        /// <summary>
+        /// Specifies recurring type of the transaction. Use: <b>initial</b>
+        /// </summary>
+        [XmlElement(ElementName = "recurring_type")]
+        public string RecurringType { get; set; }
+
         [XmlElement(ElementName = "document_id")]
         public string DocumentId { get; set; }
 

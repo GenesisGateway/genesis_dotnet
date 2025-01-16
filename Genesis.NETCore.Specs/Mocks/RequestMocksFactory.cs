@@ -3687,8 +3687,22 @@ namespace Genesis.NetCore.Specs.Mocks
                 },
                 DynamicDescriptorParams = new DynamicDescriptor
                 {
-                    MerchantName = "Test",
-                    MerchantCity = "12345"
+                    MerchantName = "test",
+                    MerchantCity = "test",
+                    MerchantAddress = "test",
+                    MerchantCountry = "tes",
+                    MerchantState = "tes",
+                    MerchantUrl = "test",
+                    MerchantGeoCoordinates = "test",
+                    MerchantPhone = "test",
+                    MerchantServiceCity = "test",
+                    MerchantServiceCountry = "tes",
+                    MerchantServiceState = "tes",
+                    MerchantServiceGeoCoordinates = "test",
+                    MerchantServicePhone = "test",
+                    MerchantServiceZipCode = "test",
+                    MerchantZipCode = "test",
+                    SubMerchantId = "test"
                 },
                 BusinessAttributes = new BusinessAttributes()
                 {
@@ -3843,8 +3857,22 @@ namespace Genesis.NetCore.Specs.Mocks
                         "<serial_number>serial number</serial_number>" +
                     "</risk_params>" +
                     "<dynamic_descriptor_params>" +
-                        "<merchant_name>Test</merchant_name>" +
-                        "<merchant_city>12345</merchant_city>" +
+                        "<merchant_name>test</merchant_name>" +
+                        "<merchant_city>test</merchant_city>" +
+                        "<sub_merchant_id>test</sub_merchant_id>" +
+                        "<merchant_country>tes</merchant_country>" +
+                        "<merchant_state>tes</merchant_state>" +
+                        "<merchant_zip_code>test</merchant_zip_code>" +
+                        "<merchant_address>test</merchant_address>" +
+                        "<merchant_url>test</merchant_url>" +
+                        "<merchant_phone>test</merchant_phone>" +
+                        "<merchant_service_city>test</merchant_service_city>" +
+                        "<merchant_service_country>tes</merchant_service_country>" +
+                        "<merchant_service_state>tes</merchant_service_state>" +
+                        "<merchant_service_zip_code>test</merchant_service_zip_code>" +
+                        "<merchant_service_phone>test</merchant_service_phone>" +
+                        "<merchant_geo_coordinates>test</merchant_geo_coordinates>" +
+                        "<merchant_service_geo_coordinates>test</merchant_service_geo_coordinates>" +
                     "</dynamic_descriptor_params>" +
                     "<business_attributes>" +
                         "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
@@ -3899,6 +3927,620 @@ namespace Genesis.NetCore.Specs.Mocks
                             "<country>FR</country>" +
                             "<account_number>acc_number_example</account_number>" +
                             "<account_number_type>iban</account_number_type>" +
+                        "</receiver>" +
+                    "</funding>" +
+                "</wpf_payment>";
+
+            return new EntityMock<WpfCreate>(wpfCreate, xml);
+        }
+
+
+        public static EntityMock<WpfCreate> CreateValidWpfCreateWithVisaFunding()
+        {
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.USD;
+
+            var wpfCreate = new WpfCreate()
+            {
+                TransactionId = "id",
+                Usage = "usage",
+                Amount = 1,
+                Currency = _currency,
+                ConsumerId = "123456",
+                CustomerEmail = "hello@world.com",
+                CustomerPhone = "3598888888888",
+                RememberCard = "true",
+                Description = "description",
+                CardHolder = "Hodler Name",
+                TransactionTypes = new Composite[] {
+                    new Composite() { { "name", "sale" } }, new Composite() { { "name", TransactionTypes.Sale3d.ToString() } },
+                    new Composite() { { "name", "ezeewallet" }, { "source_wallet_id", "emil@example.com" } },
+                    new Composite() { { "name", "apple_pay" }, { "payment_subtype", "authorize" } },
+                    new Composite() { { "name", "google_pay" }, { "payment_subtype", "authorize" } },
+                    new Composite() { { "name", "init_recurring_sale" }, { "managed_recurring", new ManagedRecurring() {
+                        Mode = Mode.Automatic,
+                        Interval = Interval.Days,
+                        FirstDate = "2021-12-18",
+                        TimeOfDay = 5,
+                        Period = 22,
+                        Amount = new Money(_currency, 5).MinorAmount,
+                        MaxCount = 10
+                    } } }
+                },
+                ReturnCancelUrl = "http://test.com/cancel",
+                ReturnFailureUrl = "http://test.com/fail",
+                ReturnSuccessUrl = "http://test.com/success",
+                NotificationUrl = "https://example.com/notify",
+                RecurringType = RecurringType.Managed,
+                BillingAddress = new Address()
+                {
+                    Address1 = "billing address1",
+                    Address2 = "billing address2",
+                    City = "billing city",
+                    Country = Iso3166CountryCodes.BG,
+                    FirstName = "billing first name",
+                    LastName = "billing last name",
+                    State = "BS",
+                    ZipCode = "1000"
+                },
+                ShippingAddress = new Address()
+                {
+                    Address1 = "shipping address1",
+                    Address2 = "shipping address2",
+                    City = "shipping city",
+                    Country = Iso3166CountryCodes.BG,
+                    FirstName = "shipping first name",
+                    LastName = "shipping last name",
+                    State = "BS",
+                    ZipCode = "1000"
+                },
+                RiskParams = new RiskParams()
+                {
+                    Email = "hello@world.com",
+                    MacAddress = "mac address",
+                    Phone = "3598888888888",
+                    RemoteIp = "255.10.100.10",
+                    SerialNumber = "serial number",
+                    SessionId = "session id",
+                    Ssn = "ssn",
+                    UserId = "user id",
+                    UserLevel = "user level"
+                },
+                DynamicDescriptorParams = new DynamicDescriptor
+                {
+                    MerchantName = "test",
+                    MerchantCity = "test"
+                },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
+                },
+                PayLater = "true",
+                ReminderLanguage = WpfLocales.EN,
+                Reminders = new List<Reminder>
+                {
+                    new Reminder
+                    {
+                        After = 40,
+                        Channel = "email"
+                    },
+                    new Reminder
+                    {
+                        After = 10,
+                        Channel = "sms"
+                    }
+                },
+                Sca = new Sca
+                {
+                    Exemption = ScaExemptions.LowValue
+                },
+                WebPaymentFormId = "1",
+                Funding = new FundingAttributes()
+                {
+                    BusinessApplicationIdentifier = BusinessApplicationIdentifier.FundsDisbursement,
+                    Sender = new Sender()
+                    {
+                        ReferenceNumber = "887888888",
+                        Name = "Gosho Pochivka",
+                        Address = "100 Kila str.",
+                        City = "Varna",
+                        State = "Varnstate",
+                        Country = "BG"
+                    },
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "Doko",
+                        LastName = "Ko",
+                        Country = Iso3166CountryCodes.BG,
+                        AccountNumber = "doko@emp.com",
+                        Address = "Payneer STR",
+                        State = "Askovo",
+                        City = "Dimitrovgrad",
+                    }
+                }
+            };
+
+            var xml =
+                            "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                            "<wpf_payment xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"WpfCreate\">" +
+                                "<transaction_id>id</transaction_id>" +
+                                "<amount>100</amount>" +
+                                "<currency>USD</currency>" +
+                                "<consumer_id>123456</consumer_id>" +
+                                "<usage>usage</usage>" +
+                                "<description>description</description>" +
+                                "<card_holder>Hodler Name</card_holder>" +
+                                "<customer_email>hello@world.com</customer_email>" +
+                                "<customer_phone>3598888888888</customer_phone>" +
+                                "<notification_url>https://example.com/notify</notification_url>" +
+                                "<return_success_url>http://test.com/success</return_success_url>" +
+                                "<return_failure_url>http://test.com/fail</return_failure_url>" +
+                                "<return_cancel_url>http://test.com/cancel</return_cancel_url>" +
+                                "<billing_address>" +
+                                    "<first_name>billing first name</first_name>" +
+                                    "<last_name>billing last name</last_name>" +
+                                    "<address1>billing address1</address1>" +
+                                    "<address2>billing address2</address2>" +
+                                    "<zip_code>1000</zip_code>" +
+                                    "<city>billing city</city>" +
+                                    "<state>BS</state>" +
+                                    "<country>BG</country>" +
+                                "</billing_address>" +
+                                "<shipping_address>" +
+                                    "<first_name>shipping first name</first_name>" +
+                                    "<last_name>shipping last name</last_name>" +
+                                    "<address1>shipping address1</address1>" +
+                                    "<address2>shipping address2</address2>" +
+                                    "<zip_code>1000</zip_code>" +
+                                    "<city>shipping city</city>" +
+                                    "<state>BS</state>" +
+                                    "<country>BG</country>" +
+                                "</shipping_address>" +
+                                "<transaction_types>" +
+                                    "<transaction_type>" +
+                                      "<name>sale</name>" +
+                                    "</transaction_type>" +
+                                    "<transaction_type>" +
+                                      "<name>sale3d</name>" +
+                                    "</transaction_type>" +
+                                    "<transaction_type>" +
+                                      "<name>ezeewallet</name>" +
+                                      "<source_wallet_id>emil@example.com</source_wallet_id>" +
+                                    "</transaction_type>" +
+                                    "<transaction_type>" +
+                                      "<name>apple_pay</name>" +
+                                      "<payment_subtype>authorize</payment_subtype>" +
+                                    "</transaction_type>" +
+                                    "<transaction_type>" +
+                                      "<name>google_pay</name>" +
+                                      "<payment_subtype>authorize</payment_subtype>" +
+                                    "</transaction_type>" +
+                                    "<transaction_type>" +
+                                      "<name>init_recurring_sale</name>" +
+                                      "<managed_recurring>" +
+                                        "<mode>automatic</mode>" +
+                                        "<interval>days</interval>" +
+                                        "<first_date>2021-12-18</first_date>" +
+                                        "<time_of_day>5</time_of_day>" +
+                                        "<period>22</period>" +
+                                        "<amount>500</amount>" +
+                                        "<max_count>10</max_count>" +
+                                      "</managed_recurring>" +
+                                    "</transaction_type>" +
+                                "</transaction_types>" +
+                                "<remember_card>true</remember_card>" +
+                                "<lifetime xsi:nil=\"true\"/>" +
+                                "<risk_params>" +
+                                    "<ssn>ssn</ssn>" +
+                                    "<mac_address>mac address</mac_address>" +
+                                    "<session_id>session id</session_id>" +
+                                    "<user_id>user id</user_id>" +
+                                    "<user_level>user level</user_level>" +
+                                    "<email>hello@world.com</email>" +
+                                    "<phone>3598888888888</phone>" +
+                                    "<remote_ip>255.10.100.10</remote_ip>" +
+                                    "<serial_number>serial number</serial_number>" +
+                                "</risk_params>" +
+                                "<dynamic_descriptor_params>" +
+                                    "<merchant_name>test</merchant_name>" +
+                                    "<merchant_city>test</merchant_city>" +
+                                "</dynamic_descriptor_params>" +
+                                "<business_attributes>" +
+                                    "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                                    "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                                    "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                                    "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                                    "<event_id>" + _digitNumber + "</event_id>" +
+                                    "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                                    "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                                    "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                                    "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                                    "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                                    "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                                    "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                                    "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                                    "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                                    "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                                    "<supplier_name>" + _contractorName + "</supplier_name>" +
+                                    "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                                    "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                                    "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                                    "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                                    "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                                    "<origin_city>Sofia</origin_city>" +
+                                    "<contractor_name>" + _contractorName + "</contractor_name>" +
+                                    "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                                    "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                                    "<payment_type>" + _paymentType + "</payment_type>" +
+                                "</business_attributes>" +
+                                "<recurring_type>managed</recurring_type>" +
+                                "<pay_later>true</pay_later>" +
+                                "<reminder_language>en</reminder_language>" +
+                                "<reminders>" +
+                                  "<reminder>" +
+                                    "<channel>email</channel>" +
+                                    "<after>40</after>" +
+                                  "</reminder>" +
+                                  "<reminder>" +
+                                    "<channel>sms</channel>" +
+                                    "<after>10</after>" +
+                                  "</reminder>" +
+                                "</reminders>" +
+                                "<sca_params>" +
+                                  "<exemption>low_value</exemption>" +
+                                "</sca_params>" +
+                                "<web_payment_form_id>1</web_payment_form_id>" +
+                                "<funding>" +
+                                    "<business_application_identifier>funds_disbursement</business_application_identifier>" +
+                                    "<receiver>" +
+                                        "<first_name>Doko</first_name>" +
+                                        "<last_name>Ko</last_name>" +
+                                        "<country>BG</country>" +
+                                        "<account_number>doko@emp.com</account_number>" +
+                                        "<address>Payneer STR</address>" +
+                                        "<state>Askovo</state>" +
+                                        "<city>Dimitrovgrad</city>" +
+                                    "</receiver>" +
+                                    "<sender>" +
+                                        "<name>Gosho Pochivka</name>" +
+                                        "<reference_number>887888888</reference_number>" +
+                                        "<country>BG</country>" +
+                                        "<address>100 Kila str.</address>" +
+                                        "<state>Varnstate</state>" +
+                                        "<city>Varna</city>" +
+                                    "</sender>" +
+                                "</funding>" +
+                            "</wpf_payment>";
+
+            return new EntityMock<WpfCreate>(wpfCreate, xml);
+        }
+
+        public static EntityMock<WpfCreate> CreateValidWpfCreateWithMastercardFunding()
+        {
+            var _startDate = DateTime.Now.AddMonths(-1);
+            var _endDate = DateTime.Now.AddMonths(1);
+            var _currency = Iso4217CurrencyCodes.USD;
+
+            var wpfCreate = new WpfCreate()
+            {
+                TransactionId = "id",
+                Usage = "usage",
+                Amount = 1,
+                Currency = _currency,
+                ConsumerId = "123456",
+                CustomerEmail = "hello@world.com",
+                CustomerPhone = "3598888888888",
+                RememberCard = "true",
+                Description = "description",
+                CardHolder = "Hodler Name",
+                TransactionTypes = new Composite[] {
+                    new Composite() { { "name", "sale" } }, new Composite() { { "name", TransactionTypes.Sale3d.ToString() } },
+                    new Composite() { { "name", "ezeewallet" }, { "source_wallet_id", "emil@example.com" } },
+                    new Composite() { { "name", "apple_pay" }, { "payment_subtype", "authorize" } },
+                    new Composite() { { "name", "google_pay" }, { "payment_subtype", "authorize" } },
+                    new Composite() { { "name", "init_recurring_sale" }, { "managed_recurring", new ManagedRecurring() {
+                        Mode = Mode.Automatic,
+                        Interval = Interval.Days,
+                        FirstDate = "2021-12-18",
+                        TimeOfDay = 5,
+                        Period = 22,
+                        Amount = new Money(_currency, 5).MinorAmount,
+                        MaxCount = 10
+                    } } }
+                },
+                ReturnCancelUrl = "http://test.com/cancel",
+                ReturnFailureUrl = "http://test.com/fail",
+                ReturnSuccessUrl = "http://test.com/success",
+                NotificationUrl = "https://example.com/notify",
+                RecurringType = RecurringType.Managed,
+                BillingAddress = new Address()
+                {
+                    Address1 = "billing address1",
+                    Address2 = "billing address2",
+                    City = "billing city",
+                    Country = Iso3166CountryCodes.BG,
+                    FirstName = "billing first name",
+                    LastName = "billing last name",
+                    State = "BS",
+                    ZipCode = "1000"
+                },
+                ShippingAddress = new Address()
+                {
+                    Address1 = "shipping address1",
+                    Address2 = "shipping address2",
+                    City = "shipping city",
+                    Country = Iso3166CountryCodes.BG,
+                    FirstName = "shipping first name",
+                    LastName = "shipping last name",
+                    State = "BS",
+                    ZipCode = "1000"
+                },
+                RiskParams = new RiskParams()
+                {
+                    Email = "hello@world.com",
+                    MacAddress = "mac address",
+                    Phone = "3598888888888",
+                    RemoteIp = "255.10.100.10",
+                    SerialNumber = "serial number",
+                    SessionId = "session id",
+                    Ssn = "ssn",
+                    UserId = "user id",
+                    UserLevel = "user level"
+                },
+                DynamicDescriptorParams = new DynamicDescriptor
+                {
+                    MerchantName = "Test",
+                    MerchantCity = "12345"
+                },
+                BusinessAttributes = new BusinessAttributes()
+                {
+                    FlightArrivalDate = _startDate.ToShortDateString(),
+                    FlightDepartureDate = _endDate.ToShortDateString(),
+                    AirlineFlightNumber = _digitNumber,
+                    FlightTicketNumber = "WS1234TS",
+
+                    EventId = _digitNumber,
+                    EventStartDate = _startDate.ToShortDateString(),
+                    EventEndDate = _endDate.ToShortDateString(),
+
+                    DateOfOrder = _startDate.ToShortDateString(),
+                    DeliveryDate = _endDate.ToShortDateString(),
+                    NameOfTheSupplier = _contractorName,
+                    CheckInDate = _startDate.ToShortDateString(),
+                    CheckOutDate = _endDate.ToShortDateString(),
+                    TravelAgencyName = "Test Agency Name",
+
+                    VehiclePickUpDate = _startDate.ToShortDateString(),
+                    VehicleReturnDate = _endDate.ToShortDateString(),
+                    SupplierName = _contractorName,
+
+                    CruiseStartDate = _startDate.ToShortDateString(),
+                    CruiseEndDate = _endDate.ToShortDateString(),
+
+                    ArrivalDate = _startDate.AddMonths(1).ToShortDateString(),
+                    DepartureDate = _endDate.ToShortDateString(),
+
+                    TicketNumber = _digitNumber,
+                    OriginCity = "Sofia",
+                    ContractorName = _contractorName,
+
+                    PickUpDate = _startDate.ToShortDateString(),
+                    ReturnDate = _endDate.AddMonths(1).ToShortDateString(),
+
+                    PaymentType = _paymentType
+                },
+                PayLater = "true",
+                ReminderLanguage = WpfLocales.EN,
+                Reminders = new List<Reminder>
+                {
+                    new Reminder
+                    {
+                        After = 40,
+                        Channel = "email"
+                    },
+                    new Reminder
+                    {
+                        After = 10,
+                        Channel = "sms"
+                    }
+                },
+                Sca = new Sca
+                {
+                    Exemption = ScaExemptions.LowValue
+                },
+                WebPaymentFormId = "1",
+                Funding = new FundingAttributes()
+                {
+                    IdentifierType = IdentifierType.OwnAccount,
+                    Receiver = new Receiver()
+                    {
+                        FirstName = "Doko",
+                        LastName = "Ko",
+                        Country = Iso3166CountryCodes.BG,
+                        AccountNumber = "doko@emp.com",
+                        AccountNumberType = ReceiverAccountNumberType.Email,
+                        Address = "Payneer STR",
+                        State = "Askovo",
+                        City = "Dimitrovgrad",
+                    }
+                }
+            };
+
+            var xml =
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                "<wpf_payment xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"WpfCreate\">" +
+                    "<transaction_id>id</transaction_id>" +
+                    "<amount>100</amount>" +
+                    "<currency>USD</currency>" +
+                    "<consumer_id>123456</consumer_id>" +
+                    "<usage>usage</usage>" +
+                    "<description>description</description>" +
+                    "<card_holder>Hodler Name</card_holder>" +
+                    "<customer_email>hello@world.com</customer_email>" +
+                    "<customer_phone>3598888888888</customer_phone>" +
+                    "<notification_url>https://example.com/notify</notification_url>" +
+                    "<return_success_url>http://test.com/success</return_success_url>" +
+                    "<return_failure_url>http://test.com/fail</return_failure_url>" +
+                    "<return_cancel_url>http://test.com/cancel</return_cancel_url>" +
+                    "<billing_address>" +
+                        "<first_name>billing first name</first_name>" +
+                        "<last_name>billing last name</last_name>" +
+                        "<address1>billing address1</address1>" +
+                        "<address2>billing address2</address2>" +
+                        "<zip_code>1000</zip_code>" +
+                        "<city>billing city</city>" +
+                        "<state>BS</state>" +
+                        "<country>BG</country>" +
+                    "</billing_address>" +
+                    "<shipping_address>" +
+                        "<first_name>shipping first name</first_name>" +
+                        "<last_name>shipping last name</last_name>" +
+                        "<address1>shipping address1</address1>" +
+                        "<address2>shipping address2</address2>" +
+                        "<zip_code>1000</zip_code>" +
+                        "<city>shipping city</city>" +
+                        "<state>BS</state>" +
+                        "<country>BG</country>" +
+                    "</shipping_address>" +
+                    "<transaction_types>" +
+                        "<transaction_type>" +
+                          "<name>sale</name>" +
+                        "</transaction_type>" +
+                        "<transaction_type>" +
+                          "<name>sale3d</name>" +
+                        "</transaction_type>" +
+                        "<transaction_type>" +
+                          "<name>ezeewallet</name>" +
+                          "<source_wallet_id>emil@example.com</source_wallet_id>" +
+                        "</transaction_type>" +
+                        "<transaction_type>" +
+                          "<name>apple_pay</name>" +
+                          "<payment_subtype>authorize</payment_subtype>" +
+                        "</transaction_type>" +
+                        "<transaction_type>" +
+                          "<name>google_pay</name>" +
+                          "<payment_subtype>authorize</payment_subtype>" +
+                        "</transaction_type>" +
+                        "<transaction_type>" +
+                          "<name>init_recurring_sale</name>" +
+                          "<managed_recurring>" +
+                            "<mode>automatic</mode>" +
+                            "<interval>days</interval>" +
+                            "<first_date>2021-12-18</first_date>" +
+                            "<time_of_day>5</time_of_day>" +
+                            "<period>22</period>" +
+                            "<amount>500</amount>" +
+                            "<max_count>10</max_count>" +
+                          "</managed_recurring>" +
+                        "</transaction_type>" +
+                    "</transaction_types>" +
+                    "<remember_card>true</remember_card>" +
+                    "<lifetime xsi:nil=\"true\"/>" +
+                    "<risk_params>" +
+                        "<ssn>ssn</ssn>" +
+                        "<mac_address>mac address</mac_address>" +
+                        "<session_id>session id</session_id>" +
+                        "<user_id>user id</user_id>" +
+                        "<user_level>user level</user_level>" +
+                        "<email>hello@world.com</email>" +
+                        "<phone>3598888888888</phone>" +
+                        "<remote_ip>255.10.100.10</remote_ip>" +
+                        "<serial_number>serial number</serial_number>" +
+                    "</risk_params>" +
+                    "<dynamic_descriptor_params>" +
+                        "<merchant_name>Test</merchant_name>" +
+                        "<merchant_city>12345</merchant_city>" +
+                    "</dynamic_descriptor_params>" +
+                    "<business_attributes>" +
+                        "<flight_arrival_date>" + _startDate.ToShortDateString() + "</flight_arrival_date>" +
+                        "<flight_departure_date>" + _endDate.ToShortDateString() + "</flight_departure_date>" +
+                        "<airline_flight_number>" + _digitNumber + "</airline_flight_number>" +
+                        "<flight_ticket_number>WS1234TS</flight_ticket_number>" +
+                        "<event_id>" + _digitNumber + "</event_id>" +
+                        "<event_start_date>" + _startDate.ToShortDateString() + "</event_start_date>" +
+                        "<event_end_date>" + _endDate.ToShortDateString() + "</event_end_date>" +
+                        "<date_of_order>" + _startDate.ToShortDateString() + "</date_of_order>" +
+                        "<delivery_date>" + _endDate.ToShortDateString() + "</delivery_date>" +
+                        "<name_of_the_supplier>" + _contractorName + "</name_of_the_supplier>" +
+                        "<check_in_date>" + _startDate.ToShortDateString() + "</check_in_date>" +
+                        "<check_out_date>" + _endDate.ToShortDateString() + "</check_out_date>" +
+                        "<travel_agency_name>Test Agency Name</travel_agency_name>" +
+                        "<vehicle_pick_up_date>" + _startDate.ToShortDateString() + "</vehicle_pick_up_date>" +
+                        "<vehicle_return_date>" + _endDate.ToShortDateString() + "</vehicle_return_date>" +
+                        "<supplier_name>" + _contractorName + "</supplier_name>" +
+                        "<cruise_start_date>" + _startDate.ToShortDateString() + "</cruise_start_date>" +
+                        "<cruise_end_date>" + _endDate.ToShortDateString() + "</cruise_end_date>" +
+                        "<arrival_date>" + _startDate.AddMonths(1).ToShortDateString() + "</arrival_date>" +
+                        "<departure_date>" + _endDate.ToShortDateString() + "</departure_date>" +
+                        "<ticket_number>" + _digitNumber + "</ticket_number>" +
+                        "<origin_city>Sofia</origin_city>" +
+                        "<contractor_name>" + _contractorName + "</contractor_name>" +
+                        "<pick_up_date>" + _startDate.ToShortDateString() + "</pick_up_date>" +
+                        "<return_date>" + _endDate.AddMonths(1).ToShortDateString() + "</return_date>" +
+                        "<payment_type>" + _paymentType + "</payment_type>" +
+                    "</business_attributes>" +
+                    "<recurring_type>managed</recurring_type>" +
+                    "<pay_later>true</pay_later>" +
+                    "<reminder_language>en</reminder_language>" +
+                    "<reminders>" +
+                      "<reminder>" +
+                        "<channel>email</channel>" +
+                        "<after>40</after>" +
+                      "</reminder>" +
+                      "<reminder>" +
+                        "<channel>sms</channel>" +
+                        "<after>10</after>" +
+                      "</reminder>" +
+                    "</reminders>" +
+                    "<sca_params>" +
+                      "<exemption>low_value</exemption>" +
+                    "</sca_params>" +
+                    "<web_payment_form_id>1</web_payment_form_id>" +
+                    "<funding>" +
+                        "<identifier_type>own_account</identifier_type>" +
+                        "<receiver>" +
+                            "<first_name>Doko</first_name>" +
+                            "<last_name>Ko</last_name>" +
+                            "<country>BG</country>" +
+                            "<account_number>doko@emp.com</account_number>" +
+                            "<account_number_type>email</account_number_type>" +
+                            "<address>Payneer STR</address>" +
+                            "<state>Askovo</state>" +
+                            "<city>Dimitrovgrad</city>" +
                         "</receiver>" +
                     "</funding>" +
                 "</wpf_payment>";
@@ -4563,6 +5205,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 Id = "43671",
                 TransactionType = TransactionTypes.ApplePay,
                 Subtype = TransactionSubTypes.Authorize,
+                RecurringType = "initial",
                 PaymentToken = "...",
                 Usage = "40208 concert tickets",
                 RemoteIp = "245.253.2.12",
@@ -4612,6 +5255,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 "<remote_ip>245.253.2.12</remote_ip>" +
                 "<payment_token>...</payment_token>" +
                 "<payment_subtype>authorize</payment_subtype>" +
+                "<recurring_type>initial</recurring_type>" +
                 "<birth_date>" + _birthDate.ToShortDateString() + "</birth_date>" +
                 "<document_id>123456789</document_id>" +
                 "<billing_address>" +
@@ -4656,6 +5300,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 Id = "43671",
                 TransactionType = TransactionTypes.GooglePay,
                 Subtype = TransactionSubTypes.Authorize,
+                RecurringType = "initial",
                 PaymentToken = "...",
                 Usage = "40208 concert tickets",
                 RemoteIp = "245.253.2.12",
@@ -4705,6 +5350,7 @@ namespace Genesis.NetCore.Specs.Mocks
                 "<remote_ip>245.253.2.12</remote_ip>" +
                 "<payment_token>...</payment_token>" +
                 "<payment_subtype>authorize</payment_subtype>" +
+                "<recurring_type>initial</recurring_type>" +
                 "<document_id>123456789</document_id>" +
                 "<birth_date>" + _birthDate.ToShortDateString() + "</birth_date>" +
                 "<billing_address>" +

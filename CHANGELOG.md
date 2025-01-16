@@ -1,3 +1,13 @@
+2.1.1
+-----
+**Features**:
+
+* Extended Funding parameters with VISA parameters support
+* Extended Dynamic Descriptor parameters support
+* Added mobile recurring payments support to the following transaction requests:
+  * Google Pay
+  * Apple Pay
+
 2.1.0
 -----
 **Features**:
