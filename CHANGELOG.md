@@ -1,3 +1,9 @@
+2.1.2
+-----
+**Fixes**:
+
+* Fixed Accept HTTP header config for the web request with the Smart Router API
+
 2.1.1
 -----
 **Features**:

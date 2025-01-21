@@ -1,5 +1,6 @@
 ﻿using System;
 using Genesis.NetCore.Common;
+using Genesis.NetCore.Entities.Attributes.Request.Financial.Funding;
 using Genesis.NetCore.Entities.Requests.Initial;
 using Genesis.NetCore.Specs.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -25,8 +26,21 @@ namespace Genesis.NetCore.Specs
         private Authorize init_authorize()
         {
             Authorize authorize = RequestMocksFactory.CreateValidAuthorize().Instance;
+            authorize.ManagedRecurring = null;
+            authorize.RecurringType = null;
+            authorize.Funding.BusinessApplicationIdentifier = NetCore.Entities.Enums.Funding.BusinessApplicationIdentifier.PersonToPerson;
+            authorize.Funding.Sender = new Sender()
+            {
+                ReferenceNumber = "123888888",
+                Name = "Test Test",
+                Address = "100 Test str.",
+                City = "Tst",
+                State = "Testtest",
+                Country = "BG"
+            };
+
             authorize.Id = Guid.NewGuid().ToString();
-            authorize.Currency = Iso4217CurrencyCodes.EUR;
+            authorize.Currency = Iso4217CurrencyCodes.USD;
             return authorize;
         }
 
@@ -55,7 +69,15 @@ namespace Genesis.NetCore.Specs
         {
             WpfCreate wpfCreate = RequestMocksFactory.CreateValidWpfCreate().Instance;
             wpfCreate.TransactionId = Guid.NewGuid().ToString();
-            wpfCreate.Currency = Iso4217CurrencyCodes.EUR;
+            wpfCreate.Currency = Iso4217CurrencyCodes.USD;
+            wpfCreate.RecurringType = null;
+            wpfCreate.ConsumerId = null;
+            wpfCreate.DynamicDescriptorParams = null;
+            wpfCreate.TransactionTypes = new Composite[] {
+                new Composite() { { "name", "sale" } },
+                new Composite() { { "name", "sale3d" } }
+            };
+
             return wpfCreate;
         }
 
@@ -67,7 +89,9 @@ namespace Genesis.NetCore.Specs
 
             var result = genesis.Execute(wpfCreate);
             Assert.IsNotNull(result.SuccessResponse, string.Concat(Environment.NewLine, result.ErrorResponse?.Message, Environment.NewLine, result.ErrorResponse?.TechnicalMessage));
-            Assert.IsTrue(result.SuccessResponse.RedirectUrl.StartsWith("https://staging.wpf." + SpecHelper.ConfigStorage.getEndpointURL() + "/bg/payment/"));
+            var expected = "https://staging.wpf." + SpecHelper.ConfigStorage.getEndpointURL() + "/bg/v2/payment/";
+            Assert.IsTrue(result.SuccessResponse.RedirectUrl.StartsWith(expected),
+                $"Actual: {result.SuccessResponse.RedirectUrl} \r\nExpected  to start with: {expected}");
         }
 
         [TestMethod]
@@ -81,7 +105,9 @@ namespace Genesis.NetCore.Specs
             var result = response.Result;
 
             Assert.IsNotNull(result.SuccessResponse, string.Concat(Environment.NewLine, result.ErrorResponse?.Message, Environment.NewLine, result.ErrorResponse?.TechnicalMessage));
-            Assert.IsTrue(result.SuccessResponse.RedirectUrl.StartsWith("https://staging.wpf." + SpecHelper.ConfigStorage.getEndpointURL() + "/de/payment/"));
+            var expected = "https://staging.wpf." + SpecHelper.ConfigStorage.getEndpointURL() + "/de/v2/payment/";
+            Assert.IsTrue(result.SuccessResponse.RedirectUrl.StartsWith(expected),
+                $"Actual: {result.SuccessResponse.RedirectUrl} \r\nExpected to start with: {expected}");
         }
     }
 }

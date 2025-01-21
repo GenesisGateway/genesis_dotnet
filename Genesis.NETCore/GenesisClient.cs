@@ -374,7 +374,6 @@ namespace Genesis.NetCore
             else
             {
                 webRequest.ContentType = "text/xml";
-                webRequest.Headers["Accept"] = "text/xml";
                 data = XmlSerializationHelpers.Serialize(request);
             }
 
@@ -383,6 +382,10 @@ namespace Genesis.NetCore
             var httpWebRequest = webRequest as HttpWebRequest;
             if (httpWebRequest != null)
             {
+                if (!(request is IUrlEncodedSignature) && usingSmartRouting)
+                {
+                    httpWebRequest.Accept = "text/xml";
+                }
                 httpWebRequest.UserAgent = string.Format("Genesis.Net {0}", typeof(GenesisClient).Assembly.GetName().Version.ToString());
                 httpWebRequest.KeepAlive = false;
             }

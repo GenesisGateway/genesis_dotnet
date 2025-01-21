@@ -3632,7 +3632,8 @@ namespace Genesis.NetCore.Specs.Mocks
                 Description = "description",
                 CardHolder = "Hodler Name",
                 TransactionTypes = new Composite[] {
-                    new Composite() { { "name", "sale" } }, new Composite() { { "name", TransactionTypes.Sale3d.ToString() } },
+                    new Composite() { { "name", "sale" } },
+                    new Composite() { { "name", TransactionTypes.Sale3d.ToString() } },
                     new Composite() { { "name", "ezeewallet" }, { "source_wallet_id", "emil@example.com" } },
                     new Composite() { { "name", "apple_pay" }, { "payment_subtype", "authorize" } },
                     new Composite() { { "name", "google_pay" }, { "payment_subtype", "authorize" } },
@@ -3954,7 +3955,8 @@ namespace Genesis.NetCore.Specs.Mocks
                 Description = "description",
                 CardHolder = "Hodler Name",
                 TransactionTypes = new Composite[] {
-                    new Composite() { { "name", "sale" } }, new Composite() { { "name", TransactionTypes.Sale3d.ToString() } },
+                    new Composite() { { "name", "sale" } },
+                    new Composite() { { "name", TransactionTypes.Sale3d.ToString() } },
                     new Composite() { { "name", "ezeewallet" }, { "source_wallet_id", "emil@example.com" } },
                     new Composite() { { "name", "apple_pay" }, { "payment_subtype", "authorize" } },
                     new Composite() { { "name", "google_pay" }, { "payment_subtype", "authorize" } },
@@ -4268,7 +4270,8 @@ namespace Genesis.NetCore.Specs.Mocks
                 Description = "description",
                 CardHolder = "Hodler Name",
                 TransactionTypes = new Composite[] {
-                    new Composite() { { "name", "sale" } }, new Composite() { { "name", TransactionTypes.Sale3d.ToString() } },
+                    new Composite() { { "name", "sale" } },
+                    new Composite() { { "name", TransactionTypes.Sale3d.ToString() } },
                     new Composite() { { "name", "ezeewallet" }, { "source_wallet_id", "emil@example.com" } },
                     new Composite() { { "name", "apple_pay" }, { "payment_subtype", "authorize" } },
                     new Composite() { { "name", "google_pay" }, { "payment_subtype", "authorize" } },

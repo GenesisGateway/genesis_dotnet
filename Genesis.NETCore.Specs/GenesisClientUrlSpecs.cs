@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net;
 using Genesis.NetCore.Entities.Requests;
 using Genesis.NetCore.Specs.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -56,14 +57,17 @@ namespace Genesis.NetCore.Specs
 
             foreach (var exampleRequest in requestsWithSmartRoutingRequests)
             {
-                var webRequest = genesisClient.CreateWebRequest(exampleRequest);
+                var webRequest = (HttpWebRequest)genesisClient.CreateWebRequest(exampleRequest);
                 string expectedUrl = this.GetExpectedUrl(useSmartRouting, configuration, exampleRequest);
 
                 Assert.AreEqual(expectedUrl, webRequest.RequestUri.ToString(), $"{exampleRequest.GetType().Name} has wrong URL.");
                 Assert.AreEqual(contentType, webRequest.ContentType, $"{exampleRequest.GetType().Name} has wrong ContentType.");
-                Assert.IsTrue(webRequest.Headers.AllKeys.Contains("Accept"), $"{exampleRequest.GetType().Name} has no Accept header.");
+                if (useSmartRouting)
+                {
+                    Assert.IsTrue(webRequest.Headers.AllKeys.Contains("Accept"), $"{exampleRequest.GetType().Name} has no Accept header.");
+                    Assert.IsTrue(SmartRoutingAccceptHeaders.Contains(webRequest.Headers["Accept"]), $"{exampleRequest.GetType().Name} has wrong Accept header.");
+                }
 
-                Assert.IsTrue(SmartRoutingAccceptHeaders.Contains(webRequest.Headers["Accept"]), $"{exampleRequest.GetType().Name} has wrong Accept header.");
             }
         }
 
